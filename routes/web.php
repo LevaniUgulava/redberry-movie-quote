@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 Route::get('/', function () {
-    return 'Inertia server-side is ready! Waiting for client setup.';;
+    return Inertia::render('Welcome');
 });
