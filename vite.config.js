@@ -5,6 +5,7 @@ import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import inertia from "@inertiajs/vite";
 import path from "path";
+import { wayfinder } from "@laravel/vite-plugin-wayfinder";
 
 export default defineConfig({
     plugins: [
@@ -20,6 +21,7 @@ export default defineConfig({
         react(),
         inertia(),
         tailwindcss(),
+        wayfinder(),
     ],
     resolve: {
         alias: [
