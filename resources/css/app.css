@@ -7,3 +7,11 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+body{
+    background-color: #11101A;
+}
+@theme {
+  --color-main-red: #E31221;
+  --color-main-beige:#DDCCAA
+
+}
