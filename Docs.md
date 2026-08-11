@@ -41,6 +41,16 @@ Nothing app-specific (quotes, movies, etc.) has been built yet.
 - Tests are Pest feature/unit tests in `tests/`.
 - Conventions must follow the Laravel Boost guidelines in `AGENTS.md` (e.g. use `php artisan make:` commands, `pint` formatting, factory-based tests).
 
+## CI / GitHub Actions
+
+A GitHub Actions workflow (`.github/workflows/ci.yml`) runs on every push to `main` and on pull requests targeting `main`. It is a single full-stack job — Inertia is one project, so frontend and backend are never isolated:
+
+- **PHP 8.4** via `shivammathur/setup-php`, `composer install` (default, dev dependencies included).
+- **Node 22** (Vite 8 requires Node `^20.19.0 || >=22.12.0`), `npm ci`, then `npm run build`. The frontend build runs PHP under the hood because the Wayfinder Vite plugin executes `php artisan wayfinder:generate` — the job must therefore provide both runtimes together.
+- **Pest tests** — `vendor/bin/pest`, with the frontend build done first so Inertia pages resolve the Vite manifest.
+
+Tests run against a MySQL 8.4 service container (the job-level `DB_*` env vars override the SQLite `:memory:` values in `phpunit.xml`, since PHPUnit env config defaults to `force=false`), and `php artisan migrate --force` runs before the suite.
+
 ## Commands
 
 ```bash
@@ -52,12 +62,15 @@ npm run build           # production frontend build
 npm run dev             # vite dev server
 ```
 
-## Architectural decisions
+## Architectural `decisions`
 
 | Date | Decision | Reasoning |
 | --- | --- | --- |
 | 2026-08-09 | Adopt Laravel Boost guidelines as the governing convention set | Ensures consistent, best-practice Laravel development across agents and teammates |
 | 2026-08-09 | Create `Docs.md` at project root | Required by project rules for tracking features and decisions |
+| 2026-08-11 | Add CI pipeline via GitHub Actions (`.github/workflows/ci.yml`) | Guarantees the frontend builds and the Pest suite passes before changes reach `main`. Runs on `push` to `main` and on PRs targeting `main`. Chose `npm run build` + Pest as the gate for now instead of adding a frontend lint stack (ESLint etc.) — a full test run is sufficient at this stage and avoids adding dependencies prematurely |
+| 2026-08-11 | Use MySQL 8.4 for CI tests instead of SQLite `:memory:` | CI runs against the same engine as production (MySQL). Job-level `DB_*` env vars override the SQLite values in `phpunit.xml` (PHPUnit `<env>` defaults to `force=false`, so pre-set shell env wins), and `php artisan migrate --force` runs before the suite |
+| 2026-08-11 | Merge frontend build and tests into a single CI job | Inertia is a single full-stack project, so frontend and backend are never isolated in CI. The Wayfinder Vite plugin runs `php artisan wayfinder:generate` during `npm run build`, so the build genuinely requires PHP anyway — one job with both runtimes is simpler and still fails fast on either side |
 
 ## Development workflow rules
 
