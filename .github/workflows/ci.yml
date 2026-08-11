@@ -21,7 +21,6 @@ jobs:
       DB_DATABASE: movie_quotes_testing
       DB_USERNAME: root
       DB_PASSWORD: password
-      APP_KEY:
 
     services:
       mysql:
