@@ -21,16 +21,28 @@ Before relying on a package's API, confirm its installed version:
 - **CRITICAL CORE:** Always follow Laravel Boost guidelines for all application architecture and implementation decisions.
 - **CRITICAL CORE:** Always ask for help immediately when stuck, blocked, or unsure about a particular task or logic.
 
-### 2. Documentation Protocol (`Docs.md`)
+### 2. Documentation Protocol (`docs/`)
 
-- **CRITICAL CORE:** Always update `Docs.md` in the root folder when adding new features or modifying existing ones.
-- **CRITICAL CORE:** Document all architectural and technical decisions made along with their reasoning (ask the user for input on the decision-making process if not explicitly provided).
+- **CRITICAL CORE:** Always create and maintain documentation inside a dedicated `docs/` folder in the project root. Never rely on a single global file or scattered notes.
+
+- **CRITICAL CORE (Index Map):** Always maintain a master index file (`docs/index.md`) with a structured table of contents linking to every functional module file in `docs/`.
+
+- **CRITICAL CORE (Functional Breakdown):** Break documentation into dedicated, granular `.md` files inside `docs/` (e.g. `auth.md`, `database.md`, `api.md`, `components.md`, `payments.md`), updated whenever a feature is added or modified.
+
+- **CRITICAL CORE (Decision & Problem Logging):** Every functional `.md` file must document:
+    - **Architectural & Technical Decisions** — what was chosen, why, and which alternatives were rejected.
+    - **Challenges & Solutions** — bugs, edge cases, or obstacles encountered and the exact fix, so the same problem is never re-debugged.
+
+- **CRITICAL CORE (Input Requirement):** If decision-making, trade-offs, or reasoning aren't already provided, ask the user explicitly before writing them into the docs, so the documentation reflects actual business/technical intent.
+
+- **Small tasks:** For small, direct changes, update the relevant `docs/{feature}.md` file directly — no `plans/` file needed.
+
+- **Planned features:** When a feature went through `plans/{feature}.md`, fold its high-level implementation summary and key decisions into `docs/{feature}.md` once done, and add a link back to `plans/{feature}.md` at the top of the doc for reference. Small tasks with no plan file have no such link.
 
 ### 3. Critical Core Constraints
 
-- **CRITICAL CORE:** No code will ever be committed without prior explicit approval from the user.
-- **CRITICAL CORE:** No code will ever be committed without `Docs.md` being fully updated first.
--
+- **CRITICAL CORE:** No code is ever committed without explicit user approval.
+- **CRITICAL CORE:** No code is ever committed before `docs/{feature}.md` is fully updated.
 
 ## Skills Activation
 
