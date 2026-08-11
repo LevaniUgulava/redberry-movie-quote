@@ -1,6 +1,6 @@
 # Auth — Plan
 
-> Session-based authentication for the Movie Quotes app. Backend only (frontend ignored for now). Inertia same-origin, so no Sanctum package is installed — the standard `web` guard + session cookies are used.
+> Session-based authentication for the Movie Quotes app. Backend only (frontend ignored for now). `laravel/sanctum` is installed (user decision); session cookies remain the transport for the same-origin Inertia app.
 
 ## Overview
 
@@ -11,17 +11,16 @@ Provide register, login, and logout using Laravel's built-in session authenticat
 | # | Slice | Summary | Status |
 | --- | --- | --- | --- |
 | 1 | [1-register.md](./auth_phases/1-register.md) | Create an account via `POST /register`, then auto-login | Done |
-| 2 | [2-login.md](./auth_phases/2-login.md) | Authenticate via `POST /login` with remember me support | Planned |
+| 2 | [2-login.md](./auth_phases/2-login.md) | Authenticate via `POST /login` with remember me support | Done |
 | 3 | [3-logout.md](./auth_phases/3-logout.md) | End the session via `POST /logout` | Done |
-| 4 | [4-testing.md](./auth_phases/4-testing.md) | Consolidated Pest test suite for the whole auth area | Planned |
 
 ## Architecture
 
-- **No new package.** Session auth on a same-origin Inertia app uses the standard `web` guard; `laravel/sanctum` is not needed.
+- **Sanctum installed** (user decision) for future API/token needs; the same-origin Inertia app still authenticates via session cookies through the `web` guard.
 - **Single controller:** `App\Http\Controllers\AuthController` with `register()`, `login()`, `logout()`.
 - **Form Requests:** `RegisterRequest` and `LoginRequest` keep validation out of the controller.
-- **Routes:** new `routes/auth.php` (auto-registered by `withRouting()` in `bootstrap/app.php` because the file exists) — guest routes for register/login, `auth` middleware for logout.
-- **Session security:** regenerate the session ID on login; invalidate the session and regenerate the token on logout.
+- **Routes:** `routes/web/auth.php`, required from `routes/web.php` (Laravel 13 does not auto-load `routes/auth.php`) — guest routes for register/login, `auth:sanctum` middleware for logout.
+- **Session security:** regenerate the session ID on login; invalidate the session and regenerate the token on logout. Logout targets `Auth::guard('web')` because `auth:sanctum` switches the default guard to the token `RequestGuard`, which has no `logout()`.
 - **Password hashing:** already handled by the `hashed` cast on the `User` model.
 - **Redirects:** `redirect()->intended('/')` — the landing page is the fallback until a real dashboard exists.
 

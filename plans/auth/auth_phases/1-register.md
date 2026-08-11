@@ -41,7 +41,7 @@ Accept `name`, `email`, `password` (+ confirmation), create the `User`, log them
 - **File**: `routes/auth.php`
 - **Description**: Guest-only `POST /register`.
 - **Details**:
-  - Create `routes/auth.php` (auto-loaded with the `web` group by `withRouting()` in `bootstrap/app.php:10`).
+  - Create `routes/web/auth.php` (required manually from `routes/web.php` — Laravel 13 does not auto-load `routes/auth.php`).
   - `Route::middleware('guest')->group(...)` containing `Route::post('/register', [AuthController::class, 'register'])->name('register');`
 - **Dependencies**: Task 2.
 
