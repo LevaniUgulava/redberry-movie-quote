@@ -7,3 +7,4 @@ Before planning or editing, find the row whose globs match the file's path and r
 | bootstrap/app.php | .ai/rules/bootstrap.md |
 | app/Http/Controllers/** | .ai/rules/controllers.md |
 | resources/js/** | .ai/rules/js.md |
+| .github/workflows/** | .ai/rules/workflows.md |
