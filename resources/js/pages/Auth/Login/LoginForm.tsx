@@ -1,0 +1,73 @@
+import { login } from "@/actions/App/Http/Controllers/AuthController";
+import Buttons from "@/components/ui/Auth/Buttons/Buttons";
+import Header from "@/components/ui/Auth/Header/Header";
+import Input from "@/components/ui/Auth/Input/Input";
+import { Form, Link } from "@inertiajs/react";
+import AuthFooterLink from "@/pages/Auth/AuthFooterLink/AuthFooterLink";
+
+function LoginForm() {
+    return (
+        <div className="flex flex-col justify-center items-center w-full">
+            <Header
+                title="Log in to your account"
+                subtitle="Welcome back! Please enter your details."
+            />
+            <Form action={login()}>
+                {({ validate, errors, valid, reset }) => (
+                    <div>
+                        <Input
+                            name="login"
+                            label="Email"
+                            placeholder="Enter your email or username"
+                            onChange={() => validate("login")}
+                            error={errors.login}
+                            isValid={valid("login")}
+                            reset={reset}
+                        />
+                        <Input
+                            name="password"
+                            label="Password"
+                            type="password"
+                            placeholder="Password"
+                            onChange={() => validate("password")}
+                            error={errors.password}
+                            isValid={valid("password")}
+                            reset={reset}
+                        />
+                        <div className="flex justify-between pb-4">
+                            <div className="flex items-center gap-2">
+                                <input
+                                    id="remember"
+                                    type="checkbox"
+                                    name="remember"
+                                    className="w-4 h-4 accent-main-red cursor-pointer"
+                                />
+                                <label
+                                    htmlFor="remember"
+                                    className="text-white text-sm cursor-pointer"
+                                >
+                                    Remember me
+                                </label>
+                            </div>
+                            <div>
+                                <Link
+                                    href="/?modal=forget"
+                                    className="text-[#0D6EFD] underline"
+                                >
+                                    Forgot password
+                                </Link>
+                            </div>
+                        </div>
+                        <Buttons />
+                    </div>
+                )}
+            </Form>
+            <AuthFooterLink
+                linkName="Sign up"
+                text="Don't have an account?"
+                link="register"
+            />
+        </div>
+    );
+}
+export default LoginForm;
