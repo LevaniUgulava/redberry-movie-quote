@@ -1,5 +1,6 @@
 import useLanding from "@/pages/Landing/hooks/useLanding";
 import HyphenIcon from "@/pages/Landing/icons/HyphenIcon";
+import AuthContent from "@/pages/Auth/AuthContent/AuthContent";
 
 //test data
 const data = [
@@ -20,7 +21,7 @@ const data = [
     },
 ];
 
-function Landing() {
+function Landing({ currentModal }: { currentModal: string }) {
     const scrollY = useLanding();
 
     return (
@@ -29,7 +30,7 @@ function Landing() {
                 <div className="text-main-beige font-bold text-6xl w-175 flex justify-center items-center mx-auto text-center">
                     Find any quote in millions of movie lines
                 </div>
-                <button className="w-33.25 cursor-pointer bg-main-red rounded-lg text-xl text-white font-normal px-4.25 py-2.25">
+                <button className="cursor-pointer bg-main-red rounded-lg text-xl text-white font-normal px-4.25 py-2.25">
                     Get started
                 </button>
             </div>
@@ -77,6 +78,9 @@ function Landing() {
                     </div>
                 );
             })}
+            <div>
+                <AuthContent currentModal={currentModal} />
+            </div>
         </div>
     );
 }
