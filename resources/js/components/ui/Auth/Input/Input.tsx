@@ -24,6 +24,8 @@ function Input({
         inputType,
         isPassword,
         showPassword,
+        isVerified,
+        handleResend,
     } = useInput(type);
 
     return (
@@ -94,6 +96,15 @@ function Input({
                 {error && (
                     <span className="text-[#DC3545] text-sm mt-1 block">
                         {error}
+                        {isVerified && (
+                            <button
+                                type="button"
+                                onClick={handleResend}
+                                className="ml-1 underline text-blue-600"
+                            >
+                                Resend
+                            </button>
+                        )}
                     </span>
                 )}
             </div>
