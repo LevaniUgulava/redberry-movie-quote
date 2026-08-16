@@ -1,9 +1,10 @@
 import GoogleIcon from "@/components/ui/icons/Google/GoogleIcon";
+import {redirectToProvider} from "@/actions/App/Http/Controllers/GoogleController.ts";
 
 function Buttons({
-    showGoogle = true,
-    label = "Get started",
-}: {
+                     showGoogle = true,
+                     label = "Get started",
+                 }: {
     showGoogle?: boolean;
     label?: string;
 }) {
@@ -17,14 +18,16 @@ function Buttons({
             </button>
             {showGoogle && (
                 <button
+                    onClick={() => window.location.href = redirectToProvider.url()}
                     type="button"
                     className="border cursor-pointer flex justify-center items-center gap-2 border-[#CED4DA] text-white font-normal text-base leading-[150%] rounded-xs px-3.25 py-1.75 w-full"
                 >
-                    <GoogleIcon />
+                    <GoogleIcon/>
                     <span>Sign in with Google</span>
                 </button>
             )}
         </div>
     );
 }
+
 export default Buttons;
