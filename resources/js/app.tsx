@@ -1,8 +1,9 @@
-import { createInertiaApp } from "@inertiajs/react";
-import { createRoot } from "react-dom/client";
+import {createInertiaApp} from "@inertiajs/react";
+import {createRoot} from "react-dom/client";
 import AppLayout from "@/shared/layouts/AppLayout";
-import { ReactNode } from "react";
-import { PageComponent } from "@/types/AppTypes";
+import {ReactNode} from "react";
+import {PageComponent} from "@/types/AppTypes";
+import {setUrlDefaults} from './wayfinder';
 
 createInertiaApp({
     resolve: (name) => {
@@ -16,7 +17,11 @@ createInertiaApp({
         return page;
     },
 
-    setup({ el, App, props }) {
+    setup({el, App, props}) {
+        const locale = props.initialPage.props.locale;
+        setUrlDefaults({
+            lang: locale
+        });
         createRoot(el).render(<App {...props} />);
     },
 });
