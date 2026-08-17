@@ -1,35 +1,53 @@
-import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../wayfinder'
 /**
 * @see \App\Http\Controllers\AuthController::resend
 * @see app/Http/Controllers/AuthController.php:57
-* @route '/resend'
+* @route '/{lang}/resend'
 */
-export const resend = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
-    url: resend.url(options),
+export const resend = (args: { lang: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: resend.url(args, options),
     method: 'post',
 })
 
 resend.definition = {
     methods: ["post"],
-    url: '/resend',
+    url: '/{lang}/resend',
 } satisfies RouteDefinition<["post"]>
 
 /**
 * @see \App\Http\Controllers\AuthController::resend
 * @see app/Http/Controllers/AuthController.php:57
-* @route '/resend'
+* @route '/{lang}/resend'
 */
-resend.url = (options?: RouteQueryOptions) => {
-    return resend.definition.url + queryParams(options)
+resend.url = (args: { lang: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions) => {
+    if (typeof args === 'string' || typeof args === 'number') {
+        args = { lang: args }
+    }
+
+    if (Array.isArray(args)) {
+        args = {
+            lang: args[0],
+        }
+    }
+
+    args = applyUrlDefaults(args)
+
+    const parsedArgs = {
+        lang: args.lang,
+    }
+
+    return resend.definition.url
+            .replace('{lang}', parsedArgs.lang.toString())
+            .replace(/\/+$/, '') + queryParams(options)
 }
 
 /**
 * @see \App\Http\Controllers\AuthController::resend
 * @see app/Http/Controllers/AuthController.php:57
-* @route '/resend'
+* @route '/{lang}/resend'
 */
-resend.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
-    url: resend.url(options),
+resend.post = (args: { lang: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: resend.url(args, options),
     method: 'post',
 })
 
