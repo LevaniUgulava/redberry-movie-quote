@@ -1,4 +1,4 @@
 export const LANGUAGE = [
-    { label: "English", value: "en" },
-    { label: "ქართული", value: "ka" },
+    { label: "Eng", value: "en" },
+    { label: "ქარ", value: "ka" },
 ];
