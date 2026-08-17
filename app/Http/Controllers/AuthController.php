@@ -2,37 +2,35 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\LoginRequest;
-use App\Http\Requests\RegisterRequest;
-use App\Models\User;
+use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Requests\Auth\RegisterRequest;
+use App\Http\Requests\Auth\ResendVerifyRequest;
+use App\Service\AuthService;
+use App\Service\VerifyService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
+    public function __construct(
+        private AuthService $authService,
+        private VerifyService $service) {}
+
     public function register(RegisterRequest $request): RedirectResponse
     {
-        User::create($request->validated());
+
+        $this->authService->register($request->validated());
 
         return redirect()->intended('/');
     }
 
     public function login(LoginRequest $request): RedirectResponse
     {
-        $login = $request->login;
-
-        $field = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
-
-        $credentials = [$field => $login, 'password' => $request->password];
-
-        if (! Auth::attempt($credentials, $request->boolean('remember'))) {
-            throw ValidationException::withMessages([
-                'login' => __('auth.failed'),
-            ]);
-        }
-
+        $this->authService
+            ->login(
+                $request->only('login', 'password'),
+                $request->boolean('remember'));
         $request->session()->regenerate();
 
         return redirect()->intended('/');
@@ -47,5 +45,20 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
+    }
+
+    public function verify(int $id, string $hash): RedirectResponse
+    {
+        $this->service->verify($id, $hash);
+
+        return redirect('/');
+    }
+
+    public function resend(ResendVerifyRequest $request): RedirectResponse
+    {
+        $this->service->resend($request->email);
+
+        return redirect('/');
+
     }
 }

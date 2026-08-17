@@ -18,3 +18,5 @@ Route::prefix('/google')->group(function () {
     Route::get('/redirect', [GoogleController::class, 'redirectToProvider'])->name('redirect');
     Route::get('/callback', [GoogleController::class, 'handleProviderCallback'])->name('callback');
 });
+Route::get('/email/verify/{id}/{hash}', [AuthController::class, 'verify'])->middleware('signed')->name('verification.verify');
+Route::post('/resend', [AuthController::class, 'resend'])->name('verify.resend');
