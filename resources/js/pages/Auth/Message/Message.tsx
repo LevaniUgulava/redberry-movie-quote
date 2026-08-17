@@ -1,14 +1,8 @@
 import CheckMail from "@/components/ui/icons/Message/CheckIcon";
-import { MouseEvent, ReactNode } from "react";
+import { MouseEvent, ReactNode} from "react";
+import {MessageProps} from "@/types/MessageTypes.ts";
 
-interface MessageProps {
-    icon: ReactNode;
-    title: string;
-    subtitle: string;
-    button: string;
-    skip?: boolean;
-    onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
-}
+
 function Message({
     icon,
     title,
