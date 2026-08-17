@@ -1,1 +1,1 @@
-export const MODALS = ["register", "login", "forget"]
+export const MODALS = ["register", "login", "forget", 'reset']
