@@ -101,3 +101,91 @@ logout.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     method: 'post',
 })
 
+/**
+* @see \App\Http\Controllers\GoogleController::redirect
+* @see app/Http/Controllers/GoogleController.php:13
+* @route '/google/redirect'
+*/
+export const redirect = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: redirect.url(options),
+    method: 'get',
+})
+
+redirect.definition = {
+    methods: ["get","head"],
+    url: '/google/redirect',
+} satisfies RouteDefinition<["get","head"]>
+
+/**
+* @see \App\Http\Controllers\GoogleController::redirect
+* @see app/Http/Controllers/GoogleController.php:13
+* @route '/google/redirect'
+*/
+redirect.url = (options?: RouteQueryOptions) => {
+    return redirect.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\GoogleController::redirect
+* @see app/Http/Controllers/GoogleController.php:13
+* @route '/google/redirect'
+*/
+redirect.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: redirect.url(options),
+    method: 'get',
+})
+
+/**
+* @see \App\Http\Controllers\GoogleController::redirect
+* @see app/Http/Controllers/GoogleController.php:13
+* @route '/google/redirect'
+*/
+redirect.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: redirect.url(options),
+    method: 'head',
+})
+
+/**
+* @see \App\Http\Controllers\GoogleController::callback
+* @see app/Http/Controllers/GoogleController.php:18
+* @route '/google/callback'
+*/
+export const callback = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: callback.url(options),
+    method: 'get',
+})
+
+callback.definition = {
+    methods: ["get","head"],
+    url: '/google/callback',
+} satisfies RouteDefinition<["get","head"]>
+
+/**
+* @see \App\Http\Controllers\GoogleController::callback
+* @see app/Http/Controllers/GoogleController.php:18
+* @route '/google/callback'
+*/
+callback.url = (options?: RouteQueryOptions) => {
+    return callback.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\GoogleController::callback
+* @see app/Http/Controllers/GoogleController.php:18
+* @route '/google/callback'
+*/
+callback.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: callback.url(options),
+    method: 'get',
+})
+
+/**
+* @see \App\Http\Controllers\GoogleController::callback
+* @see app/Http/Controllers/GoogleController.php:18
+* @route '/google/callback'
+*/
+callback.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: callback.url(options),
+    method: 'head',
+})
+
