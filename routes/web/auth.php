@@ -2,21 +2,31 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\PasswordResetController;
 use Illuminate\Support\Facades\Route;
-use function Pest\Laravel\get;
 
-Route::middleware(['guest', 'precognition'])->group(function (): void {
-    Route::post('/register', [AuthController::class, 'register'])->name('register');
-    Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::middleware(['guest'])->group(function (): void {
+    Route::middleware('precognition')->group(function (): void {
+        Route::post('/register', [AuthController::class, 'register'])->name('register');
+        Route::post('/login', [AuthController::class, 'login'])->name('login');
+
+        Route::post('/forgot-password', [PasswordResetController::class, 'forgetPassword'])->name('password.email');
+        Route::post('/reset-password', [PasswordResetController::class, 'resetPassword'])->name('password.update');
+
+    });
+    Route::get('/reset-password/{token}/{email}', [PasswordResetController::class, 'redirectToReset'])->name('password.reset');
+
+
+    Route::prefix('/google')->group(function () {
+        Route::get('/redirect', [GoogleController::class, 'redirectToProvider'])->name('redirect');
+        Route::get('/callback', [GoogleController::class, 'handleProviderCallback'])->name('callback');
+    });
+
 });
 
 Route::middleware('auth:sanctum')->group(function (): void {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
-Route::prefix('/google')->group(function () {
-    Route::get('/redirect', [GoogleController::class, 'redirectToProvider'])->name('redirect');
-    Route::get('/callback', [GoogleController::class, 'handleProviderCallback'])->name('callback');
-});
 Route::get('/email/verify/{id}/{hash}', [AuthController::class, 'verify'])->middleware('signed')->name('verification.verify');
 Route::post('/resend', [AuthController::class, 'resend'])->name('verify.resend');

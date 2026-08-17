@@ -8,4 +8,4 @@ Route::get('/', function (Request $request) {
     return Inertia::render('Landing/Landing', [
         'currentModal' => $request->query('modal'),
     ]);
-});
+})->name('landing');
