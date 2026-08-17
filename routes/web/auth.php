@@ -11,3 +11,6 @@ Route::middleware(['guest', 'precognition'])->group(function (): void {
 Route::middleware('auth:sanctum')->group(function (): void {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
+
+Route::get('/email/verify/{id}/{hash}', [AuthController::class, 'verify'])->middleware('signed')->name('verification.verify');
+Route::post('/resend', [AuthController::class, 'resend'])->name('verify.resend');
