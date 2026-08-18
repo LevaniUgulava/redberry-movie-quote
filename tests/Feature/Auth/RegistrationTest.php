@@ -1,13 +1,10 @@
 <?php
 
 use App\Models\User;
-use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 
-uses(LazilyRefreshDatabase::class);
-
 test('new users can register', function () {
-    $response = $this->post('/register', [
+    $response = $this->post(localeUrl('/register'), [
         'name' => 'Test User',
         'email' => 'test@example.com',
         'password' => 'password',
@@ -24,7 +21,7 @@ test('new users can register', function () {
 });
 
 test('registration requires a name', function () {
-    $this->post('/register', [
+    $this->post(localeUrl('/register'), [
         'email' => 'test@example.com',
         'password' => 'password',
         'password_confirmation' => 'password',
@@ -32,7 +29,7 @@ test('registration requires a name', function () {
 });
 
 test('registration requires a valid email', function () {
-    $this->post('/register', [
+    $this->post(localeUrl('/register'), [
         'name' => 'Test User',
         'email' => 'not-an-email',
         'password' => 'password',
@@ -41,7 +38,7 @@ test('registration requires a valid email', function () {
 });
 
 test('registration requires a password confirmation', function () {
-    $this->post('/register', [
+    $this->post(localeUrl('/register'), [
         'name' => 'Test User',
         'email' => 'test@example.com',
         'password' => 'password',
@@ -52,7 +49,7 @@ test('registration requires a password confirmation', function () {
 test('registration rejects duplicate emails', function () {
     User::factory()->create(['email' => 'test@example.com']);
 
-    $this->post('/register', [
+    $this->post(localeUrl('/register'), [
         'name' => 'Test User',
         'email' => 'test@example.com',
         'password' => 'password',
