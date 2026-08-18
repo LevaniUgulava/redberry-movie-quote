@@ -15,7 +15,7 @@ function useLang() {
         const newPath = currentPath.replace(`/${locale}`, `/${lang.value}`);
         setSelectedLang(lang.label);
         setIsOpen(false);
-        router.visit(newPath);
+        window.location.href = newPath;
     }
     return {isOpen, setIsOpen, selectedLang, setLanguage};
 }

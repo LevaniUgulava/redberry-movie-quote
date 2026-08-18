@@ -1,25 +1,27 @@
-import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults, validateParameters } from './../../wayfinder'
 /**
 * @see \App\Http\Controllers\AuthController::resend
 * @see app/Http/Controllers/AuthController.php:57
-* @route '/{lang}/resend'
+* @param lang - Default: '$lang'
+* @route '/{lang?}/resend'
 */
-export const resend = (args: { lang: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+export const resend = (args?: { lang?: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: resend.url(args, options),
     method: 'post',
 })
 
 resend.definition = {
     methods: ["post"],
-    url: '/{lang}/resend',
+    url: '/{lang?}/resend',
 } satisfies RouteDefinition<["post"]>
 
 /**
 * @see \App\Http\Controllers\AuthController::resend
 * @see app/Http/Controllers/AuthController.php:57
-* @route '/{lang}/resend'
+* @param lang - Default: '$lang'
+* @route '/{lang?}/resend'
 */
-resend.url = (args: { lang: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions) => {
+resend.url = (args?: { lang?: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { lang: args }
     }
@@ -32,21 +34,26 @@ resend.url = (args: { lang: string | number } | [lang: string | number ] | strin
 
     args = applyUrlDefaults(args)
 
+    validateParameters(args, [
+        "lang",
+    ])
+
     const parsedArgs = {
-        lang: args.lang,
+        lang: args?.lang ?? '$lang',
     }
 
     return resend.definition.url
-            .replace('{lang}', parsedArgs.lang.toString())
+            .replace('{lang?}', parsedArgs.lang?.toString() ?? '')
             .replace(/\/+$/, '') + queryParams(options)
 }
 
 /**
 * @see \App\Http\Controllers\AuthController::resend
 * @see app/Http/Controllers/AuthController.php:57
-* @route '/{lang}/resend'
+* @param lang - Default: '$lang'
+* @route '/{lang?}/resend'
 */
-resend.post = (args: { lang: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+resend.post = (args?: { lang?: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: resend.url(args, options),
     method: 'post',
 })

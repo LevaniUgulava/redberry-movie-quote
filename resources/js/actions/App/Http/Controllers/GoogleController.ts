@@ -1,25 +1,27 @@
-import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults, validateParameters } from './../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\GoogleController::redirectToProvider
 * @see app/Http/Controllers/GoogleController.php:13
-* @route '/{lang}/google/redirect'
+* @param lang - Default: '$lang'
+* @route '/{lang?}/google/redirect'
 */
-export const redirectToProvider = (args: { lang: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const redirectToProvider = (args?: { lang?: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: redirectToProvider.url(args, options),
     method: 'get',
 })
 
 redirectToProvider.definition = {
     methods: ["get","head"],
-    url: '/{lang}/google/redirect',
+    url: '/{lang?}/google/redirect',
 } satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see \App\Http\Controllers\GoogleController::redirectToProvider
 * @see app/Http/Controllers/GoogleController.php:13
-* @route '/{lang}/google/redirect'
+* @param lang - Default: '$lang'
+* @route '/{lang?}/google/redirect'
 */
-redirectToProvider.url = (args: { lang: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions) => {
+redirectToProvider.url = (args?: { lang?: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { lang: args }
     }
@@ -32,21 +34,26 @@ redirectToProvider.url = (args: { lang: string | number } | [lang: string | numb
 
     args = applyUrlDefaults(args)
 
+    validateParameters(args, [
+        "lang",
+    ])
+
     const parsedArgs = {
-        lang: args.lang,
+        lang: args?.lang ?? '$lang',
     }
 
     return redirectToProvider.definition.url
-            .replace('{lang}', parsedArgs.lang.toString())
+            .replace('{lang?}', parsedArgs.lang?.toString() ?? '')
             .replace(/\/+$/, '') + queryParams(options)
 }
 
 /**
 * @see \App\Http\Controllers\GoogleController::redirectToProvider
 * @see app/Http/Controllers/GoogleController.php:13
-* @route '/{lang}/google/redirect'
+* @param lang - Default: '$lang'
+* @route '/{lang?}/google/redirect'
 */
-redirectToProvider.get = (args: { lang: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+redirectToProvider.get = (args?: { lang?: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: redirectToProvider.url(args, options),
     method: 'get',
 })
@@ -54,9 +61,10 @@ redirectToProvider.get = (args: { lang: string | number } | [lang: string | numb
 /**
 * @see \App\Http\Controllers\GoogleController::redirectToProvider
 * @see app/Http/Controllers/GoogleController.php:13
-* @route '/{lang}/google/redirect'
+* @param lang - Default: '$lang'
+* @route '/{lang?}/google/redirect'
 */
-redirectToProvider.head = (args: { lang: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+redirectToProvider.head = (args?: { lang?: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: redirectToProvider.url(args, options),
     method: 'head',
 })
@@ -64,24 +72,26 @@ redirectToProvider.head = (args: { lang: string | number } | [lang: string | num
 /**
 * @see \App\Http\Controllers\GoogleController::handleProviderCallback
 * @see app/Http/Controllers/GoogleController.php:18
-* @route '/{lang}/google/callback'
+* @param lang - Default: '$lang'
+* @route '/{lang?}/google/callback'
 */
-export const handleProviderCallback = (args: { lang: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const handleProviderCallback = (args?: { lang?: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: handleProviderCallback.url(args, options),
     method: 'get',
 })
 
 handleProviderCallback.definition = {
     methods: ["get","head"],
-    url: '/{lang}/google/callback',
+    url: '/{lang?}/google/callback',
 } satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see \App\Http\Controllers\GoogleController::handleProviderCallback
 * @see app/Http/Controllers/GoogleController.php:18
-* @route '/{lang}/google/callback'
+* @param lang - Default: '$lang'
+* @route '/{lang?}/google/callback'
 */
-handleProviderCallback.url = (args: { lang: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions) => {
+handleProviderCallback.url = (args?: { lang?: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { lang: args }
     }
@@ -94,21 +104,26 @@ handleProviderCallback.url = (args: { lang: string | number } | [lang: string | 
 
     args = applyUrlDefaults(args)
 
+    validateParameters(args, [
+        "lang",
+    ])
+
     const parsedArgs = {
-        lang: args.lang,
+        lang: args?.lang ?? '$lang',
     }
 
     return handleProviderCallback.definition.url
-            .replace('{lang}', parsedArgs.lang.toString())
+            .replace('{lang?}', parsedArgs.lang?.toString() ?? '')
             .replace(/\/+$/, '') + queryParams(options)
 }
 
 /**
 * @see \App\Http\Controllers\GoogleController::handleProviderCallback
 * @see app/Http/Controllers/GoogleController.php:18
-* @route '/{lang}/google/callback'
+* @param lang - Default: '$lang'
+* @route '/{lang?}/google/callback'
 */
-handleProviderCallback.get = (args: { lang: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+handleProviderCallback.get = (args?: { lang?: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: handleProviderCallback.url(args, options),
     method: 'get',
 })
@@ -116,9 +131,10 @@ handleProviderCallback.get = (args: { lang: string | number } | [lang: string | 
 /**
 * @see \App\Http\Controllers\GoogleController::handleProviderCallback
 * @see app/Http/Controllers/GoogleController.php:18
-* @route '/{lang}/google/callback'
+* @param lang - Default: '$lang'
+* @route '/{lang?}/google/callback'
 */
-handleProviderCallback.head = (args: { lang: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+handleProviderCallback.head = (args?: { lang?: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: handleProviderCallback.url(args, options),
     method: 'head',
 })
