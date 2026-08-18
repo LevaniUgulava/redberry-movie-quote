@@ -2,41 +2,43 @@ import { login } from "@/actions/App/Http/Controllers/AuthController";
 import Buttons from "@/components/ui/Auth/Buttons/Buttons";
 import Header from "@/components/ui/Auth/Header/Header";
 import Input from "@/components/ui/Auth/Input/Input";
-import { Form, Link } from "@inertiajs/react";
-import AuthFooterLink from "@/pages/Auth/AuthFooterLink/AuthFooterLink";
+import { Form } from "@inertiajs/react";
+import LocaleLink from "@/components/LocaleLink";
 import BackIcon from "@/components/ui/icons/BackIcon";
+import { useTranslation } from "react-i18next";
 
 function ForgetForm() {
+    const { t } = useTranslation("auth");
     return (
         <div className="flex flex-col justify-center items-center w-full">
             <Header
-                title="Forgot password?"
-                subtitle="Enter the email and we’ll send an email with instructions to reset your password"
+                title={t("forgot_title")}
+                subtitle={t("forgot_subtitle")}
             />
             <Form>
                 {({ validate, errors, valid, reset }) => (
                     <div>
                         <Input
                             name="email"
-                            label="Email"
-                            placeholder="Enter your email or username"
+                            label={t("email")}
+                            placeholder={t("email_placeholder")}
                             onChange={() => validate("login")}
                             error={errors.email}
                             isValid={valid("email")}
                             reset={reset}
                         />
-                        <Buttons showGoogle={false} label="Send instructions" />
+                        <Buttons showGoogle={false} label={t("send_instructions")} />
                     </div>
                 )}
             </Form>
             <div className="flex gap-2 items-center mt-4 cursor-pointer">
                 <BackIcon />
-                <Link
+                <LocaleLink
                     href="/?modal=login"
                     className=" text-gray-600 text-base leading-[150%]"
                 >
-                    Back to log in
-                </Link>
+                    {t("back_to_login")}
+                </LocaleLink>
             </div>
         </div>
     );

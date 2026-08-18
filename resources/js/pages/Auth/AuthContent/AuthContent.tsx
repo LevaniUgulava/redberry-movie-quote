@@ -6,9 +6,11 @@ import Message from "../Message/Message";
 import CheckIcon from "@/components/ui/icons/Message/CheckIcon";
 import SuccesIcon from "@/components/ui/icons/Message/SuccesIcon";
 import useAuthContent from "@/pages/Auth/AuthContent/hooks/useAuthContent.ts";
+import { useTranslation } from "react-i18next";
 
 function AuthContent({currentModal}: { currentModal: string }) {
     const {type, handleClose, isOpen} = useAuthContent(currentModal);
+    const { t } = useTranslation("auth");
 
     return (
         <ModalWrapper isOpen={isOpen} onClose={handleClose}>
@@ -16,9 +18,9 @@ function AuthContent({currentModal}: { currentModal: string }) {
                 {type === "VERIFY_SENT" && (
                     <Message
                         icon={<CheckIcon/>}
-                        title="Thank you!"
-                        subtitle="Please check your email and follow the instructions to activate your account."
-                        button="Go to my email"
+                        title={t("thank_you")}
+                        subtitle={t("verify_sent_subtitle")}
+                        button={t("go_to_email")}
                         onClick={() =>
                             window.open(
                                 "https://mail.google.com/mail/u/0/#inbox",
@@ -30,9 +32,9 @@ function AuthContent({currentModal}: { currentModal: string }) {
                 {type === "VERIFIED" && (
                     <Message
                         icon={<SuccesIcon/>}
-                        title="Thank you!"
-                        subtitle="Your account has been activated."
-                        button="Go to my news feed"
+                        title={t("thank_you")}
+                        subtitle={t("verified_subtitle")}
+                        button={t("go_to_feed")}
                     />
                 )}
 

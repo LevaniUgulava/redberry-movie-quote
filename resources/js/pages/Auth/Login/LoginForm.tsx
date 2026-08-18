@@ -2,23 +2,26 @@ import { login } from "@/actions/App/Http/Controllers/AuthController";
 import Buttons from "@/components/ui/Auth/Buttons/Buttons";
 import Header from "@/components/ui/Auth/Header/Header";
 import Input from "@/components/ui/Auth/Input/Input";
-import { Form, Link } from "@inertiajs/react";
+import { Form } from "@inertiajs/react";
+import LocaleLink from "@/components/LocaleLink";
 import AuthFooterLink from "@/pages/Auth/AuthFooterLink/AuthFooterLink";
+import { useTranslation } from "react-i18next";
 
 function LoginForm() {
+    const { t } = useTranslation("auth");
     return (
         <div className="flex flex-col justify-center items-center w-full">
             <Header
-                title="Log in to your account"
-                subtitle="Welcome back! Please enter your details."
+                title={t("login_title")}
+                subtitle={t("login_subtitle")}
             />
             <Form action={login()}>
                 {({ validate, errors, valid, reset }) => (
                     <div>
                         <Input
                             name="login"
-                            label="Email"
-                            placeholder="Enter your email or username"
+                            label={t("email")}
+                            placeholder={t("email_placeholder")}
                             onChange={() => validate("login")}
                             error={errors.login}
                             isValid={valid("login")}
@@ -26,9 +29,9 @@ function LoginForm() {
                         />
                         <Input
                             name="password"
-                            label="Password"
+                            label={t("password")}
                             type="password"
-                            placeholder="Password"
+                            placeholder={t("password_placeholder")}
                             onChange={() => validate("password")}
                             error={errors.password}
                             isValid={valid("password")}
@@ -46,16 +49,16 @@ function LoginForm() {
                                     htmlFor="remember"
                                     className="text-white text-sm cursor-pointer"
                                 >
-                                    Remember me
+                                    {t("remember_me")}
                                 </label>
                             </div>
                             <div>
-                                <Link
+                                <LocaleLink
                                     href="/?modal=forget"
                                     className="text-[#0D6EFD] underline"
                                 >
-                                    Forgot password
-                                </Link>
+                                    {t("forgot_password")}
+                                </LocaleLink>
                             </div>
                         </div>
                         <Buttons />
@@ -63,8 +66,8 @@ function LoginForm() {
                 )}
             </Form>
             <AuthFooterLink
-                linkName="Sign up"
-                text="Don't have an account?"
+                linkName={t("sign_up_link")}
+                text={t("dont_have_account")}
                 link="register"
             />
         </div>
