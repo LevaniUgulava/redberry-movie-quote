@@ -22,6 +22,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'precognition' => HandlePrecognitiveRequests::class,
         ]);
+        $middleware->redirectGuestsTo(fn (Request $request) => '/' . ($request->lang ?? app()->getLocale()) . '?modal=login');
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(
