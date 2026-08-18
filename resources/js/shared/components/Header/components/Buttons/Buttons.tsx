@@ -1,20 +1,23 @@
-import { Link } from "@inertiajs/react";
+import LocaleLink from "@/components/LocaleLink";
+import {useTranslation} from "react-i18next";
 
 function Buttons() {
+    const {t} = useTranslation("header");
     return (
         <>
-            <Link
-                href="?modal=register"
-                className="w-27.25 flex justify-center  cursor-pointer rounded-sm bg-main-red px-3.25 py-1.75 text-base font-normal text-white leading-[150%]"
+            <LocaleLink
+                href="/?modal=register"
+                className="w-fit flex justify-center  cursor-pointer rounded-sm bg-main-red px-5 py-1.75 text-base font-normal text-white leading-[150%]"
             >
-                Sign Up
-            </Link>
-            <Link
-                href="?modal=login"
-                className="w-27.25 flex justify-center cursor-pointer rounded-sm border border-white  px-3.25 py-1.75 text-base font-normal text-white leading-[150%]"
+                {t('sign_up')}
+            </LocaleLink>
+            <LocaleLink
+                href="/?modal=login"
+                className="w-fit  flex justify-center cursor-pointer rounded-sm border border-white  px-5 py-1.75 text-base font-normal text-white leading-[150%]"
             >
-                Log In
-            </Link>
+                {t('sign_in')}
+
+            </LocaleLink>
         </>
     );
 }
