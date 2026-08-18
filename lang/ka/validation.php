@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'accepted' => 'ველი :attribute უნდა იყოს მიღებული.',
+    'accepted' => ':attribute უნდა იყოს მიღებული.',
     'accepted_if' => 'ველი :attribute უნდა იყოს მიღებული, როდესაც :other არის :value.',
     'active_url' => 'ველი :attribute უნდა იყოს სწორი URL.',
     'after' => 'ველი :attribute უნდა იყოს თარიღი :date-ის შემდეგ.',
@@ -29,10 +29,10 @@ return [
     'before' => 'ველი :attribute უნდა იყოს თარიღი :date-ის წინ.',
     'before_or_equal' => 'ველი :attribute უნდა იყოს თარიღი :date-ის წინ ან ტოლი.',
     'between' => [
-        'array' => 'ველი :attribute უნდა შეიცავდეს :min-დან :max-მდე ელემენტს.',
+        'array' => ':attribute უნდა შეიცავდეს :min-დან :max-მდე ელემენტს.',
         'file' => 'ველი :attribute უნდა იყოს :min-დან :max კილობაიტს შორის.',
         'numeric' => 'ველი :attribute უნდა იყოს :min-დან :max-მდე.',
-        'string' => 'ველი :attribute უნდა იყოს :min-დან :max სიმბოლოს შორის.',
+        'string' => ':attribute უნდა იყოს :min-დან :max სიმბოლოს შორის.',
     ],
     'boolean' => 'ველი :attribute უნდა იყოს სიმართლე ან სიცრუე.',
     'can' => 'ველი :attribute შეიცავს არაავტორიზებულ მნიშვნელობას.',
@@ -53,7 +53,7 @@ return [
     'doesnt_contain' => 'ველი :attribute არ უნდა შეიცავდეს შემდეგთაგან რომელიმეს: :values.',
     'doesnt_end_with' => 'ველი :attribute არ უნდა მთავრდებოდეს შემდეგთაგან ერთ-ერთით: :values.',
     'doesnt_start_with' => 'ველი :attribute არ უნდა იწყებოდეს შემდეგთაგან ერთ-ერთით: :values.',
-    'email' => 'ველი :attribute უნდა იყოს სწორი ელფოსტის მისამართი.',
+    'email' => ':attribute უნდა იყოს სწორი ელფოსტის მისამართი.',
     'encoding' => 'ველი :attribute უნდა იყოს დაკოდირებული :encoding-ით.',
     'ends_with' => 'ველი :attribute უნდა მთავრდებოდეს შემდეგთაგან ერთ-ერთით: :values.',
     'enum' => 'არჩეული :attribute არასწორია.',
@@ -69,8 +69,8 @@ return [
     ],
     'gte' => [
         'array' => 'ველში :attribute უნდა იყოს :value ან მეტი ელემენტი.',
-        'file' => 'ველი :attribute უნდა იყოს :value კილობაიტზე მეტი ან ტოლი.',
-        'numeric' => 'ველი :attribute უნდა იყოს :value-ზე მეტი ან ტოლი.',
+        'file' => ':attribute უნდა იყოს :value კილობაიტზე მეტი ან ტოლი.',
+        'numeric' => ':attribute უნდა იყოს :value-ზე მეტი ან ტოლი.',
         'string' => 'ველი :attribute უნდა იყოს :value სიმბოლოზე მეტი ან ტოლი.',
     ],
     'hex_color' => 'ველი :attribute უნდა იყოს სწორი თექვსმეტობითი ფერი.',
@@ -89,7 +89,7 @@ return [
         'array' => 'ველში :attribute უნდა იყოს :value-ზე ნაკლები ელემენტი.',
         'file' => 'ველი :attribute უნდა იყოს :value კილობაიტზე ნაკლები.',
         'numeric' => 'ველი :attribute უნდა იყოს :value-ზე ნაკლები.',
-        'string' => 'ველი :attribute უნდა იყოს :value სიმბოლოზე ნაკლები.',
+        'string' => ':attribute უნდა იყოს :value სიმბოლოზე ნაკლები.',
     ],
     'lte' => [
         'array' => 'ველში :attribute არ უნდა იყოს :value-ზე მეტი ელემენტი.',
@@ -111,7 +111,7 @@ return [
         'array' => 'ველში :attribute უნდა იყოს მინიმუმ :min ელემენტი.',
         'file' => 'ველი :attribute უნდა იყოს მინიმუმ :min კილობაიტი.',
         'numeric' => 'ველი :attribute უნდა იყოს მინიმუმ :min.',
-        'string' => 'ველი :attribute უნდა იყოს მინიმუმ :min სიმბოლო.',
+        'string' => ':attribute უნდა იყოს მინიმუმ :min სიმბოლო.',
     ],
     'min_digits' => 'ველში :attribute უნდა იყოს მინიმუმ :min ციფრი.',
     'missing' => 'ველი :attribute არ უნდა არსებობდეს.',
@@ -142,7 +142,7 @@ return [
     'prohibited_unless' => 'ველი :attribute აკრძალულია, თუ :other არ არის :values-ში.',
     'prohibits' => 'ველი :attribute კრძალავს :other-ის არსებობას.',
     'regex' => 'ველის :attribute ფორმატი არასწორია.',
-    'required' => 'ველი :attribute სავალდებულოა.',
+    'required' => ':attribute სავალდებულოა.',
     'required_array_keys' => 'ველში :attribute უნდა იყოს ჩანაწერები: :values.',
     'required_if' => 'ველი :attribute სავალდებულოა, როდესაც :other არის :value.',
     'required_if_accepted' => 'ველი :attribute სავალდებულოა, როდესაც :other მიღებულია.',
@@ -197,6 +197,11 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'name' => "სახელი",
+        'email' => 'ელფოსტა',
+        'password' => 'პაროლი',
+        'login' => 'ველი'
+    ],
 
 ];
