@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Hash;
 
 test('new users can register', function () {
     $response = $this->post(localeUrl('/register'), [
-        'name' => 'Test User',
+        'username' => 'Test User',
         'email' => 'test@example.com',
         'password' => 'password',
         'password_confirmation' => 'password',
@@ -25,12 +25,12 @@ test('registration requires a name', function () {
         'email' => 'test@example.com',
         'password' => 'password',
         'password_confirmation' => 'password',
-    ])->assertSessionHasErrors('name');
+    ])->assertSessionHasErrors('username');
 });
 
 test('registration requires a valid email', function () {
     $this->post(localeUrl('/register'), [
-        'name' => 'Test User',
+        'username' => 'Test User',
         'email' => 'not-an-email',
         'password' => 'password',
         'password_confirmation' => 'password',
@@ -39,7 +39,7 @@ test('registration requires a valid email', function () {
 
 test('registration requires a password confirmation', function () {
     $this->post(localeUrl('/register'), [
-        'name' => 'Test User',
+        'username' => 'Test User',
         'email' => 'test@example.com',
         'password' => 'password',
         'password_confirmation' => 'different-password',
@@ -50,7 +50,7 @@ test('registration rejects duplicate emails', function () {
     User::factory()->create(['email' => 'test@example.com']);
 
     $this->post(localeUrl('/register'), [
-        'name' => 'Test User',
+        'username' => 'Test User',
         'email' => 'test@example.com',
         'password' => 'password',
         'password_confirmation' => 'password',

@@ -16,9 +16,9 @@ test('users can log in with their email', function () {
     $this->assertAuthenticatedAs($user);
 });
 
-test('users can log in with their name', function () {
+test('users can log in with their username', function () {
     $user = User::factory()->create([
-        'name' => 'Test User',
+        'username' => 'Test User',
         'password' => 'password',
     ]);
 

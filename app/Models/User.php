@@ -11,18 +11,21 @@ use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notifiable;
 use Override;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-#[Fillable(['name', 'email', 'password', 'google_id', 'email_verified_at'])]
+#[Fillable(['username', 'email', 'password', 'google_id', 'email_verified_at'])]
 #[Hidden(['password', 'remember_token'])]
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail, HasMedia
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, InteractsWithMedia;
 
     /**
      * Get the attributes that should be cast.
@@ -43,6 +46,11 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->notify(new CustomEmailVerifyNotification());
     }
 
+    public function Avatar(): Attribute
+    {
+        //?: spatie return empty string instead if null, ?: is correct check to check any falsy value
+        return Attribute::make(get: fn(): string => $this->getFirstMediaUrl('avatar') ?: asset('storage/DefaultProfile.png'));
+    }
     public function sendPasswordResetNotification(#[\SensitiveParameter] $token): void
     {
         $this->notify(new CustomResetPasswordNotification($token));

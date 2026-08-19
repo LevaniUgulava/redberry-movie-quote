@@ -14,6 +14,7 @@
 }
 body{
     background-color: #11101A;
+    width: 1920px;
 }
 @theme {
   --color-main-red: #E31221;

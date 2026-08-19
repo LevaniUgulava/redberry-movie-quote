@@ -9,7 +9,7 @@ function Lang() {
         <div className="relative inline-block">
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="inline-flex items-center justify-between gap-2   rounded-lg px-4 py-2 text-sm font-medium text-gray-700  focus:outline-none  cursor-pointer"
+                className="inline-flex items-center justify-between gap-2  w-24 rounded-lg px-4 py-2 text-base font-medium text-gray-700  focus:outline-none  cursor-pointer"
             >
                 <span className="text-white">{selectedLang}</span>
                 <ArrowIcon

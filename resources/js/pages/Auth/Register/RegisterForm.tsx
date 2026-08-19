@@ -16,12 +16,12 @@ function RegisterForm() {
                 {({validate, errors, valid, reset}) => (
                     <div>
                         <Input
-                            name="name"
+                            name="username"
                             label={t("name")}
                             placeholder={t("name_placeholder")}
-                            onChange={() => validate("name")}
-                            error={errors.name}
-                            isValid={valid("name")}
+                            onChange={() => validate("username")}
+                            error={errors.username}
+                            isValid={valid("username")}
                             reset={reset}
                         />
                         <Input

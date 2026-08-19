@@ -22,7 +22,7 @@ class GoogleController extends Controller
         $user = User::firstOrCreate([
             'google_id' => $socialUser->getId(),
         ], [
-            'name' => $socialUser->getName(),
+            'username' => $socialUser->getName(),
             'email' => $socialUser->getEmail(),
             'email_verified_at' => now(),
             'google_id' => $socialUser->getId(),

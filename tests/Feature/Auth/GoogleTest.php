@@ -10,7 +10,7 @@ test('user redirected to google auth', function () {
 test('google callback successfully', function () {
     Socialite::fake('google', User::fake([
         'id' => 'google_123',
-        'name' => 'google_123',
+        'username' => 'Test User',
         'email' => 'google@gmail.com',
     ]));
 
@@ -20,7 +20,7 @@ test('google callback successfully', function () {
 
     $this->assertDatabaseHas('users', [
         'google_id' => 'google_123',
-        'name' => 'google_123',
+        'username' => 'Test User',
         'email' => 'google@gmail.com',
     ]);
 

@@ -37,6 +37,17 @@ class HandleInertiaRequests extends Middleware
     {
         return [
             ...parent::share($request),
+            'auth' => fn() => rescue(function () {
+                $user = auth()->user();
+
+                return $user ? [
+                    'id' => $user->id,
+                    'username' => $user->username,
+                    'email' => $user->email,
+                    'isGoogleAuthenticate' => (bool)$user->google_id,
+                    'avatar'=>$user->avatar
+                ] : null;
+            }, null, false),
             'locale' => fn() => app()->getLocale(),
         ];
     }

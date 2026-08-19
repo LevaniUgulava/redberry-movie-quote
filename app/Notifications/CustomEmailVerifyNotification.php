@@ -40,7 +40,7 @@ class CustomEmailVerifyNotification extends Notification implements ShouldQueue
         return (new MailMessage)
             ->subject('Please verify your email address')
             ->view('email/email', [
-                'name' => $notifiable->name,
+                'name' => $notifiable->username,
                 'verificationUrl' => $verificationUrl,
             ]);
     }

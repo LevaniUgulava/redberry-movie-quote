@@ -3,6 +3,7 @@ import {createRoot} from "react-dom/client";
 import AppLayout from "@/shared/layouts/AppLayout";
 import {ReactNode} from "react";
 import {PageComponent} from "@/types/AppTypes";
+import AuthLayout from "@/shared/layouts/AuthLayout.tsx";
 import {setUrlDefaults} from './wayfinder';
 import i18n from './i18n';
 
@@ -12,9 +13,17 @@ createInertiaApp({
             eager: true,
         });
         const page = pages[`./pages/${name}.tsx`];
-        page.default.layout = (page: ReactNode) => (
-            <AppLayout>{page}</AppLayout>
-        );
+
+        if (name === 'Landing/Landing') {
+            page.default.layout = (page: ReactNode) => (
+                <AppLayout>{page}</AppLayout>
+            );
+        }else{
+            page.default.layout = (page: ReactNode) => (
+                <AuthLayout>{page}</AuthLayout>
+            );
+        }
+
         return page;
     },
 
