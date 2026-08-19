@@ -48,6 +48,7 @@ class HandleInertiaRequests extends Middleware
                     'avatar'=>$user->avatar
                 ] : null;
             }, null, false),
+            'locale' => fn() => app()->getLocale(),
         ];
     }
 }

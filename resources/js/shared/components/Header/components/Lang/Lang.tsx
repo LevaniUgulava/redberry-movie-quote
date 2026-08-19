@@ -1,9 +1,9 @@
 import useLang from "@/shared/components/Header/components/Lang/hooks/useLang";
-import { LANGUAGE } from "@/constants/Lang";
+import {LANGUAGE} from "@/constants/Lang";
 import ArrowIcon from "@/shared/components/Header/components/Lang/icons/ArrowIcon";
 
 function Lang() {
-    const { isOpen, setIsOpen, selectedLang, setSelectedLang } = useLang();
+    const {isOpen, setIsOpen, selectedLang, setLanguage} = useLang();
 
     return (
         <div className="relative inline-block">
@@ -18,13 +18,13 @@ function Lang() {
             </button>
 
             {isOpen && (
-                <div className="overflow-hidden absolute right-0 w-28 bg-[#1a1a2e] border border-white/10 rounded-xl shadow-lg  z-50">
+                <div
+                    className="overflow-hidden absolute right-0 w-28 bg-[#1a1a2e] border border-white/10 rounded-xl shadow-lg  z-50">
                     {LANGUAGE.map((lang) => (
                         <button
                             key={lang.label}
                             onClick={() => {
-                                setSelectedLang(lang.label);
-                                setIsOpen(false);
+                                setLanguage(lang)
                             }}
                             className={`w-full text-left px-4 py-2 text-sm font-medium transition-colors cursor-pointer ${
                                 selectedLang === lang.label
@@ -40,4 +40,5 @@ function Lang() {
         </div>
     );
 }
+
 export default Lang;

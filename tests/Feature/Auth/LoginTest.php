@@ -1,9 +1,6 @@
 <?php
 
 use App\Models\User;
-use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
-
-uses(LazilyRefreshDatabase::class);
 
 test('users can log in with their email', function () {
     $user = User::factory()->create([
@@ -11,7 +8,7 @@ test('users can log in with their email', function () {
         'password' => 'password',
     ]);
 
-    $this->post('/login', [
+    $this->post(localeUrl('/login'), [
         'login' => 'test@example.com',
         'password' => 'password',
     ])->assertRedirect('/');
@@ -25,7 +22,7 @@ test('users can log in with their username', function () {
         'password' => 'password',
     ]);
 
-    $this->post('/login', [
+    $this->post(localeUrl('/login'), [
         'login' => 'Test User',
         'password' => 'password',
     ])->assertRedirect('/');
@@ -36,7 +33,7 @@ test('users can log in with their username', function () {
 test('users cannot log in with a wrong password', function () {
     $user = User::factory()->create(['password' => 'correct-password']);
 
-    $this->post('/login', [
+    $this->post(localeUrl('/login'), [
         'login' => $user->email,
         'password' => 'wrong-password',
     ])->assertSessionHasErrors('login');
@@ -45,7 +42,7 @@ test('users cannot log in with a wrong password', function () {
 });
 
 test('users cannot log in with an unregistered email', function () {
-    $this->post('/login', [
+    $this->post(localeUrl('/login'), [
         'login' => 'unknown@example.com',
         'password' => 'password',
     ])->assertSessionHasErrors('login');
@@ -53,8 +50,8 @@ test('users cannot log in with an unregistered email', function () {
     $this->assertGuest();
 });
 
-test('users cannot log in with an unregistered username', function () {
-    $this->post('/login', [
+test('users cannot log in with an unregistered name', function () {
+    $this->post(localeUrl('/login'), [
         'login' => 'Unknown User',
         'password' => 'password',
     ])->assertSessionHasErrors('login');
@@ -65,7 +62,7 @@ test('users cannot log in with an unregistered username', function () {
 test('users can log in with remember me', function () {
     $user = User::factory()->create(['password' => 'password']);
 
-    $this->post('/login', [
+    $this->post(localeUrl('/login'), [
         'login' => $user->email,
         'password' => 'password',
         'remember' => true,

@@ -5,3 +5,5 @@ Master index of functional documentation. See `Docs.md` at the project root for 
 | Module | File | Summary |
 | --- | --- | --- |
 | Auth | [auth.md](./auth.md) | Session-based auth (register / login / logout) with Sanctum |
+| Localization | [localization.md](./localization.md) | Server-side (Laravel PHP) + client-side (i18next) localization for `en` and `ka` |
+| Testing | [testing.md](./testing.md) | Pest setup with global LazilyRefreshDatabase and locale-aware URL helper |

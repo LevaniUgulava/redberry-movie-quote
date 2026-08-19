@@ -1,11 +1,15 @@
 import {Link, usePage} from "@inertiajs/react";
 import Lang from "@/shared/components/Header/components/Lang/Lang.tsx";
 import NotificationIcon from "@/components/ui/icons/NotificationIcon.tsx";
-
+import LocaleLink from "@/components/LocaleLink";
+import {useTranslation} from "react-i18next";
+        
 function Buttons() {
     const {auth} = usePage().props
     const isAuth = auth !== null;
-    console.log(auth)
+    const {t} = useTranslation("header");
+
+    
     return (
         <div className="flex gap-4">
             {isAuth && <div className="flex justify-center items-center relative">
@@ -18,18 +22,19 @@ function Buttons() {
             <Lang/>
 
             {!isAuth ? <>
-                <Link
-                    href="?modal=register"
-                    className="w-27.25 flex justify-center  cursor-pointer rounded-sm bg-main-red px-3.25 py-1.75 text-base font-normal text-white leading-[150%]"
-                >
-                    Sign Up
-                </Link>
-                <Link
-                    href="?modal=login"
-                    className="w-27.25 flex justify-center cursor-pointer rounded-sm border border-white  px-3.25 py-1.75 text-base font-normal text-white leading-[150%]"
-                >
-                    Log In
-                </Link>
+              <LocaleLink
+                href="/?modal=register"
+                className="w-fit flex justify-center  cursor-pointer rounded-sm bg-main-red px-5 py-1.75 text-base font-normal text-white leading-[150%]"
+            >
+                {t('sign_up')}
+            </LocaleLink>
+         <LocaleLink
+                href="/?modal=login"
+                className="w-fit  flex justify-center cursor-pointer rounded-sm border border-white  px-5 py-1.75 text-base font-normal text-white leading-[150%]"
+            >
+                {t('sign_in')}
+
+            </LocaleLink>
             </> : <div>
                 <Link
                     href="?modal=login"

@@ -4,6 +4,8 @@ import AppLayout from "@/shared/layouts/AppLayout";
 import {ReactNode} from "react";
 import {PageComponent} from "@/types/AppTypes";
 import AuthLayout from "@/shared/layouts/AuthLayout.tsx";
+import {setUrlDefaults} from './wayfinder';
+import i18n from './i18n';
 
 createInertiaApp({
     resolve: (name) => {
@@ -26,6 +28,11 @@ createInertiaApp({
     },
 
     setup({el, App, props}) {
+        const locale = props.initialPage.props.locale;
+        setUrlDefaults({
+            lang: locale
+        });
+        i18n.changeLanguage(locale as string);
         createRoot(el).render(<App {...props} />);
     },
 });
