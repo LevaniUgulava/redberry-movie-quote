@@ -44,7 +44,7 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function something()
+function localeUrl(string $path): string
 {
-    // ..
+    return '/'.app()->getLocale().$path;
 }

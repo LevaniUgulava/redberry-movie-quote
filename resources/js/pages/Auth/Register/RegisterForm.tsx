@@ -1,22 +1,24 @@
-import { register } from "@/actions/App/Http/Controllers/AuthController";
+import {register} from "@/actions/App/Http/Controllers/AuthController";
 import Buttons from "@/components/ui/Auth/Buttons/Buttons";
 import Header from "@/components/ui/Auth/Header/Header";
 import Input from "@/components/ui/Auth/Input/Input";
-import { Form } from "@inertiajs/react";
+import {Form} from "@inertiajs/react";
 import AuthFooterLink from "@/pages/Auth/AuthFooterLink/AuthFooterLink";
+import {useTranslation} from "react-i18next";
 
 function RegisterForm() {
+    const {t} = useTranslation('auth');
     return (
         <div className="flex flex-col justify-center items-center w-full">
-            <Header title="Create an account" subtitle="Start your journey!" />
+            <Header title={t('register_title')} subtitle={t('register_subtitle')}/>
 
             <Form action={register()}>
-                {({ validate, errors, valid, reset }) => (
+                {({validate, errors, valid, reset}) => (
                     <div>
                         <Input
                             name="name"
-                            label="Name"
-                            placeholder="At least 3 & max.15 lower case characters"
+                            label={t("name")}
+                            placeholder={t("name_placeholder")}
                             onChange={() => validate("name")}
                             error={errors.name}
                             isValid={valid("name")}
@@ -24,8 +26,8 @@ function RegisterForm() {
                         />
                         <Input
                             name="email"
-                            label="Email"
-                            placeholder="Enter your email"
+                            label={t("email")}
+                            placeholder={t("email_placeholder")}
                             onChange={() => validate("email")}
                             error={errors.email}
                             isValid={valid("email")}
@@ -33,9 +35,9 @@ function RegisterForm() {
                         />
                         <Input
                             name="password"
-                            label="Password"
+                            label={t("password")}
                             type="password"
-                            placeholder="At least 8 & max.15 lower case characters"
+                            placeholder={t("register_password_placeholder")}
                             onChange={() => validate("password")}
                             error={errors.password}
                             isValid={valid("password")}
@@ -43,24 +45,25 @@ function RegisterForm() {
                         />
                         <Input
                             name="password_confirmation"
-                            label="Confirm password"
+                            label={t("confirm_password")}
                             type="password"
-                            placeholder="Confirm password"
+                            placeholder={t("confirm_password_placeholder")}
                             onChange={() => validate("password_confirmation")}
                             error={errors.password_confirmation}
                             isValid={valid("password_confirmation")}
                             reset={reset}
                         />
-                        <Buttons />
+                        <Buttons/>
                     </div>
                 )}
             </Form>
             <AuthFooterLink
-                linkName="Log in"
-                text="Already have an account?"
+                linkName={t("login_link")}
+                text={t("already_have_account")}
                 link="login"
             />
         </div>
     );
 }
+
 export default RegisterForm;
