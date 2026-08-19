@@ -7,11 +7,11 @@ use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 test('update user profile partially, only username', function () {
     $user = User::factory()->create(['username' => 'old_name']);
     $this->actingAs($user)
-        ->from(localeUrl(route('profile.edit')))
-        ->patch(localeUrl(route('profile.update')), [
+        ->from(localeUrl('/profile')))
+        ->patch(localeUrl('/profile/update')), [
             'username' => 'new_name',
         ])
-        ->assertRedirect(route('profile.edit'));
+        ->assertRedirect(localeUrl('/profile'));
     expect($user->fresh()->username)->toBe('new_name');
 
 });
@@ -21,12 +21,12 @@ test('update user profile partially, only password', function () {
     $oldPasswordHash = $user->password;
 
     $this->actingAs($user)
-        ->from(localeUrl(route('profile.edit')))
-        ->patch(localeUrl(route('profile.update')), [
+        ->from(localeUrl('/profile')))
+        ->patch(localeUrl('/profile/update')), [
             'password' => 'new-secure-password',
             'password_confirmation' => 'new-secure-password',
         ])
-        ->assertRedirect(route('profile.edit'));
+        ->assertRedirect(localeUrl('/profile'));
 
     $user->refresh();
 
