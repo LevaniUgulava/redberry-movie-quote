@@ -5,8 +5,10 @@ export interface InputProps {
     name: string;
     type?: string;
     placeholder: string;
-    onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+    onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
     error?: string;
     isValid?: boolean;
-    reset: (name: string) => void;
+    reset?: (name: string) => void;
+    defaultValue?:string
+    disabled?:boolean
 }

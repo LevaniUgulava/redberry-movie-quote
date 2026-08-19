@@ -1,22 +1,24 @@
 import EyeSlashIcon from "@/components/ui/icons/Input/EyeSlashIcon";
 import EyeIcon from "@/components/ui/icons/Input/EyeIcon";
 import ErrorIcon from "@/components/ui/icons/Input/ErrorIcon";
-import { cn } from "@/lib/utils";
+import {cn} from "@/lib/utils";
 import ValidIcon from "@/components/ui/icons/Input/ValidIcon";
 import RemoveIcon from "@/components/ui/icons/Input/RemoveIcon";
-import { InputProps } from "@/components/ui/Auth/Input/InputType";
+import {InputProps} from "@/components/ui/Auth/Input/InputType";
 import useInput from "@/components/ui/Auth/Input/hooks/useInput";
 
 function Input({
-    label,
-    name,
-    type = "text",
-    placeholder,
-    onChange,
-    error,
-    isValid,
-    reset,
-}: InputProps) {
+                   label,
+                   name,
+                   type = "text",
+                   placeholder,
+                   onChange,
+                   error,
+                   isValid,
+                   reset,
+                   defaultValue,
+                   disabled = false
+               }: InputProps) {
     const {
         isFilled,
         setIsFilled,
@@ -26,10 +28,11 @@ function Input({
         showPassword,
         isVerified,
         handleResend,
+
     } = useInput(type);
 
     return (
-        <div className="flex flex-col pb-4">
+        <div className="flex flex-col pb-4 w-full">
             <label
                 className="text-white text-base leading-[150%] font-normal"
                 htmlFor={name}
@@ -40,7 +43,7 @@ function Input({
                 <div className="flex items-center">
                     <input
                         className={cn(
-                            "w-90 h-9.5 rounded-xs border-[1.5px] border-[#CED4DA] bg-[#CED4DA] text-[#6C757D] py-1.75 px-3.25 focus:outline-none focus:border-[#CED4DA] focus:shadow-[0px_0px_0px_4px_#0D6EFD40]",
+                            "w-full h-9.5 rounded-xs border-[1.5px] border-[#CED4DA] bg-[#CED4DA] text-[#6C757D] py-1.75 px-3.25 focus:outline-none  focus:shadow-[0px_0px_0px_4px_#0D6EFD40]",
                             {
                                 "border-main-red": error,
                                 "border-[#198754]": isValid,
@@ -51,9 +54,14 @@ function Input({
                         type={inputType}
                         placeholder={placeholder}
                         onChange={(e) => {
-                            onChange(e);
-                            setIsFilled(e.target.value.length > 0);
+                            if (onChange) {
+                                onChange(e);
+                                setIsFilled(e.target.value.length > 0);
+                            }
+
                         }}
+                        defaultValue={defaultValue}
+                        disabled={disabled}
                     />
                 </div>
                 {isPassword && (
@@ -63,7 +71,7 @@ function Input({
                         className="absolute cursor-pointer right-3 top-1/2 -translate-y-1/2 text-[#6C757D]"
                         tabIndex={-1}
                     >
-                        {showPassword ? <EyeIcon /> : <EyeSlashIcon />}
+                        {showPassword ? <EyeIcon/> : <EyeSlashIcon/>}
                     </button>
                 )}
                 {isFilled && (
@@ -78,17 +86,20 @@ function Input({
                             },
                         )}
                         onClick={() => {
-                            reset(name);
-                            setIsFilled(false);
+                            if (reset) {
+                                reset(name);
+                                setIsFilled(false);
+                            }
+
                         }}
                     >
-                        <RemoveIcon />
+                        <RemoveIcon/>
                     </button>
                 )}
 
                 <div className="absolute -right-7 top-1/2 -translate-y-1/2 text-[#6C757D]">
-                    {error && <ErrorIcon />}
-                    {isValid && <ValidIcon />}
+                    {error && <ErrorIcon/>}
+                    {isValid && <ValidIcon/>}
                 </div>
             </div>
 
