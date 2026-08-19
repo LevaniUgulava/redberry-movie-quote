@@ -1,4 +1,3 @@
-import { login } from "@/actions/App/Http/Controllers/AuthController";
 import Buttons from "@/components/ui/Auth/Buttons/Buttons";
 import Header from "@/components/ui/Auth/Header/Header";
 import Input from "@/components/ui/Auth/Input/Input";
@@ -6,23 +5,25 @@ import { Form } from "@inertiajs/react";
 import LocaleLink from "@/components/LocaleLink";
 import BackIcon from "@/components/ui/icons/BackIcon";
 import { useTranslation } from "react-i18next";
+import { forgetPassword } from "@/actions/App/Http/Controllers/PasswordResetController.ts";
 
 function ForgetForm() {
     const { t } = useTranslation("auth");
+
     return (
         <div className="flex flex-col justify-center items-center w-full">
             <Header
                 title={t("forgot_title")}
                 subtitle={t("forgot_subtitle")}
             />
-            <Form>
+            <Form action={forgetPassword()}>
                 {({ validate, errors, valid, reset }) => (
                     <div>
                         <Input
                             name="email"
                             label={t("email")}
                             placeholder={t("email_placeholder")}
-                            onChange={() => validate("login")}
+                            onChange={() => validate("email")}
                             error={errors.email}
                             isValid={valid("email")}
                             reset={reset}
@@ -35,7 +36,7 @@ function ForgetForm() {
                 <BackIcon />
                 <LocaleLink
                     href="/?modal=login"
-                    className=" text-gray-600 text-base leading-[150%]"
+                    className="text-gray-600 text-base leading-[150%]"
                 >
                     {t("back_to_login")}
                 </LocaleLink>
@@ -43,4 +44,5 @@ function ForgetForm() {
         </div>
     );
 }
+
 export default ForgetForm;
