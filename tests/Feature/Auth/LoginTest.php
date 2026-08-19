@@ -19,9 +19,9 @@ test('users can log in with their email', function () {
     $this->assertAuthenticatedAs($user);
 });
 
-test('users can log in with their name', function () {
+test('users can log in with their username', function () {
     $user = User::factory()->create([
-        'name' => 'Test User',
+        'username' => 'Test User',
         'password' => 'password',
     ]);
 
@@ -53,7 +53,7 @@ test('users cannot log in with an unregistered email', function () {
     $this->assertGuest();
 });
 
-test('users cannot log in with an unregistered name', function () {
+test('users cannot log in with an unregistered username', function () {
     $this->post('/login', [
         'login' => 'Unknown User',
         'password' => 'password',

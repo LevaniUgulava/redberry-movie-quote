@@ -1,8 +1,8 @@
 <?php
 
-
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Laravel\Socialite\Two\User;
+
 uses(LazilyRefreshDatabase::class);
 
 test('user redirected to google auth', function () {
@@ -11,9 +11,9 @@ test('user redirected to google auth', function () {
 });
 test('google callback successfully', function () {
     Socialite::fake('google', User::fake([
-        "id" => 'google_123',
-        'name' => 'google_123',
-        'email' => 'google@gmail.com'
+        'id' => 'google_123',
+        'username' => 'Test User',
+        'email' => 'google@gmail.com',
     ]));
 
     $response = $this->get('/google/callback');
@@ -22,8 +22,8 @@ test('google callback successfully', function () {
 
     $this->assertDatabaseHas('users', [
         'google_id' => 'google_123',
-        'name' => 'google_123',
-        'email' => 'google@gmail.com'
+        'username' => 'Test User',
+        'email' => 'google@gmail.com',
     ]);
 
     $this->assertAuthenticated();

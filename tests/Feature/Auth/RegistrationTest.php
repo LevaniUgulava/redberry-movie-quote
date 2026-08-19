@@ -8,7 +8,7 @@ uses(LazilyRefreshDatabase::class);
 
 test('new users can register', function () {
     $response = $this->post('/register', [
-        'name' => 'Test User',
+        'username' => 'Test User',
         'email' => 'test@example.com',
         'password' => 'password',
         'password_confirmation' => 'password',
@@ -23,17 +23,17 @@ test('new users can register', function () {
     expect(Hash::check('password', $user->password))->toBeTrue();
 });
 
-test('registration requires a name', function () {
+test('registration requires a username', function () {
     $this->post('/register', [
         'email' => 'test@example.com',
         'password' => 'password',
         'password_confirmation' => 'password',
-    ])->assertSessionHasErrors('name');
+    ])->assertSessionHasErrors('username');
 });
 
 test('registration requires a valid email', function () {
     $this->post('/register', [
-        'name' => 'Test User',
+        'username' => 'Test User',
         'email' => 'not-an-email',
         'password' => 'password',
         'password_confirmation' => 'password',
@@ -42,7 +42,7 @@ test('registration requires a valid email', function () {
 
 test('registration requires a password confirmation', function () {
     $this->post('/register', [
-        'name' => 'Test User',
+        'username' => 'Test User',
         'email' => 'test@example.com',
         'password' => 'password',
         'password_confirmation' => 'different-password',
@@ -53,7 +53,7 @@ test('registration rejects duplicate emails', function () {
     User::factory()->create(['email' => 'test@example.com']);
 
     $this->post('/register', [
-        'name' => 'Test User',
+        'username' => 'Test User',
         'email' => 'test@example.com',
         'password' => 'password',
         'password_confirmation' => 'password',
