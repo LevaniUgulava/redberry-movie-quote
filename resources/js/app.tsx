@@ -1,8 +1,9 @@
-import { createInertiaApp } from "@inertiajs/react";
-import { createRoot } from "react-dom/client";
+import {createInertiaApp} from "@inertiajs/react";
+import {createRoot} from "react-dom/client";
 import AppLayout from "@/shared/layouts/AppLayout";
-import { ReactNode } from "react";
-import { PageComponent } from "@/types/AppTypes";
+import {ReactNode} from "react";
+import {PageComponent} from "@/types/AppTypes";
+import AuthLayout from "@/shared/layouts/AuthLayout.tsx";
 
 createInertiaApp({
     resolve: (name) => {
@@ -10,13 +11,21 @@ createInertiaApp({
             eager: true,
         });
         const page = pages[`./pages/${name}.tsx`];
-        page.default.layout = (page: ReactNode) => (
-            <AppLayout>{page}</AppLayout>
-        );
+
+        if (name === 'Landing/Landing') {
+            page.default.layout = (page: ReactNode) => (
+                <AppLayout>{page}</AppLayout>
+            );
+        }else{
+            page.default.layout = (page: ReactNode) => (
+                <AuthLayout>{page}</AuthLayout>
+            );
+        }
+
         return page;
     },
 
-    setup({ el, App, props }) {
+    setup({el, App, props}) {
         createRoot(el).render(<App {...props} />);
     },
 });
