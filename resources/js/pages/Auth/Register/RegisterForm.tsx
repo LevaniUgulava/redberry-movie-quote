@@ -14,12 +14,12 @@ function RegisterForm() {
                 {({ validate, errors, valid, reset }) => (
                     <div>
                         <Input
-                            name="name"
+                            name="username"
                             label="Name"
                             placeholder="At least 3 & max.15 lower case characters"
-                            onChange={() => validate("name")}
-                            error={errors.name}
-                            isValid={valid("name")}
+                            onChange={() => validate("username")}
+                            error={errors.username}
+                            isValid={valid("username")}
                             reset={reset}
                         />
                         <Input
