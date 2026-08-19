@@ -1,10 +1,5 @@
 import {ChangeEvent, RefObject} from "react";
-
-interface AvatarProps {
-    fileInputRef: RefObject<HTMLInputElement | null>;
-    handleFileChange: (e: ChangeEvent<HTMLInputElement>) => void;
-    preview?: string;
-}
+import {AvatarProps} from "@/pages/Profile/ProfileTypes.ts";
 
 function AvatarField({fileInputRef, handleFileChange, preview}: AvatarProps) {
     return (

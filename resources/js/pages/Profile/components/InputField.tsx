@@ -1,23 +1,8 @@
 import Input from "@/components/ui/Auth/Input/Input.tsx";
 import {useState} from "react";
 import {cn} from "@/lib/utils.ts";
+import {InputFieldProps} from "@/pages/Profile/ProfileTypes.ts";
 
-interface InputFieldProps {
-    label: string;
-    name: string;
-    type?: string;
-    placeholder?: string;
-    defaultValue?: string;
-    isEditShow?: boolean;
-    form: {
-        validate: (name: string) => void;
-        errors: Record<string, string>;
-        valid: (name: string) => boolean;
-        reset: (name: string) => void;
-    };
-    isOpen: boolean
-    handleOpen: (type: string) => void
-}
 
 function InputField({
                         label,
