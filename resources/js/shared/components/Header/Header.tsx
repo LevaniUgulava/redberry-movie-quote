@@ -1,14 +1,20 @@
 import Buttons from "@/shared/components/Header/components/Buttons/Buttons";
-import Lang from "@/shared/components/Header/components/Lang/Lang";
+import {usePage} from "@inertiajs/react";
+import {cn} from "@/lib/utils.ts";
 
 function Header() {
+    const { url } = usePage();
     return (
-        <div className="flex px-17.5 pt-6 justify-between bg-[#11101A]">
+        <div className={cn("flex px-17.5 py-6 justify-between ",{
+            'bg-[#11101A]':url === '/',
+            'bg-[#222030]/20':url !== '/'
+
+
+        })}>
             <div className="text-main-beige uppercase text-base leading-[150%] font-medium">
                 Movie quotes
             </div>
             <div className="flex gap-4">
-                <Lang />
                 <Buttons />
             </div>
         </div>
