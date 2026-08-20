@@ -11,7 +11,7 @@ function ModalWrapper({ children, isOpen, onClose }: ModalWrapperProps) {
         <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
             <DialogContent
                 showCloseButton={false}
-                className="bg-[#222030] w-fit max-w-none!"
+                className="bg-[#222030] w-full max-w-150!"
             >
                 {children}
             </DialogContent>

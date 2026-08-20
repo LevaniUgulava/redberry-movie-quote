@@ -12,7 +12,7 @@ function RegisterForm() {
         <div className="flex flex-col justify-center items-center w-full">
             <Header title={t('register_title')} subtitle={t('register_subtitle')}/>
 
-            <Form action={register()}>
+            <Form className="w-full" action={register()}>
                 {({validate, errors, valid, reset}) => (
                     <div>
                         <Input

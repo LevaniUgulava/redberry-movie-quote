@@ -16,7 +16,7 @@ function ForgetForm() {
                 title={t("forgot_title")}
                 subtitle={t("forgot_subtitle")}
             />
-            <Form action={forgetPassword()}>
+            <Form className="w-full" action={forgetPassword()}>
                 {({ validate, errors, valid, reset }) => (
                     <div>
                         <Input
