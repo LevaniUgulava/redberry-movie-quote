@@ -179,48 +179,39 @@ logout.post = (args?: { lang?: string | number } | [lang: string | number ] | st
 /**
 * @see \App\Http\Controllers\AuthController::verify
 * @see app/Http/Controllers/AuthController.php:50
-* @param lang - Default: '$lang'
-* @route '/{lang?}/email/verify/{id}/{hash}'
+* @route '/email/verify/{id}/{hash}'
 */
-export const verify = (args: { lang?: string | number, id: string | number, hash: string | number } | [lang: string | number, id: string | number, hash: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const verify = (args: { id: string | number, hash: string | number } | [id: string | number, hash: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: verify.url(args, options),
     method: 'get',
 })
 
 verify.definition = {
     methods: ["get","head"],
-    url: '/{lang?}/email/verify/{id}/{hash}',
+    url: '/email/verify/{id}/{hash}',
 } satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see \App\Http\Controllers\AuthController::verify
 * @see app/Http/Controllers/AuthController.php:50
-* @param lang - Default: '$lang'
-* @route '/{lang?}/email/verify/{id}/{hash}'
+* @route '/email/verify/{id}/{hash}'
 */
-verify.url = (args: { lang?: string | number, id: string | number, hash: string | number } | [lang: string | number, id: string | number, hash: string | number ], options?: RouteQueryOptions) => {
+verify.url = (args: { id: string | number, hash: string | number } | [id: string | number, hash: string | number ], options?: RouteQueryOptions) => {
     if (Array.isArray(args)) {
         args = {
-            lang: args[0],
-            id: args[1],
-            hash: args[2],
+            id: args[0],
+            hash: args[1],
         }
     }
 
     args = applyUrlDefaults(args)
 
-    validateParameters(args, [
-        "lang",
-    ])
-
     const parsedArgs = {
-        lang: args.lang ?? '$lang',
         id: args.id,
         hash: args.hash,
     }
 
     return verify.definition.url
-            .replace('{lang?}', parsedArgs.lang?.toString() ?? '')
             .replace('{id}', parsedArgs.id.toString())
             .replace('{hash}', parsedArgs.hash.toString())
             .replace(/\/+$/, '') + queryParams(options)
@@ -229,10 +220,9 @@ verify.url = (args: { lang?: string | number, id: string | number, hash: string 
 /**
 * @see \App\Http\Controllers\AuthController::verify
 * @see app/Http/Controllers/AuthController.php:50
-* @param lang - Default: '$lang'
-* @route '/{lang?}/email/verify/{id}/{hash}'
+* @route '/email/verify/{id}/{hash}'
 */
-verify.get = (args: { lang?: string | number, id: string | number, hash: string | number } | [lang: string | number, id: string | number, hash: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+verify.get = (args: { id: string | number, hash: string | number } | [id: string | number, hash: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: verify.url(args, options),
     method: 'get',
 })
@@ -240,10 +230,9 @@ verify.get = (args: { lang?: string | number, id: string | number, hash: string 
 /**
 * @see \App\Http\Controllers\AuthController::verify
 * @see app/Http/Controllers/AuthController.php:50
-* @param lang - Default: '$lang'
-* @route '/{lang?}/email/verify/{id}/{hash}'
+* @route '/email/verify/{id}/{hash}'
 */
-verify.head = (args: { lang?: string | number, id: string | number, hash: string | number } | [lang: string | number, id: string | number, hash: string | number ], options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+verify.head = (args: { id: string | number, hash: string | number } | [id: string | number, hash: string | number ], options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: verify.url(args, options),
     method: 'head',
 })
@@ -251,59 +240,34 @@ verify.head = (args: { lang?: string | number, id: string | number, hash: string
 /**
 * @see \App\Http\Controllers\AuthController::resend
 * @see app/Http/Controllers/AuthController.php:57
-* @param lang - Default: '$lang'
-* @route '/{lang?}/resend'
+* @route '/resend'
 */
-export const resend = (args?: { lang?: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
-    url: resend.url(args, options),
+export const resend = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: resend.url(options),
     method: 'post',
 })
 
 resend.definition = {
     methods: ["post"],
-    url: '/{lang?}/resend',
+    url: '/resend',
 } satisfies RouteDefinition<["post"]>
 
 /**
 * @see \App\Http\Controllers\AuthController::resend
 * @see app/Http/Controllers/AuthController.php:57
-* @param lang - Default: '$lang'
-* @route '/{lang?}/resend'
+* @route '/resend'
 */
-resend.url = (args?: { lang?: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions) => {
-    if (typeof args === 'string' || typeof args === 'number') {
-        args = { lang: args }
-    }
-
-    if (Array.isArray(args)) {
-        args = {
-            lang: args[0],
-        }
-    }
-
-    args = applyUrlDefaults(args)
-
-    validateParameters(args, [
-        "lang",
-    ])
-
-    const parsedArgs = {
-        lang: args?.lang ?? '$lang',
-    }
-
-    return resend.definition.url
-            .replace('{lang?}', parsedArgs.lang?.toString() ?? '')
-            .replace(/\/+$/, '') + queryParams(options)
+resend.url = (options?: RouteQueryOptions) => {
+    return resend.definition.url + queryParams(options)
 }
 
 /**
 * @see \App\Http\Controllers\AuthController::resend
 * @see app/Http/Controllers/AuthController.php:57
-* @param lang - Default: '$lang'
-* @route '/{lang?}/resend'
+* @route '/resend'
 */
-resend.post = (args?: { lang?: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
-    url: resend.url(args, options),
+resend.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: resend.url(options),
     method: 'post',
 })
 

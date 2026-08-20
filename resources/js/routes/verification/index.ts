@@ -1,49 +1,40 @@
-import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults, validateParameters } from './../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../wayfinder'
 /**
 * @see \App\Http\Controllers\AuthController::verify
 * @see app/Http/Controllers/AuthController.php:50
-* @param lang - Default: '$lang'
-* @route '/{lang?}/email/verify/{id}/{hash}'
+* @route '/email/verify/{id}/{hash}'
 */
-export const verify = (args: { lang?: string | number, id: string | number, hash: string | number } | [lang: string | number, id: string | number, hash: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const verify = (args: { id: string | number, hash: string | number } | [id: string | number, hash: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: verify.url(args, options),
     method: 'get',
 })
 
 verify.definition = {
     methods: ["get","head"],
-    url: '/{lang?}/email/verify/{id}/{hash}',
+    url: '/email/verify/{id}/{hash}',
 } satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see \App\Http\Controllers\AuthController::verify
 * @see app/Http/Controllers/AuthController.php:50
-* @param lang - Default: '$lang'
-* @route '/{lang?}/email/verify/{id}/{hash}'
+* @route '/email/verify/{id}/{hash}'
 */
-verify.url = (args: { lang?: string | number, id: string | number, hash: string | number } | [lang: string | number, id: string | number, hash: string | number ], options?: RouteQueryOptions) => {
+verify.url = (args: { id: string | number, hash: string | number } | [id: string | number, hash: string | number ], options?: RouteQueryOptions) => {
     if (Array.isArray(args)) {
         args = {
-            lang: args[0],
-            id: args[1],
-            hash: args[2],
+            id: args[0],
+            hash: args[1],
         }
     }
 
     args = applyUrlDefaults(args)
 
-    validateParameters(args, [
-        "lang",
-    ])
-
     const parsedArgs = {
-        lang: args.lang ?? '$lang',
         id: args.id,
         hash: args.hash,
     }
 
     return verify.definition.url
-            .replace('{lang?}', parsedArgs.lang?.toString() ?? '')
             .replace('{id}', parsedArgs.id.toString())
             .replace('{hash}', parsedArgs.hash.toString())
             .replace(/\/+$/, '') + queryParams(options)
@@ -52,10 +43,9 @@ verify.url = (args: { lang?: string | number, id: string | number, hash: string 
 /**
 * @see \App\Http\Controllers\AuthController::verify
 * @see app/Http/Controllers/AuthController.php:50
-* @param lang - Default: '$lang'
-* @route '/{lang?}/email/verify/{id}/{hash}'
+* @route '/email/verify/{id}/{hash}'
 */
-verify.get = (args: { lang?: string | number, id: string | number, hash: string | number } | [lang: string | number, id: string | number, hash: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+verify.get = (args: { id: string | number, hash: string | number } | [id: string | number, hash: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: verify.url(args, options),
     method: 'get',
 })
@@ -63,10 +53,9 @@ verify.get = (args: { lang?: string | number, id: string | number, hash: string 
 /**
 * @see \App\Http\Controllers\AuthController::verify
 * @see app/Http/Controllers/AuthController.php:50
-* @param lang - Default: '$lang'
-* @route '/{lang?}/email/verify/{id}/{hash}'
+* @route '/email/verify/{id}/{hash}'
 */
-verify.head = (args: { lang?: string | number, id: string | number, hash: string | number } | [lang: string | number, id: string | number, hash: string | number ], options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+verify.head = (args: { id: string | number, hash: string | number } | [id: string | number, hash: string | number ], options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: verify.url(args, options),
     method: 'head',
 })
