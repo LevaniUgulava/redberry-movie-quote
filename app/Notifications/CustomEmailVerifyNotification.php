@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -15,7 +16,10 @@ class CustomEmailVerifyNotification extends Notification implements ShouldQueue
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct(
+        protected User   $user,
+        protected ?string $newEmail = null
+    )
     {
         //
     }
@@ -35,24 +39,26 @@ class CustomEmailVerifyNotification extends Notification implements ShouldQueue
      */
     public function toMail(object $notifiable): MailMessage
     {
-        $verificationUrl = $this->verificationUrl($notifiable);
+        $verificationUrl = $this->verificationUrl();
 
         return (new MailMessage)
             ->subject('Please verify your email address')
             ->view('email/email', [
-                'name' => $notifiable->username,
+                'name' => $this->user->username,
                 'verificationUrl' => $verificationUrl,
             ]);
     }
 
-    private function verificationUrl(object $notifiable): string
+    private function verificationUrl(): string
     {
+        $emailToHash = $this->newEmail  ? $this->newEmail : $this->user->getEmailForVerification();
+
         return URL::temporarySignedRoute(
             'verification.verify',
             now()->addMinutes(120),
             [
-                'id' => $notifiable->getKey(),
-                'hash' => sha1($notifiable->getEmailForVerification()),
+                'id' => $this->user->getKey(),
+                'hash' => sha1($emailToHash),
             ]
         );
     }
