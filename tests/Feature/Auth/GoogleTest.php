@@ -3,7 +3,7 @@
 use Laravel\Socialite\Two\User;
 
 test('user redirected to google auth', function () {
-    $response = $this->get(localeUrl('/google/redirect'));
+    $response = $this->get('/google/redirect');
     $response->assertStatus(302);
 });
 
@@ -14,7 +14,7 @@ test('google callback successfully', function () {
         'email' => 'google@gmail.com',
     ]));
 
-    $response = $this->get(localeUrl('/google/callback'));
+    $response = $this->get('/google/callback');
 
     $response->assertRedirect('/');
 
