@@ -13,8 +13,8 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notifiable;
 use Override;
 use Spatie\MediaLibrary\HasMedia;
@@ -54,6 +54,11 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
     public function sendPasswordResetNotification(#[\SensitiveParameter] $token): void
     {
         $this->notify(new CustomResetPasswordNotification($token));
+    }
+
+    public function emailChanges(): hasOne
+    {
+     return $this->hasOne(EmailChange::class);
     }
 
 }
