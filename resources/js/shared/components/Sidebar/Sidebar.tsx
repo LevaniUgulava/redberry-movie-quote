@@ -9,7 +9,7 @@ function Sidebar() {
     const {props: {auth, locale}, url} = usePage<PageProps>()
     const [hoveredKey, setHoveredKey] = useState<string | null>(null)
 
-    return <div className="flex flex-col gap-10 pt-10">
+    return <div className="flex flex-col gap-10 sticky top-30 z-51">
         <Link href={`/${locale}/profile`} className="flex gap-6 items-center">
             <img alt="profile image"
                  className={cn("h-15 w-15 rounded-full object-cover hover:border border-main-red", {

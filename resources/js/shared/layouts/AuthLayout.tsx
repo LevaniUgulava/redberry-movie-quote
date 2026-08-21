@@ -4,7 +4,7 @@ import Sidebar from "@/shared/components/Sidebar/Sidebar.tsx";
 
 function AuthLayout({children}: { children: ReactNode }) {
     return <AppLayout>
-        <div className="flex px-17.5 min-h-screen gap-25">
+        <div className="flex px-17.5 min-h-screen gap-25 items-start">
             <Sidebar/>
             <div className="flex-1 pt-10">
                 {children}
