@@ -3,21 +3,19 @@ import {usePage} from "@inertiajs/react";
 import {cn} from "@/lib/utils.ts";
 
 function Header() {
-    const { url } = usePage();
+    const {url, props} = usePage();
     return (
-        <div className={cn("flex px-17.5 py-6 justify-between ",{
-            'bg-[#11101A]':url === '/',
-            'bg-[#222030]/20':url !== '/'
-
-
+        <div className={cn("flex px-17.5 py-6 justify-between bg-[#222030]", {
+            'bg-[#11101A]': url === `/${props.locale}`,
         })}>
-            <div className="text-main-beige uppercase text-base leading-[150%] font-medium">
+            <div className="flex items-center text-main-beige uppercase text-base leading-[150%] font-medium">
                 Movie quotes
             </div>
             <div className="flex gap-4">
-                <Buttons />
+                <Buttons/>
             </div>
         </div>
     );
 }
+
 export default Header;
