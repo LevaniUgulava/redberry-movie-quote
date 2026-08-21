@@ -13,6 +13,8 @@ Route::prefix('{lang}')->group(function () {
 
     require __DIR__ . '/web/newsfeed.php';
 
+    require __DIR__ . '/web/movie.php';
+
 
 });
 require __DIR__ . '/web/verification.php';
