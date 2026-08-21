@@ -1,9 +1,9 @@
 <?php
 
-use Inertia\Inertia;
+use App\Http\Controllers\MovieController;
 
 Route::prefix('/movies')->middleware(['auth:sanctum', 'verified'])->group(function () {
-    Route::get('/', function () {
-        return Inertia::render('Movies/Movies');
-    })->name('movies.index');
+    Route::get('/', [MovieController::class, 'index'])->name('movies.index');
+    Route::post('/store', [MovieController::class, 'store'])->name('movies.store');
+
 });
