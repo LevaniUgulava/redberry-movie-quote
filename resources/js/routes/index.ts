@@ -186,140 +186,88 @@ login.post = (args?: { lang?: string | number } | [lang: string | number ] | str
 /**
 * @see \App\Http\Controllers\GoogleController::redirect
 * @see app/Http/Controllers/GoogleController.php:13
-* @param lang - Default: '$lang'
-* @route '/{lang?}/google/redirect'
+* @route '/google/redirect'
 */
-export const redirect = (args?: { lang?: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: redirect.url(args, options),
+export const redirect = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: redirect.url(options),
     method: 'get',
 })
 
 redirect.definition = {
     methods: ["get","head"],
-    url: '/{lang?}/google/redirect',
+    url: '/google/redirect',
 } satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see \App\Http\Controllers\GoogleController::redirect
 * @see app/Http/Controllers/GoogleController.php:13
-* @param lang - Default: '$lang'
-* @route '/{lang?}/google/redirect'
+* @route '/google/redirect'
 */
-redirect.url = (args?: { lang?: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions) => {
-    if (typeof args === 'string' || typeof args === 'number') {
-        args = { lang: args }
-    }
-
-    if (Array.isArray(args)) {
-        args = {
-            lang: args[0],
-        }
-    }
-
-    args = applyUrlDefaults(args)
-
-    validateParameters(args, [
-        "lang",
-    ])
-
-    const parsedArgs = {
-        lang: args?.lang ?? '$lang',
-    }
-
-    return redirect.definition.url
-            .replace('{lang?}', parsedArgs.lang?.toString() ?? '')
-            .replace(/\/+$/, '') + queryParams(options)
+redirect.url = (options?: RouteQueryOptions) => {
+    return redirect.definition.url + queryParams(options)
 }
 
 /**
 * @see \App\Http\Controllers\GoogleController::redirect
 * @see app/Http/Controllers/GoogleController.php:13
-* @param lang - Default: '$lang'
-* @route '/{lang?}/google/redirect'
+* @route '/google/redirect'
 */
-redirect.get = (args?: { lang?: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: redirect.url(args, options),
+redirect.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: redirect.url(options),
     method: 'get',
 })
 
 /**
 * @see \App\Http\Controllers\GoogleController::redirect
 * @see app/Http/Controllers/GoogleController.php:13
-* @param lang - Default: '$lang'
-* @route '/{lang?}/google/redirect'
+* @route '/google/redirect'
 */
-redirect.head = (args?: { lang?: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
-    url: redirect.url(args, options),
+redirect.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: redirect.url(options),
     method: 'head',
 })
 
 /**
 * @see \App\Http\Controllers\GoogleController::callback
 * @see app/Http/Controllers/GoogleController.php:18
-* @param lang - Default: '$lang'
-* @route '/{lang?}/google/callback'
+* @route '/google/callback'
 */
-export const callback = (args?: { lang?: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: callback.url(args, options),
+export const callback = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: callback.url(options),
     method: 'get',
 })
 
 callback.definition = {
     methods: ["get","head"],
-    url: '/{lang?}/google/callback',
+    url: '/google/callback',
 } satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see \App\Http\Controllers\GoogleController::callback
 * @see app/Http/Controllers/GoogleController.php:18
-* @param lang - Default: '$lang'
-* @route '/{lang?}/google/callback'
+* @route '/google/callback'
 */
-callback.url = (args?: { lang?: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions) => {
-    if (typeof args === 'string' || typeof args === 'number') {
-        args = { lang: args }
-    }
-
-    if (Array.isArray(args)) {
-        args = {
-            lang: args[0],
-        }
-    }
-
-    args = applyUrlDefaults(args)
-
-    validateParameters(args, [
-        "lang",
-    ])
-
-    const parsedArgs = {
-        lang: args?.lang ?? '$lang',
-    }
-
-    return callback.definition.url
-            .replace('{lang?}', parsedArgs.lang?.toString() ?? '')
-            .replace(/\/+$/, '') + queryParams(options)
+callback.url = (options?: RouteQueryOptions) => {
+    return callback.definition.url + queryParams(options)
 }
 
 /**
 * @see \App\Http\Controllers\GoogleController::callback
 * @see app/Http/Controllers/GoogleController.php:18
-* @param lang - Default: '$lang'
-* @route '/{lang?}/google/callback'
+* @route '/google/callback'
 */
-callback.get = (args?: { lang?: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: callback.url(args, options),
+callback.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: callback.url(options),
     method: 'get',
 })
 
 /**
 * @see \App\Http\Controllers\GoogleController::callback
 * @see app/Http/Controllers/GoogleController.php:18
-* @param lang - Default: '$lang'
-* @route '/{lang?}/google/callback'
+* @route '/google/callback'
 */
-callback.head = (args?: { lang?: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
-    url: callback.url(args, options),
+callback.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: callback.url(options),
     method: 'head',
 })
 

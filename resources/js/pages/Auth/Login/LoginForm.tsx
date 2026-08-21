@@ -15,7 +15,7 @@ function LoginForm() {
                 title={t("login_title")}
                 subtitle={t("login_subtitle")}
             />
-            <Form action={login()}>
+            <Form className="w-full" action={login()}>
                 {({ validate, errors, valid, reset }) => (
                     <div>
                         <Input

@@ -1,6 +1,6 @@
 import {router, usePage} from "@inertiajs/react";
 import {MODALS} from "@/constants/Modal.ts";
-import {MESSAGE_CONFIG} from "@/constants/Message.tsx";
+import {getMessageConfig} from "@/constants/Message.tsx";
 
 function useAuthContent(currentModal: string) {
     const {flash, props} = usePage();
@@ -18,6 +18,8 @@ function useAuthContent(currentModal: string) {
     const isOpen =
         MODALS.includes(currentModal) ||
         Boolean(flash?.type);
+    const MESSAGE_CONFIG = getMessageConfig(props.locale as string);
+
     const currentConfig = MESSAGE_CONFIG[flash?.type as keyof typeof MESSAGE_CONFIG];
 
     return {handleClose, isOpen:Boolean(isOpen), currentConfig}

@@ -15,3 +15,5 @@ Route::prefix('{lang}')->group(function () {
 
 
 });
+require __DIR__ . '/web/verification.php';
+require __DIR__ . '/web/google.php';

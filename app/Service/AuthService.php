@@ -3,17 +3,19 @@
 namespace App\Service;
 
 use App\Models\User;
+use App\Notifications\CustomEmailVerifyNotification;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
+use function Laravel\Prompts\notify;
 
 class AuthService
 {
     public function register(array $data): void
     {
         $user = User::create($data);
-        event(new Registered($user));
+        $user->notify(new CustomEmailVerifyNotification($user));
         Inertia::flash('type', 'VERIFY_SENT');
 
     }
@@ -26,7 +28,7 @@ class AuthService
 
         $credentials = [$field => $login, 'password' => $data['password']];
 
-        if (! Auth::validate($credentials)) {
+        if (!Auth::validate($credentials)) {
             throw ValidationException::withMessages([
                 'login' => __('auth.failed'),
             ]);
@@ -34,7 +36,7 @@ class AuthService
 
         $user = User::where($field, $login)->firstOrFail();
 
-        if (! $user->hasVerifiedEmail()) {
+        if (!$user->hasVerifiedEmail()) {
             Inertia::flash('unverified_email', $user->email);
             throw ValidationException::withMessages([
                 'login' => 'Please verify your email before logging in.',

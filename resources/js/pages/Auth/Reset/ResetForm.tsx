@@ -16,7 +16,7 @@ function ResetForm() {
                 title="Create new password"
                 subtitle="Your new password must be different from previous used passwords"
             />
-            <Form action={resetPassword()}
+            <Form className="w-full" action={resetPassword()}
                   transform={(data) => ({
                       ...data, email, token
                   })}>

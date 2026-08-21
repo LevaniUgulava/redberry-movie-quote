@@ -1,14 +1,22 @@
-import {Form} from "@inertiajs/react";
+import {Form, usePage} from "@inertiajs/react";
 import InputField from "@/pages/Profile/components/InputField.tsx";
 import {update} from "@/actions/App/Http/Controllers/ProfileController.ts";
 import useProfile from "@/pages/Profile/hooks/useProfile.ts";
 import AvatarField from "@/pages/Profile/components/AvatarField.tsx";
+import {getMessageConfig} from "@/constants/Message.tsx";
+import {PageProps} from "@/types/PagePropsTypes.ts";
+import Message from "@/pages/Auth/Message/Message.tsx";
+import ModalWrapper from "@/components/wrapper/ModalWrapper.tsx";
+import useAuthContent from "@/pages/Auth/AuthContent/hooks/useAuthContent.ts";
 
 function Profile() {
 
     const {
         auth, preview, fileInputRef, handleFileChange, handleOpen, showField, isAnyFieldOpen, cancelEdit
     } = useProfile();
+
+
+    const {currentConfig, handleClose, isOpen} = useAuthContent("");
 
 
     return (
@@ -78,6 +86,11 @@ function Profile() {
                     );
                 }}
             </Form>
+            <ModalWrapper isOpen={isOpen} onClose={handleClose}>
+                {currentConfig && <Message {...currentConfig}/>}
+            </ModalWrapper>
+
+
         </div>
     );
 }
