@@ -1,41 +1,67 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults, validateParameters } from './../wayfinder'
 /**
 * @see routes/web/landing.php:7
-* @route '/'
+* @param lang - Default: '$lang'
+* @route '/{lang?}'
 */
-export const landing = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: landing.url(options),
+export const landing = (args?: { lang?: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: landing.url(args, options),
     method: 'get',
 })
 
 landing.definition = {
     methods: ["get","head"],
-    url: '/',
+    url: '/{lang?}',
 } satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see routes/web/landing.php:7
-* @route '/'
+* @param lang - Default: '$lang'
+* @route '/{lang?}'
 */
-landing.url = (options?: RouteQueryOptions) => {
-    return landing.definition.url + queryParams(options)
+landing.url = (args?: { lang?: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions) => {
+    if (typeof args === 'string' || typeof args === 'number') {
+        args = { lang: args }
+    }
+
+    if (Array.isArray(args)) {
+        args = {
+            lang: args[0],
+        }
+    }
+
+    args = applyUrlDefaults(args)
+
+    validateParameters(args, [
+        "lang",
+    ])
+
+    const parsedArgs = {
+        lang: args?.lang ?? '$lang',
+    }
+
+    return landing.definition.url
+            .replace('{lang?}', parsedArgs.lang?.toString() ?? '')
+            .replace(/\/+$/, '') + queryParams(options)
 }
 
 /**
 * @see routes/web/landing.php:7
-* @route '/'
+* @param lang - Default: '$lang'
+* @route '/{lang?}'
 */
-landing.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: landing.url(options),
+landing.get = (args?: { lang?: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: landing.url(args, options),
     method: 'get',
 })
 
 /**
 * @see routes/web/landing.php:7
-* @route '/'
+* @param lang - Default: '$lang'
+* @route '/{lang?}'
 */
-landing.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
-    url: landing.url(options),
+landing.head = (args?: { lang?: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: landing.url(args, options),
     method: 'head',
 })
 
@@ -158,66 +184,6 @@ login.post = (args?: { lang?: string | number } | [lang: string | number ] | str
 })
 
 /**
-* @see \App\Http\Controllers\AuthController::logout
-* @see app/Http/Controllers/AuthController.php:39
-* @param lang - Default: '$lang'
-* @route '/{lang?}/logout'
-*/
-export const logout = (args?: { lang?: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
-    url: logout.url(args, options),
-    method: 'post',
-})
-
-logout.definition = {
-    methods: ["post"],
-    url: '/{lang?}/logout',
-} satisfies RouteDefinition<["post"]>
-
-/**
-* @see \App\Http\Controllers\AuthController::logout
-* @see app/Http/Controllers/AuthController.php:39
-* @param lang - Default: '$lang'
-* @route '/{lang?}/logout'
-*/
-logout.url = (args?: { lang?: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions) => {
-    if (typeof args === 'string' || typeof args === 'number') {
-        args = { lang: args }
-    }
-
-    if (Array.isArray(args)) {
-        args = {
-            lang: args[0],
-        }
-    }
-
-    args = applyUrlDefaults(args)
-
-    validateParameters(args, [
-        "lang",
-    ])
-
-    const parsedArgs = {
-        lang: args?.lang ?? '$lang',
-    }
-
-    return logout.definition.url
-            .replace('{lang?}', parsedArgs.lang?.toString() ?? '')
-            .replace(/\/+$/, '') + queryParams(options)
-}
-
-/**
-* @see \App\Http\Controllers\AuthController::logout
-* @see app/Http/Controllers/AuthController.php:39
-* @param lang - Default: '$lang'
-* @route '/{lang?}/logout'
-*/
-logout.post = (args?: { lang?: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
-    url: logout.url(args, options),
-    method: 'post',
-})
-
-/**
-
 * @see \App\Http\Controllers\GoogleController::redirect
 * @see app/Http/Controllers/GoogleController.php:13
 * @param lang - Default: '$lang'
@@ -360,34 +326,59 @@ callback.head = (args?: { lang?: string | number } | [lang: string | number ] | 
 /**
 * @see \App\Http\Controllers\AuthController::logout
 * @see app/Http/Controllers/AuthController.php:39
-* @route '/logout'
+* @param lang - Default: '$lang'
+* @route '/{lang?}/logout'
 */
-export const logout = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
-    url: logout.url(options),
+export const logout = (args?: { lang?: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: logout.url(args, options),
     method: 'post',
 })
 
 logout.definition = {
     methods: ["post"],
-    url: '/logout',
+    url: '/{lang?}/logout',
 } satisfies RouteDefinition<["post"]>
 
 /**
 * @see \App\Http\Controllers\AuthController::logout
 * @see app/Http/Controllers/AuthController.php:39
-* @route '/logout'
+* @param lang - Default: '$lang'
+* @route '/{lang?}/logout'
 */
-logout.url = (options?: RouteQueryOptions) => {
-    return logout.definition.url + queryParams(options)
+logout.url = (args?: { lang?: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions) => {
+    if (typeof args === 'string' || typeof args === 'number') {
+        args = { lang: args }
+    }
+
+    if (Array.isArray(args)) {
+        args = {
+            lang: args[0],
+        }
+    }
+
+    args = applyUrlDefaults(args)
+
+    validateParameters(args, [
+        "lang",
+    ])
+
+    const parsedArgs = {
+        lang: args?.lang ?? '$lang',
+    }
+
+    return logout.definition.url
+            .replace('{lang?}', parsedArgs.lang?.toString() ?? '')
+            .replace(/\/+$/, '') + queryParams(options)
 }
 
 /**
 * @see \App\Http\Controllers\AuthController::logout
 * @see app/Http/Controllers/AuthController.php:39
-* @route '/logout'
+* @param lang - Default: '$lang'
+* @route '/{lang?}/logout'
 */
-logout.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
-    url: logout.url(options),
+logout.post = (args?: { lang?: string | number } | [lang: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: logout.url(args, options),
     method: 'post',
 })
 
