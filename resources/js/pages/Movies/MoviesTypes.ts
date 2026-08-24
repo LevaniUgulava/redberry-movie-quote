@@ -1,8 +1,10 @@
+export interface movie {
+    image: string,
+    title: string,
+    year: number,
+    commentQuantity: number,
+}
+
 export interface MovieProps {
-    movie: {
-        movieImage: string,
-        movieName: string,
-        movieYear: number,
-        commentQuantity: number,
-    }
+    movie: movie
 }

@@ -5,7 +5,7 @@ import {cn} from "@/lib/utils.ts";
 function Header() {
     const {url, props} = usePage();
     return (
-        <div className={cn("flex px-17.5 py-6 justify-between bg-[#222030]", {
+        <div className={cn("sticky top-0 z-51 flex px-17.5 py-6 justify-between bg-[#222030]", {
             'bg-[#11101A]': url === `/${props.locale}`,
         })}>
             <div className="flex items-center text-main-beige uppercase text-base leading-[150%] font-medium">

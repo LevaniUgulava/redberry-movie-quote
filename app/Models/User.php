@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -51,6 +52,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         //?: spatie return empty string instead if null, ?: is correct check to check any falsy value
         return Attribute::make(get: fn(): string => $this->getFirstMediaUrl('avatar') ?: asset('storage/DefaultProfile.png'));
     }
+
     public function sendPasswordResetNotification(#[\SensitiveParameter] $token): void
     {
         $this->notify(new CustomResetPasswordNotification($token));
@@ -58,7 +60,12 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
 
     public function emailChanges(): hasOne
     {
-     return $this->hasOne(EmailChange::class);
+        return $this->hasOne(EmailChange::class);
     }
 
+
+    public function movies(): HasMany
+    {
+        return $this->hasMany(Movie::class);
+    }
 }
