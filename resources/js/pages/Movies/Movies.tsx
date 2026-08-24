@@ -9,7 +9,7 @@ import {PageProps} from "@/types/PagePropsTypes.ts";
 import useMovies from "@/pages/Movies/hooks/useMovies.ts";
 
 function Movies() {
-    const {isOpen, handleClose, movies} = useMovies();
+    const {isOpen, handleClose, movies,editingMovie,isEditOpen} = useMovies();
     return <div>
 
         <Header/>
@@ -17,7 +17,7 @@ function Movies() {
             {movies.data.map((movie: movie) => (
                 <MovieCard movie={movie}/>
             ))}
-            <MovieModal isOpen={isOpen} onClose={handleClose}/>
+            <MovieModal isOpen={isOpen} editingMovie={editingMovie} isEditOpen={isEditOpen} onClose={handleClose}/>
         </div>
     </div>
 }

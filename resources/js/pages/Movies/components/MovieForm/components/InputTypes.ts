@@ -4,11 +4,13 @@ export interface InputProps {
     type?: string,
     lang?: string | null,
     multiline?: boolean
+    defaultValue?:string
 }
 
 export interface ImageInputProps {
     name: string;
     onChange?: (file: File | null) => void;
+    initialPreview?: string | null;
 }
 
 export interface TagsInputProps {

@@ -1,7 +1,7 @@
 import {ChangeEvent, DragEvent, useState} from "react";
 
-function useImageInput(onChange?: (file: File | null) => void) {
-    const [preview, setPreview] = useState<string | null>(null);
+function useImageInput(onChange?: (file: File | null) => void,initialPreview: string | null = null) {
+    const [preview, setPreview] = useState<string | null>(initialPreview);
     const [isDragging, setIsDragging] = useState(false);
 
     const handleFile = (file: File | null) => {

@@ -3,9 +3,9 @@ import PhotoIcon from "@/components/ui/icons/Movie/PhotoIcon.tsx";
 import useImageInput from "@/pages/Movies/components/MovieForm/components/ImageInput/hooks/useImageInput.ts";
 import {ImageInputProps} from "@/pages/Movies/components/MovieForm/components/InputTypes.ts";
 
-function ImageInput({name, onChange}: ImageInputProps) {
+function ImageInput({name, onChange,initialPreview}: ImageInputProps) {
 
-    const {handleChange, handleDrop,  setIsDragging, isDragging,preview} = useImageInput(onChange)
+    const {handleChange, handleDrop,  setIsDragging, isDragging,preview} = useImageInput(onChange,initialPreview)
 
     return (
         <div
