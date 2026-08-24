@@ -23,7 +23,7 @@ class MovieController extends Controller
     {
         $user = auth()->user();
         $editingMovie = $request->query('id')
-            ? $user->movies()->findOrFail($request->query('id'))
+            ? $user->movies()->with('genres')->findOrFail($request->query('id'))
             : null;
         return Inertia::render('Movies/Movies', [
             'currentModal' => $request->query('modal'),
