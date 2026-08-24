@@ -6,7 +6,7 @@ interface ModalWrapperProps {
     isOpen: boolean;
     onClose: VoidFunction;
 }
-function ModalWrapper({ children, isOpen, onClose }: ModalWrapperProps) {
+function AuthModalWrapper({ children, isOpen, onClose }: ModalWrapperProps) {
     return (
         <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
             <DialogContent
@@ -18,4 +18,4 @@ function ModalWrapper({ children, isOpen, onClose }: ModalWrapperProps) {
         </Dialog>
     );
 }
-export default ModalWrapper;
+export default AuthModalWrapper;
