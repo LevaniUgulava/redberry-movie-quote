@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults, validateParameters } from './../../wayfinder'
 /**
 * @see \App\Http\Controllers\MovieController::index
-* @see app/Http/Controllers/MovieController.php:21
+* @see app/Http/Controllers/MovieController.php:22
 * @param lang - Default: '$lang'
 * @route '/{lang?}/movies'
 */
@@ -17,7 +17,7 @@ index.definition = {
 
 /**
 * @see \App\Http\Controllers\MovieController::index
-* @see app/Http/Controllers/MovieController.php:21
+* @see app/Http/Controllers/MovieController.php:22
 * @param lang - Default: '$lang'
 * @route '/{lang?}/movies'
 */
@@ -49,7 +49,7 @@ index.url = (args?: { lang?: string | number } | [lang: string | number ] | stri
 
 /**
 * @see \App\Http\Controllers\MovieController::index
-* @see app/Http/Controllers/MovieController.php:21
+* @see app/Http/Controllers/MovieController.php:22
 * @param lang - Default: '$lang'
 * @route '/{lang?}/movies'
 */
@@ -60,7 +60,7 @@ index.get = (args?: { lang?: string | number } | [lang: string | number ] | stri
 
 /**
 * @see \App\Http\Controllers\MovieController::index
-* @see app/Http/Controllers/MovieController.php:21
+* @see app/Http/Controllers/MovieController.php:22
 * @param lang - Default: '$lang'
 * @route '/{lang?}/movies'
 */
@@ -71,7 +71,7 @@ index.head = (args?: { lang?: string | number } | [lang: string | number ] | str
 
 /**
 * @see \App\Http\Controllers\MovieController::store
-* @see app/Http/Controllers/MovieController.php:30
+* @see app/Http/Controllers/MovieController.php:41
 * @param lang - Default: '$lang'
 * @route '/{lang?}/movies/store'
 */
@@ -87,7 +87,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\MovieController::store
-* @see app/Http/Controllers/MovieController.php:30
+* @see app/Http/Controllers/MovieController.php:41
 * @param lang - Default: '$lang'
 * @route '/{lang?}/movies/store'
 */
@@ -119,7 +119,7 @@ store.url = (args?: { lang?: string | number } | [lang: string | number ] | stri
 
 /**
 * @see \App\Http\Controllers\MovieController::store
-* @see app/Http/Controllers/MovieController.php:30
+* @see app/Http/Controllers/MovieController.php:41
 * @param lang - Default: '$lang'
 * @route '/{lang?}/movies/store'
 */
@@ -128,9 +128,70 @@ store.post = (args?: { lang?: string | number } | [lang: string | number ] | str
     method: 'post',
 })
 
+/**
+* @see \App\Http\Controllers\MovieController::update
+* @see app/Http/Controllers/MovieController.php:35
+* @param lang - Default: '$lang'
+* @route '/{lang?}/movies/update/{movie}'
+*/
+export const update = (args: { lang?: string | number, movie: number | { id: number } } | [lang: string | number, movie: number | { id: number } ], options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
+    url: update.url(args, options),
+    method: 'patch',
+})
+
+update.definition = {
+    methods: ["patch"],
+    url: '/{lang?}/movies/update/{movie}',
+} satisfies RouteDefinition<["patch"]>
+
+/**
+* @see \App\Http\Controllers\MovieController::update
+* @see app/Http/Controllers/MovieController.php:35
+* @param lang - Default: '$lang'
+* @route '/{lang?}/movies/update/{movie}'
+*/
+update.url = (args: { lang?: string | number, movie: number | { id: number } } | [lang: string | number, movie: number | { id: number } ], options?: RouteQueryOptions) => {
+    if (Array.isArray(args)) {
+        args = {
+            lang: args[0],
+            movie: args[1],
+        }
+    }
+
+    args = applyUrlDefaults(args)
+
+    validateParameters(args, [
+        "lang",
+    ])
+
+    const parsedArgs = {
+        lang: args.lang ?? '$lang',
+        movie: typeof args.movie === 'object'
+        ? args.movie.id
+        : args.movie,
+    }
+
+    return update.definition.url
+            .replace('{lang?}', parsedArgs.lang?.toString() ?? '')
+            .replace('{movie}', parsedArgs.movie.toString())
+            .replace(/\/+$/, '') + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\MovieController::update
+* @see app/Http/Controllers/MovieController.php:35
+* @param lang - Default: '$lang'
+* @route '/{lang?}/movies/update/{movie}'
+*/
+update.patch = (args: { lang?: string | number, movie: number | { id: number } } | [lang: string | number, movie: number | { id: number } ], options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
+    url: update.url(args, options),
+    method: 'patch',
+})
+
 const movies = {
     index: Object.assign(index, index),
     store: Object.assign(store, store),
+    update: Object.assign(update, update),
 }
 
 export default movies
