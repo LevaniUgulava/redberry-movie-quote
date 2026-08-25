@@ -5,12 +5,15 @@ export interface InputProps {
     lang?: string | null,
     multiline?: boolean
     defaultValue?:string
+    error?:string|null
 }
 
 export interface ImageInputProps {
     name: string;
     onChange?: (file: File | null) => void;
     initialPreview?: string | null;
+    error?:string|null
+
 }
 
 export interface TagsInputProps {
