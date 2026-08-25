@@ -2,19 +2,25 @@ import AddQuoteIcon from "@/components/ui/NewsFeed/AddQuoteIcon.tsx";
 import SearchIcon from "@/components/ui/NewsFeed/SearchIcon.tsx";
 import {cn} from "@/lib/utils.ts";
 import useHeader from "@/pages/NewsFeed/components/Header/hooks/useHeader.ts";
+import QuoteModal from "@/pages/NewsFeed/components/Quote/QuoteModal/QuoteModal.tsx";
+import {Link} from "@inertiajs/react";
+import LocaleLink from "@/components/LocaleLink.tsx";
 
 function Header() {
-    const {value, isHovered, isOpen, setIsHovered, setValue, setIsOpen} = useHeader();
+    const {value, isHovered, isOpen, setIsHovered, setValue, setIsOpen, handleClose, openModal} = useHeader();
+
 
     return (
         <div className="flex gap-5 overflow-hidden min-w-0 w-full">
-            <div className={cn(
+            <LocaleLink href="/newsfeed?modal=create" className={cn(
                 "bg-[#24222F] h-13 shrink-0 rounded-xl flex items-center px-4 gap-4",
                 !isOpen && "w-full max-w-190"
             )}>
                 <AddQuoteIcon/>
                 <span className="text-white text-xl font-normal whitespace-nowrap cursor-pointer">Write new quote</span>
-            </div>
+            </LocaleLink>
+            <QuoteModal isOpen={openModal} handleClose={handleClose}/>
+
 
             <div
                 onClick={() => !isOpen && setIsOpen(true)}
