@@ -19,11 +19,19 @@ class QuoteResource extends JsonResource
             'id' => $this->id,
             'quote' => $this->getTranslation('quote', $locale),
             'image' => $this->resource->getFirstMediaUrl('quote'),
-            'comment_quantity' => 0,// coming soon...
-            'reaction_quantity' => 0,// coming soon...
-            'comments' => [
-                //collection no added functional
-            ],
+            'comment_quantity' => $this->comments_count,
+            'reaction_quantity' => $this->likes_count,
+            'comments' => $this->comments->map(function ($comment) {
+                return [
+                    'comment' => $comment->comment,
+                    'user' => [
+                        'id' => $comment->user->id,
+                        'username' => $comment->user->username,
+                        'avatar' => $comment->user->avatar,
+                    ]
+
+                ];
+            }),
             'movie' => [
                 'title' => $this->movie->getTranslation('title', $locale),
                 'year' => $this->movie->year,
@@ -32,6 +40,7 @@ class QuoteResource extends JsonResource
                 'username' => $this->user->username,
                 'avatar' => $this->user->avatar,
             ],
+            'is_liked' => $this->likes->contains('id', auth()->id()),
         ];
     }
 }
