@@ -29,8 +29,8 @@ class MovieWithQuotesResource extends JsonResource
                     'id' => $quote->id,
                     "image" => $quote->getFirstMediaUrl('quote'),
                     'quote' => $quote->quote,
-                    "reaction_quantity" => "29",
-                    'comment_quantity' => "3"
+                    "reaction_quantity" => 0, // will be fixed after merge prev branch
+                    'comment_quantity' => 0 // same here
                 ];
             }),
         ];
