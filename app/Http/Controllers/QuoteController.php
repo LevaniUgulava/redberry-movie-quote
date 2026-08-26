@@ -29,7 +29,7 @@ class QuoteController extends Controller
     public function store(StoreQuoteRequest $request): RedirectResponse
     {
         $this->quoteService->store($request->validated());
-        return redirect()->route('quotes.index');
+        return redirect()->back();
 
     }
 }
