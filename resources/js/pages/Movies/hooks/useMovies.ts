@@ -1,9 +1,9 @@
 import {router, usePage} from "@inertiajs/react";
 import {PageProps} from "@/types/PagePropsTypes.ts";
-import {movie} from "@/pages/Movies/MoviesTypes.ts";
+import {movie, MovieWithDetails, MovieWithQuantity} from "@/pages/Movies/MoviesTypes.ts";
 
 function useMovies() {
-    const {currentModal, locale, movies, editingMovie} = usePage<PageProps<{ movies: { data: movie[] } }>>().props;
+    const {currentModal, locale, movies, editingMovie} = usePage<PageProps<{ movies: { data: MovieWithQuantity[] } }>>().props;
     const handleClose = () => {
         router.get(
             `/${locale}/movies`,
