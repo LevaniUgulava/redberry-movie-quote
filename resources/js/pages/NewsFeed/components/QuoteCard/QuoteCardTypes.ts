@@ -1,7 +1,9 @@
 export interface Comment {
     comment: string;
-    user_avatar: string;
-    user_name: string;
+    user: {
+        username: string,
+        avatar: string
+    }
 }
 
 export interface Movie {
@@ -24,5 +26,6 @@ export interface Quote {
         comments: Comment[];
         movie: Movie;
         user: User;
+        is_liked: boolean
     }
 }
