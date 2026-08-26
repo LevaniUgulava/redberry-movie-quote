@@ -14,15 +14,18 @@ export interface User {
     avatar: string;
 }
 
+
 export interface Quote {
-    quote: {
-        id: number;
-        quote: string;
-        image: string;
-        comment_quantity: number;
-        reaction_quantity: number;
-        comments: Comment[];
-        movie: Movie;
-        user: User;
-    }
+    id: number;
+    quote: string;
+    image: string;
+    comment_quantity: number;
+    reaction_quantity: number;
+    comments: Comment[];
+    movie: Movie;
+    user: User;
+}
+
+export interface QuoteProps {
+    quote: Quote
 }

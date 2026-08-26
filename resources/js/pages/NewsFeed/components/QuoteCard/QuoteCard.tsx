@@ -2,10 +2,10 @@ import ReactionIcon from "@/components/ui/NewsFeed/Quotes/ReactionIcon.tsx";
 import CommentIcon from "@/components/ui/NewsFeed/Quotes/CommentIcon.tsx";
 import {usePage} from "@inertiajs/react";
 import {PageProps} from "@/types/PagePropsTypes.ts";
-import {Quote} from "@/pages/NewsFeed/components/QuoteCard/QuoteCardTypes.ts";
+import { QuoteProps} from "@/pages/NewsFeed/components/QuoteCard/QuoteCardTypes.ts";
 
 
-function QuoteCard({quote}: Quote) {
+function QuoteCard({quote}: QuoteProps) {
     const {auth} = usePage<PageProps>().props
     return <div className="bg-[#11101A] rounded-xl p-6 ">
         <div className="flex flex-col gap-5 border-b border-[#EFEFEF]/30">
