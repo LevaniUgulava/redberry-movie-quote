@@ -1,10 +1,9 @@
 import ModalWrapper from "@/components/wrapper/ModalWrapper/ModalWrapper.tsx";
 import CloseIcon from "@/components/ui/icons/CloseIcon.tsx";
 import QuoteForm from "@/pages/NewsFeed/components/Quote/QuoteForm/QuoteForm.tsx";
-import {PageProps} from "@/types/PagePropsTypes.ts";
-import {usePage} from "@inertiajs/react";
+import {QuoteModalProps} from "@/pages/NewsFeed/components/Quote/QuoteModal/QuoteModalTypes.ts";
 
-function QuoteModal({isOpen, handleClose}: { isOpen: boolean, handleClose: VoidFunction }) {
+function QuoteModal({isOpen, handleClose}: QuoteModalProps) {
 
     return <ModalWrapper isOpen={isOpen} onClose={handleClose}>
         <div className="relative flex items-center justify-center border-b border-[#EFEFEF]/20 py-8">
@@ -13,7 +12,7 @@ function QuoteModal({isOpen, handleClose}: { isOpen: boolean, handleClose: VoidF
                 </span>
             <CloseIcon onClick={handleClose} className="absolute right-5 cursor-pointer"/>
         </div>
-        <QuoteForm/>
+        <QuoteForm handleClose={handleClose}/>
 
     </ModalWrapper>
 }

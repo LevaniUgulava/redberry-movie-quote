@@ -16,6 +16,7 @@ export interface User {
     avatar: string;
 }
 
+
 export interface Quote {
     quote: {
         id: number;

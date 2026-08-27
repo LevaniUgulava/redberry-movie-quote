@@ -2,12 +2,37 @@
 
 namespace App\Service;
 
+use App\Http\Resources\Movie\MovieEditResource;
+use App\Http\Resources\Movie\MovieResource;
+use App\Http\Resources\Movie\MovieWithQuotesResource;
 use App\Models\Movie;
 use Illuminate\Support\Facades\DB;
+use PhpParser\Node\Expr\Array_;
 
 class MovieService
 {
-// MovieService
+    public function index(array $data): array
+    {
+        $user = auth()->user();
+        $editingMovie = $data['id']
+            ? $user->movies()->with('genres')->findOrFail($data['id'])
+            : null;
+        return [
+            'currentModal' => $data['modal'],
+            'editingMovie' => $editingMovie ? (new MovieEditResource($editingMovie))->resolve() : null,
+            'movies' => MovieResource::collection($user->movies)
+        ];
+    }
+
+    public function show(Movie $movie, ?string $modal): array
+    {
+        $movie->load(['genres', 'quotes']);
+        return [
+            'movie' => (new MovieWithQuotesResource($movie))->resolve(),
+            'currentModal' => $modal
+        ];
+    }
+
     public function update(Movie $movie, array $data): Movie
     {
         return DB::transaction(function () use ($movie, $data) {
