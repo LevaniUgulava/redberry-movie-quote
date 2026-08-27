@@ -80,7 +80,18 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         return $this->hasMany(Quote::class);
     }
 
-    public function likes(): BelongsToMany{
+    public function likes(): BelongsToMany
+    {
         return $this->belongsToMany(Quote::class, 'likes');
+    }
+
+    public function notifications(): HasMany
+    {
+        return $this->hasMany(Notification::class, 'receiver_id');
+    }
+
+    public function sendNotification(): HasMany
+    {
+        return $this->hasMany(Notification::class, 'sender_id');
     }
 }
