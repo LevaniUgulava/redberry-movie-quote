@@ -15,6 +15,8 @@ Route::prefix('{lang}')->group(function () {
 
     require __DIR__ . '/web/movie.php';
 
+    require __DIR__ . '/web/notification.php';
+
 
 });
 require __DIR__ . '/web/verification.php';
