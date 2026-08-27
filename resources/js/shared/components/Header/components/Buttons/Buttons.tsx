@@ -1,26 +1,29 @@
-import {Link, router, usePage} from "@inertiajs/react";
 import Lang from "@/shared/components/Header/components/Lang/Lang.tsx";
 import NotificationIcon from "@/components/ui/icons/NotificationIcon.tsx";
 import LocaleLink from "@/components/LocaleLink";
-import {useTranslation} from "react-i18next";
-import {logout} from "@/actions/App/Http/Controllers/AuthController";
+import NotificationModal from "@/shared/components/Header/Notification/NotificationModal.tsx";
+import useButtons from "@/shared/components/Header/components/Buttons/hooks/useButtons.ts";
+
 
 function Buttons() {
-    const {auth} = usePage().props
-    const isAuth = auth !== null;
-    const {t} = useTranslation("header");
 
+    const {isAuth, notificationsState, handleOpenChange, t,handleLogout,isNotificationsLoading} = useButtons();
 
     return (
         <div className="flex gap-4">
-            {isAuth && <div className="flex justify-center items-center relative">
-                <NotificationIcon/>
-                <div
-                    className="absolute -top-1 left-4 h-6.25 w-6.25 bg-[#E33812] rounded-full items-center flex justify-center">
-                    <span className='text-white text-base leading-[150%] font-medium'>3</span>
-                </div>
+            {isAuth &&
 
-            </div>}
+                <NotificationModal isNotificationsLoading={isNotificationsLoading} notifications={notificationsState.data} handleOpenChange={handleOpenChange}>
+                    <div className="flex justify-center items-center relative">
+                        <NotificationIcon/>
+                        {notificationsState.quantity > 0 && <div
+                            className="absolute -top-1 left-4 h-6.25 w-6.25 bg-[#E33812] rounded-full items-center flex justify-center">
+                            <span
+                                className='text-white text-base leading-[150%] font-medium'>{notificationsState.quantity}</span>
+                        </div>}
+                    </div>
+                </NotificationModal>
+            }
             <Lang/>
 
             {!isAuth ? <>
@@ -39,7 +42,7 @@ function Buttons() {
                 </LocaleLink>
             </> : <div>
                 <button
-                    onClick={() => router.post(logout().url)}
+                    onClick={handleLogout}
                     className="w-24 flex justify-center cursor-pointer rounded-sm border border-white  px-3.25 py-1.75 text-base font-normal text-white leading-[150%]"
                 >
                     Log out
