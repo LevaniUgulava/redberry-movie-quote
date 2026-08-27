@@ -1,0 +1,145 @@
+/* ===== Helvetica Neue (Latin) ===== */
+
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url('../fonts/HelveticaNeue/helvetica-neue-ultralight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url('../fonts/HelveticaNeue/helvetica-neue-medium-extended.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: expanded;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url('../fonts/HelveticaNeue/helvetica-neue-w01-66-medium-it.ttf') format('truetype');
+    font-weight: 500;
+    font-style: italic;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url('../fonts/HelveticaNeue/helvetica-neue-w01-77-bd-cn-obl.ttf') format('truetype');
+    font-weight: 700;
+    font-style: oblique;
+    font-stretch: condensed;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url('../fonts/HelveticaNeue/helvetica-neue-w01-87-hv-cn-obl.ttf') format('truetype');
+    font-weight: 800;
+    font-style: oblique;
+    font-stretch: condensed;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url('../fonts/HelveticaNeue/helvetica-neue-ltw0693blkextobl.ttf') format('truetype');
+    font-weight: 900;
+    font-style: oblique;
+    font-stretch: expanded;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url('../fonts/HelveticaNeue/helvetica-neue-ltw0697blkcnobl.ttf') format('truetype');
+    font-weight: 900;
+    font-style: oblique;
+    font-stretch: condensed;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* ===== Helvetica Neue Georgian ===== */
+
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url('../fonts/HelveticaGeorgian/helvetica-neue-lt-geo-25-ultlt.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+    unicode-range: U+10A0-10FF, U+2D00-2D2F, U+1C90-1CBF;
+}
+
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url('../fonts/HelveticaGeorgian/helvetica-neue-lt-geo-35-thin.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    unicode-range: U+10A0-10FF, U+2D00-2D2F, U+1C90-1CBF;
+}
+
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url('../fonts/HelveticaGeorgian/helvetica-neue-lt-geo-45-light.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    unicode-range: U+10A0-10FF, U+2D00-2D2F, U+1C90-1CBF;
+}
+
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url('../fonts/HelveticaGeorgian/helvetica-neue-lt-geo-55-roman.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    unicode-range: U+10A0-10FF, U+2D00-2D2F, U+1C90-1CBF;
+}
+
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url('../fonts/HelveticaGeorgian/helvetica-neue-lt-geo-65-medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    unicode-range: U+10A0-10FF, U+2D00-2D2F, U+1C90-1CBF;
+}
+
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url('../fonts/HelveticaGeorgian/helvetica-neue-lt-geo-75-bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    unicode-range: U+10A0-10FF, U+2D00-2D2F, U+1C90-1CBF;
+}
+
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url('../fonts/HelveticaGeorgian/helvetica-neue-lt-geo-85-heavy.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+    unicode-range: U+10A0-10FF, U+2D00-2D2F, U+1C90-1CBF;
+}
+
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url('../fonts/HelveticaGeorgian/helvetica-neue-lt-geo-95-black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    unicode-range: U+10A0-10FF, U+2D00-2D2F, U+1C90-1CBF;
+}
+
+/* Caps / small-caps style variants — separate family so they don't collide with regular weights */
+@font-face {
+    font-family: 'Helvetica Neue Caps';
+    src: url('../fonts/HelveticaGeorgian/HelveticaNeueLTGEOCaps-45Light.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    unicode-range: U+10A0-10FF, U+2D00-2D2F, U+1C90-1CBF;
+}
+
+@font-face {
+    font-family: 'Helvetica Neue Caps';
+    src: url('../fonts/HelveticaGeorgian/HelveticaNeueLTGEOCaps-55Roman.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    unicode-range: U+10A0-10FF, U+2D00-2D2F, U+1C90-1CBF;
+}

@@ -14,7 +14,17 @@ class QuoteService
     {
         $user = auth()->user();
 
-        $quotes = Quote::with(['user:id,username', 'user.media', 'movie:id,title,year', 'media'])->get();
+        $quotes = Quote::with([
+            'user:id,username',
+            'user.media',
+            'movie:id,title,year',
+            'media',
+            'comments' => function ($query) {
+                $query->latest()->limit(2);
+            },
+            'comments.user:id,username',
+            'likes'
+        ])->withCount(['comments','likes'])->get();
 
         return [
             'currentModal' => $modal,

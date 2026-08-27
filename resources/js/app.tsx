@@ -6,6 +6,11 @@ import {PageComponent} from "@/types/AppTypes";
 import AuthLayout from "@/shared/layouts/AuthLayout.tsx";
 import {setUrlDefaults} from './wayfinder';
 import i18n from './i18n';
+import { configureEcho } from '@laravel/echo-react';
+
+configureEcho({
+    broadcaster: 'pusher',
+});
 
 createInertiaApp({
     resolve: (name) => {
