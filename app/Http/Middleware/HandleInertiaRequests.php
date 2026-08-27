@@ -2,7 +2,9 @@
 
 namespace App\Http\Middleware;
 
+use App\Http\Resources\Notification\NotificationResource;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
@@ -35,20 +37,25 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        $user = auth()->user();
+
         return [
             ...parent::share($request),
-            'auth' => fn() => rescue(function () {
-                $user = auth()->user();
+            'auth' => fn() => rescue(function () use ($user) {
 
                 return $user ? [
                     'id' => $user->id,
                     'username' => $user->username,
                     'email' => $user->email,
                     'isGoogleAuthenticate' => (bool)$user->google_id,
-                    'avatar'=>$user->avatar
+                    'avatar' => $user->avatar
                 ] : null;
             }, null, false),
             'locale' => fn() => app()->getLocale(),
+            'notificationsQuantity' => fn() => $user?->notifications()->where('read', false)->count() ?? 0,
+            'notifications' => Inertia::optional(fn() => $request->user()
+                ? (NotificationResource::collection($user->notifications()->with(['sender:id,username'])->latest()->limit(5)->get()))->resolve()
+                : [])
         ];
     }
 }
