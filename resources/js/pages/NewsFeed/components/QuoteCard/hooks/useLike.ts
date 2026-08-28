@@ -2,7 +2,7 @@ import {useState} from "react";
 import {router} from "@inertiajs/react";
 import {store as storeLike} from "@/actions/App/Http/Controllers/LikeController.ts";
 
-function useLike(id: number, isLiked: boolean, reaction_quantity: number) {
+function useLike(id: number, isLiked: boolean|undefined, reaction_quantity: number) {
     const [liked, setLiked] = useState(isLiked);
     const [reactionQuantity, setReactionQuantity] = useState(reaction_quantity);
 
