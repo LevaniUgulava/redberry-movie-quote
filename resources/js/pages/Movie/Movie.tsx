@@ -3,29 +3,12 @@ import DeleteIcon from "@/components/ui/icons/Movie/DeleteIcon.tsx";
 import QuoteCard from "@/pages/Movie/components/QuoteCard/QuoteCard.tsx";
 import LocaleLink from "@/components/LocaleLink.tsx";
 import AddIcon from "@/components/ui/icons/Movie/AddIcon.tsx";
-import {router, usePage} from "@inertiajs/react";
-import {destroy} from "@/actions/App/Http/Controllers/MovieController.ts";
 import QuoteModal from "@/pages/NewsFeed/components/Quote/QuoteModal/QuoteModal.tsx";
-import {QuoteProps} from "@/pages/NewsFeed/components/QuoteCard/QuoteCardTypes.ts";
-function Movie() {
-    const {movie,currentModal,locale} = usePage<{ movie: any }>().props
-    const handleDelete = ()=>{
-        if (confirm('Do you want to delete?')) {
-            router.delete(destroy({movie: movie}).url);
-        }
-    }
-    const openModal = currentModal === "create";
+import {QuoteCardData} from "@/pages/NewsFeed/components/QuoteCard/QuoteCardTypes.ts";
+import useMovie from "@/pages/Movie/hooks/useMovie.ts";
 
-    const handleClose = () => {
-        router.get(
-            `/${locale}/movies/${movie.id}`,
-            {},
-            {
-                preserveScroll: true,
-                preserveState: true,
-            },
-        );
-    };
+function Movie() {
+    const {handleClose,handleDelete,movie,openModal,currentModal,quote} = useMovie();
 
     return <div>
         <div className='text-white text-2xl font-medium'>Movie description</div>
@@ -45,8 +28,8 @@ function Movie() {
                         </LocaleLink>
                     </div>
                     <div className="flex flex-col gap-5">
-                        {movie.quotes.map((quote: QuoteProps, index: number) => (
-                            <QuoteCard key={index} quote={quote}/>
+                        {movie.quotes.map((quote: QuoteCardData, index: number) => (
+                            <QuoteCard key={index} movie_id={movie.id} quote={quote}/>
                         ))}
                     </div>
                 </div>
@@ -83,7 +66,8 @@ function Movie() {
                     <span className='text-lg leading-[150%] font-regular text-[#CED4DA]'>{movie.description}</span>
                 </div>
             </div>
-            <QuoteModal isOpen={openModal} handleClose={handleClose}/>
+            <QuoteModal movie_id={movie.id} isOpen={openModal} handleClose={handleClose} modal={currentModal}
+                        quote={quote}/>
 
         </div>
     </div>
