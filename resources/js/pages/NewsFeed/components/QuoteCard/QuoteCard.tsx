@@ -1,12 +1,13 @@
 import ReactionIcon from "@/components/ui/NewsFeed/Quotes/ReactionIcon.tsx";
 import CommentIcon from "@/components/ui/NewsFeed/Quotes/CommentIcon.tsx";
-import {Quote} from "@/pages/NewsFeed/components/QuoteCard/QuoteCardTypes.ts";
+import {QuoteCardProps} from "@/pages/NewsFeed/components/QuoteCard/QuoteCardTypes.ts";
 import {SendIcon} from "lucide-react";
 import useQuoteCard from "@/pages/NewsFeed/components/QuoteCard/hooks/useQuoteCard.ts";
 import FillReactionIcon from "@/components/ui/NewsFeed/Quotes/FillReactionIcon.tsx";
+import {cn} from "@/lib/utils.ts";
 
 
-function QuoteCard({quote}: Quote) {
+function QuoteCard({quote}: QuoteCardProps) {
     const {
         auth,
         submit,
@@ -21,18 +22,21 @@ function QuoteCard({quote}: Quote) {
     } = useQuoteCard({quote})
 
 
-    return <div className="bg-[#11101A] rounded-xl p-6 ">
+    return <div className={cn("bg-[#11101A] rounded-xl p-6", {
+        'p-0 bg-transparent': !quote.user
+    })}>
         <div className="flex flex-col gap-5 border-b border-[#EFEFEF]/30">
-            <div className="flex gap-4 items-center">
+            {quote.user && <div className="flex gap-4 items-center">
                 <img className="w-13 h-13 rounded-full" alt="quote_author" src={quote.user.avatar}/>
                 <span className="text-xl text-white font-normal leading-[150%]">{quote.user.username}</span>
-            </div>
-            <div>
+            </div>}
+            {quote.movie && <div>
                 <span
                     className="text-xl text-white font-normal leading-[150%]">{quote.quote} - {quote.movie.title} {quote.movie.year}</span>
-            </div>
+            </div>}
+
             <div className="flex flex-col gap-6 pb-6">
-                <img alt="quote_image" className="w-full rounded-[10px]" src={quote.image}/>
+                <img alt="quote_image" className="w-full rounded-[10px] object-cover" src={quote.image}/>
                 <div className="flex gap-6">
                     <div className="flex gap-4">
                         <span className="text-white text-xl leading-[150%]">{commentsQuantity}</span>
@@ -47,6 +51,7 @@ function QuoteCard({quote}: Quote) {
                         {liked ? <FillReactionIcon/> : <ReactionIcon/>}
                     </button>
                 </div>
+
             </div>
         </div>
         <div className="flex flex-col gap-4 mt-5">
