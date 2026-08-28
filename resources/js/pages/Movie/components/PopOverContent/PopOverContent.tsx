@@ -1,21 +1,31 @@
 import EyeIcon from "@/components/ui/icons/Movie/EyeIcon.tsx";
 import EditIcon from "@/components/ui/icons/Movie/EditIcon.tsx";
 import DeleteIcon from "@/components/ui/icons/Movie/DeleteIcon.tsx";
+import LocaleLink from "@/components/LocaleLink.tsx";
 
-function PopOverContent() {
-    return <div className="flex flex-col gap-8 p-5">
-        <div className='flex gap-4 cursor-pointer'>
+import useQuoteDelete from "@/pages/NewsFeed/components/Quote/hooks/useQuoteDelete.ts";
+import usePopover from "@/pages/Movie/components/PopOverContent/hooks/usePopover.ts";
+
+function PopOverContent({id, movie_id}: { id: number, movie_id: number }) {
+
+    const {url, deleteQuote} = usePopover(movie_id, id);
+
+    return <div className="flex flex-col gap-6 p-3">
+        <LocaleLink href={url('view')}
+                    className='flex gap-4 cursor-pointer p-2 rounded-lg items-center hover:bg-white/5'>
             <EyeIcon/>
             <span className='text-base leading-[150%] font-normal text-white'>View</span>
-        </div>
-        <div className='flex gap-4 cursor-pointer'>
+        </LocaleLink>
+        <LocaleLink href={url('edit')}
+                    className='flex gap-4 cursor-pointer p-2 rounded-lg items-center hover:bg-white/5'>
             <EditIcon/>
             <span className='text-base leading-[150%] font-normal text-white'>Edit</span>
-        </div>
-        <div className='flex gap-4 cursor-pointer'>
+        </LocaleLink>
+        <button onClick={() => deleteQuote(id)}
+                className='flex gap-4 cursor-pointer p-2 rounded-lg items-center hover:bg-white/5'>
             <DeleteIcon/>
             <span className='text-base leading-[150%] font-normal text-white'>Delete</span>
-        </div>
+        </button>
     </div>
 }
 
