@@ -4,9 +4,9 @@ import {useEcho} from "@laravel/echo-react";
 
 import useComment from "@/pages/NewsFeed/components/QuoteCard/hooks/useComment.ts";
 import useLike from "@/pages/NewsFeed/components/QuoteCard/hooks/useLike.ts";
-import {QuoteCardProps} from "@/pages/NewsFeed/components/QuoteCard/QuoteCardTypes.ts";
+import {QuoteCardData} from "@/pages/NewsFeed/components/QuoteCard/QuoteCardTypes.ts";
 
-function useQuoteCard({quote}: QuoteCardProps) {
+function useQuoteCard(quote: QuoteCardData) {
     const {auth} = usePage<PageProps>().props
 
 
