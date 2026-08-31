@@ -4,7 +4,7 @@ import useAuthContent from "@/pages/Auth/AuthContent/hooks/useAuthContent.ts";
 import ResetForm from "@/pages/Auth/Reset/ResetForm.tsx";
 import ForgetForm from "@/pages/Auth/Forget/ForgetForm.tsx";
 import Message from "@/pages/Auth/Message/Message.tsx";
-import AuthModalWrapper from "@/components/wrapper/AuthModalWrapper.tsx";
+import AuthModalWrapper from "../../../components/wrapper/AuthModalWrapper/AuthModalWrapper.tsx";
 
 function AuthContent({currentModal}: { currentModal: string }) {
     const {currentConfig, handleClose, isOpen} = useAuthContent(currentModal);
