@@ -7,7 +7,7 @@ use App\Http\Resources\Quote\QuoteResource;
 use App\Models\Movie;
 use App\Models\Quote;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Http\UploadedFile;
 class QuoteService
 {
     public function index(?string $modal): array
@@ -24,7 +24,7 @@ class QuoteService
             },
             'comments.user:id,username',
             'likes'
-        ])->withCount(['comments','likes'])->get();
+        ])->withCount(['comments', 'likes'])->get();
 
         return [
             'currentModal' => $modal,
@@ -53,6 +53,23 @@ class QuoteService
             return $quote;
         });
 
+    }
+
+    public function update(array $data, Quote $quote, ?UploadedFile $image = null): Quote
+    {
+        $quote->update([
+            'quote' => [
+                'en' => $data['en_quote'],
+                'ka' => $data['ka_quote'],
+            ]
+        ]);
+
+        if ($image) {
+            $quote->getFirstMedia('quote')?->delete();
+            $quote->addMedia($image)->toMediaCollection('quote');
+        }
+
+        return $quote;
     }
 
 }

@@ -9,6 +9,7 @@ export interface AppPageProps<T extends Record<string, unknown> = Record<string,
         avatar: string | undefined
     };
     locale: string;
+    currentModal: string
 }
 
 export type PageProps<T extends Record<string, unknown> = {}> = AppPageProps & T;

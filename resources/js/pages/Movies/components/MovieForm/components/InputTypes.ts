@@ -5,7 +5,8 @@ export interface InputProps {
     lang?: string | null,
     multiline?: boolean
     defaultValue?:string
-    error?:string|null
+    error?:string|null,
+    disabled?:boolean
 }
 
 export interface ImageInputProps {
