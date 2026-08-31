@@ -16,8 +16,8 @@ function Input({
                    error,
                    isValid,
                    reset,
-                   defaultValue,
-                   disabled = false
+                   disabled = false,
+                   value = "",
                }: InputProps) {
     const {
         isFilled,
@@ -32,7 +32,7 @@ function Input({
     } = useInput(type);
 
     return (
-        <div className="flex flex-col pb-4 w-full">
+        <div className="flex flex-col pb-4 gap-2 w-full">
             <label
                 className="text-white text-base leading-[150%] font-normal"
                 htmlFor={name}
@@ -51,6 +51,7 @@ function Input({
                         )}
                         id={name}
                         name={name}
+                        value={value}
                         type={inputType}
                         placeholder={placeholder}
                         onChange={(e) => {
@@ -60,7 +61,6 @@ function Input({
                             }
 
                         }}
-                        defaultValue={defaultValue}
                         disabled={disabled}
                     />
                 </div>

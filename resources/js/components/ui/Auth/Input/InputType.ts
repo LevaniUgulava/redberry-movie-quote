@@ -9,6 +9,7 @@ export interface InputProps {
     error?: string;
     isValid?: boolean;
     reset?: (name: string) => void;
-    defaultValue?:string
-    disabled?:boolean
+    disabled?:boolean,
+    value?: string;
+
 }

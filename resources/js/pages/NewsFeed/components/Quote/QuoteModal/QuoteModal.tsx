@@ -6,13 +6,16 @@ import {QuoteModalProps} from "@/pages/NewsFeed/components/Quote/QuoteModal/Quot
 function QuoteModal({isOpen, handleClose}: QuoteModalProps) {
 
     return <ModalWrapper isOpen={isOpen} onClose={handleClose}>
-        <div className="relative flex items-center justify-center border-b border-[#EFEFEF]/20 py-8">
-                <span className="text-white text-2xl font-medium leading-[150%]">
+        <div className='flex flex-col gap-5'>
+            <div className="relative flex items-center justify-center max-lg:h-23 border-b border-[#EFEFEF]/20 py-8 max-lg:py-2">
+                <span className="text-white text-2xl max-lg:text-xl font-medium leading-[150%]">
                      Write New Quote
                 </span>
-            <CloseIcon onClick={handleClose} className="absolute right-5 cursor-pointer"/>
+                <CloseIcon onClick={handleClose} className="absolute right-5 cursor-pointer"/>
+            </div>
+            <QuoteForm handleClose={handleClose}/>
         </div>
-        <QuoteForm handleClose={handleClose}/>
+
 
     </ModalWrapper>
 }
