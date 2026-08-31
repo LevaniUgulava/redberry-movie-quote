@@ -4,6 +4,6 @@ export interface QuoteModalProps {
     isOpen: boolean,
     handleClose: VoidFunction
     modal:string,
-    quote:QuoteCardData,
+    quote?:QuoteCardData,
     movie_id?:number
 }
