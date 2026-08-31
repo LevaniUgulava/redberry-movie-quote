@@ -1,4 +1,17 @@
 import {ChangeEvent, RefObject} from "react";
+import {PageProps} from "@/types/PagePropsTypes.ts";
+
+export interface ProfileProps {
+    auth: PageProps['auth'];
+    preview?: string;
+    fileInputRef: RefObject<HTMLInputElement | null>;
+    handleFileChange: (e: ChangeEvent<HTMLInputElement>) => void;
+    handleOpen: (field: string) => void;
+    showField: Record<string, boolean>;
+    isAnyFieldOpen: boolean;
+    cancelEdit: VoidFunction;
+    setPreview: (e: string | undefined) => void
+}
 
 export interface AvatarProps {
     fileInputRef: RefObject<HTMLInputElement | null>;
