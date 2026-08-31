@@ -27,10 +27,11 @@ function Landing({ currentModal }: { currentModal: string }) {
     return (
         <div className="relative w-full bg-[#11101A]">
             <div className="h-screen gap-4 w-full overflow-hidden  text-white flex flex-col items-center justify-center text-4xl">
-                <div className="text-main-beige font-bold text-6xl w-175 flex justify-center items-center mx-auto text-center">
+                <div className="text-main-beige font-bold text-6xl max-lg:text-2xl
+                 max-w-175 max-lg:max-w-70.25 w-full flex justify-center items-center mx-auto text-center">
                     Find any quote in millions of movie lines
                 </div>
-                <button className="cursor-pointer bg-main-red rounded-lg text-xl text-white font-normal px-4.25 py-2.25">
+                <button className="cursor-pointer bg-main-red rounded-lg text-xl max-lg:text-base text-white font-normal px-4.25 py-2.25">
                     Get started
                 </button>
             </div>
@@ -57,20 +58,20 @@ function Landing({ currentModal }: { currentModal: string }) {
                         />
 
                         <div
-                            className="absolute inset-x-0 top-90 gap-2 left-32 flex justify-start px-10 z-10"
+                            className="absolute inset-x-0 top-90 gap-2 left-32 flex justify-start px-10 z-10 max-lg:left- max-lg:px-2"
                             style={{
                                 transform: `translateY(-${translateY - currentSectionIndex * window.innerHeight}px)`,
                                 opacity: opacity,
                             }}
                         >
-                            <div className="mt-8">
+                            <div className="mt-8 max-lg:mt-3">
                                 <HyphenIcon />
                             </div>
                             <div className="flex flex-col w-200 gap-2">
-                                <span className="font-bold text-white text-5xl leading-[150%] tracking-[0%]">
+                                <span className="font-bold text-white text-5xl max-lg:text-xl leading-[150%] tracking-[0%]">
                                     {item.title}
                                 </span>
-                                <span className="text-[#D9D9D9] text-3xl font-bold">
+                                <span className="text-[#D9D9D9] text-3xl max-lg:text-base font-bold">
                                     {item.desc}
                                 </span>
                             </div>

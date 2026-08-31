@@ -13,7 +13,7 @@ function SelectMovie({movies, selectedMovie, onSelect, error}: SelectMovieProps)
              className='cursor-pointer bg-black flex px-4 py-6 items-center justify-between rounded-lg'>
             <div className="flex gap-4 items-center">
                 <FilmIcon/>
-                <span className="text-white text-2xl font-normal">
+                <span className="text-white text-2xl max-lg:text-base font-normal">
                     {selectedMovie ? `${selectedMovie.title} - ${selectedMovie.year}` : "Choose movie"}
                 </span>
             </div>

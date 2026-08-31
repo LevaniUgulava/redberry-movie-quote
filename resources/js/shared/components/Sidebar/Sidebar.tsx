@@ -9,40 +9,40 @@ function Sidebar() {
     const {props: {auth, locale}, url} = usePage<PageProps>()
     const [hoveredKey, setHoveredKey] = useState<string | null>(null)
 
-    return <div className="flex flex-col gap-10 sticky top-30 z-50">
-        <Link href={`/${locale}/profile`} className="flex gap-6 items-center">
+    return <div className="flex flex-col gap-10">
+        <Link href={`/${locale}/profile`} className="flex gap-6 max-lg:gap-5 items-center">
             <img alt="profile image"
-                 className={cn("h-15 w-15 rounded-full object-cover hover:border border-main-red", {
+                 className={cn("h-15 w-15 max-lg:w-10 max-lg:h-10 rounded-full object-cover hover:border border-main-red", {
                      "border-2 border-main-red": url === `/${locale}/profile`
                  })}
                  src={auth?.avatar}/>
             <div className="flex flex-col">
-                <span className="text-2xl leading-[150%] font-normal text-white">{auth?.username}</span>
-                <span className="text-base text-[#CED4DA] font-normal">Edit your profile</span>
+                <span className="text-2xl max-lg:text-xl leading-[150%] font-normal text-white">{auth?.username}</span>
+                <span className="text-base max-lg:text-sm text-[#CED4DA] font-normal">Edit your profile</span>
             </div>
         </Link>
 
-        <Link href={`/${locale}/newsfeed`} className="flex items-center gap-10.5"
+        <Link href={`/${locale}/newsfeed`} className="flex items-center gap-10.5 max-lg:gap-7.5"
               onMouseEnter={() => setHoveredKey('newsFeed')}
               onMouseLeave={() => setHoveredKey(null)}>
-            <NewsFeedIcon classname={cn("text-white", {
+            <NewsFeedIcon classname={cn("text-white max-lg:w-6 max-lg:h-6", {
                 "text-main-red": url === `/${locale}/newsfeed`,
                 "text-[#6C757D]": hoveredKey === 'newsFeed'
             })}/>
-            <span className={cn("text-white text-2xl", {
+            <span className={cn("text-white text-2xl max-lg:text-xl", {
                 "text-[#6C757D]": hoveredKey === 'newsFeed'
             })}>News feed</span>
         </Link>
 
-        <Link href={`/${locale}/movies`} className="flex items-center gap-10.5"
+        <Link href={`/${locale}/movies`} className="flex items-center gap-10.5 max-lg:gap-7.5"
               onMouseEnter={() => setHoveredKey('movies')}
               onMouseLeave={() => setHoveredKey(null)}>
-            <ListOfMovieIcon classname={cn("text-white", {
+            <ListOfMovieIcon classname={cn("text-white max-lg:w-6 max-lg:h-6", {
                 "text-main-red": url === `/${locale}/movies`,
                 "text-[#6C757D]": hoveredKey === 'movies'
 
             })}/>
-            <span className={cn("text-white text-2xl", {
+            <span className={cn("text-white text-2xl max-lg:text-xl", {
                 "text-[#6C757D]": hoveredKey === 'movies'
             })}>List of movies</span>
         </Link>

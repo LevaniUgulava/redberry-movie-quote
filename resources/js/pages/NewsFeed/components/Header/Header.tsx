@@ -13,7 +13,7 @@ function Header() {
     return (
         <div className="flex gap-5 overflow-hidden min-w-0 w-full">
             <LocaleLink href="/newsfeed?modal=create" className={cn(
-                "bg-[#24222F] h-13 shrink-0 rounded-xl flex items-center px-4 gap-4",
+                "bg-[#24222F] max-lg:bg-transparent h-13 shrink-0 rounded-xl flex items-center px-4 max-lg:px-8.75 gap-4",
                 !isOpen && "w-full max-w-190"
             )}>
                 <AddQuoteIcon/>
@@ -26,7 +26,7 @@ function Header() {
                 onClick={() => !isOpen && setIsOpen(true)}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
-                className={cn("flex min-w-0 items-center gap-4 h-13 flex-1 cursor-pointer", {
+                className={cn("flex min-w-0 max-lg:hidden items-center gap-4 h-13 flex-1 cursor-pointer", {
                     'border-b border-[#EFEFEF]/30': isOpen,
                 })}
             >
