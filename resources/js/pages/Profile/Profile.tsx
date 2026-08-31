@@ -3,8 +3,8 @@ import DesktopProfile from "@/pages/Profile/components/desktop/DesktopProfile.ts
 import MobileProfile from "@/pages/Profile/components/mobile/MobileProfile.tsx";
 import Message from "@/pages/Auth/Message/Message.tsx";
 import useAuthContent from "@/pages/Auth/AuthContent/hooks/useAuthContent.ts";
-import AuthModalWrapper from "@/components/wrapper/AuthModalWrapper.tsx";
 import useIsMobile from "@/hooks/useIsMobile.ts";
+import AuthModalWrapper from "@/components/wrapper/AuthModalWrapper/AuthModalWrapper.tsx";
 
 function Profile() {
 
