@@ -35,6 +35,7 @@
         "react-dom": "^19.2.8",
         "react-i18next": "^17.0.11",
         "shadcn": "^4.16.2",
-        "tailwind-merge": "^3.6.0"
+        "tailwind-merge": "^3.6.0",
+        "vaul": "^1.1.2"
     }
 }
