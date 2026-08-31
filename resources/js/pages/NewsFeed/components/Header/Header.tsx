@@ -7,7 +7,7 @@ import {Link} from "@inertiajs/react";
 import LocaleLink from "@/components/LocaleLink.tsx";
 
 function Header() {
-    const {value, isHovered, isOpen, setIsHovered, setValue, setIsOpen, handleClose, openModal} = useHeader();
+    const {value, isHovered, isOpen, setIsHovered, setValue, setIsOpen, handleClose, openModal,currentModal} = useHeader();
 
 
     return (
@@ -19,7 +19,7 @@ function Header() {
                 <AddQuoteIcon/>
                 <span className="text-white text-xl font-normal whitespace-nowrap cursor-pointer">Write new quote</span>
             </LocaleLink>
-            <QuoteModal isOpen={openModal} handleClose={handleClose}/>
+            <QuoteModal isOpen={openModal} handleClose={handleClose} modal="create" />
 
 
             <div
