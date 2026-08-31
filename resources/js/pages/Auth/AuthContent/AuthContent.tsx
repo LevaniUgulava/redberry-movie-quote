@@ -8,9 +8,15 @@ import AuthModalWrapper from "@/components/wrapper/AuthModalWrapper.tsx";
 
 function AuthContent({currentModal}: { currentModal: string }) {
     const {currentConfig, handleClose, isOpen} = useAuthContent(currentModal);
+    const isConfig=Boolean(currentConfig)
     return (
-        <AuthModalWrapper isOpen={isOpen} onClose={handleClose}>
-            <div className="p-10">
+        <AuthModalWrapper
+            className={isConfig ? "w-[80%]" : "max-lg:max-w-none! max-lg:rounded-none max-lg:min-h-screen"}
+            isOpen={isOpen}
+            onClose={handleClose}
+            isConfig={isConfig}
+        >
+            <div className="p-10 max-lg:p-5 flex justify-center">
 
                 {currentConfig && <Message {...currentConfig}/>}
 
