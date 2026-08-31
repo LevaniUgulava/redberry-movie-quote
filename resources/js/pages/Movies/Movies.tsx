@@ -7,10 +7,10 @@ import LocaleLink from "@/components/LocaleLink.tsx";
 
 function Movies() {
     const {isOpen, handleClose, movies, editingMovie, isEditOpen} = useMovies();
-    return <div>
+    return <div className="max-lg:px-8.75">
 
         <Header/>
-        <div className="grid grid-cols-3 gap-10 mt-13">
+        <div className="grid grid-cols-3 max-lg:grid-cols-1 gap-10 mt-13 ">
             {movies.data.map((movie) => (
                 <LocaleLink href={`/movies/${movie.id}`}>
                     <MovieCard movie={movie}/>
