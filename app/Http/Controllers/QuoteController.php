@@ -23,7 +23,8 @@ class QuoteController extends Controller
     public function index(Request $request)
     {
         $modal = $request->query('modal');
-        return Inertia::render('NewsFeed/NewsFeed', $this->quoteService->index($modal));
+        $search = $request->query('search');
+        return Inertia::render('NewsFeed/NewsFeed', $this->quoteService->index($modal,$search));
 
     }
 
