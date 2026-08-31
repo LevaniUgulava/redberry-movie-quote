@@ -10,6 +10,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/quote/store',[QuoteController::class,'store'])->name('quote.store');
 
     Route::post('/comment/{id}',[CommentController::class,'store'])->name('comment.store');
-    Route::post('/like/{id}',[LikeController::class,'store'])->name('like.store');
+    Route::post('/like/{quote}',[LikeController::class,'store'])->name('like.store');
 });
 

@@ -15,23 +15,23 @@ class LikeController extends Controller
     {
 
     }
-    public function store(int $id): RedirectResponse
+
+    public function store(Quote $quote): RedirectResponse
     {
         $user = Auth::user();
 
-        $quote = Quote::with("user")->findorfail($id);
-        $result = $quote->likes()->toggle(auth()->id());
+        $result = $quote->likes()->toggle($user->id);
         $isLiked = count($result['attached']) > 0;
         $data = [
-            'user'=>auth()->id(),
-            'isLiked'=>$isLiked,
+            'user' => $user->id,
+            'isLiked' => $isLiked,
         ];
-        event(new LikeUpdated($id, $data));
+        event(new LikeUpdated($quote->id, $data));
 
-        $receiver_id = $quote->user->id;
+        $receiver_id = $quote->user_id;
 
         if ($receiver_id !== $user->id && $isLiked) {
-            $this->notificationService->store( $user,$receiver_id,'like');
+            $this->notificationService->store($user, $receiver_id, 'like');
         }
 
         return redirect()->back();
