@@ -5,7 +5,7 @@ import useProfile from "@/pages/Profile/hooks/useProfile.ts";
 import AvatarField from "@/pages/Profile/components/AvatarField.tsx";
 import Message from "@/pages/Auth/Message/Message.tsx";
 import useAuthContent from "@/pages/Auth/AuthContent/hooks/useAuthContent.ts";
-import AuthModalWrapper from "@/components/wrapper/AuthModalWrapper.tsx";
+import AuthModalWrapper from "../../components/wrapper/AuthModalWrapper/AuthModalWrapper.tsx";
 
 function Profile() {
 
@@ -84,7 +84,7 @@ function Profile() {
                     );
                 }}
             </Form>
-            <AuthModalWrapper isOpen={isOpen} onClose={handleClose}>
+            <AuthModalWrapper isConfig={true} isOpen={isOpen} onClose={handleClose}>
                 {currentConfig && <Message {...currentConfig}/>}
             </AuthModalWrapper>
 
