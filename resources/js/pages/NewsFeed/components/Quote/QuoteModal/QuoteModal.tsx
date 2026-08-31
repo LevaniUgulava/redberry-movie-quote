@@ -36,7 +36,7 @@ function QuoteModal({isOpen, handleClose, modal, quote, movie_id}: QuoteModalPro
                     <CloseIcon onClick={handleClose} className="absolute right-5 cursor-pointer"/>
                 </div>
                 {modal === "create" && <QuoteForm handleClose={handleClose}/>}
-                {isExistQuote && <QuoteEdit quote={quote}/>}
+                {(isExistQuote && !!quote) && <QuoteEdit quote={quote}/>}
             </div>
         </ModalWrapper>
     );
