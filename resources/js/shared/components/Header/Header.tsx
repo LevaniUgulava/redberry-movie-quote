@@ -1,16 +1,32 @@
 import Buttons from "@/shared/components/Header/components/Buttons/Buttons";
 import {usePage} from "@inertiajs/react";
 import {cn} from "@/lib/utils.ts";
+import MobileSidebarIcon from "@/components/ui/icons/Sidebar/MobileSidebarIcon.tsx";
+import MobileSidebarWrapper from "@/components/wrapper/MobileSidebarWrapper/MobileSidebarWrapper.tsx";
+import Sidebar from "@/shared/components/Sidebar/Sidebar.tsx";
 
 function Header() {
     const {url, props} = usePage();
+
     return (
-        <div className={cn("sticky top-0 z-51 flex px-17.5 py-6 justify-between bg-[#222030]", {
+        <div className={cn("sticky top-0 z-50 flex px-17.5 max-lg:px-8.75 py-6 justify-between bg-[#222030]", {
             'bg-[#11101A]': url === `/${props.locale}`,
         })}>
-            <div className="flex items-center text-main-beige uppercase text-base leading-[150%] font-medium">
-                Movie quotes
+            <div
+                className=" max-lg:hidden flex items-center text-main-beige uppercase text-base leading-[150%] font-medium">
+                <span>Movie quotes</span>
             </div>
+            <div
+                className="hidden max-lg:flex items-center text-main-beige uppercase text-base leading-[150%] font-medium">
+                {url === `/${props.locale}` ? (
+                    <span>Movie quotes</span>
+                ) : <MobileSidebarWrapper button={<MobileSidebarIcon/>}>
+                    <Sidebar/>
+                </MobileSidebarWrapper>}
+
+            </div>
+
+
             <div className="flex gap-4">
                 <Buttons/>
             </div>
