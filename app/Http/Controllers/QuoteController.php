@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Quote\EditQuoteRequest;
 use App\Http\Requests\Quote\StoreQuoteRequest;
 use App\Http\Resources\Movie\MovieResource;
 use App\Http\Resources\Quote\QuoteResource;
@@ -31,5 +32,18 @@ class QuoteController extends Controller
         $this->quoteService->store($request->validated());
         return redirect()->back();
 
+    }
+
+    public function update(Quote $quote, EditQuoteRequest $request): RedirectResponse
+    {
+        $this->quoteService->update($request->validated(), $quote, $request->file('image'));
+        return redirect()->back();
+    }
+
+
+    public function destroy(Quote $quote)
+    {
+        $quote->delete();
+        return redirect()->back();
     }
 }

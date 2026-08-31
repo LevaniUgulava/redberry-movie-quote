@@ -8,4 +8,5 @@ Master index of functional documentation. See `Docs.md` at the project root for 
 | Fonts | [fonts.md](./fonts.md) | Helvetica Neue fonts with unicode-range language switching |
 | Localization | [localization.md](./localization.md) | Server-side (Laravel PHP) + client-side (i18next) localization for `en` and `ka` |
 | Movies | [movies.md](./movies.md) | Movies page and its static test data (`TestMovies.ts`) |
+| Profile | [profile.md](./profile.md) | Profile page with separate desktop/mobile layout components (desktop responsive 1024–1920px); desktop vs mobile chosen with `useIsMobile` to keep the shared avatar `fileInputRef` bound to the mounted layout |
 | Testing | [testing.md](./testing.md) | Pest setup with global LazilyRefreshDatabase and locale-aware URL helper |

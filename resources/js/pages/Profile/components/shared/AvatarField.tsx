@@ -1,9 +1,8 @@
-import {ChangeEvent, RefObject} from "react";
 import {AvatarProps} from "@/pages/Profile/ProfileTypes.ts";
 
 function AvatarField({fileInputRef, handleFileChange, preview}: AvatarProps) {
     return (
-        <div className="absolute -top-20 left-1/2 -translate-x-1/2 flex flex-col items-center">
+        <div className="flex flex-col items-center">
             <input
                 ref={fileInputRef}
                 type="file"
@@ -15,7 +14,7 @@ function AvatarField({fileInputRef, handleFileChange, preview}: AvatarProps) {
 
             <img
                 alt="profile image"
-                className="h-47 w-47 rounded-full object-cover"
+                className="h-47 w-47 max-2xl:h-42 max-2xl:w-42 max-xl:h-36 max-xl:w-36 rounded-full object-cover"
                 src={preview}
             />
 

@@ -42,7 +42,7 @@ function useProfile() {
     }
 
     return {
-        auth, preview, fileInputRef, handleFileChange, isAnyFieldOpen, handleOpen, showField, cancelEdit
+        auth, preview, fileInputRef, handleFileChange, isAnyFieldOpen, handleOpen, showField, cancelEdit,setPreview
     }
 
 }

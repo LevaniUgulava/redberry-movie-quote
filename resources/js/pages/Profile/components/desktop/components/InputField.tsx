@@ -9,7 +9,6 @@ function InputField({
                         name,
                         type = "text",
                         placeholder = "",
-                        defaultValue,
                         isEditShow = true,
                         form,
                         isOpen,
@@ -20,14 +19,13 @@ function InputField({
     const confirmationName = `${name}_confirmation`;
 
     return (
-        <div className="w-125 flex flex-col gap-10">
+        <div className="w-125 max-2xl:w-110 max-xl:w-92.5 flex flex-col gap-10">
             <div className="flex gap-3.5">
                 <div className="w-full">
                     <Input
                         name={name}
                         label={label}
                         placeholder={placeholder}
-                        defaultValue={defaultValue}
                         disabled
                     />
                 </div>

@@ -1,12 +1,13 @@
 import ReactionIcon from "@/components/ui/NewsFeed/Quotes/ReactionIcon.tsx";
 import CommentIcon from "@/components/ui/NewsFeed/Quotes/CommentIcon.tsx";
-import {Quote} from "@/pages/NewsFeed/components/QuoteCard/QuoteCardTypes.ts";
+import {QuoteCardProps} from "@/pages/NewsFeed/components/QuoteCard/QuoteCardTypes.ts";
 import {SendIcon} from "lucide-react";
 import useQuoteCard from "@/pages/NewsFeed/components/QuoteCard/hooks/useQuoteCard.ts";
 import FillReactionIcon from "@/components/ui/NewsFeed/Quotes/FillReactionIcon.tsx";
+import {cn} from "@/lib/utils.ts";
 
 
-function QuoteCard({quote}: Quote) {
+function QuoteCard({quote}: QuoteCardProps) {
     const {
         auth,
         submit,
@@ -20,24 +21,24 @@ function QuoteCard({quote}: Quote) {
         liked
     } = useQuoteCard({quote})
 
-
-    return <div className="bg-[#11101A] rounded-xl p-6 max-lg:px-8.75 max-lg:rounded-none">
+    return <div className={cn("bg-[#11101A] rounded-xl p-6 max-lg:px-8.75 max-lg:rounded-none", {
+        'p-0 bg-transparent': !quote.user
+    })}>
         <div className="flex flex-col gap-5 border-b border-[#EFEFEF]/30">
-            <div className="flex gap-4 items-center">
-                <img className="w-13 max-lg:w-10  max-lg:h-10 h-13 rounded-full" alt="quote_author" src={quote.user.avatar}/>
+            {quote.user && <div className="flex gap-4 items-center">
+                <img className="w-13 max-lg:w-10 max-lg:h-10 h-13 rounded-full" alt="quote_author" src={quote.user.avatar}/>
                 <span className="text-xl text-white max-lg:text-base font-normal leading-[150%]">{quote.user.username}</span>
-            </div>
-            <div>
+            </div>}
+            {quote.movie && <div>
                 <span
                     className="text-xl max-lg:text-base text-white font-normal leading-[150%]">{quote.quote} - {quote.movie.title} {quote.movie.year}</span>
-            </div>
+            </div>}
             <div className="flex flex-col gap-6 pb-6">
-                <img alt="quote_image" className="w-full rounded-[10px]" src={quote.image}/>
+                <img alt="quote_image" className="w-full rounded-[10px] object-cover" src={quote.image}/>
                 <div className="flex gap-6">
                     <div className="flex gap-4 items-center">
                         <span className="text-white text-xl leading-[150%]">{commentsQuantity}</span>
                         <CommentIcon/>
-
                     </div>
                     <button
                         onClick={handleLike}
@@ -59,7 +60,7 @@ function QuoteCard({quote}: Quote) {
                     </div>
                     <div
                         className="flex gap-4 items-center border-b border-[#EFEFEF]/30 ml-16">
-                        <span className="text-xl max-lg:text-base  text-white font-normal leading-[150%] pb-6">{comment.comment}</span>
+                        <span className="text-xl max-lg:text-base text-white font-normal leading-[150%] pb-6">{comment.comment}</span>
                     </div>
                 </div>
             ))}
@@ -87,7 +88,6 @@ function QuoteCard({quote}: Quote) {
                 </div>
             </div>
         </div>
-
     </div>
 }
 

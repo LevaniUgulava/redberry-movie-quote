@@ -30,7 +30,7 @@ class MovieController extends Controller
 
     public function show(Movie $movie, Request $request): Response
     {
-        return Inertia::render('Movie/Movie', $this->movieService->show($movie, $request->query('modal')));
+        return Inertia::render('Movie/Movie', $this->movieService->show($movie, $request->query('modal'),$request->query('quote_id')));
     }
 
     public function update(EditMovieRequest $request, Movie $movie): RedirectResponse
