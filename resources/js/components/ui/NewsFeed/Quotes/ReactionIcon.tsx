@@ -1,7 +1,7 @@
 function ReactionIcon() {
     return (
         <svg
-            className="text-white transition-colors duration-100 hover:text-red-500 cursor-pointer"
+            className="max-lg:w-6 max-lg:h-6 text-white transition-colors duration-100 hover:text-red-500 cursor-pointer"
             width="32"
             height="32"
             viewBox="0 0 32 32"
