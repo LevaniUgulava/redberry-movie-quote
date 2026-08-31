@@ -23,7 +23,7 @@ class NotificationService
 
         return false;
     }
-    public function store(User $user, int $receiver_id, string $type)
+    public function store(User $user, int $receiver_id, string $type) : void
     {
         $notification = $user->sendNotification()->create([
             'receiver_id' => $receiver_id,
