@@ -1,5 +1,16 @@
 {
     "movie_quotes": "Movie quotes",
     "get_started": "Get started",
-    "sign_in_with_google": "Sign in with Google"
+    "sign_in_with_google": "Sign in with Google",
+    "view": "View",
+    "edit": "Edit",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "upload": "Upload",
+    "search": "Search",
+    "save_changes": "Save changes",
+    "director": "Director:",
+    "confirm_delete": "Do you want to delete?",
+    "close": "Close"
 }

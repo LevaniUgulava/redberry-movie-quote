@@ -1,0 +1,14 @@
+{
+    "list_title": "My list of movies (Total {{count}})",
+    "add_movie": "Add movie",
+    "edit_movie": "Edit movie",
+    "modal_add_title": "Add Movie",
+    "modal_edit_title": "Edit Movie",
+    "movie_description": "Movie description",
+    "quotes_total": "Quotes (Total {{count}})",
+    "add_quote": "Add quote",
+    "replace_photo": "Replace photo",
+    "drag_drop_image": "Drag & drop your image here or",
+    "upload_image": "Upload image",
+    "choose_file": "Choose file"
+}
