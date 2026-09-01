@@ -5,9 +5,11 @@ import useHeader from "@/pages/NewsFeed/components/Header/hooks/useHeader.ts";
 import QuoteModal from "@/pages/NewsFeed/components/Quote/QuoteModal/QuoteModal.tsx";
 import {Link} from "@inertiajs/react";
 import LocaleLink from "@/components/LocaleLink.tsx";
+import {useTranslation} from "react-i18next";
 
 function Header() {
     const {value, isHovered, isOpen, setIsHovered, setValue, setIsOpen, handleClose, openModal} = useHeader();
+    const {t} = useTranslation("newsfeed");
 
 
     return (
@@ -17,7 +19,7 @@ function Header() {
                 !isOpen && "w-full max-w-190"
             )}>
                 <AddQuoteIcon/>
-                <span className="text-white text-xl font-normal whitespace-nowrap cursor-pointer">Write new quote</span>
+                <span className="text-white text-xl font-normal whitespace-nowrap cursor-pointer">{t("write_new_quote")}</span>
             </LocaleLink>
             <QuoteModal isOpen={openModal} handleClose={handleClose}/>
 
@@ -37,7 +39,7 @@ function Header() {
                 {!isOpen ? (
                     <span className={cn("text-white text-xl font-normal", {
                         'text-[#6C757D] ': isHovered
-                    })}>Search by</span>
+                    })}>{t("search_by")}</span>
                 ) : (
                     <div className="relative w-full min-w-0">
                         <input
@@ -50,8 +52,7 @@ function Header() {
                         {!value && (
                             <div
                                 className="absolute inset-0 flex items-center pointer-events-none text-[#6C757D] text-xl whitespace-nowrap overflow-hidden">
-                                Enter <span className="text-white mx-1">@</span> to search movies, Enter <span
-                                className="text-white mx-1">#</span> to search quotes
+                                {t("search_hint")}
                             </div>
                         )}
                     </div>

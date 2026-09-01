@@ -4,10 +4,12 @@ import ListOfMovieIcon from "@/components/ui/icons/Sidebar/ListOfMovieIcon.tsx";
 import {PageProps} from "@/types/PagePropsTypes.ts";
 import {cn} from "@/lib/utils.ts";
 import {useState} from "react";
+import {useTranslation} from "react-i18next";
 
 function Sidebar() {
     const {props: {auth, locale}, url} = usePage<PageProps>()
     const [hoveredKey, setHoveredKey] = useState<string | null>(null)
+    const {t} = useTranslation("layout");
 
     return <div className="flex flex-col gap-10">
         <Link href={`/${locale}/profile`} className="flex gap-6 max-lg:gap-5 items-center">
@@ -18,7 +20,7 @@ function Sidebar() {
                  src={auth?.avatar}/>
             <div className="flex flex-col">
                 <span className="text-2xl max-lg:text-xl leading-[150%] font-normal text-white">{auth?.username}</span>
-                <span className="text-base max-lg:text-sm text-[#CED4DA] font-normal">Edit your profile</span>
+                <span className="text-base max-lg:text-sm text-[#CED4DA] font-normal">{t("edit_your_profile")}</span>
             </div>
         </Link>
 
@@ -31,7 +33,7 @@ function Sidebar() {
             })}/>
             <span className={cn("text-white text-2xl max-lg:text-xl", {
                 "text-[#6C757D]": hoveredKey === 'newsFeed'
-            })}>News feed</span>
+            })}>{t("news_feed")}</span>
         </Link>
 
         <Link href={`/${locale}/movies`} className="flex items-center gap-10.5 max-lg:gap-7.5"
@@ -44,7 +46,7 @@ function Sidebar() {
             })}/>
             <span className={cn("text-white text-2xl max-lg:text-xl", {
                 "text-[#6C757D]": hoveredKey === 'movies'
-            })}>List of movies</span>
+            })}>{t("list_of_movies")}</span>
         </Link>
     </div>
 }

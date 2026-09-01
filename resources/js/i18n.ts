@@ -13,6 +13,9 @@ i18n
         backend: {
             loadPath: "/js/locales/{{lng}}/{{ns}}.json",
         },
+        react: {
+            nsMode: "fallback",
+        },
         interpolation: {
             escapeValue: false,
         },

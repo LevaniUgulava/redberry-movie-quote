@@ -6,25 +6,27 @@ import AddIcon from "@/components/ui/icons/Movie/AddIcon.tsx";
 import QuoteModal from "@/pages/NewsFeed/components/Quote/QuoteModal/QuoteModal.tsx";
 import {QuoteCardData} from "@/pages/NewsFeed/components/QuoteCard/QuoteCardTypes.ts";
 import useMovie from "@/pages/Movie/hooks/useMovie.ts";
+import {useTranslation} from "react-i18next";
 
 function Movie() {
     const {handleClose,handleDelete,movie,openModal,currentModal,quote} = useMovie();
+    const {t} = useTranslation(["movies", "common"]);
 
     return <div>
-        <div className='text-white text-2xl font-medium'>Movie description</div>
+        <div className='text-white text-2xl font-medium'>{t("movie_description")}</div>
         <div className="flex gap-6 mt-8">
             <div className='w-full max-w-202.25 flex flex-col gap-5'>
                 <img className="w-full rounded-xl" src={movie.image} alt='movie-image'/>
                 <div className='flex flex-col gap-10'>
                     <div className='flex items-center gap-3'>
-                        <span className="text-2xl text-white">Quotes (Total {movie.quotes.length})</span>
+                        <span className="text-2xl text-white">{t("quotes_total", {count: movie.quotes.length})}</span>
                         <div className='w-px h-8 bg-[#6C757D]'/>
                         <LocaleLink
                             href={`/movies/${movie.id}?modal=create`}
                             className='flex gap-2.5 items-center px-4.25 py-2.25 bg-main-red rounded-sm'
                         >
                             <AddIcon/>
-                            <span className="text-white text-xl leading-[150%] font-normal">Add quote</span>
+                            <span className="text-white text-xl leading-[150%] font-normal">{t("add_quote")}</span>
                         </LocaleLink>
                     </div>
                     <div className="flex flex-col gap-5">
@@ -59,7 +61,7 @@ function Movie() {
                     ))}
                 </div>
                 <div className='flex gap-3'>
-                    <span className="text-[#CED4DA] text-lg font-bold leading-[150%]">Director:</span>
+                    <span className="text-[#CED4DA] text-lg font-bold leading-[150%]">{t("director")}</span>
                     <span className='text-white text-lg font-medium font-lg leading-[150%]'>{movie.director}</span>
                 </div>
                 <div>

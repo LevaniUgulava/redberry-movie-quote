@@ -7,10 +7,12 @@ import {movie, MovieWithDetails} from "@/pages/Movies/MoviesTypes.ts";
 import {store} from "@/actions/App/Http/Controllers/QuoteController";
 import ActiveMovie from "@/pages/NewsFeed/components/Quote/QuoteForm/components/ActiveMovie.tsx";
 import SelectMovie from "@/pages/NewsFeed/components/Quote/QuoteForm/components/SelectMovie.tsx";
+import {useTranslation} from "react-i18next";
 
 function QuoteForm({handleClose}: { handleClose: VoidFunction }) {
 
     const {auth, movies, movie} = usePage<PageProps<{ movies: { data: movie[] }, movie: MovieWithDetails }>>().props
+    const {t} = useTranslation("newsfeed");
     const [selectedMovie, setSelectedMovie] = useState<movie | null>(movie);
 
     return <div className="px-5 flex flex-col gap-6">
@@ -43,7 +45,7 @@ function QuoteForm({handleClose}: { handleClose: VoidFunction }) {
                     <button
                         type="submit"
                         className="bg-main-red rounded-[4.8px] text-white text-xl font-normal leading-[150%] my-5 py-2.25 px-4.25">
-                        Post
+                        {t("post")}
                     </button>
                 </>
             )}

@@ -51,7 +51,7 @@ function Buttons() {
                     onClick={() => router.post(logout().url)}
                     className=" max-lg:hidden w-24 flex justify-center cursor-pointer rounded-sm border border-white  max-lg:text-sm px-3.25 py-1.75 text-base font-normal text-white leading-[150%]"
                 >
-                    Log out
+                    {t('log_out')}
                 </button>
             </div>}
 

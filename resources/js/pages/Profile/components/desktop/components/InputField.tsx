@@ -2,6 +2,7 @@ import Input from "@/components/ui/Auth/Input/Input.tsx";
 import {useState} from "react";
 import {cn} from "@/lib/utils.ts";
 import {InputFieldProps} from "@/pages/Profile/ProfileTypes.ts";
+import {useTranslation} from "react-i18next";
 
 
 function InputField({
@@ -12,9 +13,11 @@ function InputField({
                         isEditShow = true,
                         form,
                         isOpen,
-                        handleOpen
+                        handleOpen,
+                        value
                     }: InputFieldProps) {
     const {validate, errors, valid, reset} = form;
+    const {t} = useTranslation(["profile", "common"]);
     const isPassword = type === "password";
     const confirmationName = `${name}_confirmation`;
 
@@ -25,6 +28,7 @@ function InputField({
                     <Input
                         name={name}
                         label={label}
+                        value={value}
                         placeholder={placeholder}
                         disabled
                     />
@@ -33,11 +37,11 @@ function InputField({
                     type="button"
                     onClick={() => handleOpen(name)}
                     className={cn(
-                        "text-white h-9.5 mt-6 w-15 shrink-0 flex items-center px-4.25 py-2.25",
+                        "text-white h-9.5 mt-8 w-15 shrink-0 flex items-center px-4.25 py-2.25",
                         isEditShow ? "cursor-pointer" : "invisible"
                     )}
                 >
-                    Edit
+                    {t("edit")}
                 </button>
             </div>
 
@@ -46,14 +50,14 @@ function InputField({
                     <div className="w-full">
                         <div className="border border-[#CED4DA]/20 gap-4 flex flex-col p-6 rounded-sm">
                             <span className="text-white text-base leading-[150%] font-normal">
-                                Passwords should contain:
+                                {t("passwords_should_contain")}
                             </span>
                             <ul className="list-disc pl-5 text-[#6C757D]">
                                 <li className="text-[#9C9A9A] text-sm leading-5.5 font-normal">
-                                    8 or more characters
+                                    {t("char_8_more")}
                                 </li>
                                 <li className="text-white text-sm leading-5.5 font-normal">
-                                    1 lowercase character
+                                    {t("char_1_lowercase")}
                                 </li>
                             </ul>
                         </div>
@@ -68,7 +72,7 @@ function InputField({
                         <div className="w-full">
                             <Input
                                 name={name}
-                                label={`New ${name}`}
+                                label={t("new_field", {field: label})}
                                 placeholder={placeholder}
                                 type={type}
                                 onChange={() => validate(name)}
@@ -85,7 +89,7 @@ function InputField({
                             <div className="w-full">
                                 <Input
                                     name={confirmationName}
-                                    label={`Confirm new ${name}`}
+                                    label={t("confirm_new_field", {field: label})}
                                     placeholder={placeholder}
                                     type={type}
                                     onChange={() => validate(confirmationName)}

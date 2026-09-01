@@ -6,6 +6,7 @@ import ValidIcon from "@/components/ui/icons/Input/ValidIcon";
 import RemoveIcon from "@/components/ui/icons/Input/RemoveIcon";
 import {InputProps} from "@/components/ui/Auth/Input/InputType";
 import useInput from "@/components/ui/Auth/Input/hooks/useInput";
+import {useTranslation} from "react-i18next";
 
 function Input({
                    label,
@@ -19,6 +20,7 @@ function Input({
                    disabled = false,
                    value = "",
                }: InputProps) {
+    const {t} = useTranslation("auth");
     const {
         isFilled,
         setIsFilled,
@@ -113,7 +115,7 @@ function Input({
                                 onClick={handleResend}
                                 className="ml-1 underline text-blue-600"
                             >
-                                Resend
+                                {t("resend")}
                             </button>
                         )}
                     </span>
