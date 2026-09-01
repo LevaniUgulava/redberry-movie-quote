@@ -1,6 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults, validateParameters } from './../wayfinder'
 /**
-* @see routes/web/landing.php:7
+* @see \App\Http\Controllers\LandingController::landing
+* @see app/Http/Controllers/LandingController.php:13
 * @param lang - Default: '$lang'
 * @route '/{lang?}'
 */
@@ -15,7 +16,8 @@ landing.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see routes/web/landing.php:7
+* @see \App\Http\Controllers\LandingController::landing
+* @see app/Http/Controllers/LandingController.php:13
 * @param lang - Default: '$lang'
 * @route '/{lang?}'
 */
@@ -46,7 +48,8 @@ landing.url = (args?: { lang?: string | number } | [lang: string | number ] | st
 }
 
 /**
-* @see routes/web/landing.php:7
+* @see \App\Http\Controllers\LandingController::landing
+* @see app/Http/Controllers/LandingController.php:13
 * @param lang - Default: '$lang'
 * @route '/{lang?}'
 */
@@ -56,7 +59,8 @@ landing.get = (args?: { lang?: string | number } | [lang: string | number ] | st
 })
 
 /**
-* @see routes/web/landing.php:7
+* @see \App\Http\Controllers\LandingController::landing
+* @see app/Http/Controllers/LandingController.php:13
 * @param lang - Default: '$lang'
 * @route '/{lang?}'
 */

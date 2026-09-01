@@ -1,3 +1,4 @@
+import LandingController from './LandingController'
 import AuthController from './AuthController'
 import PasswordResetController from './PasswordResetController'
 import ProfileController from './ProfileController'
@@ -8,6 +9,7 @@ import MovieController from './MovieController'
 import GoogleController from './GoogleController'
 
 const Controllers = {
+    LandingController: Object.assign(LandingController, LandingController),
     AuthController: Object.assign(AuthController, AuthController),
     PasswordResetController: Object.assign(PasswordResetController, PasswordResetController),
     ProfileController: Object.assign(ProfileController, ProfileController),
