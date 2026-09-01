@@ -9,7 +9,7 @@ function AuthLayout({children}: { children: ReactNode }) {
                 <Sidebar/>
             </div>
 
-            <div className="flex-1">
+            <div className="flex-1 mt-10">
                 {children}
             </div>
         </div>
