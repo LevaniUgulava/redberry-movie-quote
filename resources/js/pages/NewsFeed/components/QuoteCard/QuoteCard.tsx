@@ -19,7 +19,7 @@ function QuoteCard({quote}: QuoteCardProps) {
         reactionQuantity,
         handleLike,
         liked
-    } = useQuoteCard({quote})
+    } = useQuoteCard(quote)
 
     return <div className={cn("bg-[#11101A] rounded-xl p-6 max-lg:px-8.75 max-lg:rounded-none", {
         'p-0 bg-transparent': !quote.user
