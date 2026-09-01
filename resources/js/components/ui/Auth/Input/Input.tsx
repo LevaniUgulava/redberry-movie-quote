@@ -18,7 +18,7 @@ function Input({
                    isValid,
                    reset,
                    disabled = false,
-                   value = "",
+                   defaultValue = "",
                }: InputProps) {
     const {t} = useTranslation("auth");
     const {
@@ -53,7 +53,7 @@ function Input({
                         )}
                         id={name}
                         name={name}
-                        value={value}
+                        defaultValue={defaultValue}
                         type={inputType}
                         placeholder={placeholder}
                         onChange={(e) => {
