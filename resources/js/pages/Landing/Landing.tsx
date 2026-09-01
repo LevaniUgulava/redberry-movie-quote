@@ -1,28 +1,10 @@
 import useLanding from "@/pages/Landing/hooks/useLanding";
 import HyphenIcon from "@/pages/Landing/icons/HyphenIcon";
 import AuthContent from "@/pages/Auth/AuthContent/AuthContent";
-
-//test data
-const data = [
-    {
-        img: "storage/Landing/1.png",
-        title: "“You have to leave somethig behind to go forward”",
-        desc: "Interstellar, 2014",
-    },
-    {
-        img: "storage/Landing/2.png",
-        title: "I think we’re just gonna have to be secretly in love with earch other and leave it that",
-        desc: "The Royal Tenenbaums,2001 ",
-    },
-    {
-        img: "storage/Landing/3.png",
-        title: "I think we’re just gonna have to be secretly in love with earch other and leave it that",
-        desc: "The Royal Tenenbaums,2001 ",
-    },
-];
+import {LandingQuote} from "@/pages/Landing/LandingTypes.ts";
 
 function Landing({ currentModal }: { currentModal: string }) {
-    const scrollY = useLanding();
+    const {scrollY,quotes} = useLanding();
 
     return (
         <div className="relative w-full bg-[#11101A]">
@@ -36,7 +18,7 @@ function Landing({ currentModal }: { currentModal: string }) {
                 </button>
             </div>
 
-            {data.map((item, index) => {
+            {quotes.map((item:LandingQuote, index:number) => {
                 const translateY = scrollY;
                 const currentSectionIndex = index + 1;
 
@@ -52,7 +34,7 @@ function Landing({ currentModal }: { currentModal: string }) {
                         style={{ zIndex: index + 1 }}
                     >
                         <img
-                            src={item.img}
+                            src={item.image}
                             alt={`image ${index}`}
                             className="absolute inset-0 w-full h-full object-cover"
                         />
@@ -69,10 +51,10 @@ function Landing({ currentModal }: { currentModal: string }) {
                             </div>
                             <div className="flex flex-col w-200 gap-2">
                                 <span className="font-bold text-white text-5xl max-lg:text-xl leading-[150%] tracking-[0%]">
-                                    {item.title}
+                                    {item.quote}
                                 </span>
                                 <span className="text-[#D9D9D9] text-3xl max-lg:text-base font-bold">
-                                    {item.desc}
+                                    {item.movie},{item.year}
                                 </span>
                             </div>
                         </div>
