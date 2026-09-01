@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -45,5 +46,27 @@ class Quote extends Model implements HasMedia
     public function likes(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'likes');
+    }
+
+    public function scopeSearch(Builder $query, string $search)
+    {
+        $locale = app()->getLocale();
+
+        if (str_starts_with($search, '@')) {
+            $term = ltrim($search, '@');
+            $query->whereHas('movie', function ($q) use ($term, $locale) {
+                $q->where("title->{$locale}", 'like', "%{$term}%");
+            });
+        } elseif (str_starts_with($search, '#')) {
+            $term = ltrim($search, '#');
+            $query->where("quote->{$locale}", 'like', "%{$term}%");
+        } else {
+            $term = $search;
+            $query->where(function ($q) use ($term, $locale) {
+                $q->whereHas('movie', function ($sub) use ($term, $locale) {
+                    $sub->where("title->{$locale}", 'like', "%{$term}%");
+                })->orWhere("quote->{$locale}", 'like', "%{$term}%");
+            });
+        }
     }
 }

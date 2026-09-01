@@ -5,19 +5,22 @@ import LocaleLink from "@/components/LocaleLink";
 import {useTranslation} from "react-i18next";
 import {logout} from "@/actions/App/Http/Controllers/AuthController";
 import SearchIcon from "@/components/ui/NewsFeed/SearchIcon.tsx";
+import SearchModal from "@/pages/NewsFeed/components/SearchModal/SearchModal.tsx";
+import {useState} from "react";
+import useButtons from "@/shared/components/Header/components/Buttons/hooks/useButtons.ts";
 
 function Buttons() {
-    const {auth} = usePage().props
-    const isAuth = auth !== null;
-    const {t} = useTranslation("header");
-
-
+    const {t, isOpen, handleOpenAndClose, isAuth,isSearchIconVisible} = useButtons();
     return (
         <div className="flex gap-4 max-lg:gap-2">
             {isAuth && <div className="flex items-center gap-8">
-                <div>
-                    <SearchIcon classname="max-lg:w-6 max-lg:h-6 text-white"/>
-                </div>
+                {isSearchIconVisible && <>
+                    <div onClick={handleOpenAndClose}>
+                        <SearchIcon classname="max-lg:w-6 max-lg:h-6 text-white"/>
+                    </div>
+                    <SearchModal isOpen={isOpen} onClose={handleOpenAndClose}/>
+                </>}
+
                 <div className="flex justify-center items-center relative">
                     <NotificationIcon/>
                     <div
