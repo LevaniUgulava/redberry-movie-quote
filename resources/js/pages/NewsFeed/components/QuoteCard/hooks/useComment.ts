@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {useForm, usePage} from "@inertiajs/react";
+import {useHttp, usePage} from "@inertiajs/react";
 import {store} from "@/actions/App/Http/Controllers/CommentController.ts";
 import {Comment} from "@/pages/NewsFeed/components/QuoteCard/QuoteCardTypes.ts";
 import {PageProps} from "@/types/PagePropsTypes.ts";
@@ -9,16 +9,14 @@ function useComment(id: number, quoteComments: Comment[], comment_quantity: numb
 
     const [comments, setComments] = useState(quoteComments);
     const [commentsQuantity, setCommentsQuantity] = useState(comment_quantity);
-
-    const {data, setData, post, processing, reset} = useForm({
-        comment: '',
-    });
+    const [comment, setComment] = useState('');
+    const {data, setData, post, processing} = useHttp({comment: ''});
 
     const submit = (e: any) => {
         e.preventDefault();
         setComments((prevComments: any) => [
                 {
-                    comment: data.comment,
+                    comment,
                     user: {
                         id: auth.id,
                         username: auth.username,
@@ -30,9 +28,9 @@ function useComment(id: number, quoteComments: Comment[], comment_quantity: numb
         );
         setCommentsQuantity((prev) => prev + 1)
 
+        setData('comment', comment);
         post(store({id: id}).url, {
-            preserveScroll: true,
-            onSuccess: () => reset('comment'),
+            onSuccess: () => setComment(''),
             onError: handleError,
         });
     };
@@ -42,9 +40,9 @@ function useComment(id: number, quoteComments: Comment[], comment_quantity: numb
     };
     return {
         comments, commentsQuantity, submit, setCommentsQuantity, setComments,
-        data,
+        comment,
         processing,
-        setData,
+        setComment,
     }
 }
 

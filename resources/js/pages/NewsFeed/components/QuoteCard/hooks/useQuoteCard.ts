@@ -16,9 +16,9 @@ function useQuoteCard(quote: QuoteCardData) {
         submit,
         setCommentsQuantity,
         setComments,
-        data,
+        comment,
         processing,
-        setData,
+        setComment,
     } = useComment(quote.id, quote.comments, quote.comment_quantity)
 
     const {
@@ -46,9 +46,9 @@ function useQuoteCard(quote: QuoteCardData) {
         comments,
         commentsQuantity,
         submit,
-        data,
+        comment,
         processing,
-        setData,
+        setComment,
         reactionQuantity,
         handleLike,
         liked
