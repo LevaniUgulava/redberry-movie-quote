@@ -38,6 +38,9 @@ Translation JSON files are split by feature namespace in `public/js/locales/{loc
 | `auth` | `auth.json` | Login, register, forgot password form text, verification messages |
 | `header` | `header.json` | Navigation buttons (Sign in, Sign up) |
 | `common` | `common.json` | Shared text (Movie quotes, Get started, Sign in with Google) |
+| `newsfeed` | `newsfeed.json` | Page title prefix (`title`) |
+| `movies` | `movies.json` | Page title prefix (`title`) |
+| `profile` | `profile.json` | Page title prefix (`title`) |
 
 Configuration: `resources/js/i18n.ts`
 
@@ -85,6 +88,32 @@ import LocaleLink from "@/components/LocaleLink";
 
 Reads `locale` from `usePage().props` internally. If the href already starts with the current locale, it's left unchanged.
 
+## Page Titles (`<Head>`)
+
+Document titles are composed in **one place**: the `title` callback in `createInertiaApp` (`resources/js/app.tsx`).
+
+```ts
+const APP_NAME = "Movie Quotes"; // brand name — not translated, defined once
+
+createInertiaApp({
+    title: (title) => `${title} - ${APP_NAME}`,
+    // ...
+});
+```
+
+Each page only supplies its **dynamic prefix** via `<Head>`:
+
+| Page | `<Head title>` | EN | KA |
+| --- | --- | --- | --- |
+| Landing | *(none — server default)* | Movie Quotes | Movie Quotes |
+| Newsfeed | `t("title")` (`newsfeed` ns) | Newsfeed - Movie Quotes | მთავარი - Movie Quotes |
+| Movies | `t("title")` (`movies` ns) | Movies - Movie Quotes | ჩემი ფილმების სია - Movie Quotes |
+| Movie detail | `movie.title` (dynamic) | {movie} - Movie Quotes | {movie} - Movie Quotes |
+| Profile | `t("title")` (`profile` ns) | Profile - Movie Quotes | პროფილი - Movie Quotes |
+
+- The brand suffix `Movie Quotes` is a constant — it is **not** translated. KA prefixes come from the `title` key in each feature namespace.
+- `resources/views/app.blade.php` ships a default `<title>Movie Quotes</title>`; pages without a `<Head>` (Landing) fall back to it, and Inertia's `<Head>` replaces it whenever a page sets a title.
+
 ## Decisions
 
 | Decision | Reasoning | Alternatives rejected |
@@ -98,6 +127,7 @@ Reads `locale` from `usePage().props` internally. If the href already starts wit
 | Keep PHP `lang/` files alongside client JSON | PHP files are the source of truth for Laravel framework messages. Duplicating them as JSON would create maintenance burden with no benefit. | Merging everything into client-side i18n |
 | No translation packages (`laravel-translatable`, etc.) | Only 2 locales, trivial complexity, no need for database-driven or package-based solutions. | `laravel-translatable`, database translations, Spatie translatable |
 | `LocaleLink` wrapper component | Drop-in replacement for `<Link>` that auto-prepends locale to href. Avoids manually adding `/${locale}` to every Link in the app. Reads locale from shared Inertia props internally. | Manual `useLocaleLink()` hook (requires function call on every href), manual `/${locale}` prefix on every Link |
+| Brand suffix composed once via Inertia `title` callback | `createInertiaApp({ title })` appends ` - Movie Quotes` for every `<Head>` automatically — no custom helper/hook. "Movie Quotes" is a brand constant, never translated. Pages pass only their (localized or dynamic) prefix. | Custom `usePageTitle()` hook; repeating `- Movie Quotes` inline in every page; `t("movie_quotes")` (brand is not translatable) |
 
 ## Rejected: Inertia Shared Props for Translations
 

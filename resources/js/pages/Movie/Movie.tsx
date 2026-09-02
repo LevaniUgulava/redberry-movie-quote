@@ -7,12 +7,14 @@ import QuoteModal from "@/pages/NewsFeed/components/Quote/QuoteModal/QuoteModal.
 import {QuoteCardData} from "@/pages/NewsFeed/components/QuoteCard/QuoteCardTypes.ts";
 import useMovie from "@/pages/Movie/hooks/useMovie.ts";
 import useIsMobile from "@/hooks/useIsMobile.ts";
+import {Head} from "@inertiajs/react";
 
 function Movie() {
     const {handleClose, handleDelete, movie, openModal, currentModal, quote} = useMovie();
     const isMobile = useIsMobile();
 
     return <div className="max-lg:px-8.75">
+        <Head title={movie.title}/>
         <div className='text-white text-2xl font-medium'>Movie description</div>
         <div className="flex gap-6 mt-8 max-lg:flex-col">
             <div className='w-full max-w-202.25 flex flex-col gap-5'>
