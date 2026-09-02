@@ -51,7 +51,7 @@ function Input({
                         )}
                         id={name}
                         name={name}
-                        value={value}
+                        defaultValue={value}
                         type={inputType}
                         placeholder={placeholder}
                         onChange={(e) => {
