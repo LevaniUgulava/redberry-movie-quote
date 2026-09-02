@@ -1,16 +1,19 @@
-import {useState} from "react";
-import {useForm, usePage} from "@inertiajs/react";
-import {store} from "@/actions/App/Http/Controllers/CommentController.ts";
-import {Comment} from "@/pages/NewsFeed/components/QuoteCard/QuoteCardTypes.ts";
-import {PageProps} from "@/types/PagePropsTypes.ts";
+import { useForm, usePage } from "@inertiajs/react";
+import { Dispatch, SetStateAction } from "react";
+import { store } from "@/actions/App/Http/Controllers/CommentController.ts";
+import { Comment } from "@/pages/NewsFeed/components/QuoteCard/QuoteCardTypes.ts";
+import { PageProps } from "@/types/PagePropsTypes.ts";
 
-function useComment(id: number, quoteComments: Comment[], comment_quantity: number,) {
-    const {auth} = usePage<PageProps>().props
+function useComment(
+    id: number,
+    comments: Comment[],
+    setComments: Dispatch<SetStateAction<Comment[]>>,
+    commentsQuantity: number,
+    setCommentsQuantity: Dispatch<SetStateAction<number>>
+) {
+    const { auth } = usePage<PageProps>().props
 
-    const [comments, setComments] = useState(quoteComments);
-    const [commentsQuantity, setCommentsQuantity] = useState(comment_quantity);
-
-    const {data, setData, post, processing, reset} = useForm({
+    const { data, setData, post, processing, reset } = useForm({
         comment: '',
     });
 
@@ -30,18 +33,20 @@ function useComment(id: number, quoteComments: Comment[], comment_quantity: numb
         );
         setCommentsQuantity((prev) => prev + 1)
 
-        post(store({id: id}).url, {
+        post(store({ id: id }).url, {
             preserveScroll: true,
             onSuccess: () => reset('comment'),
             onError: handleError,
         });
     };
+
     const handleError = () => {
         setCommentsQuantity((prev) => prev - 1);
         setComments((prev) => prev.slice(1));
     };
+
     return {
-        comments, commentsQuantity, submit, setCommentsQuantity, setComments,
+        comments, commentsQuantity, submit,
         data,
         processing,
         setData,
