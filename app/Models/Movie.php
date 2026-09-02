@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -15,7 +16,7 @@ use Spatie\Translatable\HasTranslations;
 #[Translatable('title', 'director', 'description')]
 class Movie extends Model implements HasMedia
 {
-    use HasTranslations, InteractsWithMedia;
+    use HasFactory, HasTranslations,InteractsWithMedia;
 
     protected function casts(): array
     {
