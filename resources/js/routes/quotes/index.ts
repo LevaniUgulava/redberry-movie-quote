@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults, validateParameters } from './../../wayfinder'
 /**
 * @see \App\Http\Controllers\QuoteController::index
-* @see app/Http/Controllers/QuoteController.php:23
+* @see app/Http/Controllers/QuoteController.php:17
 * @param lang - Default: '$lang'
 * @route '/{lang?}/newsfeed'
 */
@@ -17,7 +17,7 @@ index.definition = {
 
 /**
 * @see \App\Http\Controllers\QuoteController::index
-* @see app/Http/Controllers/QuoteController.php:23
+* @see app/Http/Controllers/QuoteController.php:17
 * @param lang - Default: '$lang'
 * @route '/{lang?}/newsfeed'
 */
@@ -49,7 +49,7 @@ index.url = (args?: { lang?: string | number } | [lang: string | number ] | stri
 
 /**
 * @see \App\Http\Controllers\QuoteController::index
-* @see app/Http/Controllers/QuoteController.php:23
+* @see app/Http/Controllers/QuoteController.php:17
 * @param lang - Default: '$lang'
 * @route '/{lang?}/newsfeed'
 */
@@ -60,7 +60,7 @@ index.get = (args?: { lang?: string | number } | [lang: string | number ] | stri
 
 /**
 * @see \App\Http\Controllers\QuoteController::index
-* @see app/Http/Controllers/QuoteController.php:23
+* @see app/Http/Controllers/QuoteController.php:17
 * @param lang - Default: '$lang'
 * @route '/{lang?}/newsfeed'
 */
@@ -130,7 +130,7 @@ store.post = (args?: { lang?: string | number } | [lang: string | number ] | str
 
 /**
 * @see \App\Http\Controllers\QuoteController::update
-* @see app/Http/Controllers/QuoteController.php:38
+* @see app/Http/Controllers/QuoteController.php:39
 * @param lang - Default: '$lang'
 * @route '/{lang?}/quote/update/{quote}'
 */
@@ -146,7 +146,7 @@ update.definition = {
 
 /**
 * @see \App\Http\Controllers\QuoteController::update
-* @see app/Http/Controllers/QuoteController.php:38
+* @see app/Http/Controllers/QuoteController.php:39
 * @param lang - Default: '$lang'
 * @route '/{lang?}/quote/update/{quote}'
 */
@@ -179,7 +179,7 @@ update.url = (args: { lang?: string | number, quote: number | { id: number } } |
 
 /**
 * @see \App\Http\Controllers\QuoteController::update
-* @see app/Http/Controllers/QuoteController.php:38
+* @see app/Http/Controllers/QuoteController.php:39
 * @param lang - Default: '$lang'
 * @route '/{lang?}/quote/update/{quote}'
 */
@@ -190,7 +190,7 @@ update.put = (args: { lang?: string | number, quote: number | { id: number } } |
 
 /**
 * @see \App\Http\Controllers\QuoteController::destroy
-* @see app/Http/Controllers/QuoteController.php:45
+* @see app/Http/Controllers/QuoteController.php:46
 * @param lang - Default: '$lang'
 * @route '/{lang?}/quote/delete/{quote}'
 */
@@ -206,7 +206,7 @@ destroy.definition = {
 
 /**
 * @see \App\Http\Controllers\QuoteController::destroy
-* @see app/Http/Controllers/QuoteController.php:45
+* @see app/Http/Controllers/QuoteController.php:46
 * @param lang - Default: '$lang'
 * @route '/{lang?}/quote/delete/{quote}'
 */
@@ -239,7 +239,7 @@ destroy.url = (args: { lang?: string | number, quote: number | { id: number } } 
 
 /**
 * @see \App\Http\Controllers\QuoteController::destroy
-* @see app/Http/Controllers/QuoteController.php:45
+* @see app/Http/Controllers/QuoteController.php:46
 * @param lang - Default: '$lang'
 * @route '/{lang?}/quote/delete/{quote}'
 */
