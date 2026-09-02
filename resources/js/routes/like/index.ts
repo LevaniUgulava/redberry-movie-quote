@@ -1,31 +1,31 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults, validateParameters } from './../../wayfinder'
 /**
 * @see \App\Http\Controllers\LikeController::store
-* @see app/Http/Controllers/LikeController.php:12
+* @see app/Http/Controllers/LikeController.php:19
 * @param lang - Default: '$lang'
-* @route '/{lang?}/like/{id}'
+* @route '/{lang?}/like/{quote}'
 */
-export const store = (args: { lang?: string | number, id: string | number } | [lang: string | number, id: string | number ], options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+export const store = (args: { lang?: string | number, quote: number | { id: number } } | [lang: string | number, quote: number | { id: number } ], options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: store.url(args, options),
     method: 'post',
 })
 
 store.definition = {
     methods: ["post"],
-    url: '/{lang?}/like/{id}',
+    url: '/{lang?}/like/{quote}',
 } satisfies RouteDefinition<["post"]>
 
 /**
 * @see \App\Http\Controllers\LikeController::store
-* @see app/Http/Controllers/LikeController.php:12
+* @see app/Http/Controllers/LikeController.php:19
 * @param lang - Default: '$lang'
-* @route '/{lang?}/like/{id}'
+* @route '/{lang?}/like/{quote}'
 */
-store.url = (args: { lang?: string | number, id: string | number } | [lang: string | number, id: string | number ], options?: RouteQueryOptions) => {
+store.url = (args: { lang?: string | number, quote: number | { id: number } } | [lang: string | number, quote: number | { id: number } ], options?: RouteQueryOptions) => {
     if (Array.isArray(args)) {
         args = {
             lang: args[0],
-            id: args[1],
+            quote: args[1],
         }
     }
 
@@ -37,22 +37,24 @@ store.url = (args: { lang?: string | number, id: string | number } | [lang: stri
 
     const parsedArgs = {
         lang: args.lang ?? '$lang',
-        id: args.id,
+        quote: typeof args.quote === 'object'
+        ? args.quote.id
+        : args.quote,
     }
 
     return store.definition.url
             .replace('{lang?}', parsedArgs.lang?.toString() ?? '')
-            .replace('{id}', parsedArgs.id.toString())
+            .replace('{quote}', parsedArgs.quote.toString())
             .replace(/\/+$/, '') + queryParams(options)
 }
 
 /**
 * @see \App\Http\Controllers\LikeController::store
-* @see app/Http/Controllers/LikeController.php:12
+* @see app/Http/Controllers/LikeController.php:19
 * @param lang - Default: '$lang'
-* @route '/{lang?}/like/{id}'
+* @route '/{lang?}/like/{quote}'
 */
-store.post = (args: { lang?: string | number, id: string | number } | [lang: string | number, id: string | number ], options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+store.post = (args: { lang?: string | number, quote: number | { id: number } } | [lang: string | number, quote: number | { id: number } ], options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: store.url(args, options),
     method: 'post',
 })

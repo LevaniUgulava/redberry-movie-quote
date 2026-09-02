@@ -1,5 +1,4 @@
 <?php
-
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\QuoteController;
@@ -12,13 +11,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
             Route::post('/store', [QuoteController::class, 'store'])->name('store');
             Route::put('/update/{quote}', [QuoteController::class, 'update'])->name('update');
             Route::delete('/delete/{quote}', [QuoteController::class, 'destroy'])->name('destroy');
-
         });
-
     });
-
-
     Route::post('/comment/{id}', [CommentController::class, 'store'])->name('comment.store');
-    Route::post('/like/{id}', [LikeController::class, 'store'])->name('like.store');
+    Route::post('/like/{quote}', [LikeController::class, 'store'])->name('like.store');
 });
-

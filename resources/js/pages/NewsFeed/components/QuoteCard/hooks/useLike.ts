@@ -10,7 +10,7 @@ function useLike(id: number, isLiked: boolean|undefined, reaction_quantity: numb
         setLiked((prev) => !prev);
         setReactionQuantity((prev) => liked ? prev - 1 : prev + 1);
 
-        router.post(storeLike({id: id}).url, {}, {
+        router.post(storeLike({quote: id}).url, {}, {
             preserveScroll: true,
             onError: () => {
                 setLiked((prev) => !prev);

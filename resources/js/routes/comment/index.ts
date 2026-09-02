@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults, validateParameters } from './../../wayfinder'
 /**
 * @see \App\Http\Controllers\CommentController::store
-* @see app/Http/Controllers/CommentController.php:13
+* @see app/Http/Controllers/CommentController.php:22
 * @param lang - Default: '$lang'
 * @route '/{lang?}/comment/{id}'
 */
@@ -17,7 +17,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\CommentController::store
-* @see app/Http/Controllers/CommentController.php:13
+* @see app/Http/Controllers/CommentController.php:22
 * @param lang - Default: '$lang'
 * @route '/{lang?}/comment/{id}'
 */
@@ -48,7 +48,7 @@ store.url = (args: { lang?: string | number, id: string | number } | [lang: stri
 
 /**
 * @see \App\Http\Controllers\CommentController::store
-* @see app/Http/Controllers/CommentController.php:13
+* @see app/Http/Controllers/CommentController.php:22
 * @param lang - Default: '$lang'
 * @route '/{lang?}/comment/{id}'
 */

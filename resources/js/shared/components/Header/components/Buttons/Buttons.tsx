@@ -1,16 +1,24 @@
-import {Link, router, usePage} from "@inertiajs/react";
 import Lang from "@/shared/components/Header/components/Lang/Lang.tsx";
 import NotificationIcon from "@/components/ui/icons/NotificationIcon.tsx";
 import LocaleLink from "@/components/LocaleLink";
-import {useTranslation} from "react-i18next";
-import {logout} from "@/actions/App/Http/Controllers/AuthController";
+import NotificationModal from "@/shared/components/Header/Notification/NotificationModal.tsx";
 import SearchIcon from "@/components/ui/NewsFeed/SearchIcon.tsx";
 import SearchModal from "@/pages/NewsFeed/components/SearchModal/SearchModal.tsx";
-import {useState} from "react";
 import useButtons from "@/shared/components/Header/components/Buttons/hooks/useButtons.ts";
 
 function Buttons() {
-    const {t, isOpen, handleOpenAndClose, isAuth,isSearchIconVisible} = useButtons();
+    const {
+        isAuth,
+        notificationsState,
+        handleOpenChange,
+        t,
+        handleLogout,
+        isNotificationsLoading,
+        isOpen,
+        handleOpenAndClose,
+        isSearchIconVisible,
+    } = useButtons();
+
     return (
         <div className="flex gap-4 max-lg:gap-2">
             {isAuth && <div className="flex items-center gap-8">
@@ -21,18 +29,23 @@ function Buttons() {
                     <SearchModal isOpen={isOpen} onClose={handleOpenAndClose}/>
                 </>}
 
-                <div className="flex justify-center items-center relative">
-                    <NotificationIcon/>
-                    <div
-                        className="absolute -top-1 max-lg:-top-2 left-4 max-lg:left-3 max-lg:h-4 max-lg:w-4 h-6.25 w-6.25 bg-[#E33812] rounded-full items-center flex justify-center">
-                        <span className='text-white text-base max-lg:text-sm leading-[150%] font-medium'>3</span>
+                <NotificationModal
+                    isNotificationsLoading={isNotificationsLoading}
+                    notifications={notificationsState.data}
+                    handleOpenChange={handleOpenChange}
+                >
+                    <div className="flex justify-center items-center relative">
+                        <NotificationIcon/>
+                        {notificationsState.quantity > 0 && <div
+                            className="absolute -top-1 max-lg:-top-2 left-4 max-lg:left-3 max-lg:h-4 max-lg:w-4 h-6.25 w-6.25 bg-[#E33812] rounded-full items-center flex justify-center">
+                            <span className='text-white text-base max-lg:text-sm leading-[150%] font-medium'>{notificationsState.quantity}</span>
+                        </div>}
                     </div>
-
-                </div>
+                </NotificationModal>
             </div>}
+
             <div className='max-lg:hidden'>
                 <Lang/>
-
             </div>
 
             {!isAuth ? <>
@@ -47,20 +60,16 @@ function Buttons() {
                     className="w-fit  flex justify-center cursor-pointer rounded-sm border border-white max-lg:text-sm max-lg:px-3.25  px-5 py-1.75 text-base font-normal text-white leading-[150%]"
                 >
                     {t('sign_in')}
-
                 </LocaleLink>
             </> : <div>
                 <button
-                    onClick={() => router.post(logout().url)}
-                    className=" max-lg:hidden w-24 flex justify-center cursor-pointer rounded-sm border border-white  max-lg:text-sm px-3.25 py-1.75 text-base font-normal text-white leading-[150%]"
+                    onClick={handleLogout}
+                    className="max-lg:hidden w-24 flex justify-center cursor-pointer rounded-sm border border-white  max-lg:text-sm px-3.25 py-1.75 text-base font-normal text-white leading-[150%]"
                 >
                     Log out
                 </button>
             </div>}
-
-
         </div>
-
     );
 }
 
