@@ -1,5 +1,16 @@
 {
     "movie_quotes": "ფილმის ციტატები",
     "get_started": "დაწყება",
-    "sign_in_with_google": "შესვლა Google-ით"
+    "sign_in_with_google": "შესვლა Google-ით",
+    "view": "ნახვა",
+    "edit": "რედაქტირება",
+    "delete": "წაშლა",
+    "cancel": "გაუქმება",
+    "confirm": "დადასტურება",
+    "upload": "ატვირთვა",
+    "search": "ძებნა",
+    "save_changes": "ცვლილებების შენახვა",
+    "director": "რეჟისორი:",
+    "confirm_delete": "დარწმუნებული ხართ წაშლაში?",
+    "close": "დახურვა"
 }

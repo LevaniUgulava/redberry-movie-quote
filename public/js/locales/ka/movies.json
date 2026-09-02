@@ -1,3 +1,15 @@
 {
+    "list_title": "ჩემი ფილმების სია (სულ {{count}})",
+    "add_movie": "ფილმის დამატება",
+    "edit_movie": "ფილმის რედაქტირება",
+    "modal_add_title": "ფილმის დამატება",
+    "modal_edit_title": "ფილმის რედაქტირება",
+    "movie_description": "ფილმის აღწერა",
+    "quotes_total": "ციტატები (სულ {{count}})",
+    "add_quote": "ციტატის დამატება",
+    "replace_photo": "ფოტოს შეცვლა",
+    "drag_drop_image": "ჩააგდეთ თქვენი სურათი აქ ან",
+    "upload_image": "სურათის ატვირთვა",
+    "choose_file": "ფაილის არჩევა"
     "title": "ჩემი ფილმების სია"
 }
