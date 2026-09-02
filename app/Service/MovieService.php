@@ -28,8 +28,11 @@ class MovieService
 
     public function show(Movie $movie, ?string $modal, ?int $quote_id): array
     {
-        $movie->load(['genres', 'quotes'=>function($query){
-            $query->withCount(['comments','likes']);
+        $movie->load(['genres', 'quotes' => function ($query) {
+            $query->withCount(['comments', 'likes'])
+                ->withExists(['likes as is_liked' => function ($q) {
+                    $q->where('user_id', auth()->id());
+                }]);;
         }]);
 
         $quote = $quote_id
