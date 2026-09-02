@@ -1,12 +1,12 @@
-import { usePage} from "@inertiajs/react";
+import {usePage} from "@inertiajs/react";
 import {PageProps} from "@/types/PagePropsTypes.ts";
-import {Quote} from "@/pages/NewsFeed/components/QuoteCard/QuoteCardTypes.ts";
 import {useEcho} from "@laravel/echo-react";
 
 import useComment from "@/pages/NewsFeed/components/QuoteCard/hooks/useComment.ts";
 import useLike from "@/pages/NewsFeed/components/QuoteCard/hooks/useLike.ts";
+import {QuoteCardData} from "@/pages/NewsFeed/components/QuoteCard/QuoteCardTypes.ts";
 
-function useQuoteCard({quote}: Quote) {
+function useQuoteCard(quote: QuoteCardData) {
     const {auth} = usePage<PageProps>().props
 
 
@@ -21,7 +21,12 @@ function useQuoteCard({quote}: Quote) {
         setData,
     } = useComment(quote.id, quote.comments, quote.comment_quantity)
 
-    const {handleLike, reactionQuantity,setReactionQuantity,liked} = useLike(quote.id, quote.is_liked, quote.reaction_quantity)
+    const {
+        handleLike,
+        reactionQuantity,
+        setReactionQuantity,
+        liked
+    } = useLike(quote.id, quote.is_liked, quote.reaction_quantity)
 
 
     useEcho(`quote.${quote.id}`,

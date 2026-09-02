@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Quote\EditQuoteRequest;
 use App\Http\Requests\Quote\StoreQuoteRequest;
 use App\Http\Resources\Movie\MovieResource;
 use App\Http\Resources\Quote\QuoteResource;
@@ -22,14 +23,28 @@ class QuoteController extends Controller
     public function index(Request $request)
     {
         $modal = $request->query('modal');
-        return Inertia::render('NewsFeed/NewsFeed', $this->quoteService->index($modal));
+        $search = $request->query('search');
+        return Inertia::render('NewsFeed/NewsFeed', $this->quoteService->index($modal,$search));
 
     }
 
     public function store(StoreQuoteRequest $request): RedirectResponse
     {
         $this->quoteService->store($request->validated());
-        return redirect()->route('quotes.index');
+        return redirect()->back();
 
+    }
+
+    public function update(Quote $quote, EditQuoteRequest $request): RedirectResponse
+    {
+        $this->quoteService->update($request->validated(), $quote, $request->file('image'));
+        return redirect()->back();
+    }
+
+
+    public function destroy(Quote $quote)
+    {
+        $quote->delete();
+        return redirect()->back();
     }
 }

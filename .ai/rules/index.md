@@ -9,4 +9,5 @@ Before planning or editing, find the row whose globs match the file's path and r
 | docs/** | .ai/rules/docs.md |
 | **/*.{tsx,ts,jsx,js,php} | .ai/rules/general.md |
 | resources/js/** | .ai/rules/js.md |
+| resources/js/pages/Profile/** | .ai/rules/profile.md |
 | .github/workflows/** | .ai/rules/workflows.md |

@@ -2,12 +2,50 @@
 
 namespace App\Service;
 
+use App\Http\Resources\Movie\MovieEditResource;
+use App\Http\Resources\Movie\MovieResource;
+use App\Http\Resources\Movie\MovieWithQuotesResource;
+use App\Http\Resources\Quote\QuoteEditResource;
 use App\Models\Movie;
+use App\Models\Quote;
 use Illuminate\Support\Facades\DB;
+use PhpParser\Node\Expr\Array_;
 
 class MovieService
 {
-// MovieService
+    public function index(array $data): array
+    {
+        $user = auth()->user();
+        $editingMovie = $data['id']
+            ? $user->movies()->with('genres')->findOrFail($data['id'])
+            : null;
+        return [
+            'currentModal' => $data['modal'],
+            'editingMovie' => $editingMovie ? (new MovieEditResource($editingMovie))->resolve() : null,
+            'movies' => MovieResource::collection($user->movies)
+        ];
+    }
+
+    public function show(Movie $movie, ?string $modal, ?int $quote_id): array
+    {
+        $movie->load(['genres', 'quotes'=>function($query){
+            $query->withCount(['comments','likes']);
+        }]);
+
+        $quote = $quote_id
+            ? Quote::with(['comments' => function ($query) {
+                $query->with('user')->latest()->limit(2);
+            }])
+                ->withCount(['comments', 'likes'])
+                ->findOrFail($quote_id)
+            : null;
+        return [
+            'quote' => $quote ? (new QuoteEditResource($quote))->resolve() : null,
+            'movie' => (new MovieWithQuotesResource($movie))->resolve(),
+            'currentModal' => $modal
+        ];
+    }
+
     public function update(Movie $movie, array $data): Movie
     {
         return DB::transaction(function () use ($movie, $data) {

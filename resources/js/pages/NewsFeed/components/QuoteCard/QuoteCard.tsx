@@ -1,12 +1,13 @@
 import ReactionIcon from "@/components/ui/NewsFeed/Quotes/ReactionIcon.tsx";
 import CommentIcon from "@/components/ui/NewsFeed/Quotes/CommentIcon.tsx";
-import {Quote} from "@/pages/NewsFeed/components/QuoteCard/QuoteCardTypes.ts";
+import {QuoteCardProps} from "@/pages/NewsFeed/components/QuoteCard/QuoteCardTypes.ts";
 import {SendIcon} from "lucide-react";
 import useQuoteCard from "@/pages/NewsFeed/components/QuoteCard/hooks/useQuoteCard.ts";
 import FillReactionIcon from "@/components/ui/NewsFeed/Quotes/FillReactionIcon.tsx";
+import {cn} from "@/lib/utils.ts";
 
 
-function QuoteCard({quote}: Quote) {
+function QuoteCard({quote}: QuoteCardProps) {
     const {
         auth,
         submit,
@@ -18,30 +19,30 @@ function QuoteCard({quote}: Quote) {
         reactionQuantity,
         handleLike,
         liked
-    } = useQuoteCard({quote})
+    } = useQuoteCard(quote)
 
-
-    return <div className="bg-[#11101A] rounded-xl p-6 ">
+    return <div className={cn("bg-[#11101A] rounded-xl p-6 max-lg:px-8.75 max-lg:rounded-none", {
+        'p-0 bg-transparent': !quote.user
+    })}>
         <div className="flex flex-col gap-5 border-b border-[#EFEFEF]/30">
-            <div className="flex gap-4 items-center">
-                <img className="w-13 h-13 rounded-full" alt="quote_author" src={quote.user.avatar}/>
-                <span className="text-xl text-white font-normal leading-[150%]">{quote.user.username}</span>
-            </div>
-            <div>
+            {quote.user && <div className="flex gap-4 items-center">
+                <img className="w-13 max-lg:w-10 max-lg:h-10 h-13 rounded-full" alt="quote_author" src={quote.user.avatar}/>
+                <span className="text-xl text-white max-lg:text-base font-normal leading-[150%]">{quote.user.username}</span>
+            </div>}
+            {quote.movie && <div>
                 <span
-                    className="text-xl text-white font-normal leading-[150%]">{quote.quote} - {quote.movie.title} {quote.movie.year}</span>
-            </div>
+                    className="text-xl max-lg:text-base text-white font-normal leading-[150%]">{quote.quote} - {quote.movie.title} {quote.movie.year}</span>
+            </div>}
             <div className="flex flex-col gap-6 pb-6">
-                <img alt="quote_image" className="w-full rounded-[10px]" src={quote.image}/>
+                <img alt="quote_image" className="w-full rounded-[10px] object-cover" src={quote.image}/>
                 <div className="flex gap-6">
-                    <div className="flex gap-4">
+                    <div className="flex gap-4 items-center">
                         <span className="text-white text-xl leading-[150%]">{commentsQuantity}</span>
                         <CommentIcon/>
-
                     </div>
                     <button
                         onClick={handleLike}
-                        className="flex gap-4"
+                        className="flex gap-4 items-center"
                     >
                         <span className="text-white text-xl leading-[150%]">{reactionQuantity}</span>
                         {liked ? <FillReactionIcon/> : <ReactionIcon/>}
@@ -51,43 +52,42 @@ function QuoteCard({quote}: Quote) {
         </div>
         <div className="flex flex-col gap-4 mt-5">
             {[...comments].reverse().map((comment, index) => (
-                <div key={index} className="flex flex-col gap-3">
+                <div key={index} className="flex flex-col gap-3 max-lg:gap-1.5">
                     <div className="flex gap-4 items-center">
-                        <img className="w-12 h-12 rounded-full object-cover" alt="quote_author"
+                        <img className="w-12 h-12 max-lg:w-10 max-lg:h-10 rounded-full object-cover" alt="quote_author"
                              src={comment.user.avatar}/>
-                        <span className="text-xl text-white font-medium leading-[150%]">{comment.user.username}</span>
+                        <span className="text-xl max-lg:text-base text-white font-medium leading-[150%]">{comment.user.username}</span>
                     </div>
                     <div
                         className="flex gap-4 items-center border-b border-[#EFEFEF]/30 ml-16">
-                        <span className="text-xl text-white font-normal leading-[150%] pb-6">{comment.comment}</span>
+                        <span className="text-xl max-lg:text-base text-white font-normal leading-[150%] pb-6">{comment.comment}</span>
                     </div>
                 </div>
             ))}
             <div>
                 <div className="flex gap-4 items-center">
-                    <img className="w-13 h-13 rounded-full" alt="quote_author" src={auth.avatar}/>
+                    <img className="w-13 h-13 max-lg:w-10 max-lg:h-10 rounded-full" alt="quote_author" src={auth.avatar}/>
                     <form onSubmit={submit} className='relative w-full'>
                         <input
                             type="text"
                             value={data.comment}
                             onChange={e => setData('comment', e.target.value)}
                             name="comment"
-                            className="w-full bg-[#24222F] text-[#CED4DA] h-13 rounded-[10px] pl-5 pr-14 text-xl leading-[150%] focus:outline-none"
+                            className="w-full bg-[#24222F] text-[#CED4DA] h-13 max-lg:h-10 rounded-[10px] pl-5 pr-14 text-xl max-lg:text-base leading-[150%] focus:outline-none"
                             placeholder="Write a comment"
                         />
                         {data.comment && (
                             <button
                                 type="submit"
                                 disabled={processing}
-                                className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center justify-center w-10 h-10 bg-[#5E5CE6] hover:bg-[#4f4de0] text-white rounded-lg transition-colors">
-                                <SendIcon className="w-5 h-5"/>
+                                className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center justify-center w-10 h-10 max-lg:w-8 max-lg:h-8 bg-[#5E5CE6] hover:bg-[#4f4de0] text-white rounded-lg transition-colors">
+                                <SendIcon className="w-5 h-5 max-lg:w-4 max-lg:h-4"/>
                             </button>
                         )}
                     </form>
                 </div>
             </div>
         </div>
-
     </div>
 }
 

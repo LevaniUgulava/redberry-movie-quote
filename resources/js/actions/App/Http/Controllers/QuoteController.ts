@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults, validateParameters } from './../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\QuoteController::index
-* @see app/Http/Controllers/QuoteController.php:22
+* @see app/Http/Controllers/QuoteController.php:23
 * @param lang - Default: '$lang'
 * @route '/{lang?}/newsfeed'
 */
@@ -17,7 +17,7 @@ index.definition = {
 
 /**
 * @see \App\Http\Controllers\QuoteController::index
-* @see app/Http/Controllers/QuoteController.php:22
+* @see app/Http/Controllers/QuoteController.php:23
 * @param lang - Default: '$lang'
 * @route '/{lang?}/newsfeed'
 */
@@ -49,7 +49,7 @@ index.url = (args?: { lang?: string | number } | [lang: string | number ] | stri
 
 /**
 * @see \App\Http\Controllers\QuoteController::index
-* @see app/Http/Controllers/QuoteController.php:22
+* @see app/Http/Controllers/QuoteController.php:23
 * @param lang - Default: '$lang'
 * @route '/{lang?}/newsfeed'
 */
@@ -60,7 +60,7 @@ index.get = (args?: { lang?: string | number } | [lang: string | number ] | stri
 
 /**
 * @see \App\Http\Controllers\QuoteController::index
-* @see app/Http/Controllers/QuoteController.php:22
+* @see app/Http/Controllers/QuoteController.php:23
 * @param lang - Default: '$lang'
 * @route '/{lang?}/newsfeed'
 */
@@ -71,7 +71,7 @@ index.head = (args?: { lang?: string | number } | [lang: string | number ] | str
 
 /**
 * @see \App\Http\Controllers\QuoteController::store
-* @see app/Http/Controllers/QuoteController.php:29
+* @see app/Http/Controllers/QuoteController.php:31
 * @param lang - Default: '$lang'
 * @route '/{lang?}/quote/store'
 */
@@ -87,7 +87,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\QuoteController::store
-* @see app/Http/Controllers/QuoteController.php:29
+* @see app/Http/Controllers/QuoteController.php:31
 * @param lang - Default: '$lang'
 * @route '/{lang?}/quote/store'
 */
@@ -119,7 +119,7 @@ store.url = (args?: { lang?: string | number } | [lang: string | number ] | stri
 
 /**
 * @see \App\Http\Controllers\QuoteController::store
-* @see app/Http/Controllers/QuoteController.php:29
+* @see app/Http/Controllers/QuoteController.php:31
 * @param lang - Default: '$lang'
 * @route '/{lang?}/quote/store'
 */
@@ -128,6 +128,126 @@ store.post = (args?: { lang?: string | number } | [lang: string | number ] | str
     method: 'post',
 })
 
-const QuoteController = { index, store }
+/**
+* @see \App\Http\Controllers\QuoteController::update
+* @see app/Http/Controllers/QuoteController.php:38
+* @param lang - Default: '$lang'
+* @route '/{lang?}/quote/update/{quote}'
+*/
+export const update = (args: { lang?: string | number, quote: number | { id: number } } | [lang: string | number, quote: number | { id: number } ], options?: RouteQueryOptions): RouteDefinition<'put'> => ({
+    url: update.url(args, options),
+    method: 'put',
+})
+
+update.definition = {
+    methods: ["put"],
+    url: '/{lang?}/quote/update/{quote}',
+} satisfies RouteDefinition<["put"]>
+
+/**
+* @see \App\Http\Controllers\QuoteController::update
+* @see app/Http/Controllers/QuoteController.php:38
+* @param lang - Default: '$lang'
+* @route '/{lang?}/quote/update/{quote}'
+*/
+update.url = (args: { lang?: string | number, quote: number | { id: number } } | [lang: string | number, quote: number | { id: number } ], options?: RouteQueryOptions) => {
+    if (Array.isArray(args)) {
+        args = {
+            lang: args[0],
+            quote: args[1],
+        }
+    }
+
+    args = applyUrlDefaults(args)
+
+    validateParameters(args, [
+        "lang",
+    ])
+
+    const parsedArgs = {
+        lang: args.lang ?? '$lang',
+        quote: typeof args.quote === 'object'
+        ? args.quote.id
+        : args.quote,
+    }
+
+    return update.definition.url
+            .replace('{lang?}', parsedArgs.lang?.toString() ?? '')
+            .replace('{quote}', parsedArgs.quote.toString())
+            .replace(/\/+$/, '') + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\QuoteController::update
+* @see app/Http/Controllers/QuoteController.php:38
+* @param lang - Default: '$lang'
+* @route '/{lang?}/quote/update/{quote}'
+*/
+update.put = (args: { lang?: string | number, quote: number | { id: number } } | [lang: string | number, quote: number | { id: number } ], options?: RouteQueryOptions): RouteDefinition<'put'> => ({
+    url: update.url(args, options),
+    method: 'put',
+})
+
+/**
+* @see \App\Http\Controllers\QuoteController::destroy
+* @see app/Http/Controllers/QuoteController.php:45
+* @param lang - Default: '$lang'
+* @route '/{lang?}/quote/delete/{quote}'
+*/
+export const destroy = (args: { lang?: string | number, quote: number | { id: number } } | [lang: string | number, quote: number | { id: number } ], options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+    url: destroy.url(args, options),
+    method: 'delete',
+})
+
+destroy.definition = {
+    methods: ["delete"],
+    url: '/{lang?}/quote/delete/{quote}',
+} satisfies RouteDefinition<["delete"]>
+
+/**
+* @see \App\Http\Controllers\QuoteController::destroy
+* @see app/Http/Controllers/QuoteController.php:45
+* @param lang - Default: '$lang'
+* @route '/{lang?}/quote/delete/{quote}'
+*/
+destroy.url = (args: { lang?: string | number, quote: number | { id: number } } | [lang: string | number, quote: number | { id: number } ], options?: RouteQueryOptions) => {
+    if (Array.isArray(args)) {
+        args = {
+            lang: args[0],
+            quote: args[1],
+        }
+    }
+
+    args = applyUrlDefaults(args)
+
+    validateParameters(args, [
+        "lang",
+    ])
+
+    const parsedArgs = {
+        lang: args.lang ?? '$lang',
+        quote: typeof args.quote === 'object'
+        ? args.quote.id
+        : args.quote,
+    }
+
+    return destroy.definition.url
+            .replace('{lang?}', parsedArgs.lang?.toString() ?? '')
+            .replace('{quote}', parsedArgs.quote.toString())
+            .replace(/\/+$/, '') + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\QuoteController::destroy
+* @see app/Http/Controllers/QuoteController.php:45
+* @param lang - Default: '$lang'
+* @route '/{lang?}/quote/delete/{quote}'
+*/
+destroy.delete = (args: { lang?: string | number, quote: number | { id: number } } | [lang: string | number, quote: number | { id: number } ], options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+    url: destroy.url(args, options),
+    method: 'delete',
+})
+
+const QuoteController = { index, store, update, destroy }
 
 export default QuoteController

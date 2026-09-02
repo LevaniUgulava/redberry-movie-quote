@@ -26,15 +26,16 @@ function ImageInput({name, onChange, initialPreview, error}: ImageInputProps) {
                         <img src={preview} alt="preview" className="w-full h-fit rounded object-cover"/>
                     </div>
                 )}
-                <div className={cn("flex items-center gap-4", preview ? "w-1/2 flex-col" : "w-full")}>
+                <div className={cn("flex items-center max-lg:justify-between gap-4", preview ? "w-1/2 flex-col" : "w-full")}>
                     {preview && (
                         <span className="text-main-beige text-base font-bold uppercase">Replace photo</span>
                     )}
                     <div className="flex gap-4 items-center">
                         <PhotoIcon/>
-                        <span className="text-xl text-white leading-[150%]">Drag & drop your image here or</span>
+                        <span className="max-lg:hidden text-xl text-white leading-[150%]">Drag & drop your image here or</span>
+                        <span className="lg:hidden text-base text-white leading-[150%]">Upload image</span>
                     </div>
-                    <label className="cursor-pointer bg-[#5A3FC0] text-white px-4 py-2 rounded-xs font-normal text-lg">
+                    <label className="cursor-pointer bg-[#5A3FC0] text-white px-4 py-2 rounded-xs font-normal text-lg max-lg:text-base">
                         Choose file
                         <input type="file" name={name} accept="image/*" onChange={handleChange} className="hidden"/>
                     </label>

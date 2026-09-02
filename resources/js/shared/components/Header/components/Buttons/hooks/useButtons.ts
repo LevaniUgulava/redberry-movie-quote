@@ -8,21 +8,25 @@ import {useTranslation} from "react-i18next";
 import {logout} from "@/actions/App/Http/Controllers/AuthController.ts";
 
 function useButtons() {
-
-    const {auth, notificationsQuantity, notifications} = usePage<PageProps & {
+    const {auth, notificationsQuantity, notifications, url, props} = usePage<PageProps & {
         notificationsQuantity: number,
         notifications: NotificationItem[]
-    }>().props;
+    }>();
 
     const isAuth = auth !== null;
+    const isSearchIconVisible = url === `/${props.locale}/newsfeed`;
     const {t} = useTranslation("header");
 
     const [isNotificationsLoading, setIsNotificationsLoading] = useState(false);
-
     const [notificationsState, setNotificationsState] = useState<NotificationStateTypes>({
         data: notifications,
         quantity: notificationsQuantity
     });
+    const [isOpen, setIsOpen] = useState(false);
+
+    const handleOpenAndClose = () => {
+        setIsOpen(prev => !prev);
+    };
 
     useEcho(
         isAuth && auth?.id ? `notification.${auth.id}` : "",
@@ -35,6 +39,7 @@ function useButtons() {
             }));
         }
     );
+
     useEffect(() => {
         setNotificationsState({
             data: notifications || [],
@@ -45,18 +50,28 @@ function useButtons() {
     const handleOpenChange = (open: boolean) => {
         if (open) {
             setIsNotificationsLoading(true);
-
             router.reload({
                 only: ['notifications', 'notificationsQuantity'],
                 onFinish: () => setIsNotificationsLoading(false),
-
             });
         }
     };
+
     const handleLogout = () => {
-        router.post(logout().url)
-    }
-    return {notificationsState, isAuth, handleOpenChange, t,handleLogout,isNotificationsLoading}
+        router.post(logout().url);
+    };
+
+    return {
+        notificationsState,
+        isAuth,
+        handleOpenChange,
+        t,
+        handleLogout,
+        isNotificationsLoading,
+        isOpen,
+        handleOpenAndClose,
+        isSearchIconVisible,
+    };
 }
 
 export default useButtons;

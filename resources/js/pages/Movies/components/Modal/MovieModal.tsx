@@ -12,7 +12,7 @@ interface ModalWrapperProps {
 
 function MovieModal({isOpen, onClose, editingMovie, isEditOpen}: ModalWrapperProps) {
     return <ModalWrapper isOpen={isOpen} onClose={onClose}>
-        <div className="relative flex items-center justify-center border-b border-[#EFEFEF]/20 py-8">
+        <div className="relative flex items-center justify-center border-b border-[#EFEFEF]/20 py-8 max-lg:py-2">
                 <span className="text-white text-2xl font-medium leading-[150%]">
                     {isEditOpen ? "Edit" : "Add"} Movie
                 </span>

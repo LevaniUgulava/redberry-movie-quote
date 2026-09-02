@@ -1,6 +1,7 @@
 function HyphenIcon() {
     return (
         <svg
+            className='w-13.25 max-lg:w-4.25'
             width="53"
             height="2"
             viewBox="0 0 53 2"

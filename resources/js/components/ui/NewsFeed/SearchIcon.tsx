@@ -1,4 +1,4 @@
-function SearchIcon({classname}:{classname:string}) {
+function SearchIcon({classname}:{classname?:string}) {
     return <svg width="20" className={classname} height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clipPath="url(#clip0_45526_2224)">
             <path

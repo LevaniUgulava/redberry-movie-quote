@@ -1,6 +1,7 @@
-function BackIcon() {
+function BackIcon({className=""}:{className?:string}) {
     return (
         <svg
+            className={className}
             width="12"
             height="10"
             viewBox="0 0 12 10"
