@@ -5,6 +5,7 @@ import QuoteController from './QuoteController'
 import CommentController from './CommentController'
 import LikeController from './LikeController'
 import MovieController from './MovieController'
+import NotificationController from './NotificationController'
 import GoogleController from './GoogleController'
 
 const Controllers = {
@@ -15,6 +16,7 @@ const Controllers = {
     CommentController: Object.assign(CommentController, CommentController),
     LikeController: Object.assign(LikeController, LikeController),
     MovieController: Object.assign(MovieController, MovieController),
+    NotificationController: Object.assign(NotificationController, NotificationController),
     GoogleController: Object.assign(GoogleController, GoogleController),
 }
 

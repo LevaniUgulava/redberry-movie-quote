@@ -8,8 +8,9 @@ import LocaleLink from "@/components/LocaleLink.tsx";
 import {useTranslation} from "react-i18next";
 
 function Header() {
-    const {value, isHovered, isOpen, setIsHovered, setValue, setIsOpen, handleClose, openModal} = useHeader();
-    const {t} = useTranslation("newsfeed");
+  
+const {value, isHovered, isOpen, setIsHovered, setValue, setIsOpen, handleClose, openModal, currentModal} = useHeader();
+const {t} = useTranslation("newsfeed");
 
 
     return (
@@ -21,7 +22,7 @@ function Header() {
                 <AddQuoteIcon/>
                 <span className="text-white text-xl font-normal whitespace-nowrap cursor-pointer">{t("write_new_quote")}</span>
             </LocaleLink>
-            <QuoteModal isOpen={openModal} handleClose={handleClose}/>
+            <QuoteModal isOpen={openModal} handleClose={handleClose} modal="create" />
 
 
             <div

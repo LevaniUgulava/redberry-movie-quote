@@ -4,21 +4,35 @@ namespace App\Http\Controllers;
 
 use App\Events\LikeUpdated;
 use App\Models\Quote;
+use App\Service\NotificationService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LikeController extends Controller
 {
-    public function store(int $id): RedirectResponse
+    function __construct(public NotificationService $notificationService)
     {
-        $quote = Quote::findorfail($id);
-        $result = $quote->likes()->toggle(auth()->id());
+
+    }
+
+    public function store(Quote $quote): RedirectResponse
+    {
+        $user = Auth::user();
+
+        $result = $quote->likes()->toggle($user->id);
         $isLiked = count($result['attached']) > 0;
         $data = [
-            'user'=>auth()->id(),
-            'isLiked'=>$isLiked,
+            'user' => $user->id,
+            'isLiked' => $isLiked,
         ];
-        event(new LikeUpdated($id, $data));
+        event(new LikeUpdated($quote->id, $data));
+
+        $receiver_id = $quote->user_id;
+
+        if ($receiver_id !== $user->id && $isLiked) {
+            $this->notificationService->store($user, $receiver_id, 'like');
+        }
 
         return redirect()->back();
 

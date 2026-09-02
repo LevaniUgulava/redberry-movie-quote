@@ -9,3 +9,8 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
 Broadcast::channel('quote.{id}', function ($user, $id) {
     return $user !== null;
 });
+
+Broadcast::channel('notification.{id}', function ($user, $id) {
+    return $user !== null;
+});
+

@@ -12,7 +12,11 @@ configureEcho({
     broadcaster: 'pusher',
 });
 
+const APP_NAME = "Movie Quotes";
+
 createInertiaApp({
+    title: (title) => `${title} - ${APP_NAME}`,
+
     resolve: (name) => {
         const pages = import.meta.glob<PageComponent>("./pages/**/*.tsx", {
             eager: true,

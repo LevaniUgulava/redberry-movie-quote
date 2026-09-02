@@ -5,9 +5,12 @@ import Message from "@/pages/Auth/Message/Message.tsx";
 import useAuthContent from "@/pages/Auth/AuthContent/hooks/useAuthContent.ts";
 import useIsMobile from "@/hooks/useIsMobile.ts";
 import AuthModalWrapper from "@/components/wrapper/AuthModalWrapper/AuthModalWrapper.tsx";
+import {Head} from "@inertiajs/react";
+import {useTranslation} from "react-i18next";
 
 function Profile() {
 
+    const {t} = useTranslation("profile");
     const {
         auth, preview, setPreview, fileInputRef, handleFileChange, handleOpen, showField, isAnyFieldOpen, cancelEdit
     } = useProfile();
@@ -32,6 +35,7 @@ function Profile() {
 
     return (
         <div className="flex w-full flex-col pl-45 max-2xl:pl-30 max-xl:pl-18 max-lg:pl-0 gap-10">
+            <Head title={t("title")}/>
             {isMobile ? (
                 <MobileProfile {...mobileProps} />
             ) : (

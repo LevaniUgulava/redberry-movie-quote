@@ -1,16 +1,20 @@
-import {useState} from "react";
-import {router} from "@inertiajs/react";
-import {store as storeLike} from "@/actions/App/Http/Controllers/LikeController.ts";
+import { useState, Dispatch, SetStateAction } from "react";
+import { router } from "@inertiajs/react";
+import { store as storeLike } from "@/actions/App/Http/Controllers/LikeController.ts";
 
-function useLike(id: number, isLiked: boolean|undefined, reaction_quantity: number) {
+function useLike(
+    id: number,
+    isLiked: boolean | undefined,
+    reactionQuantity: number,
+    setReactionQuantity: Dispatch<SetStateAction<number>>
+) {
     const [liked, setLiked] = useState(isLiked);
-    const [reactionQuantity, setReactionQuantity] = useState(reaction_quantity);
 
     const handleLike = () => {
         setLiked((prev) => !prev);
         setReactionQuantity((prev) => liked ? prev - 1 : prev + 1);
 
-        router.post(storeLike({id: id}).url, {}, {
+        router.post(storeLike({ quote: id }).url, {}, {
             preserveScroll: true,
             onError: () => {
                 setLiked((prev) => !prev);
@@ -18,8 +22,8 @@ function useLike(id: number, isLiked: boolean|undefined, reaction_quantity: numb
             }
         });
     };
-    return {handleLike, reactionQuantity, setReactionQuantity, liked}
 
+    return { handleLike, reactionQuantity, liked }
 }
 
 export default useLike;
