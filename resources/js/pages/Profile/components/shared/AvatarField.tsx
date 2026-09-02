@@ -1,6 +1,8 @@
 import {AvatarProps} from "@/pages/Profile/ProfileTypes.ts";
+import {useTranslation} from "react-i18next";
 
 function AvatarField({fileInputRef, handleFileChange, preview}: AvatarProps) {
+    const {t} = useTranslation("profile");
     return (
         <div className="flex flex-col items-center">
             <input
@@ -22,7 +24,7 @@ function AvatarField({fileInputRef, handleFileChange, preview}: AvatarProps) {
                 className="text-white mt-2 cursor-pointer"
                 onClick={() => fileInputRef.current?.click()}
             >
-                Upload new photo
+                {t("upload_new_photo")}
             </span>
         </div>
     );

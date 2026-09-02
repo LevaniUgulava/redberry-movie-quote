@@ -5,10 +5,12 @@ import {QuoteCardProps} from "@/pages/NewsFeed/components/QuoteCard/QuoteCardTyp
 import PhotoIcon from "@/components/ui/icons/Movie/PhotoIcon.tsx";
 import {update} from "@/actions/App/Http/Controllers/QuoteController";
 import useQuoteEdit from "@/pages/NewsFeed/components/Quote/Quote/hooks/useQuoteEdit.ts";
+import {useTranslation} from "react-i18next";
 
 
 function QuoteEdit({quote}: QuoteCardProps) {
     const {auth, currentModal, handleImageUpload, openImageUpload,preview,imageRef} = useQuoteEdit();
+    const {t} = useTranslation(["newsfeed", "common"]);
 
     return <div className="px-5 flex flex-col gap-6  max-h-[80vh] overflow-y-auto pb-5">
         <div className="flex items-center gap-2.5 ">
@@ -40,7 +42,7 @@ function QuoteEdit({quote}: QuoteCardProps) {
                                         className="bg-[#181623]/80 gap-2.5 p-5 flex flex-col rounded-xl items-center justify-center">
                                         <PhotoIcon/>
                                         <span
-                                            className="text-base text-white font-normal">change photo</span>
+                                            className="text-base text-white font-normal">{t("change_photo")}</span>
                                     </div>
                                 </div>
 
@@ -49,7 +51,7 @@ function QuoteEdit({quote}: QuoteCardProps) {
                             </div>
                             <button
                                 className="bg-main-red rounded-[4.8px] text-white text-xl font-normal leading-[150%] py-2.25 px-4.25">
-                                Save Changes
+                                {t("save_changes")}
                             </button>
                         </>
                     }

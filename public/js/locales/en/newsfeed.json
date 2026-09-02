@@ -1,0 +1,13 @@
+{
+    "write_new_quote": "Write new quote",
+    "search_by": "Search by",
+    "search_hint": "Enter @ to search movies, Enter # to search quotes",
+    "write_a_comment": "Write a comment",
+    "post": "Post",
+    "choose_movie": "Choose movie",
+    "modal_create_title": "Write New Quote",
+    "modal_view_title": "View Quote",
+    "modal_edit_title": "Edit Quote",
+    "change_photo": "Change photo"
+    "title": "Newsfeed"
+}

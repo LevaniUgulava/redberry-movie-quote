@@ -5,8 +5,10 @@ import TagsInput from "./components/TagsInput/TagsInput.tsx";
 import ImageInput from "./components/ImageInput/ImageInput.tsx";
 import {PageProps} from "@/types/PagePropsTypes.ts";
 import {store, update} from "@/actions/App/Http/Controllers/MovieController.ts";
+import {useTranslation} from "react-i18next";
 
 function MovieForm({editingMovie, isEditOpen}: { editingMovie: any, isEditOpen: boolean }) {
+    const {t} = useTranslation(["movies", "common"]);
     const [genres, setGenres] = useState<string[]>(isEditOpen ? editingMovie.genres : []);
     const [image, setImage] = useState<File | null>(isEditOpen ? editingMovie.image : null);
     const {auth} = usePage<PageProps>().props
@@ -32,7 +34,7 @@ function MovieForm({editingMovie, isEditOpen}: { editingMovie: any, isEditOpen: 
 
             <button
                 className="bg-main-red rounded-[4.8px] text-white text-xl font-normal leading-[150%] my-5 py-2.25 px-4.25">
-                {isEditOpen ? "Edit" : "Add"} movie
+                {isEditOpen ? t("edit_movie") : t("add_movie")}
             </button>
         </Form>
     </div>

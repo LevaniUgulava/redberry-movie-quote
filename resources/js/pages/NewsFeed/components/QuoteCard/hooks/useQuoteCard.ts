@@ -5,42 +5,24 @@ import {useEcho} from "@laravel/echo-react";
 import useComment from "@/pages/NewsFeed/components/QuoteCard/hooks/useComment.ts";
 import useLike from "@/pages/NewsFeed/components/QuoteCard/hooks/useLike.ts";
 import {QuoteCardData} from "@/pages/NewsFeed/components/QuoteCard/QuoteCardTypes.ts";
+import useCommentLikeSocket from "@/hooks/useCommentLikeSocket.ts";
 
 function useQuoteCard(quote: QuoteCardData) {
     const {auth} = usePage<PageProps>().props
 
 
     const {
-        commentsQuantity,
-        comments,
-        submit,
-        setCommentsQuantity,
-        setComments,
-        data,
-        processing,
-        setData,
-    } = useComment(quote.id, quote.comments, quote.comment_quantity)
+        comments, setComments,
+        commentsQuantity, setCommentsQuantity,
+        reactionQuantity, setReactionQuantity
+    } = useCommentLikeSocket(quote.id, auth.id, quote.comments, quote.comment_quantity, quote.reaction_quantity)
 
-    const {
-        handleLike,
-        reactionQuantity,
-        setReactionQuantity,
-        liked
-    } = useLike(quote.id, quote.is_liked, quote.reaction_quantity)
-
-
-    useEcho(`quote.${quote.id}`,
-        ['.commentAdded', '.LikeUpdated'], (e) => {
-            if (e.comment && e.comment.user.id !== auth.id) {
-                setCommentsQuantity((prev) => prev + 1);
-                setComments((prev) => [e.comment, ...prev.slice(0, 1)]);
-            }
-            if (e.likeUpdated && e.likeUpdated.user !== auth.id) {
-                setReactionQuantity((prev) => e.likeUpdated.isLiked ? prev + 1 : prev - 1);
-            }
-        })
-
-
+    const { submit, data, processing, setData } = useComment(
+        quote.id, comments, setComments, commentsQuantity, setCommentsQuantity
+    )
+    const { handleLike, liked } = useLike(
+        quote.id, quote.is_liked, reactionQuantity, setReactionQuantity
+    )
     return {
         auth,
         comments,

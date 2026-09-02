@@ -1,6 +1,7 @@
 import CheckMail from "@/components/ui/icons/Message/CheckIcon";
 import { MouseEvent, ReactNode} from "react";
 import {MessageProps} from "@/types/MessageTypes.ts";
+import {useTranslation} from "react-i18next";
 
 
 function Message({
@@ -11,6 +12,7 @@ function Message({
     skip = false,
     onClick,
 }: MessageProps) {
+    const {t} = useTranslation("auth");
     return (
         <div className="flex flex-col justify-center items-center gap-10 w-96.25">
             <div className="flex justify-center">{icon}</div>
@@ -26,11 +28,11 @@ function Message({
             >
                 {button}
             </button>
-            {skip && (
-                <span className="text-gray-600 text-base leading-[150%]">
-                    Skip, I’ll confirm later
-                </span>
-            )}
+{skip && (
+                    <span className="text-gray-600 text-base leading-[150%]">
+                        {t("skip_confirm")}
+                    </span>
+                )}
         </div>
     );
 }

@@ -2,31 +2,28 @@ import useLanding from "@/pages/Landing/hooks/useLanding";
 import HyphenIcon from "@/pages/Landing/icons/HyphenIcon";
 import AuthContent from "@/pages/Auth/AuthContent/AuthContent";
 import {LandingQuote} from "@/pages/Landing/LandingTypes.ts";
+import {useTranslation} from "react-i18next";
 
 function Landing({ currentModal }: { currentModal: string }) {
-    const {scrollY,quotes} = useLanding();
-
+    const {scrollY, quotes} = useLanding();
+    const {t} = useTranslation(["landing", "common"]);
     return (
         <div className="relative w-full bg-[#11101A]">
             <div className="h-screen gap-4 w-full overflow-hidden  text-white flex flex-col items-center justify-center text-4xl">
                 <div className="text-main-beige font-bold text-6xl max-lg:text-2xl
                  max-w-175 max-lg:max-w-70.25 w-full flex justify-center items-center mx-auto text-center">
-                    Find any quote in millions of movie lines
+                    {t("find_any_quote")}
                 </div>
                 <button className="cursor-pointer bg-main-red rounded-lg text-xl max-lg:text-base text-white font-normal px-4.25 py-2.25">
-                    Get started
+                    {t("get_started")}
                 </button>
             </div>
-
             {quotes.map((item:LandingQuote, index:number) => {
                 const translateY = scrollY;
                 const currentSectionIndex = index + 1;
-
                 const textMoved =
                     translateY - currentSectionIndex * window.innerHeight;
-
                 const opacity = Math.max(0, 1 - textMoved / 800);
-
                 return (
                     <div
                         key={index}
@@ -38,7 +35,6 @@ function Landing({ currentModal }: { currentModal: string }) {
                             alt={`image ${index}`}
                             className="absolute inset-0 w-full h-full object-cover"
                         />
-
                         <div
                             className="absolute inset-x-0 top-90 gap-2 left-32 flex justify-start px-10 z-10 max-lg:left- max-lg:px-2"
                             style={{
@@ -67,5 +63,4 @@ function Landing({ currentModal }: { currentModal: string }) {
         </div>
     );
 }
-
 export default Landing;

@@ -33,5 +33,6 @@ export interface InputFieldProps {
         reset: (name: string) => void;
     };
     isOpen: boolean
-    handleOpen: (type: string) => void
+    handleOpen: (type: string) => void,
+    value?:string
 }
