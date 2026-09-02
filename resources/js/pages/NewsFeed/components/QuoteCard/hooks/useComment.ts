@@ -29,7 +29,7 @@ function useComment(id: number, quoteComments: Comment[], comment_quantity: numb
         setCommentsQuantity((prev) => prev + 1)
 
         setData('comment', comment);
-        post(store({id: id}).url, {
+        post(store({quote: id}).url, {
             onSuccess: () => setComment(''),
             onError: handleError,
         });
