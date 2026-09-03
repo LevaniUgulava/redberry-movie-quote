@@ -58,7 +58,7 @@ function DesktopProfile({
                                     isOpen={showField['email']}
                                     handleOpen={handleOpen}
                                 />
-                                <InputField
+                                {!auth.isGoogleAuthenticate && <InputField
                                     label={t("password")}
                                     name="password"
                                     type="password"
@@ -66,7 +66,7 @@ function DesktopProfile({
                                     form={form}
                                     isOpen={showField['password']}
                                     handleOpen={handleOpen}
-                                />
+                                />}
                             </div>
                         </div>
                         {isAnyFieldOpen &&
