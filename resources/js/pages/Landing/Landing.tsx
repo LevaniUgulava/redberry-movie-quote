@@ -3,12 +3,15 @@ import HyphenIcon from "@/pages/Landing/icons/HyphenIcon";
 import AuthContent from "@/pages/Auth/AuthContent/AuthContent";
 import {LandingQuote} from "@/pages/Landing/LandingTypes.ts";
 import {useTranslation} from "react-i18next";
+import {Head} from "@inertiajs/react";
 
 function Landing({ currentModal }: { currentModal: string }) {
     const {scrollY, quotes} = useLanding();
     const {t} = useTranslation(["landing", "common"]);
     return (
         <div className="relative w-full bg-[#11101A]">
+            <Head title={t('title')}/>
+
             <div className="h-screen gap-4 w-full overflow-hidden  text-white flex flex-col items-center justify-center text-4xl">
                 <div className="text-main-beige font-bold text-6xl max-lg:text-2xl
                  max-w-175 max-lg:max-w-70.25 w-full flex justify-center items-center mx-auto text-center">
