@@ -17,6 +17,7 @@ function Buttons() {
         isOpen,
         handleOpenAndClose,
         isSearchIconVisible,
+        isLangVisible
     } = useButtons();
 
     return (
@@ -44,9 +45,9 @@ function Buttons() {
                 </NotificationModal>
             </div>}
 
-            <div className='max-lg:hidden'>
+            {isLangVisible && <div>
                 <Lang/>
-            </div>
+            </div>}
 
             {!isAuth ? <>
                 <LocaleLink
