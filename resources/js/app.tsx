@@ -41,7 +41,8 @@ createInertiaApp({
         setUrlDefaults({
             lang: locale
         });
-        i18n.changeLanguage(locale as string);
-        createRoot(el).render(<App {...props} />);
+        i18n.changeLanguage(locale as string).then(() => {
+            createRoot(el).render(<App {...props} />);
+        });
     },
 });
