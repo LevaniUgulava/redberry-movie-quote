@@ -3,9 +3,9 @@ import {
     DrawerContent,
     DrawerTrigger,
 } from "@/components/ui/drawer"
-import { ReactNode, useState } from "react";
+import {ReactNode, useState} from "react";
 
-function MobileSidebarWrapper({children, button}: { children: ReactNode, button: ReactNode }) {
+function MobileSidebarWrapper({children, button}: { children: (setOpen: (open: boolean) => void) => ReactNode, button: ReactNode }) {
     const [open, setOpen] = useState(false);
 
     return (
@@ -13,9 +13,8 @@ function MobileSidebarWrapper({children, button}: { children: ReactNode, button:
             <DrawerTrigger>{button}</DrawerTrigger>
             <DrawerContent
                 className="bg-[#11101A] border-0! p-10"
-                onClick={() => setOpen(false)}
             >
-                {children}
+                {children(setOpen)}
             </DrawerContent>
         </Drawer>
     )
