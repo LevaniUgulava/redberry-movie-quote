@@ -28,7 +28,7 @@ function NotificationModal({
                 align="end"
                 alignOffset={-235}
                 sideOffset={8}
-                className="w-240.25 min-h-100 z-100 bg-black p-10"
+                className="w-240.25 min-h-100 z-100 bg-black p-10 max-lg:w-screen"
             >
                 <PopoverPrimitive.Arrow width={20} height={20} className="fill-black"/>
                 <div className="flex items-center justify-between">
