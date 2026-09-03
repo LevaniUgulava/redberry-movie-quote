@@ -16,7 +16,7 @@ function MobileSidebar({setOpen}: MobileSiebarProps) {
         </div>
         <div
             className="flex items-center justify-between gap-4 bg-[#161320] rounded-xl border border-white/10 px-4 py-3">
-            <Lang/>
+            <Lang isSidebar/>
             <button onClick={handleLogout}
                 className="flex items-center gap-2 text-red-500 border border-red-500/50 rounded-lg px-4 py-2 text-sm font-medium hover:bg-red-500/10 transition">
                 <LogOut className='w-4 h-4'/>
