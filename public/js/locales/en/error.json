@@ -1,0 +1,9 @@
+{
+    "page_title_403": "403 - Forbidden",
+    "page_title_404": "404 - Not Found",
+    "error_403_title": "You shall not pass!",
+    "error_403_desc": "Sorry, but you don't have permission to access this page",
+    "error_404_title": "Whoops!",
+    "error_404_desc": "We can't see the page you are looking for",
+    "return_home": "Return home"
+}
