@@ -3,13 +3,12 @@ import SearchIcon from "@/components/ui/NewsFeed/SearchIcon.tsx";
 import {cn} from "@/lib/utils.ts";
 import useHeader from "@/pages/NewsFeed/components/Header/hooks/useHeader.ts";
 import QuoteModal from "@/pages/NewsFeed/components/Quote/QuoteModal/QuoteModal.tsx";
-import {Link} from "@inertiajs/react";
 import LocaleLink from "@/components/LocaleLink.tsx";
 import {useTranslation} from "react-i18next";
 
 function Header() {
-  
-const {value, isHovered, isOpen, setIsHovered, setValue, setIsOpen, handleClose, openModal, currentModal} = useHeader();
+
+const {value, isHovered, isOpen, setIsHovered, setValue, setIsOpen, handleClose, openModal} = useHeader();
 const {t} = useTranslation("newsfeed");
 
 
