@@ -5,9 +5,11 @@ import {SendIcon} from "lucide-react";
 import useQuoteCard from "@/pages/NewsFeed/components/QuoteCard/hooks/useQuoteCard.ts";
 import FillReactionIcon from "@/components/ui/NewsFeed/Quotes/FillReactionIcon.tsx";
 import {cn} from "@/lib/utils.ts";
+import {useTranslation} from "react-i18next";
 
 
 function QuoteCard({quote}: QuoteCardProps) {
+    const {t} = useTranslation("newsfeed");
     const {
         auth,
         submit,
@@ -74,7 +76,7 @@ function QuoteCard({quote}: QuoteCardProps) {
                             onChange={e => setComment(e.target.value)}
                             name="comment"
                             className="w-full bg-[#24222F] text-[#CED4DA] h-13 max-lg:h-10 rounded-[10px] pl-5 pr-14 text-xl max-lg:text-base leading-[150%] focus:outline-none"
-                            placeholder="Write a comment"
+                            placeholder={t("write_a_comment")}
                         />
                         {comment && (
                             <button

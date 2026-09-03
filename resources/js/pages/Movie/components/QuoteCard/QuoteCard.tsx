@@ -5,11 +5,13 @@ import PopOverWrapper from "@/components/wrapper/PopOver/PopOverWrapper.tsx";
 import PopOverContent from "@/pages/Movie/components/PopOverContent/PopOverContent.tsx";
 
 import {QuoteCardData} from "@/pages/NewsFeed/components/QuoteCard/QuoteCardTypes.ts";
-import useIsMobile from "@/hooks/useIsMobile.ts";
+import FillReactionIcon from "@/components/ui/NewsFeed/Quotes/FillReactionIcon.tsx";
+import useQuoteCard from "@/pages/Movie/components/QuoteCard/hooks/useQuoteCard.ts";
 
 function QuoteCard({quote, movie_id}: { quote: QuoteCardData, movie_id: number }) {
 
-    const isMobile = useIsMobile();
+    const {isMobile, handleLike, liked, commentsQuantity, reactionQuantity} = useQuoteCard(quote);
+
     return <div className="bg-[#11101A] rounded-xl p-5 flex flex-col gap-5">
         <div className='flex max-lg:flex-col gap-5 relative'>
             <div>
@@ -30,12 +32,16 @@ function QuoteCard({quote, movie_id}: { quote: QuoteCardData, movie_id: number }
             <div className="flex gap-6 items-center">
                 <div className="flex gap-4 items-center">
                     <CommentIcon/>
-                    <span className="text-white text-xl leading-[150%]">{quote.comment_quantity}</span>
+                    <span className="text-white text-xl leading-[150%]">{commentsQuantity}</span>
                 </div>
-                <div className="flex gap-4 items-center">
-                    <ReactionIcon/>
-                    <span className="text-white text-xl leading-[150%]">{quote.reaction_quantity}</span>
-                </div>
+                <button
+                    onClick={handleLike}
+                    className="flex gap-4 items-center"
+                >
+                    {liked ? <FillReactionIcon/> : <ReactionIcon/>}
+                    <span className="text-white text-xl leading-[150%]">{reactionQuantity}</span>
+
+                </button>
             </div>
             {isMobile && <PopOverWrapper body={<PopOverContent id={quote.id} movie_id={movie_id}/>}>
                 <DotsIcon/>

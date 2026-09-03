@@ -4,17 +4,19 @@ import Input from "@/components/ui/Auth/Input/Input.tsx";
 import Buttons from "@/components/ui/Auth/Buttons/Buttons.tsx";
 import BackIcon from "@/components/ui/icons/BackIcon.tsx";
 import {resetPassword} from "@/actions/App/Http/Controllers/PasswordResetController.ts";
+import {useTranslation} from "react-i18next";
 
 function ResetForm() {
     const {url} = usePage();
+    const {t} = useTranslation("auth");
     const params = new URLSearchParams(url.split('?')[1]);
     const email = params.get('email');
     const token = params.get('token');
     return (
         <div className="flex flex-col justify-center items-center w-full">
             <Header
-                title="Create new password"
-                subtitle="Your new password must be different from previous used passwords"
+                title={t("reset_title")}
+                subtitle={t("reset_subtitle")}
             />
             <Form className="w-full" action={resetPassword()}
                   transform={(data) => ({
@@ -24,8 +26,8 @@ function ResetForm() {
                     <div>
                         <Input
                             name="password"
-                            label="Password"
-                            placeholder="At least 8 & max.15 lower case characters"
+                            label={t("password")}
+                            placeholder={t("register_password_placeholder")}
                             onChange={() => validate("password")}
                             error={errors.password}
                             isValid={valid("password")}
@@ -35,15 +37,15 @@ function ResetForm() {
                         />
                         <Input
                             name="password_confirmation"
-                            label="Confirm password"
-                            placeholder="Confirm password"
+                            label={t("confirm_password")}
+                            placeholder={t("confirm_password_placeholder")}
                             type="password"
                             onChange={() => validate("password_confirmation")}
                             error={errors.password_confirmation}
                             isValid={valid("password_confirmation")}
                             reset={reset}
                         />
-                        <Buttons showGoogle={false} label="Reset password"/>
+                        <Buttons showGoogle={false} label={t("reset_button")}/>
                     </div>
                 )}
             </Form>
@@ -53,7 +55,7 @@ function ResetForm() {
                     href="/?modal=login"
                     className=" text-gray-600 text-base leading-[150%]"
                 >
-                    Back to log in
+                    {t("back_to_login")}
                 </Link>
             </div>
         </div>

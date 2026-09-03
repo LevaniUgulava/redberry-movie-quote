@@ -1,14 +1,16 @@
 import Header from "@/pages/NewsFeed/components/Header/Header.tsx";
 import QuoteCard from "@/pages/NewsFeed/components/QuoteCard/QuoteCard.tsx";
-import {InfiniteScroll, usePage} from "@inertiajs/react";
+import {Head, InfiniteScroll, usePage} from "@inertiajs/react";
 import {PageProps} from "@/types/PagePropsTypes.ts";
 import {QuoteCardData} from "@/pages/NewsFeed/components/QuoteCard/QuoteCardTypes.ts";
+import {useTranslation} from "react-i18next";
 
 function NewsFeed() {
-
+    const {t} = useTranslation("newsfeed");
     const {quotes} = usePage<PageProps<{ quotes: { data: QuoteCardData[] } }>>().props
 
-    return <div className="w-full max-w-234.5 mx-auto  overflow-y-auto max-h-screen">
+    return <div className="w-full max-w-234.5 mx-auto overflow-y-auto max-h-screen">
+        <Head title={t("title")}/>
         <Header/>
         <div className="mt-4 flex flex-col gap-5">
             <InfiniteScroll data="quotes" buffer={500}>
@@ -17,9 +19,7 @@ function NewsFeed() {
                         <QuoteCard key={e.id} quote={e}/>
                     ))}
                 </div>
-
             </InfiniteScroll>
-
         </div>
     </div>
 }

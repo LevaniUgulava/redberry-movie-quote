@@ -4,9 +4,11 @@ import SelectIcon from "@/components/ui/icons/Quote/SelectIcon.tsx";
 import {useState} from "react";
 import {movie} from "@/pages/Movies/MoviesTypes.ts";
 import {SelectMovieProps} from "@/pages/NewsFeed/components/Quote/QuoteForm/QuoteFormTypes.ts";
+import {useTranslation} from "react-i18next";
 
 function SelectMovie({movies, selectedMovie, onSelect, error}: SelectMovieProps) {
     const [isSelectOpen, setIsSelectOpen] = useState(false);
+    const {t} = useTranslation("newsfeed");
 
     return <div className='relative'>
         <div onClick={() => setIsSelectOpen((prev) => !prev)}
@@ -14,7 +16,7 @@ function SelectMovie({movies, selectedMovie, onSelect, error}: SelectMovieProps)
             <div className="flex gap-4 items-center">
                 <FilmIcon/>
                 <span className="text-white text-2xl max-lg:text-base font-normal">
-                    {selectedMovie ? `${selectedMovie.title} - ${selectedMovie.year}` : "Choose movie"}
+                    {selectedMovie ? `${selectedMovie.title} - ${selectedMovie.year}` : t("choose_movie")}
                 </span>
             </div>
             <div className={cn("transition-transform duration-200", {'rotate-180': isSelectOpen})}>

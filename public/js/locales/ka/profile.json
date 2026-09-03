@@ -1,0 +1,20 @@
+{
+    "my_profile": "ჩემი პროფილი",
+    "username": "მომხმარებლის სახელი",
+    "email": "ელფოსტა",
+    "password": "პაროლი",
+    "enter_new_username": "ახალი მომხმარებლის სახელის შეყვანა",
+    "enter_new_email": "ახალი ელფოსტის შეყვანა",
+    "enter_new_password": "ახალი პაროლის შეყვანა",
+    "passwords_should_contain": "პაროლი უნდა შეიცავდეს:",
+    "char_8_more": "8 ან მეტი სიმბოლო",
+    "char_1_lowercase": "1 პატარა ასო",
+    "new_field": "ახალი {{field}}",
+    "confirm_new_field": "ახალი {{field}}-ის დადასტურება",
+    "enter_new_field": "ახალი {{field}}-ის შეყვანა",
+    "confirm_new_field_again": "ახალი {{field}}-ის გამეორება",
+    "confirm_changes": "დარწმუნებული ხართ ცვლილებების შეტანაში?",
+    "changes_updated": "ცვლილებები წარმატებით განახლდა",
+    "upload_new_photo": "ახალი ფოტოს ატვირთვა"
+    "title": "პროფილი"
+}

@@ -1,25 +1,29 @@
-import {useHttp} from "@inertiajs/react";
-import {store as storeLike} from "@/actions/App/Http/Controllers/LikeController.ts";
-import {useState} from "react";
+import { useHttp } from "@inertiajs/react";
+import { store as storeLike } from "@/actions/App/Http/Controllers/LikeController.ts";
+import { useState, Dispatch, SetStateAction } from "react";
 
-function useLike(id: number, isLiked: boolean|undefined, reaction_quantity: number) {
+function useLike(
+    id: number,
+    isLiked: boolean | undefined,
+    reactionQuantity: number,
+    setReactionQuantity: Dispatch<SetStateAction<number>>
+) {
     const [liked, setLiked] = useState(isLiked);
-    const [reactionQuantity, setReactionQuantity] = useState(reaction_quantity);
-    const {post} = useHttp();
+    const { post } = useHttp();
 
     const handleLike = () => {
         setLiked((prev) => !prev);
         setReactionQuantity((prev) => liked ? prev - 1 : prev + 1);
-
-        post(storeLike({quote: id}).url, {
+        post(storeLike({ quote: id }).url, {
+            preserveScroll: true,
             onError: () => {
                 setLiked((prev) => !prev);
                 setReactionQuantity((prev) => liked ? prev + 1 : prev - 1);
             }
         });
     };
-    return {handleLike, reactionQuantity, setReactionQuantity, liked}
 
+    return { handleLike, reactionQuantity, liked }
 }
 
-export default useLike;
+export default useLike;;

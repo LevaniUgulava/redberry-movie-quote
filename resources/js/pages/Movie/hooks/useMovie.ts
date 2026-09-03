@@ -1,6 +1,7 @@
 import {router, usePage} from "@inertiajs/react";
 import {QuoteCardData} from "@/pages/NewsFeed/components/QuoteCard/QuoteCardTypes.ts";
 import {destroy} from "@/actions/App/Http/Controllers/MovieController.ts";
+import {useTranslation} from "react-i18next";
 
 function useMovie() {
     const {movie, currentModal, locale, quote} = usePage<{
@@ -8,8 +9,9 @@ function useMovie() {
         movie: any,
         quote: QuoteCardData
     }>().props
+    const {t} = useTranslation("common");
     const handleDelete = () => {
-        if (confirm('Do you want to delete?')) {
+        if (confirm(t("confirm_delete"))) {
             router.delete(destroy({movie: movie}).url);
         }
     }
