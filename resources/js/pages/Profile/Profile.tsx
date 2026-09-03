@@ -34,7 +34,7 @@ function Profile() {
 
 
     return (
-        <div className="flex w-full flex-col pl-45 max-2xl:pl-30 max-xl:pl-18 max-lg:pl-0 gap-10">
+        <div className="flex w-full flex-col pl-45 max-2xl:pl-30 max-xl:pl-18 max-lg:pl-0 gap-10 lg:mt-10">
             <Head title={t("title")}/>
             {isMobile ? (
                 <MobileProfile {...mobileProps} />
