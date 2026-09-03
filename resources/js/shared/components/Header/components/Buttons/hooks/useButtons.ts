@@ -8,13 +8,16 @@ import {useTranslation} from "react-i18next";
 import {logout} from "@/actions/App/Http/Controllers/AuthController.ts";
 
 function useButtons() {
-    const {auth, notificationsQuantity, notifications, url, props} = usePage<PageProps & {
+    const {props, url} = usePage<PageProps & {
         notificationsQuantity: number,
         notifications: NotificationItem[]
     }>();
 
+    const {auth, notificationsQuantity, notifications,locale} = props;
+
     const isAuth = auth !== null;
-    const isSearchIconVisible = url === `/${props.locale}/newsfeed`;
+    const isLangVisible=url === `/${locale}`
+    const isSearchIconVisible = url === `/${locale}/newsfeed`;
     const {t} = useTranslation("header");
 
     const [isNotificationsLoading, setIsNotificationsLoading] = useState(false);
@@ -71,6 +74,7 @@ function useButtons() {
         isOpen,
         handleOpenAndClose,
         isSearchIconVisible,
+        isLangVisible
     };
 }
 
