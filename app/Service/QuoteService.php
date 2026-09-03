@@ -6,8 +6,8 @@ use App\Http\Resources\Movie\MovieResource;
 use App\Http\Resources\Quote\QuoteResource;
 use App\Models\Movie;
 use App\Models\Quote;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\DB;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
@@ -26,11 +26,11 @@ class QuoteService
                 $query->latest()->limit(2);
             },
             'comments.user:id,username',
-            'likes'
+            'likes',
         ])->withCount(['comments', 'likes'])
             ->allowedFilters(
                 AllowedFilter::scope('search')
-            )->get();
+            )->paginate(2);
 
         return [
             'currentModal' => $modal,
@@ -51,7 +51,7 @@ class QuoteService
                 'quote' => [
                     'ka' => $data['ka_quote'],
                     'en' => $data['en_quote'],
-                ]
+                ],
             ]);
 
             $quote->addMediaFromRequest('image')->toMediaCollection('quote');
@@ -67,7 +67,7 @@ class QuoteService
             'quote' => [
                 'en' => $data['en_quote'],
                 'ka' => $data['ka_quote'],
-            ]
+            ],
         ]);
 
         if ($image) {
@@ -77,5 +77,4 @@ class QuoteService
 
         return $quote;
     }
-
 }

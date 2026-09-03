@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults, validateParameters } from './../../wayfinder'
 /**
 * @see \App\Http\Controllers\LikeController::store
-* @see app/Http/Controllers/LikeController.php:19
+* @see app/Http/Controllers/LikeController.php:15
 * @param lang - Default: '$lang'
 * @route '/{lang?}/like/{quote}'
 */
@@ -17,7 +17,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\LikeController::store
-* @see app/Http/Controllers/LikeController.php:19
+* @see app/Http/Controllers/LikeController.php:15
 * @param lang - Default: '$lang'
 * @route '/{lang?}/like/{quote}'
 */
@@ -50,7 +50,7 @@ store.url = (args: { lang?: string | number, quote: number | { id: number } } | 
 
 /**
 * @see \App\Http\Controllers\LikeController::store
-* @see app/Http/Controllers/LikeController.php:19
+* @see app/Http/Controllers/LikeController.php:15
 * @param lang - Default: '$lang'
 * @route '/{lang?}/like/{quote}'
 */

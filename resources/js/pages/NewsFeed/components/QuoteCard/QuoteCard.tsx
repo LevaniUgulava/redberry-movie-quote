@@ -15,9 +15,9 @@ function QuoteCard({quote}: QuoteCardProps) {
         submit,
         commentsQuantity,
         comments,
-        data,
+        comment,
         processing,
-        setData,
+        setComment,
         reactionQuantity,
         handleLike,
         liked
@@ -72,13 +72,13 @@ function QuoteCard({quote}: QuoteCardProps) {
                     <form onSubmit={submit} className='relative w-full'>
                         <input
                             type="text"
-                            value={data.comment}
-                            onChange={e => setData('comment', e.target.value)}
+                            value={comment}
+                            onChange={e => setComment(e.target.value)}
                             name="comment"
                             className="w-full bg-[#24222F] text-[#CED4DA] h-13 max-lg:h-10 rounded-[10px] pl-5 pr-14 text-xl max-lg:text-base leading-[150%] focus:outline-none"
                             placeholder={t("write_a_comment")}
                         />
-                        {data.comment && (
+                        {comment && (
                             <button
                                 type="submit"
                                 disabled={processing}

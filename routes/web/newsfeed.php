@@ -13,6 +13,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
             Route::delete('/delete/{quote}', [QuoteController::class, 'destroy'])->name('destroy');
         });
     });
-    Route::post('/comment/{id}', [CommentController::class, 'store'])->name('comment.store');
+    Route::post('/comment/{quote}', [CommentController::class, 'store'])->name('comment.store');
     Route::post('/like/{quote}', [LikeController::class, 'store'])->name('like.store');
 });

@@ -1,4 +1,4 @@
-import { useForm, usePage } from "@inertiajs/react";
+import { useHttp, usePage } from "@inertiajs/react";
 import { Dispatch, SetStateAction } from "react";
 import { store } from "@/actions/App/Http/Controllers/CommentController.ts";
 import { Comment } from "@/pages/NewsFeed/components/QuoteCard/QuoteCardTypes.ts";
@@ -13,9 +13,7 @@ function useComment(
 ) {
     const { auth } = usePage<PageProps>().props
 
-    const { data, setData, post, processing, reset } = useForm({
-        comment: '',
-    });
+    const { data, setData, post, processing } = useHttp({ comment: '' });
 
     const submit = (e: any) => {
         e.preventDefault();
@@ -32,10 +30,8 @@ function useComment(
             ]
         );
         setCommentsQuantity((prev) => prev + 1)
-
-        post(store({ id: id }).url, {
-            preserveScroll: true,
-            onSuccess: () => reset('comment'),
+        post(store({ quote: id }).url, {
+            onSuccess: () => setData('comment', ''),
             onError: handleError,
         });
     };
@@ -46,10 +42,9 @@ function useComment(
     };
 
     return {
-        comments, commentsQuantity, submit,
-        data,
+        comments, commentsQuantity, submit, setCommentsQuantity, setComments,
+        data, setData,
         processing,
-        setData,
     }
 }
 

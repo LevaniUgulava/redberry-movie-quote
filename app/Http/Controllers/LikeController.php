@@ -5,18 +5,14 @@ namespace App\Http\Controllers;
 use App\Events\LikeUpdated;
 use App\Models\Quote;
 use App\Service\NotificationService;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 
 class LikeController extends Controller
 {
-    function __construct(public NotificationService $notificationService)
-    {
+    public function __construct(public NotificationService $notificationService) {}
 
-    }
-
-    public function store(Quote $quote): RedirectResponse
+    public function store(Quote $quote): JsonResponse
     {
         $user = Auth::user();
 
@@ -34,7 +30,6 @@ class LikeController extends Controller
             $this->notificationService->store($user, $receiver_id, 'like');
         }
 
-        return redirect()->back();
-
+        return response()->json(['liked' => $isLiked]);
     }
 }

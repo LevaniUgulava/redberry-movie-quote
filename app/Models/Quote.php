@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Translatable\Attributes\Translatable;
@@ -18,13 +18,12 @@ use Spatie\Translatable\HasTranslations;
 #[Translatable('quote')]
 class Quote extends Model implements HasMedia
 {
-    use InteractsWithMedia, HasTranslations;
-
+    use HasFactory, HasTranslations,InteractsWithMedia;
 
     protected function casts(): array
     {
         return [
-            'quote' => 'json'
+            'quote' => 'json',
         ];
     }
 

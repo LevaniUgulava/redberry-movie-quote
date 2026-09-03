@@ -1,31 +1,31 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults, validateParameters } from './../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\CommentController::store
-* @see app/Http/Controllers/CommentController.php:22
+* @see app/Http/Controllers/CommentController.php:16
 * @param lang - Default: '$lang'
-* @route '/{lang?}/comment/{id}'
+* @route '/{lang?}/comment/{quote}'
 */
-export const store = (args: { lang?: string | number, id: string | number } | [lang: string | number, id: string | number ], options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+export const store = (args: { lang?: string | number, quote: number | { id: number } } | [lang: string | number, quote: number | { id: number } ], options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: store.url(args, options),
     method: 'post',
 })
 
 store.definition = {
     methods: ["post"],
-    url: '/{lang?}/comment/{id}',
+    url: '/{lang?}/comment/{quote}',
 } satisfies RouteDefinition<["post"]>
 
 /**
 * @see \App\Http\Controllers\CommentController::store
-* @see app/Http/Controllers/CommentController.php:22
+* @see app/Http/Controllers/CommentController.php:16
 * @param lang - Default: '$lang'
-* @route '/{lang?}/comment/{id}'
+* @route '/{lang?}/comment/{quote}'
 */
-store.url = (args: { lang?: string | number, id: string | number } | [lang: string | number, id: string | number ], options?: RouteQueryOptions) => {
+store.url = (args: { lang?: string | number, quote: number | { id: number } } | [lang: string | number, quote: number | { id: number } ], options?: RouteQueryOptions) => {
     if (Array.isArray(args)) {
         args = {
             lang: args[0],
-            id: args[1],
+            quote: args[1],
         }
     }
 
@@ -37,22 +37,24 @@ store.url = (args: { lang?: string | number, id: string | number } | [lang: stri
 
     const parsedArgs = {
         lang: args.lang ?? '$lang',
-        id: args.id,
+        quote: typeof args.quote === 'object'
+        ? args.quote.id
+        : args.quote,
     }
 
     return store.definition.url
             .replace('{lang?}', parsedArgs.lang?.toString() ?? '')
-            .replace('{id}', parsedArgs.id.toString())
+            .replace('{quote}', parsedArgs.quote.toString())
             .replace(/\/+$/, '') + queryParams(options)
 }
 
 /**
 * @see \App\Http\Controllers\CommentController::store
-* @see app/Http/Controllers/CommentController.php:22
+* @see app/Http/Controllers/CommentController.php:16
 * @param lang - Default: '$lang'
-* @route '/{lang?}/comment/{id}'
+* @route '/{lang?}/comment/{quote}'
 */
-store.post = (args: { lang?: string | number, id: string | number } | [lang: string | number, id: string | number ], options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+store.post = (args: { lang?: string | number, quote: number | { id: number } } | [lang: string | number, quote: number | { id: number } ], options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: store.url(args, options),
     method: 'post',
 })
