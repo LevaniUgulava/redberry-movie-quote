@@ -15,7 +15,7 @@ configureEcho({
 const APP_NAME = "Movie Quotes";
 
 createInertiaApp({
-    title: (title) => `${title} - ${APP_NAME}`,
+    title: (title) => /^\d{3}\s-/.test(title) ? title : `${title} - ${APP_NAME}`,
 
     resolve: (name) => {
         const pages = import.meta.glob<PageComponent>("./pages/**/*.tsx", {
@@ -23,11 +23,14 @@ createInertiaApp({
         });
         const page = pages[`./pages/${name}.tsx`];
 
+
         if (name === 'Landing/Landing') {
             page.default.layout = (page: ReactNode) => (
                 <AppLayout>{page}</AppLayout>
             );
-        }else{
+        } else if (name === 'Error/ErrorPage') {
+            page.default.layout = undefined;
+        } else {
             page.default.layout = (page: ReactNode) => (
                 <AuthLayout>{page}</AuthLayout>
             );
