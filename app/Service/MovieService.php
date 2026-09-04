@@ -26,7 +26,7 @@ class MovieService
             ->allowedFilters(
                 AllowedFilter::scope('search')
             )
-            ->get();
+            ->paginate(9);
 
         return [
             'currentModal' => $data['modal'],

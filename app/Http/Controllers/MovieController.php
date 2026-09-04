@@ -20,10 +20,16 @@ class MovieController extends Controller
 
     public function index(Request $request): Response
     {
-        return Inertia::render('Movies/Movies', $this->movieService->index([
+        $data = $this->movieService->index([
             'modal' => $request->query('modal'),
             'id' => $request->query('id'),
-        ]));
+        ]);
+
+        return Inertia::render('Movies/Movies', [
+            'currentModal' => $data['currentModal'],
+            'editingMovie' => $data['editingMovie'],
+            'movies' => Inertia::scroll(fn () => $data['movies']),
+        ]);
     }
 
     public function show(Movie $movie, Request $request): Response

@@ -7,7 +7,7 @@ import useInertiaLoading from "@/hooks/useInertiaLoading.ts";
 
 import useMovies from "@/pages/Movies/hooks/useMovies.ts";
 import LocaleLink from "@/components/LocaleLink.tsx";
-import {Head} from "@inertiajs/react";
+import {Head, InfiniteScroll} from "@inertiajs/react";
 import {useTranslation} from "react-i18next";
 
 function Movies() {
@@ -20,7 +20,7 @@ function Movies() {
     return <div className="max-lg:px-8.75 mt-10">
         <Head title={t("title")}/>
 
-        <Header quantity={movies.data.length}/>
+        <Header quantity={movies.total}/>
         {inertiaLoading ? (
             <div className="flex justify-center items-center py-20">
                 <Spinner/>
@@ -28,13 +28,24 @@ function Movies() {
         ) : movies.data.length === 0 ? (
             <MoviesEmptyState hasSearch={hasSearch}/>
         ) : (
-            <div className="grid grid-cols-3 max-lg:grid-cols-1 gap-10 mt-13 ">
-                {movies.data.map((movie) => (
-                    <LocaleLink href={`/movies/${movie.id}`} key={movie.id}>
-                        <MovieCard movie={movie}/>
-                    </LocaleLink>
-                ))}
-            </div>
+            <InfiniteScroll data="movies" buffer={500}>
+                {({loading}) => (
+                    <>
+                        <div className="grid grid-cols-3 max-lg:grid-cols-1 gap-10 mt-13 ">
+                            {movies.data.map((movie) => (
+                                <LocaleLink href={`/movies/${movie.id}`} key={movie.id}>
+                                    <MovieCard movie={movie}/>
+                                </LocaleLink>
+                            ))}
+                        </div>
+                        {loading && (
+                            <div className="flex justify-center items-center py-8">
+                                <Spinner/>
+                            </div>
+                        )}
+                    </>
+                )}
+            </InfiniteScroll>
         )}
         <MovieModal isOpen={isOpen} editingMovie={editingMovie} isEditOpen={isEditOpen} onClose={handleClose}/>
     </div>
