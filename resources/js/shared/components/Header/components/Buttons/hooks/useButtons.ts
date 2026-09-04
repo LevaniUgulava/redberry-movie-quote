@@ -19,7 +19,7 @@ function useButtons() {
     const isMobile = useIsMobile();
     const isAuth = auth !== null;
     const isLangVisible = !isMobile || url === `/${locale}`;
-    const isSearchIconVisible = url === `/${locale}/newsfeed`;
+    const isSearchIconVisible = url === `/${locale}/newsfeed` && isMobile;
     const {t} = useTranslation("header");
 
     const [isNotificationsLoading, setIsNotificationsLoading] = useState(false);
