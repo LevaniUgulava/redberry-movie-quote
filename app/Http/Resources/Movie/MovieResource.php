@@ -15,12 +15,13 @@ class MovieResource extends JsonResource
     public function toArray(Request $request): array
     {
         $locale = app()->getLocale();
+
         return [
-            'id'=>$this->id,
-            'title'=>$this->getTranslation("title", $locale),
+            'id' => $this->id,
+            'title' => $this->getTranslation('title', $locale),
             'year' => $this->year,
             'image' => $this->getFirstMediaUrl('movie'),
-            'commentQuantity'=>0 // not added functional
+            'commentQuantity' => $this->comments_count,
 
         ];
     }
