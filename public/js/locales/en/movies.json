@@ -10,6 +10,7 @@
     "replace_photo": "Replace photo",
     "drag_drop_image": "Drag & drop your image here or",
     "upload_image": "Upload image",
-    "choose_file": "Choose file"
+    "choose_file": "Choose file",
+    "search_placeholder": "Search movies",
     "title": "Movies"
 }
