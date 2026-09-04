@@ -12,5 +12,10 @@
     "upload_image": "Upload image",
     "choose_file": "Choose file",
     "search_placeholder": "Search movies",
+    "no_movies_found": "No movies found",
+    "no_movies_desc": "We could not find any results matching your search.",
+    "no_movies_title": "No movies yet",
+    "no_movies_add_hint": "Add your first movie to get started.",
+    "clear_search": "Clear search",
     "title": "Movies"
 }
