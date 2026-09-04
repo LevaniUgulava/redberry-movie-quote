@@ -25,6 +25,14 @@ body {
     --color-main-beige: #DDCCAA
 
 }
+* {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+    display: none;
+}
 
 @theme inline {
     --font-heading: var(--font-sans);
