@@ -13,10 +13,10 @@ function Movies() {
     return <div className="max-lg:px-8.75 mt-10">
         <Head title={t("title")}/>
 
-        <Header/>
+        <Header quantity={movies.data.length}/>
         <div className="grid grid-cols-3 max-lg:grid-cols-1 gap-10 mt-13 ">
             {movies.data.map((movie) => (
-                <LocaleLink href={`/movies/${movie.id}`}>
+                <LocaleLink href={`/movies/${movie.id}`} key={movie.id}>
                     <MovieCard movie={movie}/>
                 </LocaleLink>
             ))}
