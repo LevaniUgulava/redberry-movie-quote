@@ -8,7 +8,7 @@ import {useTranslation} from "react-i18next";
 
 function Header() {
 
-const {value, isHovered, isOpen, setIsHovered, setValue, setIsOpen, handleClose, openModal} = useHeader();
+const {value, isHovered, isOpen, setIsHovered, setValue, setIsOpen, handleSearch, handleClose, openModal} = useHeader();
 const {t} = useTranslation("newsfeed");
 
 
@@ -24,20 +24,22 @@ const {t} = useTranslation("newsfeed");
             <QuoteModal isOpen={openModal} handleClose={handleClose} modal="create" />
 
 
-            <div
-                onClick={() => !isOpen && setIsOpen(true)}
+            <form
+                onSubmit={handleSearch}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
                 className={cn("flex min-w-0 max-lg:hidden items-center gap-4 h-13 flex-1 cursor-pointer", {
                     'border-b border-[#EFEFEF]/30': isOpen,
                 })}
             >
-                <SearchIcon classname={cn("text-white", {
-                    'text-[#6C757D] ': isHovered
+                <button type="submit" className="cursor-pointer">
+                    <SearchIcon classname={cn("text-white", {
+                        'text-[#6C757D] ': isHovered
 
-                })}/>
+                    })}/>
+                </button>
                 {!isOpen ? (
-                    <span className={cn("text-white text-xl font-normal", {
+                    <span onClick={() => setIsOpen(true)} className={cn("text-white text-xl font-normal", {
                         'text-[#6C757D] ': isHovered
                     })}>{t("search_by")}</span>
                 ) : (
@@ -57,7 +59,7 @@ const {t} = useTranslation("newsfeed");
                         )}
                     </div>
                 )}
-            </div>
+            </form>
         </div>
     );
 }
