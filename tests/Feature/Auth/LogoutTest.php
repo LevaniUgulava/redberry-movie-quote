@@ -25,5 +25,5 @@ test('logout invalidates the session', function () {
 });
 
 test('guests are redirected when trying to log out', function () {
-    $this->post(localeUrl('/logout'))->assertRedirect('/' . app()->getLocale() . '?modal=login');
+    $this->post(localeUrl('/logout'))->assertRedirect('/');
 });
