@@ -14,7 +14,7 @@ function RemoveIcon() {
                     height="14"
                     transform="translate(1 1)"
                     fill="white"
-                    fill-opacity="0.01"
+                    fillOpacity="0.01"
                 />
                 <g clipPath="url(#clip1_45138_82)">
                     <path

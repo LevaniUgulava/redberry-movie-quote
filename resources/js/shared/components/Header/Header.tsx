@@ -3,8 +3,8 @@ import {usePage} from "@inertiajs/react";
 import {cn} from "@/lib/utils.ts";
 import MobileSidebarIcon from "@/components/ui/icons/Sidebar/MobileSidebarIcon.tsx";
 import MobileSidebarWrapper from "@/components/wrapper/MobileSidebarWrapper/MobileSidebarWrapper.tsx";
-import Sidebar from "@/shared/components/Sidebar/Sidebar.tsx";
 import {useTranslation} from "react-i18next";
+import MobileSidebar from "@/shared/components/Sidebar/MobileSidebar.tsx";
 
 function Header() {
     const {url, props} = usePage();
@@ -23,7 +23,7 @@ function Header() {
                 {url === `/${props.locale}` ? (
                     <span>{t("movie_quotes")}</span>
                 ) : <MobileSidebarWrapper button={<MobileSidebarIcon/>}>
-                    <Sidebar/>
+                    {(setOpen) => <MobileSidebar setOpen={setOpen}/>}
                 </MobileSidebarWrapper>}
 
             </div>

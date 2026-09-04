@@ -38,8 +38,8 @@ function ProfileView({fileInputRef, preview, setPreview, handleEdit, auth,handle
                             handleEdit={handleEdit}/>
                 <InputField label={t("email")} value='email' defaultValue={auth.email}
                             isEditable={!auth.isGoogleAuthenticate} handleEdit={handleEdit}/>
-                <InputField label={t("password")} value='password' defaultValue="••••••••••••"
-                            handleEdit={handleEdit}/>
+                {!auth.isGoogleAuthenticate && <InputField label={t("password")} value='password' defaultValue="••••••••••••"
+                             handleEdit={handleEdit}/>}
             </div>
         </div>
     );

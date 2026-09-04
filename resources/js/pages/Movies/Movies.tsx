@@ -10,7 +10,7 @@ import {useTranslation} from "react-i18next";
 function Movies() {
     const {t} = useTranslation("movies");
     const {isOpen, handleClose, movies, editingMovie, isEditOpen} = useMovies();
-    return <div className="max-lg:px-8.75">
+    return <div className="max-lg:px-8.75 mt-10">
         <Head title={t("title")}/>
 
         <Header/>

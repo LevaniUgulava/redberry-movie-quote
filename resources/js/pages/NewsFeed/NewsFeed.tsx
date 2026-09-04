@@ -9,7 +9,7 @@ function NewsFeed() {
     const {t} = useTranslation("newsfeed");
     const {quotes} = usePage<PageProps<{ quotes: { data: QuoteCardData[] } }>>().props
 
-    return <div className="w-full max-w-234.5 mx-auto overflow-y-auto max-h-screen">
+    return <div className="w-full max-w-234.5 mx-auto overflow-y-auto max-h-screen mt-10">
         <Head title={t("title")}/>
         <Header/>
         <div className="mt-4 flex flex-col gap-5">

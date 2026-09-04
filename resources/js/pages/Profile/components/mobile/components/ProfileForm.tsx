@@ -13,11 +13,11 @@ function ProfileForm({
 
     return <>
         <div className="bg-[#24222F] p-10 flex flex-col gap-10">
-            <Input onChange={onChange} value={formData[edit] || ""}
+            <Input onChange={onChange} defaultValue={formData[edit] || ""}
                    label={t("enter_new_field", {field: t(edit)})} name={edit}
                    placeholder=""/>
             {edit === "password" &&
-                <Input onChange={onChange} value={formData[`${edit}_confirmation`] || ""}
+                <Input onChange={onChange} defaultValue={formData[`${edit}_confirmation`] || ""}
                        label={t("confirm_new_field_again", {field: t(edit)})}
                        name={`${edit}_confirmation`} placeholder=""/>}
         </div>
