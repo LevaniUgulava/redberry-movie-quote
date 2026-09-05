@@ -22,6 +22,10 @@ class InertiaServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Inertia::handleExceptionsUsing(function (ExceptionResponse $response) {
+            if ($response->request->isAttemptingPrecognition()) {
+                return $response->response;
+            }
+
             return $response->render('Error/ErrorPage', [
                 'status' => $response->statusCode(),
             ]);
