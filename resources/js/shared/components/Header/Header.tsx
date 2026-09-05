@@ -7,12 +7,12 @@ import {useTranslation} from "react-i18next";
 import MobileSidebar from "@/shared/components/Sidebar/MobileSidebar.tsx";
 
 function Header() {
-    const {url, props} = usePage();
+    const {component} = usePage();
     const {t} = useTranslation("common");
-
+    const isLanding = component === "Landing/Landing"
     return (
         <div className={cn("sticky top-0 z-50 flex px-17.5 max-lg:px-8.75 py-6 justify-between bg-[#222030]", {
-            'bg-[#11101A]': url === `/${props.locale}`,
+            'bg-[#11101A]': isLanding,
         })}>
             <div
                 className=" max-lg:hidden flex items-center text-main-beige uppercase text-base leading-[150%] font-medium">
@@ -20,7 +20,7 @@ function Header() {
             </div>
             <div
                 className="hidden max-lg:flex items-center text-main-beige uppercase text-base leading-[150%] font-medium">
-                {url === `/${props.locale}` ? (
+                {isLanding ? (
                     <span>{t("movie_quotes")}</span>
                 ) : <MobileSidebarWrapper button={<MobileSidebarIcon/>}>
                     {(setOpen) => <MobileSidebar setOpen={setOpen}/>}
