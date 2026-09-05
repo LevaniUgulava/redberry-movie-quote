@@ -52,13 +52,13 @@ function Buttons() {
             {!isAuth ? <>
                 <LocaleLink
                     href="/?modal=register"
-                    className="w-fit flex justify-center  cursor-pointer rounded-sm bg-main-red px-5 py-1.75 text-base max-lg:text-sm max-lg:px-3.25  font-normal text-white leading-[150%]"
+                    className="w-fit flex items-center justify-center  cursor-pointer rounded-sm bg-main-red px-5 py-1.75 text-base max-lg:text-sm max-lg:px-3.25  font-normal text-white leading-[150%]"
                 >
                     {t('sign_up')}
                 </LocaleLink>
                 <LocaleLink
                     href="/?modal=login"
-                    className="w-fit  flex justify-center cursor-pointer rounded-sm border border-white max-lg:text-sm max-lg:px-3.25  px-5 py-1.75 text-base font-normal text-white leading-[150%]"
+                    className="w-fit  flex items-center justify-center cursor-pointer rounded-sm border border-white max-lg:text-sm max-lg:px-3.25  px-5 py-1.75 text-base font-normal text-white leading-[150%]"
                 >
                     {t('sign_in')}
                 </LocaleLink>
