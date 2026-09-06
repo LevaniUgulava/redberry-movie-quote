@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\EnsureAuthenticated;
 use App\Http\Middleware\HandleInertiaRequests;
 use App\Http\Middleware\SetLocale;
 use Illuminate\Foundation\Application;
@@ -22,6 +23,7 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
         $middleware->alias([
             'precognition' => HandlePrecognitiveRequests::class,
+            'ensure.authenticated' => EnsureAuthenticated::class,
         ]);
         $middleware->redirectGuestsTo(fn (Request $request) => '/'.($request->lang ?? app()->getLocale()).'?modal=login');
         $middleware->redirectUsersTo(fn (Request $request) => '/'.($request->lang ?? app()->getLocale()).'/newsfeed');

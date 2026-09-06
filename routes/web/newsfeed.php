@@ -1,10 +1,11 @@
 <?php
+
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\QuoteController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+Route::middleware(['ensure.authenticated', 'verified'])->group(function () {
     Route::name('quotes.')->group(function () {
         Route::get('/newsfeed', [QuoteController::class, 'index'])->name('index');
         Route::prefix('quote')->group(function () {
