@@ -24,7 +24,7 @@ class InertiaServiceProvider extends ServiceProvider
         Inertia::handleExceptionsUsing(function (ExceptionResponse $response) {
             return $response->render('Error/ErrorPage', [
                 'status' => $response->statusCode(),
-            ]);
+            ])->withSharedData();
         });
     }
 }

@@ -9,7 +9,8 @@ use App\Http\Resources\Quote\QuoteEditResource;
 use App\Models\Movie;
 use App\Models\Quote;
 use Illuminate\Support\Facades\DB;
-use PhpParser\Node\Expr\Array_;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class MovieService
 {
@@ -19,10 +20,18 @@ class MovieService
         $editingMovie = $data['id']
             ? $user->movies()->with('genres')->findOrFail($data['id'])
             : null;
+        $movies = QueryBuilder::for(
+            $user->movies()->withCount('comments')
+        )
+            ->allowedFilters(
+                AllowedFilter::scope('search')
+            )
+            ->paginate(9);
+
         return [
             'currentModal' => $data['modal'],
             'editingMovie' => $editingMovie ? (new MovieEditResource($editingMovie))->resolve() : null,
-            'movies' => MovieResource::collection($user->movies)
+            'movies' => MovieResource::collection($movies),
         ];
     }
 
@@ -32,7 +41,7 @@ class MovieService
             $query->withCount(['comments', 'likes'])
                 ->withExists(['likes as is_liked' => function ($q) {
                     $q->where('user_id', auth()->id());
-                }]);;
+                }]);
         }]);
 
         $quote = $quote_id
@@ -42,10 +51,11 @@ class MovieService
                 ->withCount(['comments', 'likes'])
                 ->findOrFail($quote_id)
             : null;
+
         return [
             'quote' => $quote ? (new QuoteEditResource($quote))->resolve() : null,
             'movie' => (new MovieWithQuotesResource($movie))->resolve(),
-            'currentModal' => $modal
+            'currentModal' => $modal,
         ];
     }
 
@@ -71,7 +81,7 @@ class MovieService
             if (isset($data['genres'])) {
                 $movie->genres()->delete();
                 $movie->genres()->createMany(
-                    collect($data['genres'])->map(fn($genre) => ['name' => $genre])->toArray()
+                    collect($data['genres'])->map(fn ($genre) => ['name' => $genre])->toArray()
                 );
             }
 
@@ -107,7 +117,7 @@ class MovieService
             ]);
 
             $movie->genres()->createMany(
-                collect($data['genres'])->map(fn($genre) => ['name' => $genre])->toArray()
+                collect($data['genres'])->map(fn ($genre) => ['name' => $genre])->toArray()
             );
 
             if (isset($data['image'])) {

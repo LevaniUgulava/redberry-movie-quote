@@ -3,7 +3,7 @@ import {PageProps} from "@/types/PagePropsTypes.ts";
 import {movie, MovieWithDetails, MovieWithQuantity} from "@/pages/Movies/MoviesTypes.ts";
 
 function useMovies() {
-    const {currentModal, locale, movies, editingMovie} = usePage<PageProps<{ movies: { data: MovieWithQuantity[] } }>>().props;
+    const {currentModal, locale, movies, editingMovie} = usePage<PageProps<{ movies: { data: MovieWithQuantity[]; total: number; current_page: number } }>>().props;
     const handleClose = () => {
         router.get(
             `/${locale}/movies`,

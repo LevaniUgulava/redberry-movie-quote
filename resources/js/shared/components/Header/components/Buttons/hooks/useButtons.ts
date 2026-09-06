@@ -6,6 +6,7 @@ import {PageProps} from "@/types/PagePropsTypes.ts";
 import {NotificationItem} from "@/types/NotificationTypes.ts";
 import {useTranslation} from "react-i18next";
 import {logout} from "@/actions/App/Http/Controllers/AuthController.ts";
+import useIsMobile from "@/hooks/useIsMobile.ts";
 
 function useButtons() {
     const {props, url} = usePage<PageProps & {
@@ -15,9 +16,10 @@ function useButtons() {
 
     const {auth, notificationsQuantity, notifications,locale} = props;
 
+    const isMobile = useIsMobile();
     const isAuth = auth !== null;
-    const isLangVisible=url === `/${locale}`
-    const isSearchIconVisible = url === `/${locale}/newsfeed`;
+    const isLangVisible = !isMobile || url === `/${locale}`;
+    const isSearchIconVisible = url === `/${locale}/newsfeed` && isMobile;
     const {t} = useTranslation("header");
 
     const [isNotificationsLoading, setIsNotificationsLoading] = useState(false);
