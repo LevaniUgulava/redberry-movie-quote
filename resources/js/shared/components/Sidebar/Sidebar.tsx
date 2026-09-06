@@ -35,7 +35,7 @@ function Sidebar() {
                   onMouseEnter={() => setHoveredKey('newsFeed')}
                   onMouseLeave={() => setHoveredKey(null)}>
                 <NewsFeedIcon classname={cn("text-white max-lg:w-6 max-lg:h-6", {
-                    "text-main-red": url === `/${locale}/newsfeed`,
+                    "text-main-red": url.startsWith(`/${locale}/newsfeed`),
                     "text-[#6C757D]": hoveredKey === 'newsFeed'
                 })}/>
                 <span className={cn("text-white text-2xl max-lg:text-xl", {
@@ -48,7 +48,7 @@ function Sidebar() {
                   onMouseEnter={() => setHoveredKey('movies')}
                   onMouseLeave={() => setHoveredKey(null)}>
                 <ListOfMovieIcon classname={cn("text-white max-lg:w-6 max-lg:h-6", {
-                    "text-main-red": url === `/${locale}/movies`,
+                    "text-main-red": url.startsWith(`/${locale}/movies`),
                     "text-[#6C757D]": hoveredKey === 'movies'
 
                 })}/>
