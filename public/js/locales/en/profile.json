@@ -15,6 +15,6 @@
     "confirm_new_field_again": "Enter New Confirm {{field}}",
     "confirm_changes": "Are you sure to make changes?",
     "changes_updated": "Changes updated successfully",
-    "upload_new_photo": "Upload new photo"
+    "upload_new_photo": "Upload new photo",
     "title": "Profile"
 }
