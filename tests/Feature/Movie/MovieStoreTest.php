@@ -53,7 +53,7 @@ test('authenticated and verified user can store a movie', function () {
 
 test('guest cannot store a movie', function () {
     $this->post(localeUrl('/movies/store'), validMovieData())
-        ->assertRedirect('/');
+        ->assertForbidden();
 
     expect(Movie::count())->toBe(0);
 });
