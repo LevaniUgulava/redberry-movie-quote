@@ -33,18 +33,6 @@ function useButtons() {
         setIsOpen(prev => !prev);
     };
 
-    useEcho(
-        isAuth && auth?.id ? `notification.${auth.id}` : "",
-        ['.notification.updated'],
-        (e) => {
-            setNotificationsState((prev) => ({
-                ...prev,
-                quantity: prev.quantity + 1,
-                data: [e.info, ...prev.data].slice(0, 5)
-            }));
-        }
-    );
-
     useEffect(() => {
         setNotificationsState({
             data: notifications || [],
@@ -76,7 +64,9 @@ function useButtons() {
         isOpen,
         handleOpenAndClose,
         isSearchIconVisible,
-        isLangVisible
+        isLangVisible,
+        auth,
+        setNotificationsState
     };
 }
 

@@ -5,6 +5,7 @@ import NotificationModal from "@/shared/components/Header/Notification/Notificat
 import SearchIcon from "@/components/ui/NewsFeed/SearchIcon.tsx";
 import SearchModal from "@/pages/NewsFeed/components/SearchModal/SearchModal.tsx";
 import useButtons from "@/shared/components/Header/components/Buttons/hooks/useButtons.ts";
+import NotificationChannel from "./Notification/NotificationChannel.tsx";
 
 function Buttons() {
     const {
@@ -17,11 +18,14 @@ function Buttons() {
         isOpen,
         handleOpenAndClose,
         isSearchIconVisible,
-        isLangVisible
+        isLangVisible,
+        auth,
+        setNotificationsState
     } = useButtons();
 
     return (
         <div className="flex gap-4 max-lg:gap-2">
+            {auth?.id && <NotificationChannel id={auth.id} setNotificationsState={setNotificationsState}/>}
             {isAuth && <div className="flex items-center gap-8">
                 {isSearchIconVisible && <>
                     <div onClick={handleOpenAndClose}>
@@ -39,7 +43,8 @@ function Buttons() {
                         <NotificationIcon/>
                         {notificationsState.quantity > 0 && <div
                             className="absolute -top-1 max-lg:-top-2 left-4 max-lg:left-3 max-lg:h-4 max-lg:w-4 h-6.25 w-6.25 bg-[#E33812] rounded-full items-center flex justify-center">
-                            <span className='text-white text-base max-lg:text-sm leading-[150%] font-medium'>{notificationsState.quantity}</span>
+                            <span
+                                className='text-white text-base max-lg:text-sm leading-[150%] font-medium'>{notificationsState.quantity}</span>
                         </div>}
                     </div>
                 </NotificationModal>
