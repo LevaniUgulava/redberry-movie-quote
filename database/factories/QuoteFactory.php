@@ -20,7 +20,7 @@ class QuoteFactory extends Factory
         return [
             'quote' => [
                 'en' => $this->faker->sentence(),
-                'ka' => $this->faker->sentence(),
+                'ka' => GeorgianData::quote(),
             ],
             'created_at' => $this->faker->dateTimeBetween('-1 years', 'now'),
             'updated_at' => $this->faker->dateTimeBetween('-1 years', 'now'),
