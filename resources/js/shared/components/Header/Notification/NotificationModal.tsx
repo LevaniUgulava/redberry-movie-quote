@@ -26,7 +26,7 @@ function NotificationModal({
             <PopoverTrigger>{children}</PopoverTrigger>
             <PopoverContent
                 align="end"
-                alignOffset={-235}
+                alignOffset={-120}
                 sideOffset={8}
                 className="w-240.25 min-h-100 z-100 bg-black p-10 max-lg:w-screen"
             >
@@ -39,7 +39,7 @@ function NotificationModal({
                 </div>
                 <div className="flex flex-col gap-2.5 transition-all duration-200">
                     {isNotificationsLoading ? (
-                        Array.from({length: 5}).map((_, i) => (
+                        Array.from({length: 2}).map((_, i) => (
                             <div key={i}
                                  className="flex items-center gap-5 border rounded-xs p-5 border-[#6C757D]/50 animate-pulse">
                                 <div className="w-20 h-20 rounded-full bg-[#6C757D]/40"/>

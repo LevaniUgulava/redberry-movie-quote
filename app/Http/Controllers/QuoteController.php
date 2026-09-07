@@ -6,19 +6,21 @@ use App\Http\Requests\Quote\EditQuoteRequest;
 use App\Http\Requests\Quote\StoreQuoteRequest;
 use App\Models\Quote;
 use App\Service\QuoteService;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class QuoteController extends Controller
 {
+    use AuthorizesRequests;
+
     public function __construct(public QuoteService $quoteService) {}
 
     public function index(Request $request)
     {
         $modal = $request->query('modal');
-        $search = $request->query('search');
-        $data = $this->quoteService->index($modal, $search);
+        $data = $this->quoteService->index($modal);
 
         return Inertia::render('NewsFeed/NewsFeed', [
             'currentModal' => $data['currentModal'],
@@ -38,6 +40,8 @@ class QuoteController extends Controller
 
     public function update(Quote $quote, EditQuoteRequest $request): RedirectResponse
     {
+        $this->authorize('update', $quote);
+
         $this->quoteService->update($request->validated(), $quote, $request->file('image'));
 
         return redirect()->back();
@@ -45,6 +49,8 @@ class QuoteController extends Controller
 
     public function destroy(Quote $quote)
     {
+        $this->authorize('delete', $quote);
+
         $quote->delete();
 
         return redirect()->back();

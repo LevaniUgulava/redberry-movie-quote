@@ -13,7 +13,7 @@ use Spatie\QueryBuilder\QueryBuilder;
 
 class QuoteService
 {
-    public function index(?string $modal, ?string $search): array
+    public function index(?string $modal): array
     {
         $user = auth()->user();
 

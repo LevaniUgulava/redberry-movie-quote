@@ -6,6 +6,7 @@ import {PageProps} from "@/types/PagePropsTypes.ts";
 import {NotificationItem} from "@/types/NotificationTypes.ts";
 import {useTranslation} from "react-i18next";
 import {logout} from "@/actions/App/Http/Controllers/AuthController.ts";
+import useIsMobile from "@/hooks/useIsMobile.ts";
 
 function useButtons() {
     const {props, url} = usePage<PageProps & {
@@ -15,9 +16,10 @@ function useButtons() {
 
     const {auth, notificationsQuantity, notifications,locale} = props;
 
+    const isMobile = useIsMobile();
     const isAuth = auth !== null;
-    const isLangVisible=url === `/${locale}`
-    const isSearchIconVisible = url === `/${locale}/newsfeed`;
+    const isLangVisible = !isMobile || url === `/${locale}`;
+    const isSearchIconVisible = url === `/${locale}/newsfeed` && isMobile;
     const {t} = useTranslation("header");
 
     const [isNotificationsLoading, setIsNotificationsLoading] = useState(false);
@@ -30,18 +32,6 @@ function useButtons() {
     const handleOpenAndClose = () => {
         setIsOpen(prev => !prev);
     };
-
-    useEcho(
-        isAuth && auth?.id ? `notification.${auth.id}` : "",
-        ['.notification.updated'],
-        (e) => {
-            setNotificationsState((prev) => ({
-                ...prev,
-                quantity: prev.quantity + 1,
-                data: [e.info, ...prev.data].slice(0, 5)
-            }));
-        }
-    );
 
     useEffect(() => {
         setNotificationsState({
@@ -74,7 +64,9 @@ function useButtons() {
         isOpen,
         handleOpenAndClose,
         isSearchIconVisible,
-        isLangVisible
+        isLangVisible,
+        auth,
+        setNotificationsState
     };
 }
 

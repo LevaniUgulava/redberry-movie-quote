@@ -9,5 +9,10 @@
     "modal_view_title": "View Quote",
     "modal_edit_title": "Edit Quote",
     "change_photo": "Change photo",
+    "no_quotes_found": "No quotes found",
+    "no_quotes_desc": "We could not find any results matching your search.",
+    "no_quotes_title": "No quotes yet",
+    "no_quotes_add_hint": "Add your first quote to get started.",
+    "clear_search": "Clear search",
     "title": "Newsfeed"
 }
