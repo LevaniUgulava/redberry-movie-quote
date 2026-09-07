@@ -23,7 +23,7 @@ jobs:
           username: ${{ secrets.DEPLOY_USERNAME }}
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           script: |
-            cd /var/www/movie-quotes
+            cd /home/levan/Movie-Quotes/levani-ugulava-movie-quotes
             git pull origin main
             composer install --no-interaction --prefer-dist --no-dev --optimize-autoloader
             npm ci
