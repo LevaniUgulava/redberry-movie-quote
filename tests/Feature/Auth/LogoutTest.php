@@ -7,7 +7,7 @@ test('authenticated users can log out', function () {
 
     $this->actingAs($user)
         ->post(localeUrl('/logout'))
-        ->assertRedirect('/');
+        ->assertRedirect(localeUrl('/'));
 
     $this->assertGuest('web');
 });
@@ -19,11 +19,11 @@ test('logout invalidates the session', function () {
 
     $sessionId = $session->getId();
 
-    $this->post(localeUrl('/logout'))->assertRedirect('/');
+    $this->post(localeUrl('/logout'))->assertRedirect(localeUrl('/'));
 
     expect($session->getId())->not->toBe($sessionId);
 });
 
 test('guests are redirected when trying to log out', function () {
-    $this->post(localeUrl('/logout'))->assertRedirect('/');
+    $this->post(localeUrl('/logout'))->assertRedirect(localeUrl('/').'?modal=login');
 });
