@@ -30,7 +30,7 @@ class QuoteService
         ])->withCount(['comments', 'likes'])
             ->allowedFilters(
                 AllowedFilter::scope('search')
-            )->paginate(2);
+            )->latest()->paginate(2);
 
         return [
             'currentModal' => $modal,
