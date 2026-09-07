@@ -26,9 +26,14 @@ class InertiaServiceProvider extends ServiceProvider
                 return $response->response;
             }
 
-            return $response->render('Error/ErrorPage', [
-                'status' => $response->statusCode(),
-            ])->withSharedData();
+            if (in_array($response->statusCode(), [403, 404])) {
+                return $response->render('Error/ErrorPage', [
+                    'status' => $response->statusCode(),
+                ])->withSharedData();
+            }
+
+            return $response->response;
+
         });
     }
 }
