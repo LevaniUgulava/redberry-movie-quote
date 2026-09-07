@@ -1,58 +1,219 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Movie Quotes
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A bilingual (English/Georgian) social platform where users share and discuss their favorite movie quotes, create movie lists, and interact through comments and likes.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Table of Contents
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- [Introduction](#introduction)
+- [Prerequisites](#prerequisites)
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+- [Development](#development)
+- [Deployment](#deployment)
+- [Resources](#resources)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## Introduction
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Movie Quotes is a full-stack web application built with Laravel and React (via Inertia.js). Users can:
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- Register and log in (email/password or Google OAuth)
+- Browse a newsfeed of movie quotes from other users
+- Create, edit, and delete their own movies and quotes
+- Comment on and like quotes
+- Receive notifications for likes and comments
+- Switch between English and Georgian locales
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+The application is fully localized — all routes, UI text, and validation messages support both `en` and `ka` locales.
 
-## Agentic Development
+---
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+## Prerequisites
+
+- PHP 8.3 or higher
+- MySQL 8.4
+- Node.js 22 or higher
+- Composer
+- npm
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+| --- | --- |
+| Backend | Laravel 13, PHP 8.3 |
+| Frontend | React 19, Inertia.js v3 |
+| Styling | Tailwind CSS v4 |
+| Build Tool | Vite 8 |
+| Routing | Laravel Wayfinder (typed routes) |
+| Media | Spatie Media Library |
+| Auth | Laravel Sanctum, Google OAuth (Socialite) |
+| Testing | Pest 5 |
+| CI/CD | GitHub Actions |
+
+---
+
+## Getting Started
+
+1. **Clone the repository**
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone https://github.com/your-username/movie-quotes.git
+cd movie-quotes
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+2. **Install PHP dependencies**
 
-## Contributing
+```bash
+composer install
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+3. **Install frontend dependencies**
 
-## Code of Conduct
+```bash
+npm install
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+4. **Set up environment**
 
-## Security Vulnerabilities
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+5. **Configure database**
 
-## License
+Edit `.env` and set your MySQL credentials:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=movie_quotes
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+6. **Run migrations**
+
+```bash
+php artisan migrate --force
+```
+
+7. **Start the development server**
+
+```bash
+composer run dev
+```
+
+This runs the Laravel server, queue worker, log viewer, and Vite dev server concurrently.
+
+8. **Open in browser**
+
+Visit `http://localhost:8000`
+
+### Tester Account
+
+A seeded tester account is available for quickly exploring the app:
+
+| Field | Value |
+| --- | --- |
+| Email | `molly35@example.com` |
+| Username | `hwisozk` |
+| Password | `password` |
+
+---
+
+## Development
+
+### Available Commands
+
+| Command | Description |
+| --- | --- |
+| `composer run dev` | Start all dev services (server, queue, logs, vite) concurrently |
+| `composer run test` | Clear config and run the full Pest test suite |
+| `php artisan test --compact --filter=TestName` | Run a specific test |
+| `vendor/bin/pint --dirty --format agent` | Format changed PHP files |
+| `npm run dev` | Start Vite dev server only |
+| `npm run build` | Build frontend for production |
+
+### Important Notes
+
+- **Run `composer run dev`** during development — it starts all services concurrently
+- **Vite hot-reload** is enabled — frontend changes reflect immediately
+- **Wayfinder** generates typed route functions in `resources/js/routes/` and `resources/js/actions/` — never hardcode URLs, always use generated functions
+- **Localization** — server-side messages use `lang/{locale}/` PHP files, client-side UI text uses `public/js/locales/{locale}/` JSON files loaded via i18next
+- **Tests** — always write Pest feature tests with factories, not inline model creation
+
+### Project Structure
+
+```
+app/
+├── Enums/              # Application enums
+├── Events/             # Event classes
+├── Http/               # Controllers, Middleware, Requests
+├── Models/             # Eloquent models (User, Movie, Quote, Comment, Like, etc.)
+├── Notifications/      # Notification classes
+├── Policies/           # Authorization policies
+├── Providers/          # Service providers
+└── Service/            # Service classes
+
+resources/js/
+├── Pages/              # Inertia page components
+│   ├── Auth/           # Login, Register, Forgot Password
+│   ├── Landing/        # Public landing page
+│   ├── Movie/          # Single movie detail view
+│   ├── Movies/         # User's movie list
+│   ├── NewsFeed/       # Quote newsfeed
+│   ├── Profile/        # User profile (desktop + mobile layouts)
+│   └── Error/          # Error pages (403, 404, 500)
+├── components/         # Shared React components
+└── shared/             # Shared hooks, types, utilities
+
+routes/web/             # Route files organized by feature
+```
+
+---
+
+## Deployment
+
+Deployment is fully automated via GitHub Actions.
+
+### How It Works
+
+1. Push to `main` branch triggers the **CI** workflow
+2. CI runs: install dependencies, build frontend, run Pest tests against MySQL 8.4
+3. If CI passes, the **CD** workflow triggers automatically
+4. CD connects to the production server via SSH and runs:
+
+```bash
+cd /var/www/movie-quotes
+git pull origin main
+composer install --no-interaction --prefer-dist --no-dev --optimize-autoloader
+npm ci
+npm run build
+php artisan migrate --force
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+php artisan event:cache
+```
+
+### Deployment Requirements
+
+- SSH access configured in GitHub Secrets (`DEPLOY_HOST`, `DEPLOY_USERNAME`, `DEPLOY_SSH_KEY`)
+- Production server at `/var/www/movie-quotes`
+- MySQL database configured on the server
+
+---
+
+## Resources
+
+- **AI / Agent Documentation:** [docs/index.md](docs/index.md) — entry point for all functional module docs (auth, localization, movies, profile, testing, etc.)
+- **Stack & Conventions:** [Docs.md](Docs.md) — full stack overview, commands, and architectural decisions
+- **Design:** [Figma](https://www.figma.com/design/5uMXCg3itJwpzh9cVIK3hA/Movie-Quotes-Bootcamp-assignment?node-id=0-1&p=f&t=KfOSeZFbLCrwnx9L-0)
+- **Database Diagram:** [DrawSQL](https://drawsql.app/teams/levani-workspace/diagrams/movie-quotes)
