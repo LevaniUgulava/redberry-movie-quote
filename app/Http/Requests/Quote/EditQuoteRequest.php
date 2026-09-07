@@ -7,7 +7,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class EditQuoteRequest extends FormRequest
 {
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -16,9 +15,9 @@ class EditQuoteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'en_quote' => ['required', 'string', 'regex:/^[a-zA-Z0-9\s.,!?\'"()\-:;]+$/'],
-            'ka_quote' => ['required', 'string', 'regex:/^[ა-ჰ0-9\s.,!?\'"()\-:;]+$/'],
-            'image' => ['sometimes', 'image']
+            'en_quote' => ['required', 'string', 'regex:/^[a-zA-Z0-9\s.,!?\'"()\-:;]+$/u'],
+            'ka_quote' => ['required', 'string', 'regex:/^[ა-ჰ0-9\s.,!?\'"()\-:;]+$/u'],
+            'image' => ['sometimes', 'image'],
         ];
     }
 }
