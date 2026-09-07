@@ -197,6 +197,28 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'en_title' => 'English title',
+        'ka_title' => 'Georgian title',
+        'genres' => 'Genres',
+        'year' => 'Year',
+        'en_director' => 'English director',
+        'ka_director' => 'Georgian director',
+        'en_description' => 'English description',
+        'ka_description' => 'Georgian description',
+        'image' => 'Image',
+        'ka_quote' => 'Georgian quote',
+        'en_quote' => 'English quote',
+        'movie_id' => 'Movie',
+        'comment' => 'Comment',
+        'username' => 'Username',
+        'email' => 'Email',
+        'password' => 'Password',
+        'password_confirmation' => 'Password confirmation',
+        'login' => 'Login',
+        'remember' => 'Remember me',
+        'avatar' => 'Avatar',
+        'token' => 'Token',
+    ],
 
 ];
