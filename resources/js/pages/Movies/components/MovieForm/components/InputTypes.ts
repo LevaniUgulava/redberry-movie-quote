@@ -4,16 +4,19 @@ export interface InputProps {
     type?: string,
     lang?: string | null,
     multiline?: boolean
-    defaultValue?:string
-    error?:string|null,
-    disabled?:boolean
+    defaultValue?: string
+    error?: string | null,
+    disabled?: boolean,
+    prefix?: string;
+    pl?: string,
+    showPrefix?: boolean
 }
 
 export interface ImageInputProps {
     name: string;
     onChange?: (file: File | null) => void;
     initialPreview?: string | null;
-    error?:string|null
+    error?: string | null
 
 }
 
