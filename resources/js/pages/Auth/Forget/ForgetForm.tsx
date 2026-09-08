@@ -18,7 +18,7 @@ function ForgetForm() {
             />
             <Form className="w-full" action={forgetPassword()}>
                 {({ validate, errors, valid, reset }) => (
-                    <div>
+                    <div className="flex flex-col gap-2">
                         <Input
                             name="email"
                             label={t("email")}

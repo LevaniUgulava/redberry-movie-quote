@@ -34,7 +34,7 @@ function Input({
     } = useInput(type);
 
     return (
-        <div className="flex flex-col pb-4 gap-2 w-full">
+        <div className="flex flex-col pb-4 w-full">
             <label
                 className="text-white text-base leading-[150%] font-normal"
                 htmlFor={name}
@@ -105,7 +105,7 @@ function Input({
                 </div>
             </div>
 
-            <div className="h-2">
+            <div className="h-1">
                 {error && (
                     <span className="text-[#DC3545] text-sm mt-1 block">
                         {error}
