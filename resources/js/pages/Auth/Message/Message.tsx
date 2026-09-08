@@ -11,6 +11,7 @@ function Message({
     button,
     skip = false,
     onClick,
+    onSkip,
 }: MessageProps) {
     const {t} = useTranslation("auth");
     return (
@@ -29,7 +30,10 @@ function Message({
                 {button}
             </button>
 {skip && (
-                    <span className="text-gray-600 text-base leading-[150%]">
+                    <span
+                        onClick={onSkip}
+                        className="text-gray-600 text-base leading-[150%] cursor-pointer hover:text-gray-400"
+                    >
                         {t("skip_confirm")}
                     </span>
                 )}
