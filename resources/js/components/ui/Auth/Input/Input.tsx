@@ -105,7 +105,7 @@ function Input({
                 </div>
             </div>
 
-            <div className="h-1">
+            <div className="h-1 mb-2">
                 {error && (
                     <span className="text-[#DC3545] text-sm mt-1 block">
                         {error}
