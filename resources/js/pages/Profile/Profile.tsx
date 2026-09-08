@@ -41,7 +41,7 @@ function Profile() {
             ) : (
                 <DesktopProfile {...mobileProps} />
             )}
-            <AuthModalWrapper isOpen={isOpen} onClose={handleClose} isConfig={true}>
+            <AuthModalWrapper className="flex justify-center py-15" isOpen={isOpen} onClose={handleClose} isConfig={true}>
                 {currentConfig && <Message {...currentConfig}/>}
             </AuthModalWrapper>
         </div>
