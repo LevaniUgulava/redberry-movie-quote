@@ -1,7 +1,7 @@
 import ReactionIcon from "@/components/ui/NewsFeed/Quotes/ReactionIcon.tsx";
 import CommentIcon from "@/components/ui/NewsFeed/Quotes/CommentIcon.tsx";
 import {QuoteCardProps} from "@/pages/NewsFeed/components/QuoteCard/QuoteCardTypes.ts";
-import {SendIcon} from "lucide-react";
+import {ChevronDown, SendIcon} from "lucide-react";
 import useQuoteCard from "@/pages/NewsFeed/components/QuoteCard/hooks/useQuoteCard.ts";
 import FillReactionIcon from "@/components/ui/NewsFeed/Quotes/FillReactionIcon.tsx";
 import {cn} from "@/lib/utils.ts";
@@ -15,6 +15,9 @@ function QuoteCard({quote}: QuoteCardProps) {
         submit,
         commentsQuantity,
         comments,
+        hasMore,
+        loadMore,
+        loadingComments,
         comment,
         processing,
         setComment,
@@ -28,8 +31,10 @@ function QuoteCard({quote}: QuoteCardProps) {
     })}>
         <div className="flex flex-col gap-5 border-b border-[#EFEFEF]/30">
             {quote.user && <div className="flex gap-4 items-center">
-                <img className="w-13 max-lg:w-10 max-lg:h-10 h-13 rounded-full" alt="quote_author" src={quote.user.avatar}/>
-                <span className="text-xl text-white max-lg:text-base font-normal leading-[150%]">{quote.user.username}</span>
+                <img className="w-13 max-lg:w-10 max-lg:h-10 h-13 rounded-full" alt="quote_author"
+                     src={quote.user.avatar}/>
+                <span
+                    className="text-xl text-white max-lg:text-base font-normal leading-[150%]">{quote.user.username}</span>
             </div>}
             {quote.movie && <div>
                 <span
@@ -53,22 +58,44 @@ function QuoteCard({quote}: QuoteCardProps) {
             </div>
         </div>
         <div className="flex flex-col gap-4 mt-5">
-            {[...comments].reverse().map((comment, index) => (
-                <div key={index} className="flex flex-col gap-3 max-lg:gap-1.5">
+            {hasMore && (
+                <button
+                    onClick={loadMore}
+                    disabled={loadingComments}
+                    className="group flex items-center gap-1.5 text-[#ADB5BD] text-sm font-medium tracking-wide hover:text-white disabled:opacity-40 disabled:cursor-not-allowed transition-colors duration-200"
+                >
+                    {loadingComments ? (
+                        <span className="flex items-center gap-2">
+                <span className="w-3.5 h-3.5 border-2 border-white/20 border-t-white rounded-full animate-spin" />
+                <span>{t("loading")}</span>
+            </span>
+                    ) : (
+                        <>
+                            <span>{t("load_more")}</span>
+                            <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:translate-y-1" />
+                        </>
+                    )}
+                </button>
+            )}
+            {comments.map((comment) => (
+                <div key={comment.id} className="flex flex-col gap-3 max-lg:gap-1.5">
                     <div className="flex gap-4 items-center">
                         <img className="w-12 h-12 max-lg:w-10 max-lg:h-10 rounded-full object-cover" alt="quote_author"
                              src={comment.user.avatar}/>
-                        <span className="text-xl max-lg:text-base text-white font-medium leading-[150%]">{comment.user.username}</span>
+                        <span
+                            className="text-xl max-lg:text-base text-white font-medium leading-[150%]">{comment.user.username}</span>
                     </div>
                     <div
                         className="flex gap-4 items-center border-b border-[#EFEFEF]/30 ml-16">
-                        <span className="text-xl max-lg:text-base text-white font-normal leading-[150%] pb-6">{comment.comment}</span>
+                        <span
+                            className="text-xl max-lg:text-base text-white font-normal leading-[150%] pb-6">{comment.comment}</span>
                     </div>
                 </div>
             ))}
             <div>
                 <div className="flex gap-4 items-center">
-                    <img className="w-13 h-13 max-lg:w-10 max-lg:h-10 rounded-full" alt="quote_author" src={auth.avatar}/>
+                    <img className="w-13 h-13 max-lg:w-10 max-lg:h-10 rounded-full" alt="quote_author"
+                         src={auth.avatar}/>
                     <form onSubmit={submit} className='relative w-full'>
                         <input
                             type="text"

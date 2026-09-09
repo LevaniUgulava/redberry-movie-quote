@@ -17,28 +17,30 @@ function useComment(
 
     const submit = (e: any) => {
         e.preventDefault();
+        const optimisticId = Date.now();
         setComments((prevComments: any) => [
+                ...prevComments,
                 {
+                    id: optimisticId,
                     comment: data.comment,
                     user: {
                         id: auth.id,
                         username: auth.username,
                         avatar: auth.avatar
                     }
-                },
-                ...prevComments.slice(0, 1)
+                }
             ]
         );
         setCommentsQuantity((prev) => prev + 1)
         post(store({ quote: id }).url, {
             onSuccess: () => setData('comment', ''),
-            onError: handleError,
+            onError: () => handleError(optimisticId),
         });
     };
 
-    const handleError = () => {
+    const handleError = (optimisticId: number) => {
         setCommentsQuantity((prev) => prev - 1);
-        setComments((prev) => prev.slice(1));
+        setComments((prev) => prev.filter((comment) => comment.id !== optimisticId));
     };
 
     return {

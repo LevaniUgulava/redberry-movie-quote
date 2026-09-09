@@ -17,7 +17,7 @@ class CommentSeeder extends Seeder
         $quotes = Quote::all();
         Comment::factory()->count(600)->sequence(fn () => [
             'quote_id' => ($quote = $quotes->random())->id,
-            'user_id' => User::whereNot('id', $quote->user_id)->first()->id,
+            'user_id' => User::whereNot('id', $quote->user_id)->inRandomOrder()->first()->id,
         ])->create();
     }
 }

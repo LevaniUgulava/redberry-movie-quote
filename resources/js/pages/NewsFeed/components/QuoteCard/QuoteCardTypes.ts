@@ -1,6 +1,8 @@
 export interface Comment {
+    id: number;
     comment: string;
     user: {
+        id: number,
         username: string,
         avatar: string
     }
@@ -25,7 +27,6 @@ export interface QuoteCardData {
     image: string;
     comment_quantity: number;
     reaction_quantity: number;
-    comments: Comment[];
     movie?: Movie;
     user?: User;
     is_liked?: boolean;

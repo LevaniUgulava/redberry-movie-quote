@@ -14,6 +14,9 @@ Route::middleware(['ensure.authenticated', 'verified'])->group(function () {
             Route::delete('/delete/{quote}', [QuoteController::class, 'destroy'])->name('destroy');
         });
     });
-    Route::post('/comment/{quote}', [CommentController::class, 'store'])->name('comment.store');
+    Route::prefix('comment')->group(function () {
+        Route::get('/{quote}/comments', [CommentController::class, 'index'])->name('comment.index');
+        Route::post('/{quote}', [CommentController::class, 'store'])->name('comment.store');
+    });
     Route::post('/like/{quote}', [LikeController::class, 'store'])->name('like.store');
 });
