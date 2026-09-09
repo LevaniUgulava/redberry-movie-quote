@@ -18,7 +18,8 @@ function useLoadMoreComments(id: number) {
         get(index({quote: id}, {query: {page: nextPage}}).url, {
             onSuccess: (response) => {
                 const data = response as LoadMoreCommentsResponse;
-                setComments((prev) => [...data.data.toReversed(), ...prev]);
+                const reversed = [...data.data].reverse();
+                setComments((prev) => [...reversed, ...prev]);
                 setHasMore(data.has_more);
                 setPage(nextPage);
             },
