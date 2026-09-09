@@ -12,7 +12,7 @@ function useQuoteCard(quote:QuoteCardData){
         commentsQuantity,
         reactionQuantity,
         setReactionQuantity
-    } = useCommentLikeSocket(quote.id, auth.id, quote.comments, quote.comment_quantity, quote.reaction_quantity,false)
+    } = useCommentLikeSocket(quote.id, auth.id, quote.comment_quantity, quote.reaction_quantity, undefined, false)
 
     const { handleLike, liked } = useLike(
         quote.id, quote.is_liked, reactionQuantity, setReactionQuantity

@@ -6,12 +6,11 @@ import {Comment} from "@/pages/NewsFeed/components/QuoteCard/QuoteCardTypes.ts";
 function useCommentLikeSocket(
     quote_id: number,
     auth_id: number,
-    initialComments: Comment[],
     initialCommentsQuantity: number,
     initialReactionQuantity: number,
+    setComments?: (fn: (prev: Comment[]) => Comment[]) => void,
     hasComment: boolean = true
 ) {
-    const [comments, setComments] = useState(initialComments);
     const [commentsQuantity, setCommentsQuantity] = useState(initialCommentsQuantity);
     const [reactionQuantity, setReactionQuantity] = useState(initialReactionQuantity);
 
@@ -19,8 +18,8 @@ function useCommentLikeSocket(
         ['.commentAdded', '.LikeUpdated'], (e) => {
             if (e.comment && e.comment.user.id !== auth_id) {
                 setCommentsQuantity((prev) => prev + 1);
-                if(hasComment){
-                    setComments((prev) => [e.comment, ...prev.slice(0, 1)]);
+                if(hasComment && setComments){
+                    setComments((prev) => [...prev, e.comment]);
 
                 }
             }
@@ -30,7 +29,6 @@ function useCommentLikeSocket(
         })
 
     return {
-        comments, setComments,
         commentsQuantity, setCommentsQuantity,
         reactionQuantity, setReactionQuantity
     }
