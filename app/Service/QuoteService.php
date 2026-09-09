@@ -22,10 +22,6 @@ class QuoteService
             'user.media',
             'movie:id,title,year',
             'media',
-            'comments' => function ($query) {
-                $query->latest()->limit(2);
-            },
-            'comments.user:id,username',
             'likes',
         ])->withCount(['comments', 'likes'])
             ->allowedFilters(
