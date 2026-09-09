@@ -4,6 +4,8 @@ import {update} from "@/actions/App/Http/Controllers/ProfileController.ts";
 import AvatarField from "@/pages/Profile/components/shared/AvatarField.tsx";
 import {ProfileProps} from "@/pages/Profile/ProfileTypes.ts";
 import {useTranslation} from "react-i18next";
+import SuccessToast from "@/pages/Profile/components/mobile/components/SuccessToast.tsx";
+import useDesktopProfile from "@/pages/Profile/components/desktop/hooks/useDesktopProfile.ts";
 
 function DesktopProfile({
                             auth,
@@ -15,16 +17,21 @@ function DesktopProfile({
                             isAnyFieldOpen,
                             cancelEdit
                         }: ProfileProps) {
+
     const {t} = useTranslation(["profile", "common"]);
+    const {open, setOpen, handleSuccessOpen} = useDesktopProfile();
+
     return (
         <>
         <div className="mb-15">
             <span className="text-white text-2xl">{t("my_profile")}</span>
         </div>
+        <SuccessToast open={open} setOpen={setOpen}/>
         <Form
             key={`${auth.username}-${auth.email}`}
             action={update()} method="patch"
             onSuccess={() => {
+                handleSuccessOpen();
                 cancelEdit();
             }}>
             {(form) => {
