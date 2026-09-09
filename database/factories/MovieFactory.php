@@ -20,16 +20,16 @@ class MovieFactory extends Factory
         return [
             'title' => [
                 'en' => $this->faker->word(),
-                'ka' => $this->faker->word(),
+                'ka' => GeorgianData::title(),
             ],
             'year' => $this->faker->year(),
             'director' => [
                 'en' => $this->faker->name(),
-                'ka' => $this->faker->name(),
+                'ka' => GeorgianData::director(),
             ],
             'description' => [
                 'en' => $this->faker->paragraph(),
-                'ka' => $this->faker->paragraph(),
+                'ka' => GeorgianData::description(),
             ],
             'created_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
             'updated_at' => $this->faker->dateTimeBetween('-1 year', 'now'),

@@ -8,10 +8,10 @@
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#0d0d17; padding:40px 0;">
         <tr>
             <td align="center">
-                <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="background-color:#0d0d17; border:1px solid #4b3f6b; border-radius:6px;">
+                <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="background-color:#0d0d17; border-radius:6px;">
                     <tr>
                         <td align="center" style="padding:40px 40px 20px 40px;">
-                            <div style="font-size:22px; color:#ffffff;">&#128172;</div>
+                            <img src="{{ asset('images/img.png') }}" alt="Movie Quotes" width="22" height="22" style="display:block;">
                             <div style="color:#ffffff; letter-spacing:2px; font-size:12px; margin-top:8px;">MOVIE QUOTES</div>
                         </td>
                     </tr>

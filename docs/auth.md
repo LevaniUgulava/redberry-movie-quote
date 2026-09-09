@@ -50,3 +50,12 @@ Pest feature tests in `tests/Feature/Auth/`:
 - `LogoutTest.php` — authenticated logout (`assertGuest('web')`), session invalidation, guest redirect to login.
 
 Run: `php artisan test --compact --filter=Auth`
+
+## Protected Page Access (Guests Get 403)
+
+Protected **page** routes must not redirect guests to the login modal — they return `403 Forbidden` so the Inertia `Error/ErrorPage` renders with the Forbidden icon. This covers `/newsfeed`, `/profile`, `/movies`, and `/notification` (see `NewsfeedAccessTest` and `MovieStoreTest`).
+
+- **Middleware:** `app/Http/Middleware/EnsureAuthenticated.php` — `abort_unless(auth()->check(), 403)`. Registered as alias `ensure.authenticated` in `bootstrap/app.php`.
+- **Routes:** newsfeed, profile, movie, and notification routes use `['ensure.authenticated', 'verified']` instead of `['auth:sanctum', 'verified']`.
+- **Why not `auth:sanctum`:** it fires `redirectGuestsTo` (302 → `?modal=login`), and Laravel's middleware sorting runs it *before* a plain guard middleware, so a guest never reaches a 403 check. Sanctum is still used where a redirect is desired (logout, API-style endpoints).
+- **Requirement:** the 403 middleware must run before any redirecting middleware in the group; on page routes place it as the first route middleware.

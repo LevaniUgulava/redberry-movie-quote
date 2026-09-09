@@ -22,9 +22,18 @@ class InertiaServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Inertia::handleExceptionsUsing(function (ExceptionResponse $response) {
-            return $response->render('Error/ErrorPage', [
-                'status' => $response->statusCode(),
-            ])->withSharedData();
+            if ($response->request->isAttemptingPrecognition()) {
+                return $response->response;
+            }
+
+            if (in_array($response->statusCode(), [403, 404])) {
+                return $response->render('Error/ErrorPage', [
+                    'status' => $response->statusCode(),
+                ])->withSharedData();
+            }
+
+            return $response->response;
+
         });
     }
 }

@@ -7,8 +7,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class StoreQuoteRequest extends FormRequest
 {
-
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -17,8 +15,8 @@ class StoreQuoteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'ka_quote' => ['required', 'string', 'regex:/^[\x{10A0}-\x{10FF}0-9\s\.,!?\'"-]+$/u'],
-            'en_quote' => ['required', 'string', 'regex:/^[a-zA-Z0-9\s\.,!?\'"-]+$/'],
+            'ka_quote' => ['required', 'string', 'regex:/^[ა-ჰ0-9\s.,!?\'"()\-:;]+$/u'],
+            'en_quote' => ['required', 'string', 'regex:/^[a-zA-Z0-9\s.,!?\'"()\-:;]+$/'],
             'movie_id' => ['required', 'integer', 'exists:movies,id'],
             'image' => ['required', 'image'],
         ];

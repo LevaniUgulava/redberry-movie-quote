@@ -12,7 +12,7 @@ function useError(status: number) {
     const title = t(error?.titleKey ?? "error_404_title");
     const description = t(error?.descKey ?? "error_404_desc");
     const pageTitle = t(error?.pageTitleKey ?? "page_title_404");
-    const homeUrl = `/${locale}/newsfeed`;
+    const homeUrl = `/${locale}`;
     const returnHomeText = t("return_home");
 
     return {title, description, pageTitle, homeUrl, returnHomeText, Icon};

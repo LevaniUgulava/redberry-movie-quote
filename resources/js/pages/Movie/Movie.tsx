@@ -15,7 +15,7 @@ function Movie() {
     const {t} = useTranslation(["movies", "common"]);
     const isMobile = useIsMobile();
 
-    return <div className="max-lg:px-8.75">
+    return <div className="max-lg:px-8.75 mt-10">
         <Head title={movie.title}/>
         <div className='text-white text-2xl font-medium'>{t("movie_description")}</div>
         <div className="flex gap-6 mt-8 max-lg:flex-col">

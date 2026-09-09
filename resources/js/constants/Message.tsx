@@ -15,8 +15,8 @@ export const getMessageConfig = (locale: string) => ({
         icon: <SuccesIcon/>,
         title: "thank_you",
         subtitle: "verified_subtitle",
-        button: "go_to_feed",
-        onClick: () => router.visit(`/${locale}/newsfeed`),
+        button: "login_link",
+        onClick: () => router.visit(`/${locale}?modal=signup`),
     },
     RESET_SUCCESS: {
         icon: <SuccesIcon/>,

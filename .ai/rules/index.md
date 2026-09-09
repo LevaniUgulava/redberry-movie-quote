@@ -10,4 +10,5 @@ Before planning or editing, find the row whose globs match the file's path and r
 | **/*.{tsx,ts,jsx,js,php} | .ai/rules/general.md |
 | resources/js/** | .ai/rules/js.md |
 | resources/js/pages/Profile/** | .ai/rules/profile.md |
+| routes/web/** | .ai/rules/web.md |
 | .github/workflows/** | .ai/rules/workflows.md |

@@ -46,6 +46,7 @@ class CustomResetPasswordNotification extends Notification implements ShouldQueu
     private function verificationUrl(object $notifiable): string
     {
         return route('password.reset', [
+            'lang' => app()->getLocale(),
             'token' => $this->token,
             'email' => $notifiable->email
         ]);

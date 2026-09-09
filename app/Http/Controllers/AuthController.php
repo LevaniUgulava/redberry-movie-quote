@@ -44,7 +44,7 @@ class AuthController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect()->route('landing');
     }
 
     public function verify(int $id, string $hash): RedirectResponse
