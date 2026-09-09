@@ -70,7 +70,7 @@ function Buttons() {
             </> : <div>
                 <button
                     onClick={handleLogout}
-                    className="max-lg:hidden w-24 flex justify-center cursor-pointer rounded-sm border border-white  max-lg:text-sm px-3.25 py-1.75 text-base font-normal text-white leading-[150%]"
+                    className="max-lg:hidden w-24 flex justify-center cursor-pointer rounded-sm border border-white max-lg:text-sm px-3.25 py-1.75 text-base font-normal text-white leading-[150%] transition-colors duration-200 hover:bg-main-red hover:border-main-red"
                 >
                     {t('log_out')}
                 </button>
