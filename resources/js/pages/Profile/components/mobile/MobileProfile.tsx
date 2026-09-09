@@ -38,6 +38,7 @@ function MobileProfile(_props: ProfileProps) {
 
             {(edit && !confirmation) &&
                 <ProfileForm
+                    key={edit}
                     edit={edit}
                     onChange={onChange}
                     formData={formData}

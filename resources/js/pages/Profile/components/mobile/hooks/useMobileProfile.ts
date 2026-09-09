@@ -19,6 +19,11 @@ function useMobileProfile() {
         setOpen(true);
         setConfirmation(false);
         setEdit("");
+        setFormData((prev) => {
+            const {password, password_confirmation, current_password, ...rest} = prev;
+
+            return rest;
+        });
     }
     useEffect(() => {
         if (open) {

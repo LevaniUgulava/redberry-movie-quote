@@ -3,6 +3,8 @@
     "username": "მომხმარებლის სახელი",
     "email": "ელფოსტა",
     "password": "პაროლი",
+    "current_password": "მიმდინარე პაროლი",
+    "enter_current_password": "შეიყვანეთ მიმდინარე პაროლი",
     "enter_new_username": "ახალი მომხმარებლის სახელის შეყვანა",
     "enter_new_email": "ახალი ელფოსტის შეყვანა",
     "enter_new_password": "ახალი პაროლის შეყვანა",
