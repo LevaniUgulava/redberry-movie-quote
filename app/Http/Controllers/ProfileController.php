@@ -36,6 +36,9 @@ class ProfileController extends Controller
             Inertia::flash('type', 'VERIFY_SENT');
         }
         if ($request->hasFile('avatar')) {
+            if ($user->hasMedia('avatar')) {
+                $user->media()->delete();
+            }
             $user->addMediaFromRequest('avatar')->toMediaCollection('avatar');
         }
         $user->update($data);
