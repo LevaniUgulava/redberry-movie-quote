@@ -1,5 +1,11 @@
 {
     "sign_up": "Sign up",
     "sign_in": "Sign in",
-    "log_out": "Log out"
+    "log_out": "Log out",
+    "notifications_title": "Notifications",
+    "mark_all_read": "Mark all as read",
+    "no_notifications": "No notifications yet",
+    "new": "New",
+    "notification_comment": "Commented to your movie quote",
+    "notification_like": "Reacted to your quote"
 }
