@@ -1,7 +1,7 @@
 import {AvatarProps} from "@/pages/Profile/ProfileTypes.ts";
 import {useTranslation} from "react-i18next";
 
-function AvatarField({fileInputRef, handleFileChange, preview}: AvatarProps) {
+function AvatarField({isVisible,fileInputRef, handleFileChange, preview}: AvatarProps) {
     const {t} = useTranslation("profile");
     return (
         <div className="flex flex-col items-center">
@@ -20,12 +20,20 @@ function AvatarField({fileInputRef, handleFileChange, preview}: AvatarProps) {
                 src={preview}
             />
 
-            <span
-                className="text-white mt-2 cursor-pointer"
-                onClick={() => fileInputRef.current?.click()}
+            <div
+                className={`grid transition-all duration-300 ease-in-out ${
+                    isVisible ? "grid-rows-[0fr] opacity-0" : "grid-rows-[1fr] opacity-100"
+                }`}
             >
-                {t("upload_new_photo")}
-            </span>
+                <div className="min-h-0 overflow-hidden">
+                    <span
+                        className="block text-white mt-2 cursor-pointer whitespace-nowrap"
+                        onClick={() => fileInputRef.current?.click()}
+                    >
+                        {t("upload_new_photo")}
+                    </span>
+                </div>
+            </div>
         </div>
     );
 }

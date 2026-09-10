@@ -17,6 +17,7 @@ export interface AvatarProps {
     fileInputRef: RefObject<HTMLInputElement | null>;
     handleFileChange: (e: ChangeEvent<HTMLInputElement>) => void;
     preview?: string;
+    isVisible:boolean
 }
 
 export interface InputFieldProps {
