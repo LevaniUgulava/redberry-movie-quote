@@ -1,12 +1,22 @@
-import {FormEvent, useState} from "react";
+import {FormEvent, useEffect, useState} from "react";
 import {router, usePage} from "@inertiajs/react";
 import {index} from "@/actions/App/Http/Controllers/QuoteController.ts";
 
 function useHeader() {
-    const [value, setValue] = useState("");
-    const [isOpen, setIsOpen] = useState(false);
+    const {currentModal, locale, filter} = usePage().props as {
+        currentModal?: string;
+        locale: string;
+        filter?: { search?: string };
+    };
+    const [value, setValue] = useState(filter?.search ?? "");
+    const [isOpen, setIsOpen] = useState(!!filter?.search);
     const [isHovered, setIsHovered] = useState(false);
-    const {currentModal, locale} = usePage().props;
+
+    useEffect(() => {
+        if (filter?.search) {
+            setValue(filter.search);
+        }
+    }, [filter?.search]);
 
     const openModal = currentModal === "create";
 
@@ -21,7 +31,6 @@ function useHeader() {
             preserveScroll: true,
             replace: true,
         });
-        setIsOpen(false);
     };
 
     const handleClose = () => {
