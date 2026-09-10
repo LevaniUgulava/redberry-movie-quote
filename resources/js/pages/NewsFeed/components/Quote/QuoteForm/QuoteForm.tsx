@@ -15,7 +15,7 @@ function QuoteForm({handleClose}: { handleClose: VoidFunction }) {
     const {t} = useTranslation("newsfeed");
     const [selectedMovie, setSelectedMovie] = useState<movie | null>(movie);
 
-    return <div className="px-5 flex flex-col gap-6">
+    return <div className="px-5 flex flex-col gap-6 max-h-[80vh] overflow-y-auto">
         <div className="flex items-center gap-2.5">
             <img className="h-15 w-15 max-lg:w-10 max-lg:h-10 rounded-full" alt="profile_imgae" src={auth.avatar}/>
             <span className="text-white text-xl leading-[150%]">{auth.username}</span>

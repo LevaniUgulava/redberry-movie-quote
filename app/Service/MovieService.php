@@ -41,14 +41,11 @@ class MovieService
             $query->withCount(['comments', 'likes'])
                 ->withExists(['likes as is_liked' => function ($q) {
                     $q->where('user_id', auth()->id());
-                }]);
+                }])->latest();
         }]);
 
         $quote = $quote_id
-            ? Quote::with(['comments' => function ($query) {
-                $query->with('user')->latest()->limit(2);
-            }])
-                ->withCount(['comments', 'likes'])
+            ? Quote::withCount(['comments', 'likes'])
                 ->findOrFail($quote_id)
             : null;
 
