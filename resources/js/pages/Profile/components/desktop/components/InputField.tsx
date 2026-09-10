@@ -75,7 +75,6 @@ function InputField({
                                 label={t("new_field", {field: label})}
                                 placeholder={placeholder}
                                 type={type}
-                                defaultValue={value}
                                 onChange={() => validate(name)}
                                 error={errors[name]}
                                 isValid={valid(name)}

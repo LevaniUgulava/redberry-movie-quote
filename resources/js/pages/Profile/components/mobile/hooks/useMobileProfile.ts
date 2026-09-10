@@ -26,7 +26,30 @@ function useMobileProfile() {
             return () => clearTimeout(timer);
         }
     }, [open]);
-    return {edit, handleEdit, onChange, confirmation, formData, setConfirmation, handleSuccessOpen, open, setOpen}
+
+    const handleBack = () => {
+        if (confirmation) {
+            setConfirmation(false);
+
+            return;
+        }
+
+        if (edit) {
+            setEdit("");
+
+            return;
+        }
+
+        if (open) {
+            setOpen(false);
+
+            return;
+        }
+
+        window.history.back();
+    };
+
+    return {edit, handleEdit, onChange, confirmation, formData, setConfirmation, handleSuccessOpen, open, setOpen, handleBack}
 }
 
 export default useMobileProfile;

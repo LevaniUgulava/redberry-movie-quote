@@ -1,4 +1,4 @@
-import {FormEvent, useState} from "react";
+import {FormEvent, MouseEvent, useState} from "react";
 import {router} from "@inertiajs/react";
 import {index} from "@/actions/App/Http/Controllers/MovieController.ts";
 import {useTranslation} from "react-i18next";
@@ -10,10 +10,7 @@ function useHeader() {
     const [isOpen, setIsOpen] = useState(false);
     const [search, setSearch] = useState("");
 
-    const handleSearch = (e: FormEvent) => {
-        e.preventDefault();
-        const term = search.trim();
-        if (!term) return;
+    const submitSearch = (term: string) => {
         router.get(index.url(), {
             filter: {search: term},
         }, {
@@ -21,10 +18,30 @@ function useHeader() {
             preserveScroll: true,
             replace: true,
         });
+    };
+
+    const handleSubmit = (e: FormEvent | MouseEvent) => {
+        e.preventDefault();
+        const term = search.trim();
+
+        if (!isOpen) {
+            setIsOpen(true);
+
+            return;
+        }
+
+        if (!term) {
+            setIsOpen(false);
+
+            return;
+        }
+
+        submitSearch(term);
+        setSearch("");
         setIsOpen(false);
     };
 
-    return {isOpen, search, setIsOpen, setSearch, handleSearch,isMoble,t};
+    return {isOpen, search, setIsOpen, setSearch, handleSubmit, isMoble, t};
 }
 
 export default useHeader;

@@ -20,7 +20,7 @@ function Movies() {
     return <div className="max-lg:px-8.75 mt-10">
         <Head title={t("title")}/>
 
-        <Header quantity={movies.total}/>
+        <Header quantity={movies.meta.total}/>
         {inertiaLoading ? (
             <div className="flex justify-center items-center py-20">
                 <Spinner/>
