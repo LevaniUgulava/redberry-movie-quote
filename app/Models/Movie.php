@@ -47,10 +47,10 @@ class Movie extends Model implements HasMedia
     public function scopeSearch(Builder $query, string $search): Builder
     {
         $locale = app()->getLocale();
+        $lowerTerm = strtolower(trim($search));
 
-        return $query->where("title->{$locale}", 'like', "%{$search}%");
+        return $query->whereRaw("LOWER(title->>'\$.{$locale}') LIKE ?", ["%{$lowerTerm}%"]);
     }
-
 
     public function comments(): HasManyThrough
     {
