@@ -15,10 +15,10 @@ function NewsFeed() {
 
     const inertiaLoading = useInertiaLoading(quotes.data.length > 0);
 
-    return <div className="w-full max-w-234.5 mx-auto overflow-y-auto max-h-screen mt-10">
+    return <div className="w-full max-w-234.5 mx-auto mt-10">
         <Head title={t("title")}/>
         <Header/>
-        <div className="mt-4 flex flex-col gap-5">
+        <div className="mt-4 flex flex-col gap-5 overflow-y-auto max-h-screen">
             {inertiaLoading ? (
                 <div className="flex justify-center items-center py-20">
                     <Spinner/>
