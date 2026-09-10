@@ -23,6 +23,7 @@ test('update user profile partially, only password', function () {
     $this->actingAs($user)
         ->from(localeUrl('/profile'))
         ->patch(localeUrl('/profile/update'), [
+            'current_password' => 'password',
             'password' => 'new-secure-password',
             'password_confirmation' => 'new-secure-password',
         ])

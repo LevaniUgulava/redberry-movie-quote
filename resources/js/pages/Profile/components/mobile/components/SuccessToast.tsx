@@ -7,9 +7,9 @@ function SuccessToast({open, setOpen}: SuccessToastProps) {
     const {t} = useTranslation("profile");
     return <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent
-            overlayClassName="backdrop-blur-[1px]!"
+            overlayClassName="backdrop-blur-[1px]! lg:backdrop-blur-none! lg:bg-transparent!"
             showCloseButton={false}
-            className="w-full max-w-240.25! top-20! translate-y-0! p-0 bg-[#D1E7DD]/90 px-4 py-3">
+            className="w-full lg:max-w-100.25! lg:right-4! lg:left-auto! lg:top-25! max-w-240.25! lg:translate-x-0! top-20! translate-y-0! p-0 bg-[#D1E7DD]/90 px-4 py-3">
 
             <div className="flex items-center justify-between gap-3  backdrop-blur-xs rounded-lg ">
                 <div className="flex items-center gap-2">

@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults, validateParameters } from './../../wayfinder'
 /**
 * @see \App\Http\Controllers\ProfileController::edit
-* @see app/Http/Controllers/ProfileController.php:17
+* @see app/Http/Controllers/ProfileController.php:19
 * @param lang - Default: '$lang'
 * @route '/{lang?}/profile'
 */
@@ -17,7 +17,7 @@ edit.definition = {
 
 /**
 * @see \App\Http\Controllers\ProfileController::edit
-* @see app/Http/Controllers/ProfileController.php:17
+* @see app/Http/Controllers/ProfileController.php:19
 * @param lang - Default: '$lang'
 * @route '/{lang?}/profile'
 */
@@ -49,7 +49,7 @@ edit.url = (args?: { lang?: string | number } | [lang: string | number ] | strin
 
 /**
 * @see \App\Http\Controllers\ProfileController::edit
-* @see app/Http/Controllers/ProfileController.php:17
+* @see app/Http/Controllers/ProfileController.php:19
 * @param lang - Default: '$lang'
 * @route '/{lang?}/profile'
 */
@@ -60,7 +60,7 @@ edit.get = (args?: { lang?: string | number } | [lang: string | number ] | strin
 
 /**
 * @see \App\Http\Controllers\ProfileController::edit
-* @see app/Http/Controllers/ProfileController.php:17
+* @see app/Http/Controllers/ProfileController.php:19
 * @param lang - Default: '$lang'
 * @route '/{lang?}/profile'
 */
@@ -71,7 +71,7 @@ edit.head = (args?: { lang?: string | number } | [lang: string | number ] | stri
 
 /**
 * @see \App\Http\Controllers\ProfileController::update
-* @see app/Http/Controllers/ProfileController.php:22
+* @see app/Http/Controllers/ProfileController.php:24
 * @param lang - Default: '$lang'
 * @route '/{lang?}/profile/update'
 */
@@ -87,7 +87,7 @@ update.definition = {
 
 /**
 * @see \App\Http\Controllers\ProfileController::update
-* @see app/Http/Controllers/ProfileController.php:22
+* @see app/Http/Controllers/ProfileController.php:24
 * @param lang - Default: '$lang'
 * @route '/{lang?}/profile/update'
 */
@@ -119,7 +119,7 @@ update.url = (args?: { lang?: string | number } | [lang: string | number ] | str
 
 /**
 * @see \App\Http\Controllers\ProfileController::update
-* @see app/Http/Controllers/ProfileController.php:22
+* @see app/Http/Controllers/ProfileController.php:24
 * @param lang - Default: '$lang'
 * @route '/{lang?}/profile/update'
 */
