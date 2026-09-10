@@ -28,6 +28,11 @@ function useButtons() {
         quantity: notificationsQuantity
     });
     const [isOpen, setIsOpen] = useState(false);
+    const [badgeKey, setBadgeKey] = useState(0);
+
+    const handleNewNotification = () => {
+        setBadgeKey((key) => key + 1);
+    };
 
     const handleOpenAndClose = () => {
         setIsOpen(prev => !prev);
@@ -66,7 +71,9 @@ function useButtons() {
         isSearchIconVisible,
         isLangVisible,
         auth,
-        setNotificationsState
+        setNotificationsState,
+        badgeKey,
+        handleNewNotification
     };
 }
 

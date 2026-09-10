@@ -14,4 +14,5 @@ export interface NotificationsState  {
 export interface NotificationChannelProps{
     id: number,
     setNotificationsState: Dispatch<SetStateAction<NotificationsState>>;
+    onNewNotification?: () => void;
 }

@@ -30,6 +30,18 @@ html {
     --color-main-beige: #DDCCAA
 
 }
+
+@keyframes notif-bounce {
+    0%, 100% { transform: translateY(0); }
+    25% { transform: translateY(-28%); }
+    50% { transform: translateY(0); }
+    75% { transform: translateY(-18%); }
+    90% { transform: translateY(0); }
+}
+
+.animate-notif-bounce {
+    animation: notif-bounce 0.7s ease-in-out;
+}
 * {
     scrollbar-width: none;
     -ms-overflow-style: none;

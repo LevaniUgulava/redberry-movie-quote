@@ -2,7 +2,7 @@
 import {NotificationChannelProps} from "@/shared/components/Header/components/Buttons/ButtonTypes.ts";
 
 
-function NotificationChannel({id, setNotificationsState}: NotificationChannelProps) {
+function NotificationChannel({id, setNotificationsState, onNewNotification}: NotificationChannelProps) {
     useEcho(
         `notification.${id}`,
         ['.notification.updated'],
@@ -12,6 +12,7 @@ function NotificationChannel({id, setNotificationsState}: NotificationChannelPro
                 quantity: prev.quantity + 1,
                 data: [e.info, ...prev.data].slice(0, 5)
             }));
+            onNewNotification?.();
         }
     );
 
