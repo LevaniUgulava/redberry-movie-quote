@@ -16,14 +16,22 @@ function MobileProfile(_props: ProfileProps) {
         setConfirmation,
         handleSuccessOpen,
         open,
-        setOpen
+        setOpen,
+        handleBack
     } = useMobileProfile();
 
 
     return (
         <div>
             <div className='p-5'>
-                <BackIcon className="max-lg:w-4 max-lg:h-4"/>
+                <button
+                    type="button"
+                    onClick={handleBack}
+                    aria-label="back"
+                    className="cursor-pointer"
+                >
+                    <BackIcon className="max-lg:w-4 max-lg:h-4"/>
+                </button>
             </div>
             {!edit &&
                 <ProfileView fileInputRef={_props.fileInputRef}
@@ -39,6 +47,7 @@ function MobileProfile(_props: ProfileProps) {
 
             {(edit && !confirmation) &&
                 <ProfileForm
+                    key={edit}
                     edit={edit}
                     onChange={onChange}
                     formData={formData}

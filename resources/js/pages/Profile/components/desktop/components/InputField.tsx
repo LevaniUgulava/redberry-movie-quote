@@ -1,5 +1,4 @@
 import Input from "@/components/ui/Auth/Input/Input.tsx";
-import {useState} from "react";
 import {cn} from "@/lib/utils.ts";
 import {InputFieldProps} from "@/pages/Profile/ProfileTypes.ts";
 import {useTranslation} from "react-i18next";
@@ -19,25 +18,33 @@ function InputField({
     const {validate, errors, valid, reset} = form;
     const {t} = useTranslation(["profile", "common"]);
     const isPassword = type === "password";
+    const isOpenPassword = isPassword && isOpen;
     const confirmationName = `${name}_confirmation`;
+    const currentPasswordName = `current_${name}`
 
     return (
         <div className="w-125 max-2xl:w-110 max-xl:w-92.5 flex flex-col gap-10">
             <div className="flex gap-3.5">
                 <div className="w-full">
                     <Input
-                        name={name}
-                        label={label}
-                        defaultValue={value}
-                        placeholder={placeholder}
-                        disabled
+                        key={isOpenPassword ? "password-open" : "password-closed"}
+                        name={currentPasswordName}
+                        label={isOpenPassword ? t("current_password") : label}
+                        defaultValue={isOpenPassword ? "" : (value ?? "")}
+                        error={errors[currentPasswordName]}
+                        type={type}
+                        onChange={isOpenPassword ? () => validate(currentPasswordName) : undefined}
+                        placeholder={isOpenPassword ? t("enter_current_password") : placeholder}
+                        isValid={valid(currentPasswordName)}
+                        reset={reset}
+                        disabled={!isOpenPassword}
                     />
                 </div>
                 <button
                     type="button"
                     onClick={() => handleOpen(name)}
                     className={cn(
-                        "text-white h-9.5 mt-8 w-15 shrink-0 flex items-center px-4.25 py-2.25",
+                        "text-white h-6 mt-8 w-15 shrink-0 flex items-center px-4.25 py-2.25",
                         isEditShow ? "cursor-pointer" : "invisible"
                     )}
                 >
@@ -73,9 +80,8 @@ function InputField({
                             <Input
                                 name={name}
                                 label={t("new_field", {field: label})}
-                                placeholder={placeholder}
+                                placeholder={placeholder || t("enter_new_field", {field: label})}
                                 type={type}
-                                defaultValue={value}
                                 onChange={() => validate(name)}
                                 error={errors[name]}
                                 isValid={valid(name)}
@@ -91,7 +97,7 @@ function InputField({
                                 <Input
                                     name={confirmationName}
                                     label={t("confirm_new_field", {field: label})}
-                                    placeholder={placeholder}
+                                    placeholder={t("confirm_new_field_again", {field: label})}
                                     type={type}
                                     onChange={() => validate(confirmationName)}
                                     error={errors[confirmationName]}
