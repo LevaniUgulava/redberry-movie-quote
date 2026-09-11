@@ -60,7 +60,7 @@ email.post = (args?: { lang?: string | number } | [lang: string | number ] | str
 
 /**
 * @see \App\Http\Controllers\PasswordResetController::update
-* @see app/Http/Controllers/PasswordResetController.php:37
+* @see app/Http/Controllers/PasswordResetController.php:42
 * @param lang - Default: '$lang'
 * @route '/{lang?}/reset-password'
 */
@@ -76,7 +76,7 @@ update.definition = {
 
 /**
 * @see \App\Http\Controllers\PasswordResetController::update
-* @see app/Http/Controllers/PasswordResetController.php:37
+* @see app/Http/Controllers/PasswordResetController.php:42
 * @param lang - Default: '$lang'
 * @route '/{lang?}/reset-password'
 */
@@ -108,7 +108,7 @@ update.url = (args?: { lang?: string | number } | [lang: string | number ] | str
 
 /**
 * @see \App\Http\Controllers\PasswordResetController::update
-* @see app/Http/Controllers/PasswordResetController.php:37
+* @see app/Http/Controllers/PasswordResetController.php:42
 * @param lang - Default: '$lang'
 * @route '/{lang?}/reset-password'
 */

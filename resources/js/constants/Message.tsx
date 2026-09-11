@@ -1,6 +1,7 @@
 import CheckIcon from "@/components/ui/icons/Message/CheckIcon.tsx";
 import SuccesIcon from "@/components/ui/icons/Message/SuccesIcon.tsx";
 import InvalidTokenIcon from "@/components/ui/icons/Message/InvalidTokenIcon.tsx";
+import {AlertCircle} from "lucide-react";
 import {router} from "@inertiajs/react";
 
 export const getMessageConfig = (locale: string) => ({
@@ -45,5 +46,19 @@ export const getMessageConfig = (locale: string) => ({
         subtitle: "email_changed_subtitle",
         button: "go_to_feed",
         onClick: () => router.visit(`/${locale}/newsfeed`),
-    }
+    },
+    EMAIL_THROTTLE: {
+        icon: <AlertCircle className="size-18 text-main-red"/>,
+        title: "throttle_title",
+        subtitle: "email_throttle_subtitle",
+        button: "close",
+        onClick: () => router.get(`/${locale}`, {}, {preserveScroll: true, preserveState: true}),
+    },
+    ERROR: {
+        icon: <AlertCircle className="size-18 text-main-red"/>,
+        title: "error_title",
+        subtitle: "error_subtitle",
+        button: "close",
+        onClick: () => router.get(`/${locale}`, {}, {preserveScroll: true, preserveState: true}),
+    },
 });

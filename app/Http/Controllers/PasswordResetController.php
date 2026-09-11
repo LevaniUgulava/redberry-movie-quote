@@ -28,10 +28,15 @@ class PasswordResetController extends Controller
     public function forgetPassword(ForgetPasswordRequest $request): RedirectResponse
     {
         $status = $this->passwordResetService->sendResetEmail($request->only('email'));
-        $status === Password::ResetLinkSent ? Inertia::flash('type', "CHECK") : Inertia::flash('type', "ERROR");
+
+        $type = match ($status) {
+            Password::ResetLinkSent => "CHECK",
+            Password::RESET_THROTTLED => "EMAIL_THROTTLE",
+            default => "ERROR"
+        };
+        Inertia::flash('type', $type);
 
         return redirect()->route('landing');
-
     }
 
     public function resetPassword(PasswordResetRequest $request): RedirectResponse

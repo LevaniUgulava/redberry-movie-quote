@@ -60,7 +60,7 @@ forgetPassword.post = (args?: { lang?: string | number } | [lang: string | numbe
 
 /**
 * @see \App\Http\Controllers\PasswordResetController::resetPassword
-* @see app/Http/Controllers/PasswordResetController.php:37
+* @see app/Http/Controllers/PasswordResetController.php:42
 * @param lang - Default: '$lang'
 * @route '/{lang?}/reset-password'
 */
@@ -76,7 +76,7 @@ resetPassword.definition = {
 
 /**
 * @see \App\Http\Controllers\PasswordResetController::resetPassword
-* @see app/Http/Controllers/PasswordResetController.php:37
+* @see app/Http/Controllers/PasswordResetController.php:42
 * @param lang - Default: '$lang'
 * @route '/{lang?}/reset-password'
 */
@@ -108,7 +108,7 @@ resetPassword.url = (args?: { lang?: string | number } | [lang: string | number 
 
 /**
 * @see \App\Http\Controllers\PasswordResetController::resetPassword
-* @see app/Http/Controllers/PasswordResetController.php:37
+* @see app/Http/Controllers/PasswordResetController.php:42
 * @param lang - Default: '$lang'
 * @route '/{lang?}/reset-password'
 */
