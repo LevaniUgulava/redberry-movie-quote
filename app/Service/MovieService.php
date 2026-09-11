@@ -62,17 +62,17 @@ class MovieService
         return DB::transaction(function () use ($movie, $data) {
             $movie->update([
                 'title' => [
-                    'en' => $data['en_title'],
-                    'ka' => $data['ka_title'],
+                    'en' => $data['en_title'] ?? $movie->getTranslation('title', 'en'),
+                    'ka' => $data['ka_title'] ?? $movie->getTranslation('title', 'ka'),
                 ],
-                'year' => $data['year'],
+                'year' => $data['year'] ?? $movie->year,
                 'director' => [
-                    'en' => $data['en_director'],
-                    'ka' => $data['ka_director'],
+                    'en' => $data['en_director'] ?? $movie->getTranslation('director', 'en'),
+                    'ka' => $data['ka_director'] ?? $movie->getTranslation('director', 'ka'),
                 ],
                 'description' => [
-                    'en' => $data['en_description'],
-                    'ka' => $data['ka_description'],
+                    'en' => $data['en_description'] ?? $movie->getTranslation('description', 'en'),
+                    'ka' => $data['ka_description'] ?? $movie->getTranslation('description', 'ka'),
                 ],
             ]);
 
