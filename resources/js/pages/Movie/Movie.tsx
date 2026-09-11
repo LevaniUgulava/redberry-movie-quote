@@ -59,7 +59,8 @@ function Movie() {
                 </div>
                 <div className='flex gap-3'>
                     {movie.genres.map((genre: any) => (
-                        <div className="px-[11.7px] py-[6.3px] rounded-lg bg-[#6C757D]">
+                        <div key={genre}
+                             className="px-[11.7px] py-[6.3px] rounded-lg bg-[#6C757D]">
                             <span className="text-white font-bold text-lg leading-[100%]">{genre}</span>
                         </div>
                     ))}

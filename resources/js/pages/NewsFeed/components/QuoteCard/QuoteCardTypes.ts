@@ -35,4 +35,6 @@ export interface QuoteCardData {
 export interface QuoteCardProps {
     quote: QuoteCardData;
     currentModal?: string|null;
+    handleClose?: VoidFunction
+
 }

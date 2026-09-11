@@ -38,7 +38,8 @@ function QuoteCard({quote}: QuoteCardProps) {
             </div>}
             {quote.movie && <div>
                 <span
-                    className="text-xl max-lg:text-base text-white font-normal leading-[150%]">{quote.quote} - {quote.movie.title} {quote.movie.year}</span>
+                    className="text-xl max-lg:text-base text-white font-normal leading-[150%]">{quote.quote} - <span
+                    className="text-[#E8D5B0] font-semibold">{quote.movie.title}</span> ({quote.movie.year})</span>
             </div>}
             <div className="flex flex-col gap-6 pb-6">
                 <img alt="quote_image" className="w-full rounded-[10px] object-cover" src={quote.image}/>
@@ -66,13 +67,14 @@ function QuoteCard({quote}: QuoteCardProps) {
                 >
                     {loadingComments ? (
                         <span className="flex items-center gap-2">
-                <span className="w-3.5 h-3.5 border-2 border-white/20 border-t-white rounded-full animate-spin" />
+                <span className="w-3.5 h-3.5 border-2 border-white/20 border-t-white rounded-full animate-spin"/>
                 <span>{t("loading")}</span>
             </span>
                     ) : (
                         <>
                             <span>{t("load_more")}</span>
-                            <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:translate-y-1" />
+                            <ChevronDown
+                                className="w-4 h-4 transition-transform duration-200 group-hover:translate-y-1"/>
                         </>
                     )}
                 </button>

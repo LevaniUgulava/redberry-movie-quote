@@ -21,17 +21,6 @@ class QuoteEditResource extends JsonResource
             'image' => $this->resource->getFirstMediaUrl('quote'),
             'comment_quantity' => $this->comments_count,
             'reaction_quantity' => $this->likes_count,
-            'comments' => $this->comments->map(function ($comment) {
-                return [
-                    'comment' => $comment->comment,
-                    'user' => [
-                        'id' => $comment->user->id,
-                        'username' => $comment->user->username,
-                        'avatar' => $comment->user->avatar,
-                    ]
-
-                ];
-            }),
 
         ];
     }

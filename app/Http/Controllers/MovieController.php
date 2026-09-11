@@ -24,11 +24,13 @@ class MovieController extends Controller
             'modal' => $request->query('modal'),
             'id' => $request->query('id'),
         ]);
+        $search = $request->query('filter')['search'] ?? null;
 
         return Inertia::render('Movies/Movies', [
             'currentModal' => $data['currentModal'],
             'editingMovie' => $data['editingMovie'],
             'movies' => Inertia::scroll(fn () => $data['movies']),
+            'filter' => $search ? ['search' => $search] : [],
         ]);
     }
 

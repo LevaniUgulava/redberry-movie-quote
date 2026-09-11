@@ -16,7 +16,7 @@ function Header() {
         })}>
             <div
                 className=" max-lg:hidden flex items-center text-main-beige uppercase text-base leading-[150%] font-medium">
-                <span>{t("movie_quotes")}</span>
+                <span>Movie Quotes</span>
             </div>
             <div
                 className="hidden max-lg:flex items-center text-main-beige uppercase text-base leading-[150%] font-medium">

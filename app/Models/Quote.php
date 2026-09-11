@@ -18,7 +18,7 @@ use Spatie\Translatable\HasTranslations;
 #[Translatable('quote')]
 class Quote extends Model implements HasMedia
 {
-    use HasFactory, HasTranslations,InteractsWithMedia;
+    use HasFactory, HasTranslations, InteractsWithMedia;
 
     protected function casts(): array
     {
@@ -52,20 +52,27 @@ class Quote extends Model implements HasMedia
         $locale = app()->getLocale();
 
         if (str_starts_with($search, '@')) {
-            $term = ltrim($search, '@');
-            $query->whereHas('movie', function ($q) use ($term, $locale) {
-                $q->where("title->{$locale}", 'like', "%{$term}%");
+            $lowerTerm = $this->getCleanText($search, '@');
+            $query->whereHas('movie', function ($q) use ($lowerTerm, $locale) {
+                $q->whereRaw("LOWER(title->>'\$.{$locale}') LIKE ?", ["%{$lowerTerm}%"]);
             });
         } elseif (str_starts_with($search, '#')) {
-            $term = ltrim($search, '#');
-            $query->where("quote->{$locale}", 'like', "%{$term}%");
+            $lowerTerm = $this->getCleanText($search, '#');
+            $query->whereRaw("LOWER(quote->>'\$.{$locale}') LIKE ?", ["%{$lowerTerm}%"]);
         } else {
-            $term = $search;
-            $query->where(function ($q) use ($term, $locale) {
-                $q->whereHas('movie', function ($sub) use ($term, $locale) {
-                    $sub->where("title->{$locale}", 'like', "%{$term}%");
-                })->orWhere("quote->{$locale}", 'like', "%{$term}%");
+            $lowerTerm = $this->getCleanText($search);
+            $query->where(function ($q) use ($lowerTerm, $locale) {
+                $q->whereHas('movie', function ($sub) use ($lowerTerm, $locale) {
+                    $sub->whereRaw("LOWER(title->>'\$.{$locale}') LIKE ?", ["%{$lowerTerm}%"]);
+                })->orWhereRaw("LOWER(quote->>'\$.{$locale}') LIKE ?", ["%{$lowerTerm}%"]);
             });
         }
+    }
+
+    private function getCleanText(string $text, ?string $prefix = null): string
+    {
+        $term = $prefix ? ltrim($text, $prefix) : $text;
+
+        return strtolower(trim($term));
     }
 }

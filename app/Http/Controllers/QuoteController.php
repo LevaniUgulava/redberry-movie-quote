@@ -20,12 +20,14 @@ class QuoteController extends Controller
     public function index(Request $request)
     {
         $modal = $request->query('modal');
+        $search = $request->query('filter')['search'] ?? null;
         $data = $this->quoteService->index($modal);
 
         return Inertia::render('NewsFeed/NewsFeed', [
             'currentModal' => $data['currentModal'],
             'movies' => $data['movies'],
             'quotes' => Inertia::scroll(fn () => $data['quotes']),
+            'filter' => $search ? ['search' => $search] : [],
         ]);
 
     }

@@ -3,10 +3,25 @@ import AddIcon from "@/components/ui/icons/Movie/AddIcon.tsx";
 import LocaleLink from "@/components/LocaleLink.tsx";
 import useHeader from "./hooks/useHeader.ts";
 import {cn} from "@/lib/utils.ts";
+import {useEffect, useRef} from "react";
 
 function Header({quantity}: { quantity: number }) {
 
-    const {isOpen, search, setIsOpen, setSearch, handleSubmit, isMoble, t} = useHeader();
+    const {isOpen, search, setIsOpen, setSearch, handleSubmit, clearSearch, isMoble, t} = useHeader();
+    const formRef = useRef<HTMLFormElement>(null);
+
+    useEffect(() => {
+        if (!isOpen) return;
+
+        const handleMouseDown = (e: MouseEvent) => {
+            if (formRef.current && !formRef.current.contains(e.target as Node)) {
+                setIsOpen(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleMouseDown);
+        return () => document.removeEventListener("mousedown", handleMouseDown);
+    }, [isOpen, setIsOpen]);
 
     return <div className="flex justify-between">
         <div className="flex items-center">
@@ -15,6 +30,7 @@ function Header({quantity}: { quantity: number }) {
         <div className="flex items-center gap-5 transition-[grid-template-columns] duration-200">
             {!isMoble &&
                 <form
+                    ref={formRef}
                     onSubmit={handleSubmit}
                     className={cn("flex items-center gap-2.5 cursor-pointer transition-[width] duration-300 overflow-hidden", {
                         'border-b border-[#EFEFEF]/30 w-72': isOpen,
@@ -41,14 +57,26 @@ function Header({quantity}: { quantity: number }) {
                         </>
 
                     ) : (
-                        <input
-                            autoFocus
-                            value={search}
-                            onChange={(e) => setSearch(e.target.value)}
-                            onBlur={() => !search && setIsOpen(false)}
-                            placeholder={t("search_placeholder")}
-                            className="bg-transparent border-none py-2 text-white text-xl font-normal leading-[150%] focus:outline-none placeholder:text-[#CED4DA] w-full min-w-0"
-                        />
+                        <div className="relative w-full min-w-0 flex items-center gap-2">
+                            <input
+                                autoFocus
+                                value={search}
+                                onChange={(e) => setSearch(e.target.value)}
+                                onBlur={() => !search && setIsOpen(false)}
+                                placeholder={t("search_placeholder")}
+                                className="bg-transparent border-none py-2 text-white text-xl font-normal leading-[150%] focus:outline-none placeholder:text-[#CED4DA] w-full min-w-0"
+                            />
+                            {search && (
+                                <button
+                                    type="button"
+                                    onClick={clearSearch}
+                                    aria-label={t("clear_search")}
+                                    className="shrink-0 text-[#6C757D] hover:text-white text-xl cursor-pointer transition-colors duration-200"
+                                >
+                                    ×
+                                </button>
+                            )}
+                        </div>
                     )}
                 </form>}
             <LocaleLink href="/movies?modal=create"

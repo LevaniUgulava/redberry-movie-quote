@@ -8,7 +8,7 @@ import useQuoteEdit from "@/pages/NewsFeed/components/Quote/Quote/hooks/useQuote
 import {useTranslation} from "react-i18next";
 
 
-function QuoteEdit({quote}: QuoteCardProps) {
+function QuoteEdit({quote, handleClose}: QuoteCardProps) {
     const {auth, currentModal, handleImageUpload, openImageUpload, preview, imageRef} = useQuoteEdit();
     const {t} = useTranslation(["newsfeed", "common"]);
 
@@ -20,7 +20,8 @@ function QuoteEdit({quote}: QuoteCardProps) {
         <Form
             action={update({quote: quote.id})}
             method='put'
-            className="gap-3 flex flex-col">
+            className="gap-3 flex flex-col"
+            onSuccess={handleClose}>
             {({errors}) => (
                 <>
                     <Input showPrefix={true} prefix="Quote:" pl="pl-5" defaultValue={quote.en_quote}

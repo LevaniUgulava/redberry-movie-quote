@@ -1,5 +1,11 @@
 {
     "sign_up": "რეგისტრაცია",
     "sign_in": "შესვლა",
-    "log_out": "გასვლა"
+    "log_out": "გასვლა",
+    "notifications_title": "შეტყობინებები",
+    "mark_all_read": "ყველას წაკითხულად მონიშვნა",
+    "no_notifications": "შეტყობინებები ჯერ არ არის",
+    "new": "ახალი",
+    "notification_comment": "კომენტარი დატოვა თქვენს ციტატაზე",
+    "notification_like": "რეაქცია მოახდინა თქვენს ციტატაზე"
 }

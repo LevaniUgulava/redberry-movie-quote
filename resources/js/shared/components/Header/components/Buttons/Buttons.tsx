@@ -20,12 +20,15 @@ function Buttons() {
         isSearchIconVisible,
         isLangVisible,
         auth,
-        setNotificationsState
+        setNotificationsState,
+        badgeKey,
+        handleNewNotification
     } = useButtons();
 
     return (
         <div className="flex gap-4 max-lg:gap-2">
-            {auth?.id && <NotificationChannel id={auth.id} setNotificationsState={setNotificationsState}/>}
+            {auth?.id && <NotificationChannel id={auth.id} setNotificationsState={setNotificationsState}
+                                              onNewNotification={handleNewNotification}/>}
             {isAuth && <div className="flex items-center gap-8">
                 {isSearchIconVisible && <>
                     <div onClick={handleOpenAndClose}>
@@ -39,10 +42,11 @@ function Buttons() {
                     notifications={notificationsState.data}
                     handleOpenChange={handleOpenChange}
                 >
-                    <div className="flex justify-center items-center relative">
+                    <div className="flex justify-center items-center relative transition-transform duration-200 hover:scale-110 cursor-pointer">
                         <NotificationIcon/>
                         {notificationsState.quantity > 0 && <div
-                            className="absolute -top-1 max-lg:-top-2 left-4 max-lg:left-3 max-lg:h-4 max-lg:w-4 h-6.25 w-6.25 bg-[#E33812] rounded-full items-center flex justify-center">
+                            key={badgeKey}
+                            className="absolute -top-1 max-lg:-top-2 left-4 max-lg:left-3 max-lg:h-4 max-lg:w-4 h-6.25 w-6.25 bg-[#E33812] rounded-full items-center flex justify-center animate-notif-bounce">
                             <span
                                 className='text-white text-base max-lg:text-sm leading-[150%] font-medium'>{notificationsState.quantity}</span>
                         </div>}

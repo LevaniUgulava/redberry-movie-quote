@@ -1,7 +1,7 @@
 {
     "write_new_quote": "Write new quote",
     "search_by": "Search by",
-    "search_hint": "Enter @ to search movies, Enter # to search quotes",
+    "search_hint": "Enter <white>@</white> to search movies, Enter <white>#</white> to search quotes",
     "write_a_comment": "Write a comment",
     "post": "Post",
     "choose_movie": "Choose movie",
