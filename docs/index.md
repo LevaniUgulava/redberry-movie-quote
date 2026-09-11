@@ -6,6 +6,7 @@ Master index of functional documentation. See `Docs.md` at the project root for 
 | --- | --- | --- |
 | Auth | [auth.md](./auth.md) | Session-based auth (register / login / logout) with Sanctum |
 | Fonts | [fonts.md](./fonts.md) | Helvetica Neue fonts with unicode-range language switching |
+| Frontend UI | [frontend-ui.md](./frontend-ui.md) | Frontend polish: hover/focus states, invalid Tailwind classes, layout shift fix, notification modal guard, empty states, Lang outside-click, Load-more flash fix |
 | Loading States | [loading-states.md](./loading-states.md) | Shared `useInertiaLoading` hook with 250ms delay spinner for NewsFeed and Movies pages |
 | Localization | [localization.md](./localization.md) | Server-side (Laravel PHP) + client-side (i18next) localization for `en` and `ka` |
 | Movies | [movies.md](./movies.md) | Movies page and its static test data (`TestMovies.ts`) |
