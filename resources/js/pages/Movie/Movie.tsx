@@ -34,7 +34,12 @@ function Movie() {
                         </LocaleLink>
                     </div>
                     <div className="flex flex-col gap-5">
-                        {movie.quotes.map((quote: QuoteCardData, index: number) => (
+                        {movie.quotes.length === 0 ? (
+                            <div className="flex flex-col items-center gap-4 py-16">
+                                <span className="text-white text-2xl font-bold">{t("no_quotes_yet")}</span>
+                                <span className="text-[#CED4DA] text-lg">{t("no_quotes_hint")}</span>
+                            </div>
+                        ) : movie.quotes.map((quote: QuoteCardData, index: number) => (
                             <QuoteCard key={index} movie_id={movie.id} quote={quote}/>
                         ))}
                     </div>
@@ -88,7 +93,12 @@ function Movie() {
                     </div>
                     <div className='flex flex-col gap-10'>
                         <div className="flex flex-col gap-5">
-                            {movie.quotes.map((quote: QuoteCardData, index: number) => (
+                            {movie.quotes.length === 0 ? (
+                                <div className="flex flex-col items-center gap-4 py-16">
+                                    <span className="text-white text-2xl font-bold">{t("no_quotes_yet")}</span>
+                                    <span className="text-[#CED4DA] text-lg">{t("no_quotes_hint")}</span>
+                                </div>
+                            ) : movie.quotes.map((quote: QuoteCardData, index: number) => (
                                 <QuoteCard key={index} movie_id={movie.id} quote={quote}/>
                             ))}
                         </div>
