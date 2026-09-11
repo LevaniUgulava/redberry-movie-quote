@@ -38,6 +38,7 @@ function MobileProfile(_props: ProfileProps) {
                              preview={_props.preview}
                              setPreview={_props.setPreview}
                              handleEdit={handleEdit}
+                             handleSuccessOpen={handleSuccessOpen}
                              auth={_props.auth} handleFileChange={_props.handleFileChange}
                              handleOpen={_props.handleOpen}/>
             }

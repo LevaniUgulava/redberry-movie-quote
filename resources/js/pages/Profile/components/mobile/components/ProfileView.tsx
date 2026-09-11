@@ -5,7 +5,15 @@ import {Form} from "@inertiajs/react";
 import {update} from "@/actions/App/Http/Controllers/ProfileController.ts";
 import {useTranslation} from "react-i18next";
 
-function ProfileView({fileInputRef, preview, setPreview, handleEdit, auth,handleFileChange}: ProfileViewProps) {
+function ProfileView({
+                         fileInputRef,
+                         preview,
+                         setPreview,
+                         handleEdit,
+                         handleSuccessOpen,
+                         auth,
+                         handleFileChange
+                     }: ProfileViewProps) {
 
     const {t} = useTranslation(["profile", "common"]);
 
@@ -15,21 +23,35 @@ function ProfileView({fileInputRef, preview, setPreview, handleEdit, auth,handle
             fileInputRef.current.value = '';
         }
     };
+    let isVisible = preview !== auth?.avatar;
+
     return (
         <div className="bg-[#24222F] p-10 flex flex-col gap-10">
             <div className="flex flex-col justify-center">
-                <Form action={update()} method='post'>
-                    <AvatarField fileInputRef={fileInputRef} preview={preview}
+                <Form action={update()} method='post' onSuccess={() => {
+                    handleSuccessOpen();
+                }}>
+                    <AvatarField isVisible={isVisible} fileInputRef={fileInputRef} preview={preview}
                                  handleFileChange={handleFileChange}/>
 
-                {preview !== auth?.avatar && <div className="px-10 py-4 flex gap-3 justify-center">
-                    <button type="button" onClick={handleCancel}
-                            className='text-white text-xs px-2.25 py-2.25 font-normal'>{t("cancel")}
-                    </button>
-                    <button type="submit"
-                            className='rounded-sm text-white px-2.25 py-2.25 text-xs font-normal bg-main-red'>{t("upload")}
-                    </button>
-                </div>}
+                    <div
+                        className={`grid transition-all duration-300 ease-in-out ${
+                            isVisible
+                                ? "grid-rows-[1fr] opacity-100 translate-y-0"
+                                : "grid-rows-[0fr] opacity-0 -translate-y-2"
+                        }`}
+                    >
+                        <div className="min-h-0 overflow-hidden">
+                            <div className="px-10 py-4 flex gap-3 justify-center">
+                                <button type="button" onClick={handleCancel}
+                                        className='text-white text-xs px-2.25 py-2.25 font-normal'>{t("cancel")}
+                                </button>
+                                <button type="submit"
+                                        className='rounded-sm text-white px-2.25 py-2.25 text-xs font-normal bg-main-red'>{t("upload")}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </Form>
 
             </div>
@@ -38,8 +60,9 @@ function ProfileView({fileInputRef, preview, setPreview, handleEdit, auth,handle
                             handleEdit={handleEdit}/>
                 <InputField label={t("email")} value='email' defaultValue={auth.email}
                             isEditable={!auth.isGoogleAuthenticate} handleEdit={handleEdit}/>
-                {!auth.isGoogleAuthenticate && <InputField label={t("password")} value='password' defaultValue="••••••••••••"
-                             handleEdit={handleEdit}/>}
+                {!auth.isGoogleAuthenticate &&
+                    <InputField label={t("password")} value='password' defaultValue="••••••••••••"
+                                handleEdit={handleEdit}/>}
             </div>
         </div>
     );

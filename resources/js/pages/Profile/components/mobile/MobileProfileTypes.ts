@@ -9,6 +9,8 @@ export interface ProfileViewProps {
     auth: PageProps['auth'];
     handleFileChange: (e: ChangeEvent<HTMLInputElement>) => void;
     handleOpen: (field: string) => void;
+    handleSuccessOpen: VoidFunction;
+
 }
 
 export interface InputFieldProps {
@@ -23,7 +25,7 @@ export interface InputFieldProps {
 export interface ConfirmationModalProps {
     setConfirmation: (value: boolean) => void;
     formData: Record<string, string>;
-    handleSuccessOpen: () => void;
+    handleSuccessOpen: VoidFunction;
 }
 
 export interface SuccessToastProps {

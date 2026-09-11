@@ -1,12 +1,16 @@
 import {usePage} from "@inertiajs/react";
 import {PageProps} from "@/types/PagePropsTypes.ts";
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 
 function useProfile() {
     const {auth} = usePage<PageProps>().props;
 
     const [preview, setPreview] = useState<string | undefined>(auth?.avatar);
     const fileInputRef = useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        setPreview(auth?.avatar);
+    }, [auth?.avatar]);
     const [showField, setShowField] = useState({
         username: false,
         email: false,
