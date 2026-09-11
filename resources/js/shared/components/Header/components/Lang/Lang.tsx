@@ -1,3 +1,4 @@
+import {useEffect, useRef} from "react";
 import useLang from "@/shared/components/Header/components/Lang/hooks/useLang";
 import {LANGUAGE} from "@/constants/Lang";
 import ArrowIcon from "@/shared/components/Header/components/Lang/icons/ArrowIcon";
@@ -5,9 +6,21 @@ import {cn} from "@/lib/utils.ts";
 
 function Lang({isSidebar = false}: { isSidebar?: boolean }) {
     const {isOpen, setIsOpen, selectedLang, setLanguage} = useLang();
+    const ref = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (!isOpen) return;
+        const handleClick = (e: MouseEvent) => {
+            if (ref.current && !ref.current.contains(e.target as Node)) {
+                setIsOpen(false);
+            }
+        };
+        document.addEventListener("mousedown", handleClick);
+        return () => document.removeEventListener("mousedown", handleClick);
+    }, [isOpen, setIsOpen]);
 
     return (
-        <div className="relative inline-block">
+        <div ref={ref} className="relative inline-block">
 
             <button
                 type="button"
