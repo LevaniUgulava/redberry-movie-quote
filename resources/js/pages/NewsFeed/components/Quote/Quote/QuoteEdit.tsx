@@ -53,7 +53,7 @@ function QuoteEdit({quote, handleClose}: QuoteCardProps) {
                                        className='hidden'/>
                             </div>
                             <button
-                                className="bg-main-red rounded-[4.8px] text-white text-xl font-normal leading-[150%] py-2.25 px-4.25">
+                                className="bg-main-red hover:bg-[#CC0E10] rounded-[4.8px] text-white text-xl font-normal leading-[150%] py-2.25 px-4.25 cursor-pointer transition-colors">
                                 {t("save_changes")}
                             </button>
                         </>

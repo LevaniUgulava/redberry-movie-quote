@@ -12,7 +12,7 @@ function SearchModal({isOpen, onClose}: SearchModalProps) {
         <ModalWrapper isOpen={isOpen} onClose={onClose}>
             <div>
                 <div className="flex gap-2.5 px-6 py-4.75 items-center">
-                    <button onClick={onClose}>
+                    <button onClick={onClose} className="cursor-pointer">
                         <SearchBackIcon/>
                     </button>
 

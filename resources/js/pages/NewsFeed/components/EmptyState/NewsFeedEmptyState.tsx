@@ -26,7 +26,7 @@ function NewsFeedEmptyState({hasSearch}: { hasSearch: boolean }) {
             {hasSearch && (
                 <button
                     onClick={clearSearch}
-                    className="bg-main-red rounded-[4.8px] text-xl px-4.25 py-2.25 text-white"
+                    className="bg-main-red hover:bg-[#CC0E10] rounded-[4.8px] text-xl px-4.25 py-2.25 text-white cursor-pointer transition-colors"
                 >
                     {t("clear_search")}
                 </button>

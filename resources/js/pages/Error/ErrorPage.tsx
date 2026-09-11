@@ -12,7 +12,7 @@ function ErrorPage({status}: { status: number }) {
             <span className="text-white text-2xl font-medium">{description}</span>
         </div>
         <Link href={homeUrl}
-              className="bg-main-red rounded-[4.8px] text-xl px-4.25 py-2.25 text-white">
+              className="bg-main-red hover:bg-[#CC0E10] rounded-[4.8px] text-xl px-4.25 py-2.25 text-white cursor-pointer transition-colors">
             {returnHomeText}
         </Link>
     </div>

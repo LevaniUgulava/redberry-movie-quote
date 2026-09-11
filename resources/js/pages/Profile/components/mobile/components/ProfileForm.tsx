@@ -58,11 +58,11 @@ function ProfileForm({
                 </div>
                 <div className="px-10 py-4 flex justify-between">
                     <button onClick={() => handleEdit("")}
-                            className='text-white px-4.25 py-2.25 text-[17px] font-normal'>{t("cancel")}
+                            className='text-white px-4.25 py-2.25 text-[17px] font-normal cursor-pointer'>{t("cancel")}
                     </button>
                     <button
                         onClick={() => setConfirmation(true)}
-                        className='rounded-sm text-white px-4.25 py-2.25 text-[17px] font-normal bg-main-red'>{t("edit")}
+                        className='rounded-sm text-white px-4.25 py-2.25 text-[17px] font-normal bg-main-red hover:bg-[#CC0E10] cursor-pointer transition-colors'>{t("edit")}
                     </button>
 
                 </div>

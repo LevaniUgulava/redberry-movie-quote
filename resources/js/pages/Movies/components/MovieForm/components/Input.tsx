@@ -15,7 +15,7 @@ function Input({
     const commonClassName = "focus:outline-none placeholder:text-white text-white w-full border border-[#6C757D] rounded-[4.8px] text-xl max-lg:text-base leading-[150%] px-4 py-2.25"
 
     return <div className="relative">
-        <div className={`flex border border-[#6C757D] rounded-[4.8px] ${multiline ? 'items-start' : 'items-center'}`}>
+        <div className={`flex border border-[#6C757D] rounded-[4.8px] focus-within:border-[#5E5CE6] focus-within:ring-2 focus-within:ring-[#5E5CE6]/30 ${multiline ? 'items-start' : 'items-center'}`}>
             {(prefix && showPrefix )&&
                 <span className={`text-[#6C757D] text-xl whitespace-nowrap pl-4 ${multiline ? 'pt-2.25' : ''}`}>
                     {prefix}

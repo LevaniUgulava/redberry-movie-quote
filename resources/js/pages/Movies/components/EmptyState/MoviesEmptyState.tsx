@@ -26,14 +26,14 @@ function MoviesEmptyState({hasSearch}: { hasSearch: boolean }) {
             {hasSearch ? (
                 <button
                     onClick={clearSearch}
-                    className="bg-main-red rounded-[4.8px] text-xl px-4.25 py-2.25 text-white"
+                    className="bg-main-red hover:bg-[#CC0E10] rounded-[4.8px] text-xl px-4.25 py-2.25 text-white cursor-pointer transition-colors"
                 >
                     {t("clear_search")}
                 </button>
             ) : (
                 <LocaleLink
                     href="/movies?modal=create"
-                    className="flex gap-2.5 items-center px-4.25 py-2.25 bg-main-red rounded-sm"
+                    className="flex gap-2.5 items-center px-4.25 py-2.25 bg-main-red hover:bg-[#CC0E10] rounded-sm cursor-pointer transition-colors"
                 >
                     <AddIcon/>
                     <span className="text-white text-xl leading-[150%] font-normal">{t("add_movie")}</span>

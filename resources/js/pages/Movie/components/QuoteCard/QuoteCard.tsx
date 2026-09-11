@@ -36,7 +36,7 @@ function QuoteCard({quote, movie_id}: { quote: QuoteCardData, movie_id: number }
                 </div>
                 <button
                     onClick={handleLike}
-                    className="flex gap-4 items-center"
+                    className="flex gap-4 items-center cursor-pointer"
                 >
                     {liked ? <FillReactionIcon/> : <ReactionIcon/>}
                     <span className="text-white text-xl leading-[150%]">{reactionQuantity}</span>

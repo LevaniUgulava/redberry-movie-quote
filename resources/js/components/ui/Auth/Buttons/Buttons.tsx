@@ -22,7 +22,7 @@ function Buttons({
                 <button
                     onClick={() => window.location.href = redirectToProvider.url()}
                     type="button"
-                    className="border cursor-pointer flex justify-center items-center gap-2 border-[#CED4DA] text-white font-normal text-base leading-[150%] rounded-xs px-3.25 py-1.75 w-full"
+                    className="border cursor-pointer flex justify-center items-center gap-2 border-[#CED4DA] hover:bg-white/10 text-white font-normal text-base leading-[150%] rounded-xs px-3.25 py-1.75 w-full transition-colors"
                 >
                     <GoogleIcon/>
                     <span>{t("sign_in_with_google")}</span>

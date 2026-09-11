@@ -22,7 +22,7 @@ function ActiveMovie({movie}: {movie:MovieWithDetails}) {
             </div>
             <div className='flex gap-3'>
                 <span className="text-[#CED4DA] text-lg font-bold leading-[150%]">{t("director")}</span>
-                <span className='text-white font-medium  text-lg font-lg leading-[150%]'>{movie.director}</span>
+                <span className='text-white font-medium text-lg leading-[150%]'>{movie.director}</span>
             </div>
         </div>
     </div>

@@ -27,7 +27,7 @@ function Movie() {
                         <div className='w-px h-8 bg-[#6C757D]'/>
                         <LocaleLink
                             href={`/movies/${movie.id}?modal=create`}
-                            className='flex gap-2.5 items-center px-4.25 py-2.25 bg-main-red rounded-sm'
+                            className='flex gap-2.5 items-center px-4.25 py-2.25 bg-main-red hover:bg-[#CC0E10] rounded-sm transition-colors'
                         >
                             <AddIcon/>
                             <span className="text-white text-xl leading-[150%] font-normal">{t("add_quote")}</span>
@@ -67,16 +67,16 @@ function Movie() {
                 </div>
                 <div className='flex gap-3'>
                     <span className="text-[#CED4DA] text-lg font-bold leading-[150%]">{t("director")}</span>
-                    <span className='text-white text-lg font-medium font-lg leading-[150%]'>{movie.director}</span>
+                    <span className='text-white text-lg font-medium leading-[150%]'>{movie.director}</span>
                 </div>
                 <div>
-                    <span className='text-lg leading-[150%] font-regular text-[#CED4DA]'>{movie.description}</span>
+                    <span className='text-lg leading-[150%] font-normal text-[#CED4DA]'>{movie.description}</span>
                 </div>
                 {isMobile && <div className='flex flex-col gap-10'>
                     <div className='flex flex-col  gap-8'>
                         <LocaleLink
                             href={`/movies/${movie.id}?modal=create`}
-                            className='flex gap-2.5 w-fit items-center px-4.25 py-2.25 bg-main-red rounded-sm'
+                            className='flex gap-2.5 w-fit items-center px-4.25 py-2.25 bg-main-red hover:bg-[#CC0E10] rounded-sm transition-colors'
                         >
                             <AddIcon/>
                             <span className="text-white text-xl leading-[150%] font-normal">{t("add_quote")}</span>

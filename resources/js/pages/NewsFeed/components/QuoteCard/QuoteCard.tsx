@@ -50,7 +50,7 @@ function QuoteCard({quote}: QuoteCardProps) {
                     </div>
                     <button
                         onClick={handleLike}
-                        className="flex gap-4 items-center"
+                        className="flex gap-4 items-center cursor-pointer"
                     >
                         <span className="text-white text-xl leading-[150%]">{reactionQuantity}</span>
                         {liked ? <FillReactionIcon/> : <ReactionIcon/>}
