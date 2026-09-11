@@ -4,7 +4,6 @@ namespace App\Service;
 
 use App\Http\Resources\Movie\MovieResource;
 use App\Http\Resources\Quote\QuoteResource;
-use App\Models\Movie;
 use App\Models\Quote;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
@@ -39,7 +38,7 @@ class QuoteService
     public function store(array $data): Quote
     {
         $user = auth()->user();
-        $movie = Movie::findOrFail($data['movie_id']);
+        $movie = $user->movies()->findOrFail($data['movie_id']);
 
         return DB::transaction(function () use ($user, $movie, $data) {
             $quote = $user->quotes()->create([

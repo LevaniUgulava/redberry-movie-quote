@@ -7,7 +7,6 @@ use App\Http\Resources\Movie\MovieResource;
 use App\Http\Resources\Movie\MovieWithQuotesResource;
 use App\Http\Resources\Quote\QuoteEditResource;
 use App\Models\Movie;
-use App\Models\Quote;
 use Illuminate\Support\Facades\DB;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -35,7 +34,7 @@ class MovieService
         ];
     }
 
-    public function show(Movie $movie, ?string $modal, ?int $quote_id): array
+    public function show(Movie $movie, ?string $modal, string|int|null $quote_id): array
     {
         $movie->load(['genres', 'quotes' => function ($query) {
             $query->withCount(['comments', 'likes'])
@@ -44,9 +43,11 @@ class MovieService
                 }])->latest();
         }]);
 
-        $quote = $quote_id
-            ? Quote::withCount(['comments', 'likes'])
-                ->findOrFail($quote_id)
+        $quote = is_numeric($quote_id)
+            ? $movie->quotes()->withCount(['comments', 'likes'])
+                ->withExists(['likes as is_liked' => function ($q) {
+                    $q->where('user_id', auth()->id());
+                }])->findOrFail((int) $quote_id)
             : null;
 
         return [
@@ -61,17 +62,17 @@ class MovieService
         return DB::transaction(function () use ($movie, $data) {
             $movie->update([
                 'title' => [
-                    'en' => $data['en_title'],
-                    'ka' => $data['ka_title'],
+                    'en' => $data['en_title'] ?? $movie->getTranslation('title', 'en'),
+                    'ka' => $data['ka_title'] ?? $movie->getTranslation('title', 'ka'),
                 ],
-                'year' => $data['year'],
+                'year' => $data['year'] ?? $movie->year,
                 'director' => [
-                    'en' => $data['en_director'],
-                    'ka' => $data['ka_director'],
+                    'en' => $data['en_director'] ?? $movie->getTranslation('director', 'en'),
+                    'ka' => $data['ka_director'] ?? $movie->getTranslation('director', 'ka'),
                 ],
                 'description' => [
-                    'en' => $data['en_description'],
-                    'ka' => $data['ka_description'],
+                    'en' => $data['en_description'] ?? $movie->getTranslation('description', 'en'),
+                    'ka' => $data['ka_description'] ?? $movie->getTranslation('description', 'ka'),
                 ],
             ]);
 
