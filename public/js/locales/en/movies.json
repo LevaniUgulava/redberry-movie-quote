@@ -6,6 +6,8 @@
     "modal_edit_title": "Edit Movie",
     "movie_description": "Movie description",
     "quotes_total": "Quotes (Total {{count}})",
+    "no_quotes_yet": "No quotes yet",
+    "no_quotes_hint": "Add your first quote to get started.",
     "add_quote": "Add quote",
     "replace_photo": "Replace photo",
     "drag_drop_image": "Drag & drop your image here or",
