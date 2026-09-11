@@ -44,10 +44,10 @@ function ProfileView({
                         <div className="min-h-0 overflow-hidden">
                             <div className="px-10 py-4 flex gap-3 justify-center">
                                 <button type="button" onClick={handleCancel}
-                                        className='text-white text-xs px-2.25 py-2.25 font-normal'>{t("cancel")}
+                                        className='text-white text-xs px-2.25 py-2.25 font-normal cursor-pointer'>{t("cancel")}
                                 </button>
                                 <button type="submit"
-                                        className='rounded-sm text-white px-2.25 py-2.25 text-xs font-normal bg-main-red'>{t("upload")}
+                                        className='rounded-sm text-white px-2.25 py-2.25 text-xs font-normal bg-main-red hover:bg-[#CC0E10] cursor-pointer transition-colors'>{t("upload")}
                                 </button>
                             </div>
                         </div>

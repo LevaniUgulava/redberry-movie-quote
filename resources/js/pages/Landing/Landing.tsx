@@ -21,7 +21,7 @@ function Landing({currentModal}: { currentModal: string }) {
                 </div>
                 <LocaleLink
                     href="/?modal=register"
-                    className="cursor-pointer bg-main-red rounded-lg text-xl max-lg:text-base text-white font-normal px-4.25 py-2.25">
+                    className="cursor-pointer bg-main-red hover:bg-[#CC0E10] rounded-lg text-xl max-lg:text-base text-white font-normal px-4.25 py-2.25 transition-colors">
                     {t("get_started")}
                 </LocaleLink>
             </div>
@@ -43,7 +43,7 @@ function Landing({currentModal}: { currentModal: string }) {
                             className="absolute inset-0 w-full h-full object-cover"
                         />
                         <div
-                            className="absolute inset-x-0 top-90 gap-2 left-32 flex justify-start px-10 z-10 max-lg:left- max-lg:px-2"
+                            className="absolute inset-x-0 top-90 gap-2 left-32 flex justify-start px-10 z-10 max-lg:left-0 max-lg:px-2"
                             style={{
                                 transform: `translateY(-${translateY - currentSectionIndex * window.innerHeight}px)`,
                                 opacity: opacity,

@@ -25,7 +25,7 @@ function Header({quantity}: { quantity: number }) {
 
     return <div className="flex justify-between">
         <div className="flex items-center">
-            <span className="text-2xl text-white font-mediumleading-[150%]">{t("list_title", {count: quantity})}</span>
+            <span className="text-2xl text-white font-medium leading-[150%]">{t("list_title", {count: quantity})}</span>
         </div>
         <div className="flex items-center gap-5 transition-[grid-template-columns] duration-200">
             {!isMoble &&
@@ -80,7 +80,7 @@ function Header({quantity}: { quantity: number }) {
                     )}
                 </form>}
             <LocaleLink href="/movies?modal=create"
-                        className='flex gap-2.5 items-center px-4.25 py-2.25 bg-main-red rounded-sm'>
+                        className='flex gap-2.5 items-center px-4.25 py-2.25 bg-main-red hover:bg-[#CC0E10] rounded-sm transition-colors'>
                 <AddIcon/>
                 <span className="text-white text-xl max-lg:text-base leading-[150%] font-normal">{t("add_movie")}</span>
             </LocaleLink>

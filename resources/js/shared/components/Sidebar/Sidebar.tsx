@@ -18,8 +18,8 @@ function Sidebar() {
             <Link href={`/${locale}/profile`}
                   className="flex gap-6 max-lg:gap-5 items-center">
                 <img alt="profile image"
-                     className={cn("h-15 w-15 max-lg:w-10 max-lg:h-10 rounded-full object-cover hover:border border-main-red", {
-                         "border-2 border-main-red": url === `/${locale}/profile`
+                     className={cn("h-15 w-15 max-lg:w-10 max-lg:h-10 rounded-full object-cover border-2 border-transparent hover:border-main-red", {
+                         "border-main-red": url === `/${locale}/profile`
                      })}
                      src={auth?.avatar}/>
                 <div className="flex flex-col">

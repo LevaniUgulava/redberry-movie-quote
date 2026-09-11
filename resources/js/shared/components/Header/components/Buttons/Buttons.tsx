@@ -31,7 +31,7 @@ function Buttons() {
                                               onNewNotification={handleNewNotification}/>}
             {isAuth && <div className="flex items-center gap-8">
                 {isSearchIconVisible && <>
-                    <div onClick={handleOpenAndClose}>
+                    <div onClick={handleOpenAndClose} className="cursor-pointer">
                         <SearchIcon classname="max-lg:w-6 max-lg:h-6 text-white"/>
                     </div>
                     <SearchModal isOpen={isOpen} onClose={handleOpenAndClose}/>
@@ -61,13 +61,13 @@ function Buttons() {
             {!isAuth ? <>
                 <LocaleLink
                     href="/?modal=register"
-                    className="w-fit flex items-center justify-center  cursor-pointer rounded-sm bg-main-red px-5 py-1.75 text-base max-lg:text-sm max-lg:px-3.25  font-normal text-white leading-[150%]"
+                    className="w-fit flex items-center justify-center  cursor-pointer rounded-sm bg-main-red hover:bg-[#CC0E10] px-5 py-1.75 text-base max-lg:text-sm max-lg:px-3.25  font-normal text-white leading-[150%] transition-colors"
                 >
                     {t('sign_up')}
                 </LocaleLink>
                 <LocaleLink
                     href="/?modal=login"
-                    className="w-fit  flex items-center justify-center cursor-pointer rounded-sm border border-white max-lg:text-sm max-lg:px-3.25  px-5 py-1.75 text-base font-normal text-white leading-[150%]"
+                    className="w-fit  flex items-center justify-center cursor-pointer rounded-sm border border-white hover:bg-white/10 max-lg:text-sm max-lg:px-3.25  px-5 py-1.75 text-base font-normal text-white leading-[150%] transition-colors"
                 >
                     {t('sign_in')}
                 </LocaleLink>

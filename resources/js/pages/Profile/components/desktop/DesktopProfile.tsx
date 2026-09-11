@@ -89,7 +89,7 @@ function DesktopProfile({
                                             {t("cancel")}
                                         </button>
                                         <button type="submit"
-                                                className="px-4.25 py-2.25 cursor-pointer text-[#CED4DA] text-xl bg-main-red rounded-sm">
+                                                className="px-4.25 py-2.25 cursor-pointer text-[#CED4DA] text-xl bg-main-red hover:bg-[#CC0E10] rounded-sm transition-colors">
                                             {t("save_changes")}
                                         </button>
                                     </div>

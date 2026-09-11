@@ -53,7 +53,7 @@ function MovieForm({editingMovie, isEditOpen}: { editingMovie: any, isEditOpen: 
                     <ImageInput name="image" onChange={setImage} initialPreview={editingMovie?.image ?? null}/>
 
                     <button
-                        className="bg-main-red rounded-[4.8px] text-white text-xl font-normal leading-[150%] my-5 py-2.25 px-4.25">
+                        className="bg-main-red hover:bg-[#CC0E10] rounded-[4.8px] text-white text-xl font-normal leading-[150%] my-5 py-2.25 px-4.25 cursor-pointer transition-colors">
                         {isEditOpen ? t("edit_movie") : t("add_movie")}
                     </button>
                 </>

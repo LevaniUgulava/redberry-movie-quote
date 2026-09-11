@@ -10,7 +10,7 @@ function InputField({label,value,defaultValue,isEditable=true,handleEdit}:InputF
         <div className="relative mb-2">
             <input defaultValue={defaultValue} disabled={true} className="text-white text-lg focus:outline-none w-full pr-16"/>
             {isEditable && <div className="absolute right-0 top-1/2 -translate-y-1/2">
-                <button onClick={()=>handleEdit(value)} className="text-[#CED4DA]">{t("edit")}</button>
+                <button onClick={()=>handleEdit(value)} className="text-[#CED4DA] cursor-pointer hover:text-white transition-colors">{t("edit")}</button>
             </div>}
         </div>
     </div>
