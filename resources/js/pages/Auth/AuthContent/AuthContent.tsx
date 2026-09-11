@@ -4,7 +4,8 @@ import useAuthContent from "@/pages/Auth/AuthContent/hooks/useAuthContent.ts";
 import ResetForm from "@/pages/Auth/Reset/ResetForm.tsx";
 import ForgetForm from "@/pages/Auth/Forget/ForgetForm.tsx";
 import Message from "@/pages/Auth/Message/Message.tsx";
-import AuthModalWrapper from "../../../components/wrapper/AuthModalWrapper/AuthModalWrapper.tsx";
+import CloseIcon from "@/components/ui/icons/CloseIcon.tsx";
+import AuthModalWrapper from "@/components/wrapper/AuthModalWrapper/AuthModalWrapper.tsx";
 
 function AuthContent({currentModal}: { currentModal: string }) {
     const {currentConfig, handleClose, isOpen} = useAuthContent(currentModal);
@@ -16,7 +17,9 @@ function AuthContent({currentModal}: { currentModal: string }) {
             onClose={handleClose}
             isConfig={isConfig}
         >
-            <div className="p-10 max-lg:p-5 flex justify-center">
+            <div className="relative p-10 max-lg:p-5 flex justify-center">
+
+                <CloseIcon onClick={handleClose} className="absolute right-5 cursor-pointer lg:hidden"/>
 
                 {currentConfig && <Message {...currentConfig}/>}
 
