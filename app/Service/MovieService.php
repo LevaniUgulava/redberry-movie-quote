@@ -25,6 +25,7 @@ class MovieService
             ->allowedFilters(
                 AllowedFilter::scope('search')
             )
+            ->latest()
             ->paginate(9);
 
         return [
