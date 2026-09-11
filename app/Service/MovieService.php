@@ -7,7 +7,6 @@ use App\Http\Resources\Movie\MovieResource;
 use App\Http\Resources\Movie\MovieWithQuotesResource;
 use App\Http\Resources\Quote\QuoteEditResource;
 use App\Models\Movie;
-use App\Models\Quote;
 use Illuminate\Support\Facades\DB;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -35,7 +34,7 @@ class MovieService
         ];
     }
 
-    public function show(Movie $movie, ?string $modal, ?int $quote_id): array
+    public function show(Movie $movie, ?string $modal, string|int|null $quote_id): array
     {
         $movie->load(['genres', 'quotes' => function ($query) {
             $query->withCount(['comments', 'likes'])
@@ -44,9 +43,11 @@ class MovieService
                 }])->latest();
         }]);
 
-        $quote = $quote_id
-            ? Quote::withCount(['comments', 'likes'])
-                ->findOrFail($quote_id)
+        $quote = is_numeric($quote_id)
+            ? $movie->quotes()->withCount(['comments', 'likes'])
+                ->withExists(['likes as is_liked' => function ($q) {
+                    $q->where('user_id', auth()->id());
+                }])->findOrFail((int) $quote_id)
             : null;
 
         return [
