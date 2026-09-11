@@ -4,7 +4,6 @@ namespace App\Service;
 
 use App\Models\EmailChange;
 use App\Models\User;
-use Illuminate\Auth\Events\Registered;
 use Inertia\Inertia;
 
 class VerifyService
@@ -18,7 +17,7 @@ class VerifyService
             ? $emailChange->new_email
             : $user->getEmailForVerification();
 
-        if (!hash_equals((string)$hash, sha1($emailToVerify))) {
+        if (! hash_equals((string) $hash, sha1($emailToVerify))) {
             abort(403);
         }
 
@@ -29,10 +28,11 @@ class VerifyService
             ]);
             $emailChange->delete();
             Inertia::flash('type', 'EMAIL_CHANGED');
+
             return;
         }
 
-        if (!$user->hasVerifiedEmail()) {
+        if (! $user->hasVerifiedEmail()) {
             $user->markEmailAsVerified();
             Inertia::flash('type', 'VERIFIED');
         }
@@ -42,11 +42,11 @@ class VerifyService
     {
         $result = 'VERIFY_SENT';
         $user = User::where('email', $email)->first();
-        if (!$user) {
+        if (! $user) {
             $result = 'ERROR';
+        } else {
+            $user->sendEmailVerificationNotification();
         }
-
-        event(new Registered($user));
 
         Inertia::flash('type', $result);
 
