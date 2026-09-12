@@ -5,6 +5,7 @@ import MobileSidebarIcon from "@/components/ui/icons/Sidebar/MobileSidebarIcon.t
 import MobileSidebarWrapper from "@/components/wrapper/MobileSidebarWrapper/MobileSidebarWrapper.tsx";
 import {useTranslation} from "react-i18next";
 import MobileSidebar from "@/shared/components/Sidebar/MobileSidebar.tsx";
+import LocaleLink from "@/components/LocaleLink.tsx";
 
 function Header() {
     const {component} = usePage();
@@ -14,14 +15,17 @@ function Header() {
         <div className={cn("sticky top-0 z-50 flex px-17.5 max-lg:px-8.75 py-6 justify-between bg-[#222030]", {
             'bg-[#11101A]': isLanding,
         })}>
-            <div
-                className=" max-lg:hidden flex items-center text-main-beige uppercase text-base leading-[150%] font-medium">
+            <LocaleLink
+                href="/newsfeed"
+                className="max-lg:hidden flex items-center text-main-beige uppercase text-base leading-[150%] font-medium cursor-pointer">
                 <span>Movie Quotes</span>
-            </div>
+            </LocaleLink>
             <div
                 className="hidden max-lg:flex items-center text-main-beige uppercase text-base leading-[150%] font-medium">
                 {isLanding ? (
-                    <span>{t("movie_quotes")}</span>
+                    <span className="cursor-pointer">
+                        Movie Quotes
+                    </span>
                 ) : <MobileSidebarWrapper button={<MobileSidebarIcon/>}>
                     {(setOpen) => <MobileSidebar setOpen={setOpen}/>}
                 </MobileSidebarWrapper>}
