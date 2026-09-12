@@ -15,5 +15,5 @@ export interface NotificationModalProps {
     children: ReactNode;
     notifications?: NotificationItem[];
     handleOpenChange: (open: boolean) => void;
-    isNotificationsLoading:boolean
+    isNotificationsLoading:boolean,
 }

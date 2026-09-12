@@ -79,6 +79,9 @@ function QuoteCard({quote}: QuoteCardProps) {
                     )}
                 </button>
             )}
+            {comments.length === 0 && (
+                <span className="text-[#6C757D] text-sm">{t("no_comments_yet")}</span>
+            )}
             {comments.map((comment) => (
                 <div key={comment.id} className="flex flex-col gap-3 max-lg:gap-1.5">
                     <div className="flex gap-4 items-center">

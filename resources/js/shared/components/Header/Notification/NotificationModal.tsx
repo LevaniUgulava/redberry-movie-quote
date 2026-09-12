@@ -18,7 +18,7 @@ function NotificationModal({
                                children,
                                notifications = [],
                                handleOpenChange,
-                               isNotificationsLoading
+                               isNotificationsLoading,
                            }: NotificationModalProps) {
     const {handleMark} = useNotificationModal();
     const {t} = useTranslation("header");
@@ -35,9 +35,9 @@ function NotificationModal({
                 <PopoverPrimitive.Arrow width={20} height={20} className="fill-black"/>
                 <div className="flex items-center justify-between">
                     <span className="text-white text-[32px] ">{t("notifications_title")}</span>
-                    <button onClick={() => handleMark(markAllAsRead())}
-                            className='cursor-pointer hover:text-gray-300 underline text-xl text-white'>{t("mark_all_read")}
-                    </button>
+                    {notifications.some(n => !n.read) && <button onClick={() => handleMark(markAllAsRead())}
+                                                       className='cursor-pointer hover:text-gray-300 underline text-xl text-white'>{t("mark_all_read")}
+                    </button>}
                 </div>
                 <div className="relative min-h-60">
                     <div
@@ -80,7 +80,7 @@ function NotificationModal({
                                             if (notification.read) return;
                                             handleMark(markAsRead({id: notification.id}));
                                         }}
-                                                className="flex justify-between border rounded-xs p-5 border-[#6C757D]/50 cursor-pointer hover:border-[#6C757D]/70 transition-all duration-200">
+                                                className="flex justify-between border max-lg:flex-col rounded-xs p-5 max-lg:gap-2.5 border-[#6C757D]/50 cursor-pointer hover:border-[#6C757D]/70 transition-all duration-200">
                                             <div className="flex items-center gap-5">
                                                 <img
                                                     className={cn("w-20 h-20 border-2 border-transparent rounded-full object-cover", {
@@ -100,7 +100,7 @@ function NotificationModal({
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="flex flex-col gap-1 items-end justify-center">
+                                            <div className="flex flex-col gap-1 items-end justify-center max-lg:flex-row-reverse max-lg:justify-end max-lg:gap-5 max-lg:pl-4">
                                                 <span
                                                     className="text-xl font-normal text-[#D9D9D9]">{notification.time}</span>
                                                 {!notification.read &&

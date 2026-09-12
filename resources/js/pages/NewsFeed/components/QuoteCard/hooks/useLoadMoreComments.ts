@@ -10,7 +10,7 @@ interface LoadMoreCommentsResponse {
 
 function useLoadMoreComments(id: number) {
     const [comments, setComments] = useState<Comment[]>([]);
-    const [hasMore, setHasMore] = useState(true);
+    const [hasMore, setHasMore] = useState(false);
     const [page, setPage] = useState(1);
     const {get, processing} = useHttp();
 

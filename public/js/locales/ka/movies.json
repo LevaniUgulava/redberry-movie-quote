@@ -6,6 +6,8 @@
     "modal_edit_title": "ფილმის რედაქტირება",
     "movie_description": "ფილმის აღწერა",
     "quotes_total": "ციტატები (სულ {{count}})",
+    "no_quotes_yet": "ციტატები ჯერ არ არის",
+    "no_quotes_hint": "დაამატეთ თქვენი პირველი ციტატა, რომ დაიწყოთ.",
     "add_quote": "ციტატის დამატება",
     "replace_photo": "ფოტოს შეცვლა",
     "drag_drop_image": "ჩააგდეთ თქვენი სურათი აქ ან",
