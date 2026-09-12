@@ -31,7 +31,6 @@ function useComment(
                 }
             ]
         );
-        setCommentsQuantity((prev) => prev + 1)
         post(store({ quote: id }).url, {
             onSuccess: () => setData('comment', ''),
             onError: () => handleError(optimisticId),
@@ -39,7 +38,6 @@ function useComment(
     };
 
     const handleError = (optimisticId: number) => {
-        setCommentsQuantity((prev) => prev - 1);
         setComments((prev) => prev.filter((comment) => comment.id !== optimisticId));
     };
 

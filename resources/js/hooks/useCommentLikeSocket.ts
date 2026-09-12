@@ -16,9 +16,9 @@ function useCommentLikeSocket(
 
     useEcho(`quote.${quote_id}`,
         ['.commentAdded', '.LikeUpdated'], (e) => {
-            if (e.comment && e.comment.user.id !== auth_id) {
+            if (e.comment) {
                 setCommentsQuantity((prev) => prev + 1);
-                if(hasComment && setComments){
+                if(hasComment && setComments && e.comment.user.id !== auth_id){
                     setComments((prev) => [...prev, e.comment]);
 
                 }
