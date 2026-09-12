@@ -14,12 +14,17 @@ function DesktopProfile({
                             handleFileChange,
                             handleOpen,
                             showField,
-                            isAnyFieldOpen,
+isAnyFieldOpen,
                             cancelEdit,
+    setPreview
                         }: ProfileProps) {
 
     const {t} = useTranslation(["profile", "common"]);
     const {open, setOpen, handleSuccessOpen} = useDesktopProfile();
+    const cancelAll = ()=>{
+        cancelEdit();
+        setPreview(auth.avatar)
+    }
 
     return (
         <>
@@ -40,7 +45,8 @@ function DesktopProfile({
                         <div className="flex flex-col gap-5 w-full max-w-249.5 max-2xl:max-w-220 max-xl:max-w-180">
                             <div className="relative bg-[#08080D] p-10 flex justify-center rounded-lg py-20">
                                 <div className="absolute -top-20 left-1/2 -translate-x-1/2">
-                                    <AvatarField isVisible={preview !== auth?.avatar} fileInputRef={fileInputRef} preview={preview}
+                                    <AvatarField fileInputRef={fileInputRef}
+                                                 preview={preview}
                                                  handleFileChange={handleFileChange}/>
                                 </div>
 
@@ -84,7 +90,7 @@ function DesktopProfile({
                             >
                                 <div className="min-h-0 overflow-hidden">
                                     <div className="flex gap-2.25 justify-end">
-                                        <button type="button" onClick={cancelEdit}
+                                        <button type="button" onClick={cancelAll}
                                                 className="px-4.25 cursor-pointer py-2.25 text-[#CED4DA] text-xl">
                                             {t("cancel")}
                                         </button>
