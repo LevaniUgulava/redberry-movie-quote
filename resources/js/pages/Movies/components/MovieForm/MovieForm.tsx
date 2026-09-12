@@ -14,7 +14,7 @@ function MovieForm({editingMovie, isEditOpen}: { editingMovie: any, isEditOpen: 
     const {auth} = usePage<PageProps>().props
     return <div className="px-5 flex flex-col gap-6 max-h-[80vh] overflow-y-auto">
         <div className="flex items-center gap-2.5">
-            <img className="h-15 w-15 rounded-full" alt="profile_imgae" src={auth.avatar}/>
+            <img className="h-15 w-15 object-cover rounded-full" alt="profile_imgae" src={auth.avatar}/>
             <span className="text-white text-xl leading-[150%]">{auth.username}</span>
         </div>
         <Form action={isEditOpen && editingMovie ? update({movie: editingMovie.id}) : store()}

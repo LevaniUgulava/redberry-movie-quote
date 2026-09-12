@@ -6,7 +6,7 @@ function ActiveMovie({movie}: {movie:MovieWithDetails}) {
     const {t} = useTranslation(["newsfeed", "common"]);
     return <div className="flex gap-4">
         <div className="max-w-72.5 w-full">
-            <img className="w-full rounded-xl" alt="movie_image" src={movie.image}/>
+            <img className="w-full rounded-xl object-cover" alt="movie_image" src={movie.image}/>
         </div>
         <div className="flex flex-col gap-4">
             <div>
