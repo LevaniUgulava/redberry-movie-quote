@@ -50,7 +50,8 @@ function MovieForm({editingMovie, isEditOpen}: { editingMovie: any, isEditOpen: 
                            placeholder="ფილმის აღწერა" lang="ქარ" multiline
                            defaultValue={editingMovie?.ka_description}
                            error={errors.ka_description}/>
-                    <ImageInput name="image" onChange={setImage} initialPreview={editingMovie?.image ?? null}/>
+                    <ImageInput name="image" onChange={setImage} initialPreview={editingMovie?.image ?? null}
+                                error={errors.image}/>
 
                     <button
                         className="bg-main-red hover:bg-[#CC0E10] rounded-[4.8px] text-white text-xl font-normal leading-[150%] my-5 py-2.25 px-4.25 cursor-pointer transition-colors">
