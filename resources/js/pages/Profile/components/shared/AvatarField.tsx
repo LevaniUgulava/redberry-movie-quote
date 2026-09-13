@@ -1,7 +1,7 @@
 import {AvatarProps} from "@/pages/Profile/ProfileTypes.ts";
 import {useTranslation} from "react-i18next";
 
-function AvatarField({isVisible,fileInputRef, handleFileChange, preview}: AvatarProps) {
+function AvatarField({fileInputRef, handleFileChange, preview}: AvatarProps) {
     const {t} = useTranslation("profile");
     return (
         <div className="flex flex-col items-center">
@@ -21,9 +21,7 @@ function AvatarField({isVisible,fileInputRef, handleFileChange, preview}: Avatar
             />
 
             <div
-                className={`grid transition-all duration-300 ease-in-out ${
-                    isVisible ? "grid-rows-[0fr] opacity-0" : "grid-rows-[1fr] opacity-100"
-                }`}
+                className="grid transition-all duration-300 ease-in-out"
             >
                 <div className="min-h-0 overflow-hidden">
                     <span

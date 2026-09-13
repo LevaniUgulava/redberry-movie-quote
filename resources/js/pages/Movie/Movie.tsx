@@ -20,7 +20,7 @@ function Movie() {
         <div className='text-white text-2xl font-medium'>{t("movie_description")}</div>
         <div className="flex gap-6 mt-8 max-lg:flex-col">
             <div className='w-full max-w-202.25 flex flex-col gap-5'>
-                <img className="w-full rounded-xl" src={movie.image} alt='movie-image'/>
+                <img className="w-full rounded-xl object-cover" src={movie.image} alt='movie-image'/>
                 {!isMobile && <div className='flex flex-col gap-10'>
                     <div className='flex items-center gap-3'>
                         <span className="text-2xl text-white">{t("quotes_total", {count: movie.quotes.length})}</span>

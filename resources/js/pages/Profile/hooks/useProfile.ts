@@ -42,7 +42,6 @@ function useProfile() {
                 Object.keys(prev).map((key) => [key, false])
             ) as typeof prev
         );
-        setPreview(auth?.avatar)
     }
 
     return {

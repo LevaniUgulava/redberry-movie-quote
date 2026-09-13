@@ -14,7 +14,7 @@ function QuoteEdit({quote, handleClose}: QuoteCardProps) {
 
     return <div className="px-5 flex flex-col gap-6  max-h-[80vh] overflow-y-auto pb-5">
         <div className="flex items-center gap-2.5 ">
-            <img className="h-15 w-15 rounded-full" alt="profile_image" src={auth.avatar}/>
+            <img className="h-15 w-15 rounded-full object-cover" alt="profile_image" src={auth.avatar}/>
             <span className="text-white text-xl leading-[150%]">{auth.username}</span>
         </div>
         <Form
@@ -37,7 +37,7 @@ function QuoteEdit({quote, handleClose}: QuoteCardProps) {
                         <>
                             <div className='relative'>
 
-                                <img alt="quote_image" className="w-full rounded-[10px]"
+                                <img alt="quote_image" className="w-full rounded-[10px] object-cover"
                                      src={preview ? preview : quote.image}/>
                                 <div onClick={openImageUpload}
                                      className='absolute inset-0 flex items-center justify-center rounded-[10px] cursor-pointer'>

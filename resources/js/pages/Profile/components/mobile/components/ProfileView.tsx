@@ -28,7 +28,7 @@ function ProfileView({
     return (
         <div className="bg-[#24222F] p-10 flex flex-col gap-10">
             <div className="flex flex-col justify-center">
-                <Form action={update()} method='post' onSuccess={() => {
+                <Form action={update()} method='patch' onSuccess={() => {
                     handleSuccessOpen();
                 }}>
                     <AvatarField isVisible={isVisible} fileInputRef={fileInputRef} preview={preview}

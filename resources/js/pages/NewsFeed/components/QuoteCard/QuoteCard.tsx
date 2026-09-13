@@ -31,7 +31,7 @@ function QuoteCard({quote}: QuoteCardProps) {
     })}>
         <div className="flex flex-col gap-5 border-b border-[#EFEFEF]/30">
             {quote.user && <div className="flex gap-4 items-center">
-                <img className="w-13 max-lg:w-10 max-lg:h-10 h-13 rounded-full" alt="quote_author"
+                <img className="w-13 max-lg:w-10 max-lg:h-10 object-cover h-13 rounded-full" alt="quote_author"
                      src={quote.user.avatar}/>
                 <span
                     className="text-xl text-white max-lg:text-base font-normal leading-[150%]">{quote.user.username}</span>
@@ -99,11 +99,12 @@ function QuoteCard({quote}: QuoteCardProps) {
             ))}
             <div>
                 <div className="flex gap-4 items-center">
-                    <img className="w-13 h-13 max-lg:w-10 max-lg:h-10 rounded-full" alt="quote_author"
+                    <img className="w-13 h-13 max-lg:w-10 max-lg:h-10 object-cover rounded-full" alt="quote_author"
                          src={auth.avatar}/>
                     <form onSubmit={submit} className='relative w-full'>
                         <input
                             type="text"
+                            value={comment}
                             onChange={e => setComment(e.target.value)}
                             name="comment"
                             className="w-full bg-[#24222F] text-[#CED4DA] h-13 max-lg:h-10 rounded-[10px] pl-5 pr-14 text-xl max-lg:text-base leading-[150%] focus:outline-none"
