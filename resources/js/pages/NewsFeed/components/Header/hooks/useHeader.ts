@@ -27,7 +27,6 @@ function useHeader() {
         router.get(index.url(), {
             filter: {search: term},
         }, {
-            preserveState: true,
             preserveScroll: true,
             replace: true,
         });
@@ -38,8 +37,7 @@ function useHeader() {
             `/${locale}/newsfeed`,
             {},
             {
-                preserveScroll: true,
-                preserveState: true,
+                replace: true,
             },
         );
     };

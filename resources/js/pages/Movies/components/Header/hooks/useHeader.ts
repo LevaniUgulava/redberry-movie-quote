@@ -21,7 +21,6 @@ function useHeader() {
         router.get(index.url(), {
             filter: {search: term},
         }, {
-            preserveState: true,
             preserveScroll: true,
             replace: true,
         });
@@ -47,8 +46,6 @@ function useHeader() {
             `/${locale}/movies`,
             {},
             {
-                preserveScroll: true,
-                preserveState: true,
                 replace: true,
             },
         );

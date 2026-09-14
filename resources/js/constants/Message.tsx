@@ -17,14 +17,14 @@ export const getMessageConfig = (locale: string) => ({
         title: "thank_you",
         subtitle: "verified_subtitle",
         button: "login_link",
-        onClick: () => router.visit(`/${locale}?modal=signup`),
+        onClick: () => router.visit(`/${locale}?modal=login`),
     },
     RESET_SUCCESS: {
         icon: <SuccesIcon/>,
         title: "success_title",
         subtitle: "password_changed_subtitle",
         button: "login_link",
-        onClick: () => router.visit(`/${locale}?modal=signup`),
+        onClick: () => router.visit(`/${locale}?modal=login`),
     },
     INVALID_TOKEN: {
         icon: <InvalidTokenIcon/>,
