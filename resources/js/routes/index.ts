@@ -71,7 +71,7 @@ landing.head = (args?: { lang?: string | number } | [lang: string | number ] | s
 
 /**
 * @see \App\Http\Controllers\AuthController::register
-* @see app/Http/Controllers/AuthController.php:20
+* @see app/Http/Controllers/AuthController.php:19
 * @param lang - Default: '$lang'
 * @route '/{lang?}/register'
 */
@@ -87,7 +87,7 @@ register.definition = {
 
 /**
 * @see \App\Http\Controllers\AuthController::register
-* @see app/Http/Controllers/AuthController.php:20
+* @see app/Http/Controllers/AuthController.php:19
 * @param lang - Default: '$lang'
 * @route '/{lang?}/register'
 */
@@ -119,7 +119,7 @@ register.url = (args?: { lang?: string | number } | [lang: string | number ] | s
 
 /**
 * @see \App\Http\Controllers\AuthController::register
-* @see app/Http/Controllers/AuthController.php:20
+* @see app/Http/Controllers/AuthController.php:19
 * @param lang - Default: '$lang'
 * @route '/{lang?}/register'
 */
@@ -130,7 +130,7 @@ register.post = (args?: { lang?: string | number } | [lang: string | number ] | 
 
 /**
 * @see \App\Http\Controllers\AuthController::login
-* @see app/Http/Controllers/AuthController.php:28
+* @see app/Http/Controllers/AuthController.php:27
 * @param lang - Default: '$lang'
 * @route '/{lang?}/login'
 */
@@ -146,7 +146,7 @@ login.definition = {
 
 /**
 * @see \App\Http\Controllers\AuthController::login
-* @see app/Http/Controllers/AuthController.php:28
+* @see app/Http/Controllers/AuthController.php:27
 * @param lang - Default: '$lang'
 * @route '/{lang?}/login'
 */
@@ -178,7 +178,7 @@ login.url = (args?: { lang?: string | number } | [lang: string | number ] | stri
 
 /**
 * @see \App\Http\Controllers\AuthController::login
-* @see app/Http/Controllers/AuthController.php:28
+* @see app/Http/Controllers/AuthController.php:27
 * @param lang - Default: '$lang'
 * @route '/{lang?}/login'
 */
@@ -189,7 +189,7 @@ login.post = (args?: { lang?: string | number } | [lang: string | number ] | str
 
 /**
 * @see \App\Http\Controllers\AuthController::logout
-* @see app/Http/Controllers/AuthController.php:39
+* @see app/Http/Controllers/AuthController.php:38
 * @param lang - Default: '$lang'
 * @route '/{lang?}/logout'
 */
@@ -205,7 +205,7 @@ logout.definition = {
 
 /**
 * @see \App\Http\Controllers\AuthController::logout
-* @see app/Http/Controllers/AuthController.php:39
+* @see app/Http/Controllers/AuthController.php:38
 * @param lang - Default: '$lang'
 * @route '/{lang?}/logout'
 */
@@ -237,7 +237,7 @@ logout.url = (args?: { lang?: string | number } | [lang: string | number ] | str
 
 /**
 * @see \App\Http\Controllers\AuthController::logout
-* @see app/Http/Controllers/AuthController.php:39
+* @see app/Http/Controllers/AuthController.php:38
 * @param lang - Default: '$lang'
 * @route '/{lang?}/logout'
 */

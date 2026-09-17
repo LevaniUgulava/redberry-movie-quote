@@ -71,7 +71,7 @@ edit.head = (args?: { lang?: string | number } | [lang: string | number ] | stri
 
 /**
 * @see \App\Http\Controllers\ProfileController::update
-* @see app/Http/Controllers/ProfileController.php:24
+* @see app/Http/Controllers/ProfileController.php:26
 * @param lang - Default: '$lang'
 * @route '/{lang?}/profile/update'
 */
@@ -87,7 +87,7 @@ update.definition = {
 
 /**
 * @see \App\Http\Controllers\ProfileController::update
-* @see app/Http/Controllers/ProfileController.php:24
+* @see app/Http/Controllers/ProfileController.php:26
 * @param lang - Default: '$lang'
 * @route '/{lang?}/profile/update'
 */
@@ -119,7 +119,7 @@ update.url = (args?: { lang?: string | number } | [lang: string | number ] | str
 
 /**
 * @see \App\Http\Controllers\ProfileController::update
-* @see app/Http/Controllers/ProfileController.php:24
+* @see app/Http/Controllers/ProfileController.php:26
 * @param lang - Default: '$lang'
 * @route '/{lang?}/profile/update'
 */

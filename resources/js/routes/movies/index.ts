@@ -71,7 +71,7 @@ index.head = (args?: { lang?: string | number } | [lang: string | number ] | str
 
 /**
 * @see \App\Http\Controllers\MovieController::show
-* @see app/Http/Controllers/MovieController.php:37
+* @see app/Http/Controllers/MovieController.php:39
 * @param lang - Default: '$lang'
 * @route '/{lang?}/movies/{movie}'
 */
@@ -87,7 +87,7 @@ show.definition = {
 
 /**
 * @see \App\Http\Controllers\MovieController::show
-* @see app/Http/Controllers/MovieController.php:37
+* @see app/Http/Controllers/MovieController.php:39
 * @param lang - Default: '$lang'
 * @route '/{lang?}/movies/{movie}'
 */
@@ -120,7 +120,7 @@ show.url = (args: { lang?: string | number, movie: number | { id: number } } | [
 
 /**
 * @see \App\Http\Controllers\MovieController::show
-* @see app/Http/Controllers/MovieController.php:37
+* @see app/Http/Controllers/MovieController.php:39
 * @param lang - Default: '$lang'
 * @route '/{lang?}/movies/{movie}'
 */
@@ -131,7 +131,7 @@ show.get = (args: { lang?: string | number, movie: number | { id: number } } | [
 
 /**
 * @see \App\Http\Controllers\MovieController::show
-* @see app/Http/Controllers/MovieController.php:37
+* @see app/Http/Controllers/MovieController.php:39
 * @param lang - Default: '$lang'
 * @route '/{lang?}/movies/{movie}'
 */
@@ -142,7 +142,7 @@ show.head = (args: { lang?: string | number, movie: number | { id: number } } | 
 
 /**
 * @see \App\Http\Controllers\MovieController::store
-* @see app/Http/Controllers/MovieController.php:52
+* @see app/Http/Controllers/MovieController.php:54
 * @param lang - Default: '$lang'
 * @route '/{lang?}/movies/store'
 */
@@ -158,7 +158,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\MovieController::store
-* @see app/Http/Controllers/MovieController.php:52
+* @see app/Http/Controllers/MovieController.php:54
 * @param lang - Default: '$lang'
 * @route '/{lang?}/movies/store'
 */
@@ -190,7 +190,7 @@ store.url = (args?: { lang?: string | number } | [lang: string | number ] | stri
 
 /**
 * @see \App\Http\Controllers\MovieController::store
-* @see app/Http/Controllers/MovieController.php:52
+* @see app/Http/Controllers/MovieController.php:54
 * @param lang - Default: '$lang'
 * @route '/{lang?}/movies/store'
 */
@@ -201,7 +201,7 @@ store.post = (args?: { lang?: string | number } | [lang: string | number ] | str
 
 /**
 * @see \App\Http\Controllers\MovieController::update
-* @see app/Http/Controllers/MovieController.php:44
+* @see app/Http/Controllers/MovieController.php:46
 * @param lang - Default: '$lang'
 * @route '/{lang?}/movies/update/{movie}'
 */
@@ -217,7 +217,7 @@ update.definition = {
 
 /**
 * @see \App\Http\Controllers\MovieController::update
-* @see app/Http/Controllers/MovieController.php:44
+* @see app/Http/Controllers/MovieController.php:46
 * @param lang - Default: '$lang'
 * @route '/{lang?}/movies/update/{movie}'
 */
@@ -250,7 +250,7 @@ update.url = (args: { lang?: string | number, movie: number | { id: number } } |
 
 /**
 * @see \App\Http\Controllers\MovieController::update
-* @see app/Http/Controllers/MovieController.php:44
+* @see app/Http/Controllers/MovieController.php:46
 * @param lang - Default: '$lang'
 * @route '/{lang?}/movies/update/{movie}'
 */
@@ -261,7 +261,7 @@ update.patch = (args: { lang?: string | number, movie: number | { id: number } }
 
 /**
 * @see \App\Http\Controllers\MovieController::destroy
-* @see app/Http/Controllers/MovieController.php:60
+* @see app/Http/Controllers/MovieController.php:64
 * @param lang - Default: '$lang'
 * @route '/{lang?}/movies/destroy/{movie}'
 */
@@ -277,7 +277,7 @@ destroy.definition = {
 
 /**
 * @see \App\Http\Controllers\MovieController::destroy
-* @see app/Http/Controllers/MovieController.php:60
+* @see app/Http/Controllers/MovieController.php:64
 * @param lang - Default: '$lang'
 * @route '/{lang?}/movies/destroy/{movie}'
 */
@@ -310,7 +310,7 @@ destroy.url = (args: { lang?: string | number, movie: number | { id: number } } 
 
 /**
 * @see \App\Http\Controllers\MovieController::destroy
-* @see app/Http/Controllers/MovieController.php:60
+* @see app/Http/Controllers/MovieController.php:64
 * @param lang - Default: '$lang'
 * @route '/{lang?}/movies/destroy/{movie}'
 */

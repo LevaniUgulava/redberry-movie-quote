@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults, validateParameters } from './../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\CommentController::index
-* @see app/Http/Controllers/CommentController.php:17
+* @see app/Http/Controllers/CommentController.php:20
 * @param lang - Default: '$lang'
 * @route '/{lang?}/comment/{quote}/comments'
 */
@@ -17,7 +17,7 @@ index.definition = {
 
 /**
 * @see \App\Http\Controllers\CommentController::index
-* @see app/Http/Controllers/CommentController.php:17
+* @see app/Http/Controllers/CommentController.php:20
 * @param lang - Default: '$lang'
 * @route '/{lang?}/comment/{quote}/comments'
 */
@@ -50,7 +50,7 @@ index.url = (args: { lang?: string | number, quote: number | { id: number } } | 
 
 /**
 * @see \App\Http\Controllers\CommentController::index
-* @see app/Http/Controllers/CommentController.php:17
+* @see app/Http/Controllers/CommentController.php:20
 * @param lang - Default: '$lang'
 * @route '/{lang?}/comment/{quote}/comments'
 */
@@ -61,7 +61,7 @@ index.get = (args: { lang?: string | number, quote: number | { id: number } } | 
 
 /**
 * @see \App\Http\Controllers\CommentController::index
-* @see app/Http/Controllers/CommentController.php:17
+* @see app/Http/Controllers/CommentController.php:20
 * @param lang - Default: '$lang'
 * @route '/{lang?}/comment/{quote}/comments'
 */
@@ -72,7 +72,7 @@ index.head = (args: { lang?: string | number, quote: number | { id: number } } |
 
 /**
 * @see \App\Http\Controllers\CommentController::store
-* @see app/Http/Controllers/CommentController.php:43
+* @see app/Http/Controllers/CommentController.php:48
 * @param lang - Default: '$lang'
 * @route '/{lang?}/comment/{quote}'
 */
@@ -88,7 +88,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\CommentController::store
-* @see app/Http/Controllers/CommentController.php:43
+* @see app/Http/Controllers/CommentController.php:48
 * @param lang - Default: '$lang'
 * @route '/{lang?}/comment/{quote}'
 */
@@ -121,7 +121,7 @@ store.url = (args: { lang?: string | number, quote: number | { id: number } } | 
 
 /**
 * @see \App\Http\Controllers\CommentController::store
-* @see app/Http/Controllers/CommentController.php:43
+* @see app/Http/Controllers/CommentController.php:48
 * @param lang - Default: '$lang'
 * @route '/{lang?}/comment/{quote}'
 */
