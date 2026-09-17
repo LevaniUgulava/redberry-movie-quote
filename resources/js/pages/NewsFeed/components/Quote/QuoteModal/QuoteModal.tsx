@@ -14,9 +14,9 @@ function QuoteModal({isOpen, handleClose, modal, quote, movie_id}: QuoteModalPro
     const {t} = useTranslation(["newsfeed", "common"]);
     return (
         <ModalWrapper isOpen={isOpen} onClose={handleClose}>
-            <div className='flex flex-col gap-5'>
+            <div className='flex flex-1 min-h-0 flex-col gap-5 overflow-hidden'>
                 <div
-                    className="relative flex items-center justify-center max-lg:h-23 border-b border-[#EFEFEF]/20 py-8 max-lg:py-2">
+                    className="relative shrink-0 flex items-center justify-center max-lg:h-23 border-b border-[#EFEFEF]/20 py-8 max-lg:py-2">
                     {isExistQuote && <div className="absolute left-5 cursor-pointer">
                         <div className="flex items-center justify-between gap-3 w-22.5">
                             {isView &&
