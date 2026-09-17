@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
-use App\Http\Requests\Auth\ResendVerifyRequest;
 use App\Service\AuthService;
 use App\Service\VerifyService;
 use Illuminate\Http\RedirectResponse;
@@ -54,9 +53,9 @@ class AuthController extends Controller
         return redirect('/');
     }
 
-    public function resend(ResendVerifyRequest $request): RedirectResponse
+    public function resend(): RedirectResponse
     {
-        $this->service->resend($request->email);
+        $this->service->resend(auth()->user()->email);
 
         return redirect('/');
 

@@ -2,32 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notification;
 use App\Service\NotificationService;
-use Illuminate\Http\Request;
-use Inertia\Inertia;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Http\RedirectResponse;
 
 class NotificationController extends Controller
 {
+    use AuthorizesRequests;
 
-    function __construct(public NotificationService $notificationService)
+    public function __construct(public NotificationService $notificationService) {}
+
+    public function markAsRead(int $id): RedirectResponse
     {
+        $this->authorize('update', Notification::findOrFail($id));
 
-    }
-
-    public function markAsRead(int $id, NotificationService $notificationService)
-    {
-        $user = auth()->user();
-
-        $notificationService->markAsRead($user, $id);
+        $this->notificationService->markAsRead(auth()->user(), $id);
 
         return back();
     }
 
-    public function markAllAsRead(NotificationService $notificationService)
+    public function markAllAsRead(): RedirectResponse
     {
-        $user = auth()->user();
+        $this->authorize('updateAny', Notification::class);
 
-        $notificationService->markAllAsRead($user);
+        $this->notificationService->markAllAsRead(auth()->user());
 
         return back();
     }
