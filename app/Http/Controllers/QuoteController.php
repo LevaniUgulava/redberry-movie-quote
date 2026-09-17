@@ -10,14 +10,17 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class QuoteController extends Controller
 {
     use AuthorizesRequests;
 
-    public function __construct(public QuoteService $quoteService) {}
+    public function __construct(public QuoteService $quoteService)
+    {
+    }
 
-    public function index(Request $request)
+    public function index(Request $request): Response
     {
         $modal = $request->query('modal');
         $search = $request->query('filter')['search'] ?? null;
@@ -26,7 +29,7 @@ class QuoteController extends Controller
         return Inertia::render('NewsFeed/NewsFeed', [
             'currentModal' => $data['currentModal'],
             'movies' => $data['movies'],
-            'quotes' => Inertia::scroll(fn () => $data['quotes']),
+            'quotes' => Inertia::scroll(fn() => $data['quotes']),
             'filter' => $search ? ['search' => $search] : [],
         ]);
 
@@ -49,7 +52,7 @@ class QuoteController extends Controller
         return redirect()->back();
     }
 
-    public function destroy(Quote $quote)
+    public function destroy(Quote $quote) : RedirectResponse
     {
         $this->authorize('delete', $quote);
 
