@@ -22,7 +22,7 @@ function QuoteCard({quote, movie_id}: { quote: QuoteCardData, movie_id: number }
                 <span className="text-2xl leading-[150%] italic text-[#CED4DA]">"{quote.quote}"</span>
             </div>
             {!isMobile && <div className="absolute top-0 right-0">
-                <PopOverWrapper body={<PopOverContent id={quote.id} movie_id={movie_id}/>}>
+                <PopOverWrapper body={(close) => <PopOverContent id={quote.id} movie_id={movie_id} onClose={close}/>}>
                     <DotsIcon/>
                 </PopOverWrapper>
             </div>}
@@ -43,7 +43,7 @@ function QuoteCard({quote, movie_id}: { quote: QuoteCardData, movie_id: number }
 
                 </button>
             </div>
-            {isMobile && <PopOverWrapper body={<PopOverContent id={quote.id} movie_id={movie_id}/>}>
+            {isMobile && <PopOverWrapper body={(close) => <PopOverContent id={quote.id} movie_id={movie_id} onClose={close}/>}>
                 <DotsIcon/>
             </PopOverWrapper>}
         </div>
