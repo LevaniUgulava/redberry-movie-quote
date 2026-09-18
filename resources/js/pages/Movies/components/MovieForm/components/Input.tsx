@@ -25,13 +25,13 @@ function Input({
                             name={name}
                             rows={2}
                             defaultValue={defaultValue}
-                            className={`focus:outline-none placeholder:text-white text-white w-full pr-5 text-xl max-lg:text-base leading-[150%] px-4 py-2.25 bg-transparent border-none`}/>
+                            className={`focus:outline-none placeholder:text-white text-white w-full pr-15 text-xl max-lg:text-base leading-[150%] px-4 py-2.25 bg-transparent border-none`}/>
                 : <input placeholder={placeholder}
                          name={name}
                          defaultValue={defaultValue}
                          type={type}
                          disabled={disabled}
-                         className={`focus:outline-none placeholder:text-white text-white w-full text-xl max-lg:text-base leading-[150%] px-4 py-2.25 bg-transparent border-none`}/>}
+                         className={`focus:outline-none placeholder:text-white text-white w-full pr-15 text-xl max-lg:text-base leading-[150%] px-4 py-2.25 bg-transparent border-none`}/>}
         </div>
         {lang &&
             <div className="absolute top-2.5 right-4">
