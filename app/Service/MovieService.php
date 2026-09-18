@@ -48,7 +48,7 @@ class MovieService
             ? $movie->quotes()->withCount(['comments', 'likes'])
                 ->withExists(['likes as is_liked' => function ($q) {
                     $q->where('user_id', auth()->id());
-                }])->findOrFail((int) $quote_id)
+                }])->find((int) $quote_id)
             : null;
 
         return [
