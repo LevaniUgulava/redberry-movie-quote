@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults, validateParameters } from './../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\NotificationController::markAsRead
-* @see app/Http/Controllers/NotificationController.php:16
+* @see app/Http/Controllers/NotificationController.php:18
 * @param lang - Default: '$lang'
 * @route '/{lang?}/notification/mark-as-read/{id}'
 */
@@ -17,7 +17,7 @@ markAsRead.definition = {
 
 /**
 * @see \App\Http\Controllers\NotificationController::markAsRead
-* @see app/Http/Controllers/NotificationController.php:16
+* @see app/Http/Controllers/NotificationController.php:18
 * @param lang - Default: '$lang'
 * @route '/{lang?}/notification/mark-as-read/{id}'
 */
@@ -48,7 +48,7 @@ markAsRead.url = (args: { lang?: string | number, id: string | number } | [lang:
 
 /**
 * @see \App\Http\Controllers\NotificationController::markAsRead
-* @see app/Http/Controllers/NotificationController.php:16
+* @see app/Http/Controllers/NotificationController.php:18
 * @param lang - Default: '$lang'
 * @route '/{lang?}/notification/mark-as-read/{id}'
 */
@@ -59,7 +59,7 @@ markAsRead.post = (args: { lang?: string | number, id: string | number } | [lang
 
 /**
 * @see \App\Http\Controllers\NotificationController::markAllAsRead
-* @see app/Http/Controllers/NotificationController.php:25
+* @see app/Http/Controllers/NotificationController.php:27
 * @param lang - Default: '$lang'
 * @route '/{lang?}/notification/mark-all-read'
 */
@@ -75,7 +75,7 @@ markAllAsRead.definition = {
 
 /**
 * @see \App\Http\Controllers\NotificationController::markAllAsRead
-* @see app/Http/Controllers/NotificationController.php:25
+* @see app/Http/Controllers/NotificationController.php:27
 * @param lang - Default: '$lang'
 * @route '/{lang?}/notification/mark-all-read'
 */
@@ -107,7 +107,7 @@ markAllAsRead.url = (args?: { lang?: string | number } | [lang: string | number 
 
 /**
 * @see \App\Http\Controllers\NotificationController::markAllAsRead
-* @see app/Http/Controllers/NotificationController.php:25
+* @see app/Http/Controllers/NotificationController.php:27
 * @param lang - Default: '$lang'
 * @route '/{lang?}/notification/mark-all-read'
 */

@@ -6,16 +6,18 @@ import { Form } from "@inertiajs/react";
 import LocaleLink from "@/components/LocaleLink";
 import AuthFooterLink from "@/pages/Auth/AuthFooterLink/AuthFooterLink";
 import { useTranslation } from "react-i18next";
+import {useState} from "react";
 
 function LoginForm() {
     const { t } = useTranslation("auth");
+    const [remember, setRemember] = useState(false);
     return (
         <div className="flex flex-col justify-center items-center w-full">
             <Header
                 title={t("login_title")}
                 subtitle={t("login_subtitle")}
             />
-            <Form className="w-full" action={login()}>
+            <Form className="w-full" action={login()} transform={(data) => ({ ...data, remember: remember ? "1" : "0" })}>
                 {({ validate, errors, valid, reset }) => (
                     <div>
                         <Input
@@ -43,6 +45,9 @@ function LoginForm() {
                                     id="remember"
                                     type="checkbox"
                                     name="remember"
+                                    value="1"
+                                    checked={remember}
+                                    onChange={(e) => setRemember(e.target.checked)}
                                     className="w-4 h-4 accent-main-red cursor-pointer"
                                 />
                                 <label

@@ -18,7 +18,7 @@ function NewsFeed() {
     return <div className="w-full max-w-234.5 mx-auto mt-10">
         <Head title={t("title")}/>
         <Header/>
-        <div className="mt-4 flex flex-col gap-5 overflow-y-auto max-h-screen">
+        <div className="mt-4 flex flex-col gap-5">
             {inertiaLoading ? (
                 <div className="flex justify-center items-center py-20">
                     <Spinner/>

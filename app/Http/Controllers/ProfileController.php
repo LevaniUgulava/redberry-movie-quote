@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Profile\UpdateUserRequest;
-use App\Notifications\CustomEmailVerifyNotification;
+use App\Service\ProfileService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Notification;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -15,6 +14,10 @@ use Inertia\Response;
 class ProfileController extends Controller
 {
     use AuthorizesRequests;
+
+    public function __construct(
+        private ProfileService $profileService,
+    ) {}
 
     public function edit(): Response
     {
@@ -29,6 +32,7 @@ class ProfileController extends Controller
         $this->authorize('update', $user);
 
         $data = $request->only(['username']);
+
         if ($request->filled('password')) {
             if (! Hash::check($request->current_password, $user->password)) {
                 throw ValidationException::withMessages([
@@ -37,21 +41,15 @@ class ProfileController extends Controller
             }
             $data['password'] = Hash::make($request->password);
         }
+
         if ($request->filled('email')) {
-            $user->emailChanges()->updateOrCreate(
-                ['user_id' => $user->id],
-                ['new_email' => $request->email]
-            );
-            Notification::route('mail', $request->email)
-                ->notify(new CustomEmailVerifyNotification($user, $request->email));
-            Inertia::flash('type', 'VERIFY_SENT');
+            $this->profileService->emailChange($request->validated(), $user);
         }
+
         if ($request->hasFile('avatar')) {
-            if ($user->hasMedia('avatar')) {
-                $user->media()->delete();
-            }
-            $user->addMediaFromRequest('avatar')->toMediaCollection('avatar');
+            $this->profileService->changeAvatar($user);
         }
+
         $user->update($data);
         Inertia::flash('updated');
 

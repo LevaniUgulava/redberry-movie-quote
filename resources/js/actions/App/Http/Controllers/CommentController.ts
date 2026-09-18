@@ -72,7 +72,7 @@ index.head = (args: { lang?: string | number, quote: number | { id: number } } |
 
 /**
 * @see \App\Http\Controllers\CommentController::store
-* @see app/Http/Controllers/CommentController.php:48
+* @see app/Http/Controllers/CommentController.php:34
 * @param lang - Default: '$lang'
 * @route '/{lang?}/comment/{quote}'
 */
@@ -88,7 +88,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\CommentController::store
-* @see app/Http/Controllers/CommentController.php:48
+* @see app/Http/Controllers/CommentController.php:34
 * @param lang - Default: '$lang'
 * @route '/{lang?}/comment/{quote}'
 */
@@ -121,7 +121,7 @@ store.url = (args: { lang?: string | number, quote: number | { id: number } } | 
 
 /**
 * @see \App\Http\Controllers\CommentController::store
-* @see app/Http/Controllers/CommentController.php:48
+* @see app/Http/Controllers/CommentController.php:34
 * @param lang - Default: '$lang'
 * @route '/{lang?}/comment/{quote}'
 */

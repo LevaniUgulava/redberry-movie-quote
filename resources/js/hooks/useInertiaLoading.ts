@@ -7,7 +7,9 @@ function useInertiaLoading(hasData: boolean) {
     useEffect(() => {
         let timeout: ReturnType<typeof setTimeout>;
 
-        const offStart = router.on("start", () => {
+        const offStart = router.on("start", (event: CustomEvent) => {
+            const {only = [], except = [], reset = []} = event.detail.visit ?? {};
+            if (only.length > 0 || except.length > 0 || reset.length > 0) return;
             timeout = setTimeout(() => setLoading(true), 250);
         });
 

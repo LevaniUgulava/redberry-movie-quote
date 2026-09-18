@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\CommentAdded;
 use App\Http\Requests\Comment\StoreCommentRequest;
+use App\Http\Resources\Quote\CommentResource;
 use App\Models\Comment;
 use App\Models\Quote;
 use App\Service\NotificationService;
@@ -13,9 +14,9 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
-    use AuthorizesRequests;
-
-    public function __construct(public NotificationService $notificationService) {}
+    public function __construct(public NotificationService $notificationService)
+    {
+    }
 
     public function index(Quote $quote): JsonResponse
     {
@@ -27,20 +28,8 @@ class CommentController extends Controller
             ->latest()
             ->paginate(2);
 
-        $data = $comments->map(function (Comment $comment) {
-            return [
-                'id' => $comment->id,
-                'comment' => $comment->comment,
-                'user' => [
-                    'id' => $comment->user->id,
-                    'username' => $comment->user->username,
-                    'avatar' => $comment->user->avatar,
-                ],
-            ];
-        });
-
         return response()->json([
-            'data' => $data,
+            'data' => CommentResource::collection($comments),
             'has_more' => $comments->hasMorePages(),
         ]);
     }
