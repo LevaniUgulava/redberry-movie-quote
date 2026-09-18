@@ -13,9 +13,9 @@ function SelectMovie({movies, selectedMovie, onSelect, error}: SelectMovieProps)
     return <div className='relative'>
         <div onClick={() => setIsSelectOpen((prev) => !prev)}
              className='cursor-pointer bg-black flex px-4 py-6 items-center justify-between rounded-lg'>
-            <div className="flex gap-4 items-center">
+            <div className="flex gap-4 items-center min-w-0">
                 <FilmIcon/>
-                <span className="text-white text-2xl max-lg:text-base font-normal">
+                <span className="text-white text-2xl max-lg:text-base font-normal min-w-0 break-words">
                     {selectedMovie ? `${selectedMovie.title} - ${selectedMovie.year}` : t("choose_movie")}
                 </span>
             </div>
@@ -33,8 +33,8 @@ function SelectMovie({movies, selectedMovie, onSelect, error}: SelectMovieProps)
                              setIsSelectOpen(false);
                          }}
                          className="flex p-5 items-center gap-4 cursor-pointer hover:bg-gray-800 rounded-lg">
-                        <img src={m.image} className="w-15 h-15 rounded object-cover" alt="film"/>
-                        <span className="text-2xl text-white">{m.title}-{m.year}</span>
+                        <img src={m.image} className="w-15 h-15 rounded object-cover shrink-0" alt="film"/>
+                        <span className="text-2xl text-white min-w-0 break-words">{m.title}-{m.year}</span>
                     </div>
                 ))}
             </div>
