@@ -46,7 +46,7 @@ function Movie() {
                 </div>}
             </div>
             <div className="w-full flex flex-col gap-5">
-                <div className="flex justify-between">
+                <div className="flex justify-between gap-5">
                     <div className="min-w-0">
                         <span
                             className='text-main-beige text-2xl leading-[150%] font-medium break-all'>{movie.title}({movie.year})</span>
