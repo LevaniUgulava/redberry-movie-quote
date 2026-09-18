@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Service\NotificationService;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -14,7 +15,7 @@ class NotificationController extends Controller
 
     }
 
-    public function markAsRead(int $id, NotificationService $notificationService)
+    public function markAsRead(int $id, NotificationService $notificationService) : RedirectResponse
     {
         $user = auth()->user();
 
@@ -23,7 +24,7 @@ class NotificationController extends Controller
         return back();
     }
 
-    public function markAllAsRead(NotificationService $notificationService)
+    public function markAllAsRead(NotificationService $notificationService) : RedirectResponse
     {
         $user = auth()->user();
 

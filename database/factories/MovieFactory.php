@@ -36,7 +36,7 @@ class MovieFactory extends Factory
         ];
     }
 
-    public function configure()
+    public function configure(): static
     {
         return $this->afterCreating(function (Movie $movie) {
             $movie->addMedia(storage_path('app/public/seeder/'.fake()->numberBetween(1, 20).'.jpg'))
