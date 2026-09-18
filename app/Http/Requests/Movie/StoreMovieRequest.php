@@ -26,8 +26,8 @@ class StoreMovieRequest extends FormRequest
             'en_director' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z0-9\s.,!?\'"()\-:;]+$/u'],
             'ka_director' => ['required', 'string', 'max:255', 'regex:/^[ა-ჰ0-9\s.,!?\'"()\-:;]+$/u'],
 
-            'en_description' => ['required', 'string', 'regex:/^[a-zA-Z0-9\s.,!?\'"()\-:;]+$/u'],
-            'ka_description' => ['required', 'string', 'regex:/^[ა-ჰ0-9\s.,!?\'"()\-:;]+$/u'],
+            'en_description' => ['required', 'string', 'max:1000', 'regex:/^[a-zA-Z0-9\s.,!?\'"()\-:;]+$/u'],
+            'ka_description' => ['required', 'string', 'max:1000', 'regex:/^[ა-ჰ0-9\s.,!?\'"()\-:;]+$/u'],
 
             'image' => ['required', 'image'],
         ];

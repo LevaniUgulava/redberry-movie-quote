@@ -26,8 +26,8 @@ class EditMovieRequest extends FormRequest
             'en_director' => ['sometimes', 'string', 'max:255', 'regex:/^[a-zA-Z0-9\s.,!?\'"()\-:;]+$/u'],
             'ka_director' => ['sometimes', 'string', 'max:255', 'regex:/^[ა-ჰ0-9\s.,!?\'"()\-:;]+$/u'],
 
-            'en_description' => ['sometimes', 'string', 'regex:/^[a-zA-Z0-9\s.,!?\'"()\-:;]+$/u'],
-            'ka_description' => ['sometimes', 'string', 'regex:/^[ა-ჰ0-9\s.,!?\'"()\-:;]+$/u'],
+            'en_description' => ['sometimes', 'string', 'max:1000', 'regex:/^[a-zA-Z0-9\s.,!?\'"()\-:;]+$/u'],
+            'ka_description' => ['sometimes', 'string', 'max:1000', 'regex:/^[ა-ჰ0-9\s.,!?\'"()\-:;]+$/u'],
 
             'image' => ['sometimes', 'image'],
         ];
