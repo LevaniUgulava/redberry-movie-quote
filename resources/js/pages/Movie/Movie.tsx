@@ -46,12 +46,12 @@ function Movie() {
                 </div>}
             </div>
             <div className="w-full flex flex-col gap-5">
-                <div className="flex justify-between">
-                    <div>
+                <div className="flex justify-between gap-5">
+                    <div className="min-w-0">
                         <span
-                            className='text-main-beige text-2xl leading-[150%] font-medium'>{movie.title}({movie.year})</span>
+                            className='text-main-beige text-2xl leading-[150%] font-medium break-all'>{movie.title}({movie.year})</span>
                     </div>
-                    <div className="flex items-center gap-4 bg-[#24222F] rounded-xl px-4 py-3 w-fit">
+                    <div className="flex items-center gap-4 bg-[#24222F] rounded-xl px-4 py-3 w-fit h-fit">
                         <LocaleLink href={`/movies?id=${movie.id}&modal=edit`}
                                     className="cursor-pointer">
                             <EditIcon/>

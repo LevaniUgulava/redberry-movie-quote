@@ -47,7 +47,7 @@ class Quote extends Model implements HasMedia
         return $this->belongsToMany(User::class, 'likes');
     }
 
-    public function scopeSearch(Builder $query, string $search): Builder
+    public function scopeSearch(Builder $query, string $search): void
     {
         $locale = app()->getLocale();
 

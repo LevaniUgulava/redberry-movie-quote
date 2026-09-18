@@ -2,6 +2,9 @@ import CommentIcon from "@/components/ui/icons/Movie/CommentIcon.tsx";
 import {MovieProps} from "@/pages/Movies/MoviesTypes.ts";
 
 function MovieCard({movie}: MovieProps) {
+    const displayName = `${movie.title}(${movie.year})`;
+    const truncatedName = displayName.length > 20 ? `${displayName.slice(0, 20)}...` : displayName;
+
     return <div className="flex flex-col gap-2.5">
         <div>
             <img
@@ -11,7 +14,7 @@ function MovieCard({movie}: MovieProps) {
             /></div>
         <div>
             <span
-                className="text-2xl font-medium leading-[150%] text-white">{movie.title + `(${movie.year})`}</span>
+                className="text-2xl font-medium leading-[150%] text-white">{truncatedName}</span>
         </div>
         <div className="flex gap-2.5 items-center">
             <span className="text-xl text-white">{movie.commentQuantity}</span>

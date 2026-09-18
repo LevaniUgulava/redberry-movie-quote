@@ -14,12 +14,12 @@ function QuoteCard({quote, movie_id}: { quote: QuoteCardData, movie_id: number }
 
     return <div className="bg-[#11101A] rounded-xl p-5 flex flex-col gap-5">
         <div className='flex max-lg:flex-col gap-5 relative'>
-            <div>
+            <div className="shrink-0">
                 <img className="w-56.5 max-lg:w-full max-lg:h-fit h-35 rounded-xs object-cover" alt="quote-image"
                      src={quote.image}/>
             </div>
-            <div className='flex items-center'>
-                <span className="text-2xl leading-[150%] italic text-[#CED4DA]">"{quote.quote}"</span>
+            <div className='min-w-0 flex-1 flex items-center'>
+                <span className="text-2xl leading-[150%] italic text-[#CED4DA] break-words w-full">"{quote.quote}"</span>
             </div>
             {!isMobile && <div className="absolute top-0 right-0">
                 <PopOverWrapper body={<PopOverContent id={quote.id} movie_id={movie_id}/>}>

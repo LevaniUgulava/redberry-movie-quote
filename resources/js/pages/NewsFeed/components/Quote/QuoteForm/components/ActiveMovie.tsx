@@ -2,8 +2,11 @@ import {ActiveMovieProps} from "@/pages/NewsFeed/components/Quote/QuoteForm/Quot
 import {MovieWithDetails} from "@/pages/Movies/MoviesTypes.ts";
 import {useTranslation} from "react-i18next";
 
-function ActiveMovie({movie}: {movie:MovieWithDetails}) {
+function ActiveMovie({movie}: { movie: MovieWithDetails }) {
     const {t} = useTranslation(["newsfeed", "common"]);
+    const title = `${movie.title} (${movie.year})`;
+    const displayTitle = title.length > 40 ? `${title.slice(0, 40)}...` : title;
+
     return <div className="flex gap-4">
         <div className="max-w-72.5 w-full">
             <img className="w-full rounded-xl object-cover" alt="movie_image" src={movie.image}/>
@@ -11,7 +14,7 @@ function ActiveMovie({movie}: {movie:MovieWithDetails}) {
         <div className="flex flex-col gap-4">
             <div>
                                 <span
-                                    className="text-main-beige text-2xl font-medium leading-[150%]">{movie.title} ({movie.year})</span>
+                                    className="text-main-beige text-2xl font-medium leading-[150%]">{displayTitle}</span>
             </div>
             <div className='flex gap-3'>
                 {movie.genres.map((genre: any) => (

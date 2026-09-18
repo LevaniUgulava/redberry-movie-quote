@@ -15,8 +15,8 @@ class EditQuoteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'en_quote' => ['required', 'string', 'regex:/^[a-zA-Z0-9\s.,!?\'"()\-:;]+$/u'],
-            'ka_quote' => ['required', 'string', 'regex:/^[ა-ჰ0-9\s.,!?\'"()\-:;]+$/u'],
+            'en_quote' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z0-9\s.,!?\'"()\-:;]+$/u'],
+            'ka_quote' => ['required', 'string', 'max:255', 'regex:/^[ა-ჰ0-9\s.,!?\'"()\-:;]+$/u'],
             'image' => ['sometimes', 'image'],
         ];
     }
