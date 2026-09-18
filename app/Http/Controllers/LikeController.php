@@ -5,15 +5,20 @@ namespace App\Http\Controllers;
 use App\Events\LikeUpdated;
 use App\Models\Quote;
 use App\Service\NotificationService;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 
 class LikeController extends Controller
 {
+    use AuthorizesRequests;
+
     public function __construct(public NotificationService $notificationService) {}
 
     public function store(Quote $quote): JsonResponse
     {
+        $this->authorize('like', $quote);
+
         $user = Auth::user();
 
         $result = $quote->likes()->toggle($user->id);

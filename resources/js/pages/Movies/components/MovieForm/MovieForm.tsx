@@ -12,7 +12,7 @@ function MovieForm({editingMovie, isEditOpen}: { editingMovie: any, isEditOpen: 
     const [genres, setGenres] = useState<string[]>(isEditOpen ? editingMovie.genres : []);
     const [image, setImage] = useState<File | null>(isEditOpen ? editingMovie.image : null);
     const {auth} = usePage<PageProps>().props
-    return <div className="px-5 flex flex-col gap-6 max-h-[80vh] overflow-y-auto">
+    return <div className="px-5 flex-1 min-h-0 overflow-y-auto flex flex-col gap-6">
         <div className="flex items-center gap-2.5">
             <img className="h-15 w-15 object-cover rounded-full" alt="profile_imgae" src={auth.avatar}/>
             <span className="text-white text-xl leading-[150%]">{auth.username}</span>

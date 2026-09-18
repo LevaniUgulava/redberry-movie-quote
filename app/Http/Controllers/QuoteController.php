@@ -22,6 +22,8 @@ class QuoteController extends Controller
 
     public function index(Request $request): Response
     {
+        $this->authorize('viewAny', Quote::class);
+
         $modal = $request->query('modal');
         $search = $request->query('filter')['search'] ?? null;
         $data = $this->quoteService->index($modal);
@@ -37,6 +39,8 @@ class QuoteController extends Controller
 
     public function store(StoreQuoteRequest $request): RedirectResponse
     {
+        $this->authorize('create', [Quote::class, (int) $request->validated('movie_id')]);
+
         $this->quoteService->store($request->validated());
 
         return redirect()->back();

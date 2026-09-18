@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../wayfinder'
 /**
 * @see \App\Http\Controllers\AuthController::verify
-* @see app/Http/Controllers/AuthController.php:50
+* @see app/Http/Controllers/AuthController.php:49
 * @route '/email/verify/{id}/{hash}'
 */
 export const verify = (args: { id: string | number, hash: string | number } | [id: string | number, hash: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ verify.definition = {
 
 /**
 * @see \App\Http\Controllers\AuthController::verify
-* @see app/Http/Controllers/AuthController.php:50
+* @see app/Http/Controllers/AuthController.php:49
 * @route '/email/verify/{id}/{hash}'
 */
 verify.url = (args: { id: string | number, hash: string | number } | [id: string | number, hash: string | number ], options?: RouteQueryOptions) => {
@@ -42,7 +42,7 @@ verify.url = (args: { id: string | number, hash: string | number } | [id: string
 
 /**
 * @see \App\Http\Controllers\AuthController::verify
-* @see app/Http/Controllers/AuthController.php:50
+* @see app/Http/Controllers/AuthController.php:49
 * @route '/email/verify/{id}/{hash}'
 */
 verify.get = (args: { id: string | number, hash: string | number } | [id: string | number, hash: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -52,7 +52,7 @@ verify.get = (args: { id: string | number, hash: string | number } | [id: string
 
 /**
 * @see \App\Http\Controllers\AuthController::verify
-* @see app/Http/Controllers/AuthController.php:50
+* @see app/Http/Controllers/AuthController.php:49
 * @route '/email/verify/{id}/{hash}'
 */
 verify.head = (args: { id: string | number, hash: string | number } | [id: string | number, hash: string | number ], options?: RouteQueryOptions): RouteDefinition<'head'> => ({

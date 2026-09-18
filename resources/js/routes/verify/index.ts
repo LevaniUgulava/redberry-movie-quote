@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../wayfinder'
 /**
 * @see \App\Http\Controllers\AuthController::resend
-* @see app/Http/Controllers/AuthController.php:57
+* @see app/Http/Controllers/AuthController.php:56
 * @route '/resend'
 */
 export const resend = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -16,7 +16,7 @@ resend.definition = {
 
 /**
 * @see \App\Http\Controllers\AuthController::resend
-* @see app/Http/Controllers/AuthController.php:57
+* @see app/Http/Controllers/AuthController.php:56
 * @route '/resend'
 */
 resend.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ resend.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\AuthController::resend
-* @see app/Http/Controllers/AuthController.php:57
+* @see app/Http/Controllers/AuthController.php:56
 * @route '/resend'
 */
 resend.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({

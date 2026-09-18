@@ -8,6 +8,7 @@ use App\Http\Resources\Quote\CommentResource;
 use App\Models\Comment;
 use App\Models\Quote;
 use App\Service\NotificationService;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,6 +20,8 @@ class CommentController extends Controller
 
     public function index(Quote $quote): JsonResponse
     {
+        $this->authorize('viewAny', Comment::class);
+
         $comments = $quote->comments()
             ->with('user:id,username')
             ->with('user.media')
@@ -33,6 +36,8 @@ class CommentController extends Controller
 
     public function store(Quote $quote, StoreCommentRequest $request): JsonResponse
     {
+        $this->authorize('create', Comment::class);
+
         $user = Auth::user();
 
         $comment = $user->comments()->create([

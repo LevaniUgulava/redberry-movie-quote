@@ -20,6 +20,8 @@ class MovieController extends Controller
 
     public function index(Request $request): Response
     {
+        $this->authorize('viewAny', Movie::class);
+
         $data = $this->movieService->index([
             'modal' => $request->query('modal'),
             'id' => $request->query('id'),
@@ -51,6 +53,8 @@ class MovieController extends Controller
 
     public function store(StoreMovieRequest $request): RedirectResponse
     {
+        $this->authorize('create', Movie::class);
+
         $this->movieService->store($request->validated());
 
         return redirect()->route('movies.index');
