@@ -6,10 +6,17 @@ import useQuoteCard from "@/pages/NewsFeed/components/QuoteCard/hooks/useQuoteCa
 import FillReactionIcon from "@/components/ui/NewsFeed/Quotes/FillReactionIcon.tsx";
 import {cn} from "@/lib/utils.ts";
 import {useTranslation} from "react-i18next";
+import {useState} from "react";
+import useIsMobile from "@/hooks/useIsMobile.ts";
 
 
 function QuoteCard({quote}: QuoteCardProps) {
     const {t} = useTranslation("newsfeed");
+    const isMobile = useIsMobile();
+    const [isExpanded, setIsExpanded] = useState(false);
+    const fullText = `${quote.quote} - ${quote.movie?.title} (${quote.movie?.year})`;
+    const charLimit = isMobile ? 100 : 140;
+    const isLongQuote = fullText.length > charLimit;
     const {
         auth,
         submit,
@@ -36,10 +43,18 @@ function QuoteCard({quote}: QuoteCardProps) {
                 <span
                     className="text-xl text-white max-lg:text-base font-normal leading-[150%]">{quote.user.username}</span>
             </div>}
-            {quote.movie && <div>
+{quote.movie && <div>
                 <span
-                    className="text-xl max-lg:text-base text-white font-normal leading-[150%]">{quote.quote} - <span
+                    className={`text-xl max-lg:text-base text-white font-normal leading-[150%] break-words ${isExpanded ? '' : 'line-clamp-3'}`}>{quote.quote} - <span
                     className="text-[#E8D5B0] font-semibold">{quote.movie.title}</span> ({quote.movie.year})</span>
+                {(isExpanded || isLongQuote) && (
+                    <button
+                        type="button"
+                        onClick={() => setIsExpanded(!isExpanded)}
+                        className="block mt-1 text-[#6C757D] text-sm font-normal hover:text-white transition-colors cursor-pointer">
+                        {isExpanded ? t("see_less") : t("see_more")}
+                    </button>
+                )}
             </div>}
             <div className="flex flex-col gap-6 pb-6">
                 <img alt="quote_image" className="w-full rounded-[10px] object-cover" src={quote.image}/>
@@ -93,7 +108,7 @@ function QuoteCard({quote}: QuoteCardProps) {
                     <div
                         className="flex gap-4 items-center border-b border-[#EFEFEF]/30 ml-16">
                         <span
-                            className="text-xl max-lg:text-base text-white font-normal leading-[150%] pb-6">{comment.comment}</span>
+                            className="text-xl max-lg:text-base text-white font-normal leading-[150%] pb-6 break-words min-w-0">{comment.comment}</span>
                     </div>
                 </div>
             ))}
