@@ -20,7 +20,7 @@ function MovieModal({isOpen, onClose, editingMovie, isEditOpen}: ModalWrapperPro
                 </span>
             <CloseIcon onClick={onClose} className="absolute right-5 cursor-pointer"/>
         </div>
-        <MovieForm isEditOpen={isEditOpen} editingMovie={editingMovie}/>
+        <MovieForm key={isEditOpen ? editingMovie.id : 'new'} isEditOpen={isEditOpen} editingMovie={editingMovie}/>
     </ModalWrapper>
 
 }

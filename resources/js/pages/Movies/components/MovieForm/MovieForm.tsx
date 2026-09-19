@@ -15,7 +15,7 @@ function MovieForm({editingMovie, isEditOpen}: { editingMovie: any, isEditOpen: 
     return <div className="px-5 flex-1 min-h-0 overflow-y-auto flex flex-col gap-6">
         <div className="flex items-center gap-2.5">
             <img className="h-15 w-15 object-cover rounded-full" alt="profile_imgae" src={auth.avatar}/>
-            <span className="text-white text-xl leading-[150%]">{auth.username}</span>
+            <span className="text-white text-xl leading-[150%] min-w-0 truncate">{auth.username}</span>
         </div>
         <Form action={isEditOpen && editingMovie ? update({movie: editingMovie.id}) : store()}
               className="gap-6 flex flex-col">
