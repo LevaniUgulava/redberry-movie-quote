@@ -39,8 +39,8 @@ function Movie() {
                                 <span className="text-white text-2xl font-bold">{t("no_quotes_yet")}</span>
                                 <span className="text-[#CED4DA] text-lg">{t("no_quotes_hint")}</span>
                             </div>
-                        ) : movie.quotes.map((quote: QuoteCardData, index: number) => (
-                            <QuoteCard key={index} movie_id={movie.id} quote={quote}/>
+                        ) : movie.quotes.map((quote: QuoteCardData) => (
+                            <QuoteCard key={quote.id} movie_id={movie.id} quote={quote}/>
                         ))}
                     </div>
                 </div>}
@@ -62,17 +62,17 @@ function Movie() {
                         </button>
                     </div>
                 </div>
-                <div className='flex gap-3'>
+                <div className='flex flex-wrap gap-3'>
                     {movie.genres.map((genre: any) => (
                         <div key={genre}
-                             className="px-[11.7px] py-[6.3px] rounded-lg bg-[#6C757D]">
-                            <span className="text-white font-bold text-lg leading-[100%]">{genre}</span>
+                             className="px-[11.7px] py-[6.3px] rounded-lg bg-[#6C757D] min-w-0">
+                            <span className="text-white font-bold text-lg leading-[100%] break-all">{genre}</span>
                         </div>
                     ))}
                 </div>
                 <div className='flex gap-3'>
-                    <span className="text-[#CED4DA] text-lg font-bold leading-[150%]">{t("director")}</span>
-                    <span className='text-white text-lg font-medium leading-[150%]'>{movie.director}</span>
+                    <span className="text-[#CED4DA] text-lg font-bold leading-[150%] shrink-0">{t("director")}</span>
+                    <span className='text-white text-lg font-medium leading-[150%] min-w-0 break-words'>{movie.director}</span>
                 </div>
                 <div>
                     <span className='text-lg leading-[150%] font-normal text-[#CED4DA]'>{movie.description}</span>
@@ -98,8 +98,8 @@ function Movie() {
                                     <span className="text-white text-2xl font-bold">{t("no_quotes_yet")}</span>
                                     <span className="text-[#CED4DA] text-lg">{t("no_quotes_hint")}</span>
                                 </div>
-                            ) : movie.quotes.map((quote: QuoteCardData, index: number) => (
-                                <QuoteCard key={index} movie_id={movie.id} quote={quote}/>
+                            ) : movie.quotes.map((quote: QuoteCardData) => (
+                                <QuoteCard key={quote.id} movie_id={movie.id} quote={quote}/>
                             ))}
                         </div>
 
