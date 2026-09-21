@@ -15,7 +15,7 @@ function QuoteEdit({quote, handleClose}: QuoteCardProps) {
     return <div className="px-5 flex-1 min-h-0 overflow-y-auto flex flex-col gap-6 pb-5">
         <div className="flex items-center gap-2.5 ">
             <img className="h-15 w-15 rounded-full object-cover" alt="profile_image" src={auth.avatar}/>
-            <span className="text-white text-xl leading-[150%]">{auth.username}</span>
+            <span className="text-white text-xl leading-[150%] min-w-0 truncate">{auth.username}</span>
         </div>
         <Form
             action={update({quote: quote.id})}

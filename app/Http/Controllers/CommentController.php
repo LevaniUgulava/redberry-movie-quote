@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
-    public function __construct(public NotificationService $notificationService)
-    {
-    }
+    use AuthorizesRequests;
+
+    public function __construct(public NotificationService $notificationService) {}
 
     public function index(Quote $quote): JsonResponse
     {

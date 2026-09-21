@@ -2,7 +2,7 @@ import {Form, usePage} from "@inertiajs/react";
 import Input from "@/pages/Movies/components/MovieForm/components/Input.tsx";
 import {PageProps} from "@/types/PagePropsTypes.ts";
 import ImageInput from "@/pages/Movies/components/MovieForm/components/ImageInput/ImageInput.tsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {movie, MovieWithDetails} from "@/pages/Movies/MoviesTypes.ts";
 import {store} from "@/actions/App/Http/Controllers/QuoteController";
 import ActiveMovie from "@/pages/NewsFeed/components/Quote/QuoteForm/components/ActiveMovie.tsx";
@@ -15,10 +15,16 @@ function QuoteForm({handleClose}: { handleClose: VoidFunction }) {
     const {t} = useTranslation("newsfeed");
     const [selectedMovie, setSelectedMovie] = useState<movie | null>(movie);
 
+    useEffect(() => {
+        if (movie) {
+            setSelectedMovie(movie);
+        }
+    }, [movie]);
+
     return <div className="px-5 flex-1 min-h-0 overflow-y-auto flex flex-col gap-6">
         <div className="flex items-center gap-2.5">
             <img className="h-15 w-15 max-lg:w-10 max-lg:h-10 object-cover rounded-full" alt="profile_imgae" src={auth.avatar}/>
-            <span className="text-white text-xl leading-[150%]">{auth.username}</span>
+            <span className="text-white text-xl leading-[150%] min-w-0 truncate">{auth.username}</span>
         </div>
 
         <Form
