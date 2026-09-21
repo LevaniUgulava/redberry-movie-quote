@@ -15,13 +15,13 @@ function Movie() {
     const {t} = useTranslation(["movies", "common"]);
     const isMobile = useIsMobile();
 
-    return <div className="max-lg:px-8.75 mt-10">
+    return <div className="max-lg:px-8.75 mt-10 w-full min-w-0">
         <Head title={movie.title}/>
         <div className='text-white text-2xl font-medium'>{t("movie_description")}</div>
         <div className="flex gap-6 mt-8 max-lg:flex-col">
-            <div className='w-full max-w-202.25 flex flex-col gap-5'>
-                <img className="w-full rounded-xl object-cover" src={movie.image} alt='movie-image'/>
-                {!isMobile && <div className='flex flex-col gap-10'>
+            <div className='w-full min-w-0 max-w-202.25 flex flex-col gap-5'>
+                <img className="w-full max-w-full rounded-xl object-cover" src={movie.image} alt='movie-image'/>
+                {!isMobile && <div className='flex flex-col gap-10 min-w-0'>
                     <div className='flex items-center gap-3'>
                         <span className="text-2xl text-white">{t("quotes_total", {count: movie.quotes.length})}</span>
                         <div className='w-px h-8 bg-[#6C757D]'/>
@@ -33,7 +33,7 @@ function Movie() {
                             <span className="text-white text-xl leading-[150%] font-normal">{t("add_quote")}</span>
                         </LocaleLink>
                     </div>
-                    <div className="flex flex-col gap-5">
+                    <div className="flex flex-col gap-5 min-w-0">
                         {movie.quotes.length === 0 ? (
                             <div className="flex flex-col items-center gap-4 py-16">
                                 <span className="text-white text-2xl font-bold">{t("no_quotes_yet")}</span>
@@ -45,13 +45,13 @@ function Movie() {
                     </div>
                 </div>}
             </div>
-            <div className="w-full flex flex-col gap-5">
+            <div className="w-full min-w-0 flex flex-col gap-5">
                 <div className="flex justify-between gap-5">
                     <div className="min-w-0">
                         <span
                             className='text-main-beige text-2xl leading-[150%] font-medium break-all'>{movie.title}({movie.year})</span>
                     </div>
-                    <div className="flex items-center gap-4 bg-[#24222F] rounded-xl px-4 py-3 w-fit h-fit">
+                    <div className="flex items-center gap-4 bg-[#24222F] rounded-xl px-4 py-3 w-fit h-fit shrink-0">
                         <LocaleLink href={`/movies?id=${movie.id}&modal=edit`}
                                     className="cursor-pointer">
                             <EditIcon/>
@@ -72,13 +72,13 @@ function Movie() {
                 </div>
                 <div className='flex gap-3'>
                     <span className="text-[#CED4DA] text-lg font-bold leading-[150%] shrink-0">{t("director")}</span>
-                    <span className='text-white text-lg font-medium leading-[150%] min-w-0 break-words'>{movie.director}</span>
+                    <span className='text-white text-lg font-medium leading-[150%] min-w-0 break-words [overflow-wrap:anywhere]'>{movie.director}</span>
                 </div>
-                <div>
-                    <span className='text-lg leading-[150%] font-normal text-[#CED4DA]'>{movie.description}</span>
+                <div className="min-w-0">
+                    <span className='text-lg leading-[150%] font-normal text-[#CED4DA] break-words [overflow-wrap:anywhere]'>{movie.description}</span>
                 </div>
-                {isMobile && <div className='flex flex-col gap-10'>
-                    <div className='flex flex-col  gap-8'>
+                {isMobile && <div className='flex flex-col gap-10 min-w-0'>
+                    <div className='flex flex-col gap-8'>
                         <LocaleLink
                             href={`/movies/${movie.id}?modal=create`}
                             className='flex gap-2.5 w-fit items-center px-4.25 py-2.25 bg-main-red hover:bg-[#CC0E10] rounded-sm transition-colors'
@@ -87,32 +87,23 @@ function Movie() {
                             <span className="text-white text-xl leading-[150%] font-normal">{t("add_quote")}</span>
                         </LocaleLink>
                         <div className='h-px w-full bg-[#6C757D]'/>
-
                         <span className="text-2xl text-white">{t("quotes_total", {count: movie.quotes.length})}</span>
-
                     </div>
-                    <div className='flex flex-col gap-10'>
-                        <div className="flex flex-col gap-5">
-                            {movie.quotes.length === 0 ? (
-                                <div className="flex flex-col items-center gap-4 py-16">
-                                    <span className="text-white text-2xl font-bold">{t("no_quotes_yet")}</span>
-                                    <span className="text-[#CED4DA] text-lg">{t("no_quotes_hint")}</span>
-                                </div>
-                            ) : movie.quotes.map((quote: QuoteCardData) => (
-                                <QuoteCard key={quote.id} movie_id={movie.id} quote={quote}/>
-                            ))}
-                        </div>
-
+                    <div className="flex flex-col gap-5 min-w-0">
+                        {movie.quotes.length === 0 ? (
+                            <div className="flex flex-col items-center gap-4 py-16">
+                                <span className="text-white text-2xl font-bold">{t("no_quotes_yet")}</span>
+                                <span className="text-[#CED4DA] text-lg">{t("no_quotes_hint")}</span>
+                            </div>
+                        ) : movie.quotes.map((quote: QuoteCardData) => (
+                            <QuoteCard key={quote.id} movie_id={movie.id} quote={quote}/>
+                        ))}
                     </div>
-
                 </div>}
-
-
             </div>
 
             <QuoteModal movie_id={movie.id} isOpen={openModal} handleClose={handleClose} modal={currentModal}
                         quote={quote}/>
-
         </div>
     </div>
 }
